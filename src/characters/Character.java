@@ -1,6 +1,10 @@
 package characters;
 
-public abstract class Character {
+import Interface.Fightable;
+import Interface.Moveable;
+import Interface.Skillable;
+
+public abstract class Character implements Fightable, Moveable, Skillable{
 	String name;
 	private int element; //Fire:1 Earth:2 Water:3 Wind:4
 	private int health; // standard:100
