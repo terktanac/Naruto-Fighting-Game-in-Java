@@ -3,7 +3,7 @@ package characters;
 public class FireCharacter_1 extends Character{
 
 	public FireCharacter_1() {
-		super("Naruto", 4, 80, 8, def);
+		super("Sasuke", 1, 100, 10, 4);
 		// TODO Auto-generated constructor stub
 	}
 
