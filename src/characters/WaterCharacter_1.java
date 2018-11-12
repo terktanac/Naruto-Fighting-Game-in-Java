@@ -1,9 +1,9 @@
 package characters;
 
-public class EarthCharacter_1 extends Character {
+public class WaterCharacter_1 extends Character{
 
-	public EarthCharacter_1() {
-		super("Toph", 2, 100, 5, 10);
+	public WaterCharacter_1() {
+		super("Suigetsu", 3, 100,10, 6);
 		// TODO Auto-generated constructor stub
 	}
 
