@@ -1,0 +1,11 @@
+0 Plain: High ATK, others std
+1 Fire: Low def, High skill damage, others std
+2 Earth: Low atk,High Def, Slow, others std
+3 Water: Slightly fast, others std
+4 Wind: Low def, Low atk, High skill damage, all skills are armor piercing
+
+Plain: Sakura	
+Fire: Sasuke
+Earth: Gaara
+Water: Suigesu
+Wind: Naruto

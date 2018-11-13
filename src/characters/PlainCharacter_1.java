@@ -3,7 +3,7 @@ package characters;
 public class PlainCharacter_1 extends Character{
 
 	public PlainCharacter_1() {
-		super(name, element, health, atk, def, standTme);
+		super("Sakura", 0, 100, 15, 5, 1);
 		// TODO Auto-generated constructor stub
 	}
 

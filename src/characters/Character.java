@@ -6,13 +6,13 @@ import Interface.Skillable;
 
 public abstract class Character implements Fightable, Moveable, Skillable{
 	String name;
-	private int element; //Fire:1 Earth:2 Water:3 Wind:4
+	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private int health; // standard:100
 	private int atk; // standard:10
 	private int def; // standard:5
 	private boolean isDead;
-	private double isFall; //if > 0.00 user cant do anything and need to wait for stand
-	private boolean isAttacked; //if true user cant move for 0.1 s(or less)
+	private double isFall; //if > 0.00 user can't do anything and need to wait for stand
+	private boolean isAttacked; //if true user can't move for 0.1 s(or less)
 	private double standTime ;//Time period that a character need for stand avg=1 s
 	public Character(String name, int element, int health, int atk, int def,double standTme) {
 		super();
