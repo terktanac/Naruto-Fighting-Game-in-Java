@@ -1,5 +1,5 @@
 package main;
 
-public class PauseMenu {
+public class PauseMenuScreen {
 
 }
