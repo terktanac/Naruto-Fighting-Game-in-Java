@@ -3,7 +3,7 @@ package characters;
 public class WindCharacter_1 extends Character{
 
 	public WindCharacter_1() {
-		super("Naruto", 4, 100, 8, 2);
+		super("Naruto", 4, 100, 8, 2,0.6);
 		// TODO Auto-generated constructor stub
 	}
 

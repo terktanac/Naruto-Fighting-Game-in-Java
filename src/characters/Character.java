@@ -11,13 +11,17 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 	private int atk; // standard:10
 	private int def; // standard:5
 	private boolean isDead;
-	public Character(String name, int element, int health, int atk, int def) {
+	private double isFall; //if > 0.00 user cant do anything and need to wait for stand
+	private boolean isAttacked; //if true user cant move for 0.1 s(or less)
+	private double standTime ;//Time period that a character need for stand avg=1 s
+	public Character(String name, int element, int health, int atk, int def,double standTme) {
 		super();
 		this.name = name;
 		this.element = element;
 		this.health = health;
 		this.atk = atk;
 		this.def = def;
+		this.standTime = standTme;
 	}
 	public String getName() {
 		return name;

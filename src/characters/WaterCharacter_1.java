@@ -3,7 +3,7 @@ package characters;
 public class WaterCharacter_1 extends Character{
 
 	public WaterCharacter_1() {
-		super("Suigetsu", 3, 100,10, 6);
+		super("Suigetsu", 3, 100,10, 6,0.8);
 		// TODO Auto-generated constructor stub
 	}
 
