@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -43,10 +44,12 @@ public class Main extends Application {
 		pressKey.setTranslateX(370);
 		pressKey.setTranslateY(550);		
 		
-		//Video
-		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("video/intro.mp4").toString()));
+		//Intro video, to use changing scene would be a better way.
+		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("Untitled.mp4").toString()));
 		vsource.setAutoPlay(true);
 		MediaView mediaview = new MediaView(vsource);
+		mediaview.setX(0);
+		mediaview.setY(0);
 		root.getChildren().add(mediaview);
 		
 		imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
