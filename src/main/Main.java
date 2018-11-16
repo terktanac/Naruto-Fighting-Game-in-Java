@@ -22,6 +22,7 @@ import javafx.util.Duration;
 public class Main extends Application {
 //	private Font narutoFont = new Font(getClass().getResource("//CharsAndSFX//fonts//njnaruto.ttf").toExternalForm(), 50); fix pls
 	private Stage primaryStage;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
@@ -34,21 +35,22 @@ public class Main extends Application {
 		pressKey.setFill(Color.WHITE);
 		pressKey.setTranslateX(420);
 		pressKey.setTranslateY(500);
-		
+
 		root.getChildren().addAll(background, pressKey);
-		
 		Scene scene = new Scene(root);
-		
+
 		primaryStage.setTitle("Naruto Ultimate Ninja by C&T");
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		//To Blink
+
+		// To Blink
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> pressKey.setFill(Color.YELLOW)),
 				new KeyFrame(Duration.seconds(0.1), evt -> pressKey.setFill(Color.WHITE)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
-		//Change Scene
+
+		// Change Scene not good need to change
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
