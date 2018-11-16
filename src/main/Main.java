@@ -13,36 +13,38 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-//	private Font narutoFont = new Font(getClass().getResource("//CharsAndSFX//fonts//njnaruto.ttf").toExternalForm(), 50); fix pls
+//	private Font narutoFont = new Font(getClass().getResource("njnaruto.ttf").toExternalForm(), 50);
 	private Stage primaryStage;
 	private ImageView imageView;
+	private Image background = new Image(ClassLoader.getSystemResource("icon/konohaBackgroun.gif").toString(),1280,720,false,false);
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		Pane root = new Pane();
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		MainmenuScreen NextScene = new MainmenuScreen();
 		root.setPrefSize(1280, 720);
-		Rectangle background = new Rectangle(1280, 720);
 		Text pressKey = new Text("Press any key to START");
 		pressKey.setFont(new Font(40));
 		pressKey.setFill(Color.WHITE);
-		pressKey.setTranslateX(420);
-		pressKey.setTranslateY(500);		
+		pressKey.setTranslateX(450);
+		pressKey.setTranslateY(550);		
 
-		imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.jpg").toString()));
-		imageView.setTranslateX(450);
+		imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
+		imageView.setTranslateX(350);
 		imageView.setTranslateY(120);
 		imageView.prefWidth(1000);
-		root.getChildren().addAll(background,imageView, pressKey);
+		root.getChildren().addAll(imageView, pressKey);
 		Scene scene = new Scene(root);
 
 		primaryStage.setTitle("Naruto Ultimate Ninja by C&T");
@@ -51,8 +53,8 @@ public class Main extends Application {
 		primaryStage.show();
 
 		// To Blink
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> pressKey.setFill(Color.YELLOW)),
-				new KeyFrame(Duration.seconds(0.1), evt -> pressKey.setFill(Color.WHITE)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> pressKey.setFill(Color.ORANGE)),
+				new KeyFrame(Duration.seconds(0.1), evt -> pressKey.setFill(Color.PINK)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 
