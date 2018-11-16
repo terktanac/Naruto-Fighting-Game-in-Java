@@ -16,6 +16,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -23,10 +25,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-//	private Font narutoFont = new Font(getClass().getResource("njnaruto.ttf").toExternalForm(), 50);
+	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Stage primaryStage;
 	private ImageView imageView;
-	private Image background = new Image(ClassLoader.getSystemResource("icon/konohaBackgroun.gif").toString(),1280,720,false,false);
+	private Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1280,720,false,false);
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
@@ -35,9 +37,9 @@ public class Main extends Application {
 		MainmenuScreen NextScene = new MainmenuScreen();
 		root.setPrefSize(1280, 720);
 		Text pressKey = new Text("Press any key to START");
-		pressKey.setFont(new Font(40));
+		pressKey.setFont(narutoFont);
 		pressKey.setFill(Color.WHITE);
-		pressKey.setTranslateX(450);
+		pressKey.setTranslateX(370);
 		pressKey.setTranslateY(550);		
 
 		imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
@@ -57,7 +59,10 @@ public class Main extends Application {
 				new KeyFrame(Duration.seconds(0.1), evt -> pressKey.setFill(Color.PINK)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
-
+		// Music
+		MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
+		player.play();
+		
 		// Change Scene not good need to change
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
