@@ -18,6 +18,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -41,7 +42,13 @@ public class Main extends Application {
 		pressKey.setFill(Color.WHITE);
 		pressKey.setTranslateX(370);
 		pressKey.setTranslateY(550);		
-
+		
+		//Video
+		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("video/intro.mp4").toString()));
+		vsource.setAutoPlay(true);
+		MediaView mediaview = new MediaView(vsource);
+		root.getChildren().add(mediaview);
+		
 		imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
 		imageView.setTranslateX(350);
 		imageView.setTranslateY(120);
@@ -59,9 +66,10 @@ public class Main extends Application {
 				new KeyFrame(Duration.seconds(0.1), evt -> pressKey.setFill(Color.PINK)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
+		
 		// Music
 		MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
-		player.play();
+		player.setAutoPlay(true);
 		
 		// Change Scene not good need to change
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -69,6 +77,7 @@ public class Main extends Application {
 			public void handle(KeyEvent event) {
 				primaryStage.getScene().setRoot(NextScene);
 				System.out.println("PRESSED");
+				player.stop();
 			}
 		});
 	}

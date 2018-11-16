@@ -6,5 +6,6 @@
 	<classpathentry kind="src" path="image"/>
 	<classpathentry kind="src" path="music"/>
 	<classpathentry kind="src" path="soundfx"/>
+	<classpathentry kind="src" path="video"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
