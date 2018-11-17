@@ -24,10 +24,13 @@ public class IntroScreen extends Scene{
 	private Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 	MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
 	static Pane root = new Pane();
+	
 	public IntroScreen(){
 		super(root);
+		
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		root.setPrefSize(1280,720);
+		
 		Text pressKey = new Text("Press any key to START");
 		pressKey.setFont(narutoFont);
 		pressKey.setFill(Color.WHITE);
@@ -46,7 +49,6 @@ public class IntroScreen extends Scene{
 		transition.setToValue(0.0);
 		transition.play();	
 
-		
 		//Logo
 		imageView.setTranslateX(350);
 		imageView.setTranslateY(120);

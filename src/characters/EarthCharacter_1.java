@@ -4,7 +4,6 @@ public class EarthCharacter_1 extends Character {
 
 	public EarthCharacter_1() {
 		super("Gaara", 2, 100, 5, 10,2);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
