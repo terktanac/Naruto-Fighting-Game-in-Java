@@ -40,14 +40,15 @@ public class IntroScreen extends Scene{
 		//Intro video, to use changing scene would be a better way.
 		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("Untitled.mp4").toString()));
 		vsource.setAutoPlay(true);
+		vsource.setStopTime(Duration.seconds(6));
 		MediaView mediaview = new MediaView(vsource);
 		mediaview.setFitWidth(1300);
 		mediaview.setFitHeight(740);
 		mediaview.setX(0);
 		mediaview.setY(0);
-		FadeTransition transition = new FadeTransition(Duration.seconds(30),mediaview);
+		/*FadeTransition transition = new FadeTransition(Duration.seconds(30),mediaview);
 		transition.setToValue(0.0);
-		transition.play();	
+		transition.play();*/
 
 		//Logo
 		imageView.setTranslateX(350);
@@ -63,8 +64,8 @@ public class IntroScreen extends Scene{
 		// Music
 		player.setAutoPlay(true);
 		
-		root.getChildren().addAll(mediaview,pressKey,imageView);
-
+		//root.getChildren().addAll(mediaview,pressKey,imageView);
+		root.getChildren().addAll(pressKey,imageView);
 
 	}
 }

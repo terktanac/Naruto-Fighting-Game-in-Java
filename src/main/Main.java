@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main.MainMenuScreen.ListMenu;
 
@@ -36,10 +38,13 @@ public class Main extends Application {
 
 			@Override
 			public void handle(KeyEvent event) {
+				MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+				player.play();
 				KeyCode key = event.getCode();
 				System.out.println("Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
 					if(mainmenu.Oldchoice==1) {primaryStage.setScene(loadscreen);}
+					else if(mainmenu.Oldchoice==3){System.exit(1);}
 				}
 				else if (key == KeyCode.UP || key == KeyCode.W || key == KeyCode.KP_UP) {
 						if (mainmenu.Oldchoice == 0) {mainmenu.NewChoice = 3;} 

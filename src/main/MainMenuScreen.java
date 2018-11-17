@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -28,13 +29,14 @@ public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	int state; // 0=menu 1=play 2=pause 3=load
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
+	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley.jpg").toString(),1300,740,false,false);
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
 	int NewChoice = 0 ;
 	public MainMenuScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
-		root.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		
 		//-----------<Menu Box>---------------------------------------------------------------
 		MenuBox.setTranslateX(450);
