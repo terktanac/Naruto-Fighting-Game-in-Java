@@ -1,7 +1,6 @@
 package main;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -19,6 +18,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -48,8 +48,8 @@ public class Main extends Application {
 		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("Untitled.mp4").toString()));
 		vsource.setAutoPlay(true);
 		MediaView mediaview = new MediaView(vsource);
-		mediaview.setX(0);
-		mediaview.setY(0);
+		mediaview.setX(5);
+		mediaview.setScaleX(1.2);
 		root.getChildren().add(mediaview);
 		
 		imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
