@@ -38,10 +38,8 @@ public class IntroScreen extends Pane{
 		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("Untitled.mp4").toString()));
 		vsource.setAutoPlay(true);
 		MediaView mediaview = new MediaView(vsource);
-		mediaview.setFitWidth(1300);
-		mediaview.setFitHeight(740);
-		mediaview.setX(0);
-		mediaview.setY(0);
+		mediaview.setX(5);
+		mediaview.setScaleX(1.5);
 		FadeTransition transition = new FadeTransition(Duration.seconds(30),mediaview);
 		transition.setToValue(0.0);
 		transition.play();	
