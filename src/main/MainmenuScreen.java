@@ -1,11 +1,14 @@
 package main;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -24,40 +27,67 @@ import javafx.scene.text.Text;
 public class MainmenuScreen extends Scene {
 	static Pane root = new Pane();
 	private int state; // 0=menu 1=play 2=pause 3=load
-
+	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
+	VBox MenuBox = new VBox(5);
+	int Oldchoice = 0 ;
+	int NewChoice = 0 ;
 	public MainmenuScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
-		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+		root.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
 		
-		VBox MenuBox = new VBox(5);
-		MenuBox.setMaxSize(100, 100);
+		//-----------<Menu Box>---------------------------------------------------------------
 		MenuBox.setTranslateX(450);
+		MenuBox.setTranslateY(250);
+		//----------<Menu List>---------------------------------------------------------------
 		ListMenu vsComp = new ListMenu("VS Comp.");
 		ListMenu vsHuman = new ListMenu("VS Human");
 		ListMenu option = new ListMenu("Option");
-		MenuBox.getChildren().addAll(vsComp,vsHuman,option);
+		ListMenu exit = new ListMenu("Exit");
+		//----------<\Menu List>---------------------------------------------------------------
+		MenuBox.getChildren().addAll(vsComp,vsHuman,option,exit);
+		((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(true);
 		MenuBox.setAlignment(Pos.CENTER);
-
+		//-----------<\Menu Box>---------------------------------------------------------------
+		
 		root.getChildren().addAll(MenuBox);
+		
+	
+	}
+	public void ChooseMenu() {
+		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				KeyCode key = event.getCode();
+				System.out.println("Pressed "+key.toString());
+				if(key==KeyCode.UP || key==KeyCode.W) {
+					if(Oldchoice == 0) {NewChoice = 3;}
+					else {NewChoice=Oldchoice-1;}
+					((ListMenu)MenuBox.getChildren().get(Oldchoice)).setActive(false);
+					((ListMenu)MenuBox.getChildren().get(NewChoice)).setActive(true);
+					Oldchoice = NewChoice;
+					}
+				}
+			});
 	}
 
 	public class ListMenu extends HBox {
 		private Text name;
-		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString()));
-		private Font font = new Font(18);
+		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),150,40,true,true));
+		private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 
 		ListMenu(String text) {
-			this.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+//			this.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			this.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
-			name.setFont(font);
+			name.setFont(new Font(50));
 			getChildren().addAll(kunai, name);
 			setActive(false);
 		}
 
-		private void setActive(boolean check) {
+		void setActive(boolean check) {
 			kunai.setVisible(check);
 			name.setFill(check ? Color.BLACK : Color.GRAY);
 		}
