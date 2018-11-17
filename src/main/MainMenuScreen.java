@@ -13,9 +13,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class MainmenuScreen extends Pane {
+public class MainMenuScreen extends Pane {
 	private int state; // 0=menu 1=play 2=pause 3=load
-	public MainmenuScreen() {
+	public MainMenuScreen() {
 		this.setPrefSize(1280, 720);
 		setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		VBox MenuBox = new VBox(10,new Menu("VS Comp."),new Menu("VS Human"),new Menu("Option"));

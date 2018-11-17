@@ -35,14 +35,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		IntroScreen introscreen = new IntroScreen();
 		Scene intro = new Scene(introscreen);
-		Scene mainmenu = new Scene(new MainmenuScreen());
-=======
+		Scene mainmenu = new Scene(new MainMenuScreen());
+//=======
 		Pane root = new Pane();
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
-		MainmenuScreen NextScene = new MainmenuScreen();
+		MainMenuScreen NextScene = new MainMenuScreen();
 		root.setPrefSize(1280, 720);
 		Text pressKey = new Text("Press any key to START");
 		pressKey.setFont(narutoFont);
@@ -79,7 +79,7 @@ public class Main extends Application {
 		// Music
 		MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
 		player.setAutoPlay(true);
->>>>>>> 0c5f794c637b6f45a8db05f7a1652d89268e8576
+//>>>>>>> 0c5f794c637b6f45a8db05f7a1652d89268e8576
 		
 		// Change Scene not good need to change
 		intro.setOnKeyPressed(new EventHandler<KeyEvent>() {
