@@ -42,9 +42,9 @@ public class IntroScreen extends Pane{
 		mediaview.setFitHeight(740);
 		mediaview.setX(0);
 		mediaview.setY(0);
-//		FadeTransition transition = new FadeTransition(Duration.seconds(30),mediaview);
-//		transition.setToValue(0.0);
-//		transition.play();	
+		FadeTransition transition = new FadeTransition(Duration.seconds(30),mediaview);
+		transition.setToValue(0.0);
+		transition.play();	
 
 		
 		//Logo
