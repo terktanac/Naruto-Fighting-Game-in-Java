@@ -24,37 +24,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-<<<<<<< HEAD:src/main/MainMenuScreen.java
-public class MainMenuScreen extends Pane {
-	private int state; // 0=menu 1=play 2=pause 3=load
-	public MainMenuScreen() {
-		this.setPrefSize(1280, 720);
-		setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-		VBox MenuBox = new VBox(10,new Menu("VS Comp."),new Menu("VS Human"),new Menu("Option"));
-		MenuBox.setTranslateX(-640);
-		getChildren().addAll(MenuBox);
-||||||| merged common ancestors
-public class MainmenuScreen extends Pane {
-	private int state; // 0=menu 1=play 2=pause 3=load
-	public MainmenuScreen() {
-		this.setPrefSize(1280, 720);
-		setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-		VBox MenuBox = new VBox(10,new Menu("VS Comp."),new Menu("VS Human"),new Menu("Option"));
-		MenuBox.setTranslateX(-640);
-		getChildren().addAll(MenuBox);
-=======
-public class MainmenuScreen extends Scene {
+public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	int state; // 0=menu 1=play 2=pause 3=load
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
 	int NewChoice = 0 ;
-	public MainmenuScreen() {
+	public MainMenuScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
->>>>>>> 608014e3febda4c910a379f172ff4027281212f9:src/main/MainmenuScreen.java
 		
 		//-----------<Menu Box>---------------------------------------------------------------
 		MenuBox.setTranslateX(450);
@@ -102,7 +82,7 @@ public class MainmenuScreen extends Scene {
 			this.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
-			name.setFont(MainmenuScreen.this.narutoFont);
+			name.setFont(MainMenuScreen.this.narutoFont);
 			getChildren().addAll(kunai, name);
 			setActive(false);
 		}
