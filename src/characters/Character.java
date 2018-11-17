@@ -11,6 +11,7 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 	private int atk; // standard:10
 	private int def; // standard:5
 	private boolean isDead;//true = Dead = EndGame
+	private boolean isAir ; //knock up or jump
 	private double isFall; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked; //if true user can't move for 0.1 s(or less)
 	private double standTime ;//Time period that a character need for stand avg=1 s
