@@ -26,7 +26,7 @@ import javafx.scene.text.Text;
 
 public class MainmenuScreen extends Scene {
 	static Pane root = new Pane();
-	private int state; // 0=menu 1=play 2=pause 3=load
+	int state; // 0=menu 1=play 2=pause 3=load
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
@@ -40,7 +40,7 @@ public class MainmenuScreen extends Scene {
 		MenuBox.setTranslateX(450);
 		MenuBox.setTranslateY(250);
 		//----------<Menu List>---------------------------------------------------------------
-		ListMenu vsComp = new ListMenu("VS Comp.");
+		ListMenu vsComp = new ListMenu("VS Comp."); 
 		ListMenu vsHuman = new ListMenu("VS Human");
 		ListMenu option = new ListMenu("Option");
 		ListMenu exit = new ListMenu("Exit");
@@ -75,14 +75,14 @@ public class MainmenuScreen extends Scene {
 	public class ListMenu extends HBox {
 		private Text name;
 		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),150,40,true,true));
-		private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
+//		private Runnable script;
 
 		ListMenu(String text) {
 //			this.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			this.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
-			name.setFont(new Font(50));
+			name.setFont(MainmenuScreen.this.narutoFont);
 			getChildren().addAll(kunai, name);
 			setActive(false);
 		}
@@ -91,6 +91,14 @@ public class MainmenuScreen extends Scene {
 			kunai.setVisible(check);
 			name.setFill(check ? Color.BLACK : Color.GRAY);
 		}
+		//dont know why use Thread here
+//		public void setOnActivate(Runnable r) {
+//            script = r;
+//        }
+//		public void activate() {
+//	            if (script != null)
+//	                script.run();
+//	     }
 
 	}
 }
