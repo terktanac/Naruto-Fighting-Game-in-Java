@@ -4,11 +4,9 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
@@ -20,14 +18,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class IntroScreen extends Pane{
+public class IntroScreen extends Scene{
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
 	private Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 	MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
-	public IntroScreen() throws InterruptedException {
-		setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
-		setPrefSize(1280,720);
+	static Pane root = new Pane();
+	
+	public IntroScreen(){
+		super(root);
+		
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
+		root.setPrefSize(1280,720);
+		
 		Text pressKey = new Text("Press any key to START");
 		pressKey.setFont(narutoFont);
 		pressKey.setFill(Color.WHITE);
@@ -46,7 +49,6 @@ public class IntroScreen extends Pane{
 		transition.setToValue(0.0);
 		transition.play();	
 
-		
 		//Logo
 		imageView.setTranslateX(350);
 		imageView.setTranslateY(120);
@@ -61,8 +63,8 @@ public class IntroScreen extends Pane{
 		// Music
 		player.setAutoPlay(true);
 		
-		getChildren().addAll(mediaview,pressKey,imageView);
-		
+		root.getChildren().addAll(mediaview,pressKey,imageView);
+
 
 	}
 }
