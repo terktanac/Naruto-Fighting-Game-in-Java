@@ -29,7 +29,8 @@ public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	int state; // 0=menu 1=play 2=pause 3=load
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
-	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley.jpg").toString(),1300,740,false,false);
+	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
+	
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
 	int NewChoice = 0 ;
@@ -37,12 +38,12 @@ public class MainMenuScreen extends Scene {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
-		
 		//-----------<Menu Box>---------------------------------------------------------------
 		MenuBox.setTranslateX(450);
 		MenuBox.setTranslateY(250);
 		//----------<Menu List>---------------------------------------------------------------
-		ListMenu vsComp = new ListMenu("VS Comp."); 
+		ListMenu vsComp = new ListMenu("VS Comp.");
+		
 		ListMenu vsHuman = new ListMenu("VS Human");
 		ListMenu option = new ListMenu("Option");
 		ListMenu exit = new ListMenu("Exit");
@@ -50,6 +51,7 @@ public class MainMenuScreen extends Scene {
 		MenuBox.getChildren().addAll(vsComp,vsHuman,option,exit);
 		((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(true);
 		MenuBox.setAlignment(Pos.CENTER);
+		MenuBox.setSpacing(30);
 		//-----------<\Menu Box>---------------------------------------------------------------
 		
 		root.getChildren().addAll(MenuBox);
@@ -85,13 +87,15 @@ public class MainMenuScreen extends Scene {
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
 			name.setFont(MainMenuScreen.this.narutoFont);
+			name.setStroke(Color.BLACK);
+			name.setStrokeWidth(2);
 			getChildren().addAll(kunai, name);
 			setActive(false);
 		}
 
 		void setActive(boolean check) {
 			kunai.setVisible(check);
-			name.setFill(check ? Color.BLACK : Color.GRAY);
+			name.setFill(check ? Color.WHITE : Color.GRAY);
 		}
 		//dont know why use Thread here
 //		public void setOnActivate(Runnable r) {
