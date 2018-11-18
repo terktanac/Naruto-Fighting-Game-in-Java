@@ -20,7 +20,7 @@ import javafx.util.Duration;
 
 public class IntroScreen extends Scene{
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
-	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo.png").toString(), 600, 300, true, true));
+	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 800, 500, true, true));
 	private Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 	MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
 	static Pane root = new Pane();
@@ -33,7 +33,8 @@ public class IntroScreen extends Scene{
 		
 		Text pressKey = new Text("Press any key to START");
 		pressKey.setFont(narutoFont);
-		pressKey.setFill(Color.WHITE);
+		pressKey.setFill(Color.ORANGE);
+		pressKey.setStroke(Color.WHITE);
 		pressKey.setTranslateX(370);
 		pressKey.setTranslateY(550);		
 		
@@ -51,13 +52,13 @@ public class IntroScreen extends Scene{
 		transition.play();*/
 
 		//Logo
-		imageView.setTranslateX(350);
+		imageView.setTranslateX(260);
 		imageView.setTranslateY(120);
 		imageView.prefWidth(1000);
 		
 		// To Blink
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2), evt -> pressKey.setFill(Color.ORANGE)),
-				new KeyFrame(Duration.seconds(0.1), evt -> pressKey.setFill(Color.PINK)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey.setVisible(true)),
+				new KeyFrame(Duration.seconds(0.7), evt -> pressKey.setVisible(false)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 		

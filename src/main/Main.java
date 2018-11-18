@@ -59,7 +59,7 @@ public class Main extends Application {
 				mainmenu.Oldchoice = mainmenu.NewChoice;
 				}
 		});
-		primaryStage.setTitle("Naruto Ultimate Ninja by C&T");
+		primaryStage.setTitle("Naruto Ultimate Ninja Java Edition by C&T");
 		primaryStage.setScene(intro);
 		primaryStage.setResizable(false);
 		primaryStage.show();
