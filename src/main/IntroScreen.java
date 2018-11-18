@@ -1,7 +1,6 @@
 package main;
 
 import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -66,9 +65,6 @@ public class IntroScreen extends Scene{
 		// Music
 		player.setAutoPlay(true);
 		
-<<<<<<< HEAD
-		root.getChildren().addAll(mediaview,pressKey,imageView);
-		
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -78,10 +74,8 @@ public class IntroScreen extends Scene{
 				main.mainmenu.state = 0;
 			}
 		});
-=======
 		//root.getChildren().addAll(mediaview,pressKey,imageView);
 		root.getChildren().addAll(pressKey,imageView);
 
->>>>>>> refs/remotes/origin/master
 	}
 }

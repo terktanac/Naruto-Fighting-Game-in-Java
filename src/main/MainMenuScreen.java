@@ -8,16 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-<<<<<<< HEAD:src/main/MainmenuScreen.java
-=======
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
->>>>>>> refs/remotes/origin/master:src/main/MainMenuScreen.java
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -34,11 +25,7 @@ public class MainMenuScreen extends Scene {
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
 	int NewChoice = 0 ;
-<<<<<<< HEAD:src/main/MainmenuScreen.java
-	public MainmenuScreen(Main main) {
-=======
-	public MainMenuScreen() {
->>>>>>> refs/remotes/origin/master:src/main/MainMenuScreen.java
+	public MainMenuScreen(Main main) {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
@@ -69,7 +56,7 @@ public class MainMenuScreen extends Scene {
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
 					if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
 					else if(Oldchoice==0) {main.ChangeScene(main.loadscreen);}
-					else if(Oldchoice==MenuBox.getChildren().size()-1) {}
+					else if(Oldchoice==MenuBox.getChildren().size()-1) {System.exit(1);}
 				}
 				else if (key == KeyCode.UP || key == KeyCode.W || key == KeyCode.KP_UP) {
 						if (Oldchoice == 0) {NewChoice = 3;} 
