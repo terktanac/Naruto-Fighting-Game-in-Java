@@ -1,12 +1,13 @@
 package main;
 
 import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
@@ -24,8 +25,7 @@ public class IntroScreen extends Scene{
 	private Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 	MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
 	static Pane root = new Pane();
-	
-	public IntroScreen(){
+	public IntroScreen(Main main){
 		super(root);
 		
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
@@ -65,6 +65,15 @@ public class IntroScreen extends Scene{
 		// Music
 		player.setAutoPlay(true);
 		
+		setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				main.ChangeScene((Scene)main.mainmenu);
+				System.out.println("Skipped Intro");
+				player.stop();
+				main.state = 1 ;
+			}
+		});
 		//root.getChildren().addAll(mediaview,pressKey,imageView);
 		root.getChildren().addAll(pressKey,imageView);
 

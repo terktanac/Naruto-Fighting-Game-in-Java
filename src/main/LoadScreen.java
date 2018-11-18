@@ -16,7 +16,7 @@ public class LoadScreen extends Scene{
 	private static Pane root = new Pane();
 	private ImageView lhschar = new ImageView(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs.png").toString(), 400, 250, true, true));
 	private ImageView rhschar = new ImageView(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs.png").toString(), 400, 250, true, true));
-	public LoadScreen() {
+	public LoadScreen(Main main) {
 		super(root);
 		ArrayList<String> myCharacters = new ArrayList<String>();
 		myCharacters.add("characters/naruto_sage/naruto_sage_mugs.png");
