@@ -50,21 +50,24 @@ public class MainMenuScreen extends Scene {
 			@Override
 			public void handle(KeyEvent event) {
 				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-				click.play();
+				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
 				KeyCode key = event.getCode();
 				System.out.println("MainMenu:Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					if(Oldchoice==0) {main.ChangeScene(main.loadscreen);}
+					if(Oldchoice==0) {}
 					else if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
 					else if(Oldchoice==MenuBox.getChildren().size()-1) {System.exit(1);}
+					choose.play();
 				}
 				else if (key == KeyCode.UP || key == KeyCode.LEFT || key == KeyCode.W || key == KeyCode.A || key == KeyCode.KP_UP || key == KeyCode.KP_LEFT) {
 						if (Oldchoice == 0) {NewChoice = 3;} 
 						else {NewChoice = Oldchoice - 1;}
+						click.play();
 				} 
 				else if (key == KeyCode.DOWN ||key == KeyCode.RIGHT || key == KeyCode.S || key == KeyCode.D || key == KeyCode.KP_DOWN || key == KeyCode.KP_RIGHT) {
 						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
 						else {NewChoice = Oldchoice + 1;}
+						click.play();
 				}
 				((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
 				((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
