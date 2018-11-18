@@ -39,12 +39,12 @@ public class MainMenuScreen extends Scene {
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		//-----------<Menu Box>---------------------------------------------------------------
-		MenuBox.setTranslateX(450);
+		MenuBox.setTranslateX(350);
 		MenuBox.setTranslateY(250);
 		//----------<Menu List>---------------------------------------------------------------
-		ListMenu vsComp = new ListMenu("VS Comp.");
+		ListMenu vsComp = new ListMenu("Singleplayer");
 		
-		ListMenu vsHuman = new ListMenu("VS Human");
+		ListMenu vsHuman = new ListMenu("Multiplayer");
 		ListMenu option = new ListMenu("Option");
 		ListMenu exit = new ListMenu("Exit");
 		//----------<\Menu List>---------------------------------------------------------------
