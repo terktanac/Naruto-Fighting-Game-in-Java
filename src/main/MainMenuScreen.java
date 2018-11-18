@@ -9,6 +9,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+<<<<<<< HEAD:src/main/MainmenuScreen.java
+=======
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+>>>>>>> refs/remotes/origin/master:src/main/MainMenuScreen.java
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -16,30 +25,37 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class MainmenuScreen extends Scene {
+public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	int state; // 0=menu 1=play 2=pause 3=load
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
+	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
+	
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
 	int NewChoice = 0 ;
+<<<<<<< HEAD:src/main/MainmenuScreen.java
 	public MainmenuScreen(Main main) {
+=======
+	public MainMenuScreen() {
+>>>>>>> refs/remotes/origin/master:src/main/MainMenuScreen.java
 		super(root);
 		root.setPrefSize(1280, 720);
-		root.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-		
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		//-----------<Menu Box>---------------------------------------------------------------
-		MenuBox.setTranslateX(450);
+		MenuBox.setTranslateX(350);
 		MenuBox.setTranslateY(250);
 		//----------<Menu List>---------------------------------------------------------------
-		ListMenu vsComp = new ListMenu("VS Comp."); 
-		ListMenu vsHuman = new ListMenu("VS Human");
+		ListMenu vsComp = new ListMenu("Singleplayer");
+		
+		ListMenu vsHuman = new ListMenu("Multiplayer");
 		ListMenu option = new ListMenu("Option");
 		ListMenu exit = new ListMenu("Exit");
 		//----------<\Menu List>---------------------------------------------------------------
 		MenuBox.getChildren().addAll(vsComp,vsHuman,option,exit);
 		((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(true);
 		MenuBox.setAlignment(Pos.CENTER);
+		MenuBox.setSpacing(30);
 		//-----------<\Menu Box>---------------------------------------------------------------
 		
 		root.getChildren().addAll(MenuBox);
@@ -99,14 +115,16 @@ public class MainmenuScreen extends Scene {
 			this.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
-			name.setFont(MainmenuScreen.this.narutoFont);
+			name.setFont(MainMenuScreen.this.narutoFont);
+			name.setStroke(Color.BLACK);
+			name.setStrokeWidth(2);
 			getChildren().addAll(kunai, name);
 			setActive(false);
 		}
 
 		void setActive(boolean check) {
 			kunai.setVisible(check);
-			name.setFill(check ? Color.BLACK : Color.GRAY);
+			name.setFill(check ? Color.WHITE : Color.GRAY);
 		}
 		//dont know why use Thread here
 //		public void setOnActivate(Runnable r) {
