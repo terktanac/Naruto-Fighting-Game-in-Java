@@ -78,7 +78,7 @@ public class MainMenuScreen extends Scene {
 
 	public class ListMenu extends HBox {
 		private Text name;
-		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),150,40,true,true));
+		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),130,40,true,true));
 //		private Runnable script;
 
 		ListMenu(String text) {
