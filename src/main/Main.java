@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private Stage stage ;
+	int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
 	IntroScreen intro = new IntroScreen(this);
 	MainMenuScreen mainmenu = new MainMenuScreen(this);
 	LoadScreen loadscreen = new LoadScreen(this);

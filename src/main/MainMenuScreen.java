@@ -18,7 +18,6 @@ import javafx.scene.text.Text;
 
 public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
-	int state; // 0=menu 1=play 2=pause 3=load
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
 	
@@ -34,7 +33,6 @@ public class MainMenuScreen extends Scene {
 		MenuBox.setTranslateY(250);
 		//----------<Menu List>---------------------------------------------------------------
 		ListMenu vsComp = new ListMenu("Singleplayer");
-		
 		ListMenu vsHuman = new ListMenu("Multiplayer");
 		ListMenu option = new ListMenu("Option");
 		ListMenu exit = new ListMenu("Exit");
@@ -48,21 +46,20 @@ public class MainMenuScreen extends Scene {
 		root.getChildren().addAll(MenuBox);
 		
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
-
 			@Override
 			public void handle(KeyEvent event) {
 				KeyCode key = event.getCode();
 				System.out.println("Mainmenu:Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
-					else if(Oldchoice==0) {main.ChangeScene(main.loadscreen);}
+					if(Oldchoice==0) {main.ChangeScene(main.loadscreen);}
+					else if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
 					else if(Oldchoice==MenuBox.getChildren().size()-1) {System.exit(1);}
 				}
-				else if (key == KeyCode.UP || key == KeyCode.W || key == KeyCode.KP_UP) {
+				else if (key == KeyCode.UP || key == KeyCode.LEFT || key == KeyCode.W || key == KeyCode.A || key == KeyCode.KP_UP || key == KeyCode.KP_LEFT) {
 						if (Oldchoice == 0) {NewChoice = 3;} 
 						else {NewChoice = Oldchoice - 1;}
 				} 
-				else if (key == KeyCode.DOWN || key == KeyCode.S || key == KeyCode.KP_DOWN) {
+				else if (key == KeyCode.DOWN ||key == KeyCode.RIGHT || key == KeyCode.S || key == KeyCode.D || key == KeyCode.KP_DOWN || key == KeyCode.KP_RIGHT) {
 						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
 						else {NewChoice = Oldchoice + 1;}
 				}
@@ -73,23 +70,6 @@ public class MainMenuScreen extends Scene {
 		});
 	
 	}
-	public void ChooseMenu() {
-		root.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				KeyCode key = event.getCode();
-				System.out.println("Pressed1 "+key.toString());
-				if(key==KeyCode.UP || key==KeyCode.W) {
-					if(Oldchoice == 0) {NewChoice = 3;}
-					else {NewChoice=Oldchoice-1;}
-					((ListMenu)MenuBox.getChildren().get(Oldchoice)).setActive(false);
-					((ListMenu)MenuBox.getChildren().get(NewChoice)).setActive(true);
-					Oldchoice = NewChoice;
-					}
-				}
-			});
-	}
 
 	public class ListMenu extends HBox {
 		private Text name;
@@ -99,11 +79,9 @@ public class MainMenuScreen extends Scene {
 		ListMenu(String text) {
 //			this.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			this.setSpacing(10);
-			this.setPrefSize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
 			name.setFont(MainMenuScreen.this.narutoFont);
-			name.setStroke(Color.BLACK);
 			name.setStrokeWidth(2);
 			getChildren().addAll(kunai, name);
 			setActive(false);
@@ -111,7 +89,7 @@ public class MainMenuScreen extends Scene {
 
 		void setActive(boolean check) {
 			kunai.setVisible(check);
-			name.setFill(check ? Color.WHITE : Color.GRAY);
+			name.setStroke(check ? Color.WHITE : Color.GRAY);
 		}
 		//dont know why use Thread here
 //		public void setOnActivate(Runnable r) {

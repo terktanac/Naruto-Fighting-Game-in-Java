@@ -71,7 +71,7 @@ public class IntroScreen extends Scene{
 				main.ChangeScene((Scene)main.mainmenu);
 				System.out.println("Skipped Intro");
 				player.stop();
-				main.mainmenu.state = 0;
+				main.state = 1 ;
 			}
 		});
 		//root.getChildren().addAll(mediaview,pressKey,imageView);
