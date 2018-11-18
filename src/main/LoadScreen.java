@@ -25,8 +25,11 @@ public class LoadScreen extends Scene{
 	public LoadScreen(Main main) {
 		super(root);
 		ArrayList<Image> Characters = new ArrayList<Image>();
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs.png").toString(),400,250,false,false));
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs.png").toString(),400,250,false,false));
+		ArrayList<String> CharactersName = new ArrayList<String>();
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs.png").toString(),300,250,false,false));
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs.png").toString(),300,250,false,false));
+		CharactersName.add("Naruto");
+		CharactersName.add("Sasuke");
 //		ArrayList<String> myCharacters = new ArrayList<String>();
 //		myCharacters.add("characters/naruto_sage/naruto_sage_mugs.png");
 //		myCharacters.add("characters/sasuke_aka/sasuke_aka_mugs.png");
@@ -34,10 +37,10 @@ public class LoadScreen extends Scene{
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.AQUA, null, null)));
 		lhschar = new ImageView(Characters.get(player1));
-		lhschar.setTranslateX(200);
+		lhschar.setTranslateX(290);
 		lhschar.setTranslateY(150);
 		rhschar = new ImageView(Characters.get(player2));
-		rhschar.setTranslateX(800);
+		rhschar.setTranslateX(690);
 		rhschar.setTranslateY(150);
 		
 		root.getChildren().addAll(lhschar,rhschar);
