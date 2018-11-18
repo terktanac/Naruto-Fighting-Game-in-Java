@@ -19,11 +19,7 @@ public class Main extends Application {
 		stage.setScene(intro);
 		stage.setResizable(false);
 		stage.show();
-		
-		stage.setTitle("Naruto Ultimate Ninja by C&T");
-		stage.setScene(intro);
-		stage.setResizable(false);
-		stage.show();
+
 	}
 	public void ChangeScene(Scene nextScene) {
 		stage.setScene(nextScene);

@@ -12,6 +12,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -20,7 +22,6 @@ public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
-	
 	VBox MenuBox = new VBox(5);
 	int Oldchoice = 0 ;
 	int NewChoice = 0 ;
@@ -48,8 +49,10 @@ public class MainMenuScreen extends Scene {
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
+				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+				click.play();
 				KeyCode key = event.getCode();
-				System.out.println("Mainmenu:Pressed " + key.toString());
+				System.out.println("MainMenu:Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
 					if(Oldchoice==0) {main.ChangeScene(main.loadscreen);}
 					else if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
@@ -66,7 +69,7 @@ public class MainMenuScreen extends Scene {
 				((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
 				((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
 				Oldchoice = NewChoice;
-				}
+			}
 		});
 	
 	}
