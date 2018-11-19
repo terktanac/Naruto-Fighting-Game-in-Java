@@ -59,15 +59,20 @@ public class MainMenuScreen extends Scene {
 				KeyCode key = event.getCode();
 				System.out.println("MainMenu:Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					if(Oldchoice==0) {}
+					if(Oldchoice==0) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Information Dialog");
+						alert.setHeaderText(null);
+						alert.setContentText("Coming Soon.");
+						alert.showAndWait();
+					}
 					else if(Oldchoice==1) {main.ChangeScene(main.getMultiplayer());}
 					else if(Oldchoice==2) {main.ChangeScene(main.getOptionscreen());}
 					else if(Oldchoice==MenuBox.getChildren().size()-1) {
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setTitle("Confirmation Dialog");
-						alert.setHeaderText("Do you want to exit?");
-						
-						
+						alert.setHeaderText(null);
+						alert.setContentText("Do you want to exit?");
 						Optional<ButtonType> result = alert.showAndWait();
 						if (result.get() == ButtonType.OK){
 						    System.exit(1);
