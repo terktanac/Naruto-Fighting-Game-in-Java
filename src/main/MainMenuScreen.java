@@ -1,8 +1,13 @@
 package main;
 
+import java.util.Optional;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -56,7 +61,18 @@ public class MainMenuScreen extends Scene {
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
 					if(Oldchoice==0) {}
 					else if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
-					else if(Oldchoice==MenuBox.getChildren().size()-1) {System.exit(1);}
+					else if(Oldchoice==2) {main.ChangeScene(main.optionscreen);}
+					else if(Oldchoice==MenuBox.getChildren().size()-1) {
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmation Dialog");
+						alert.setHeaderText("Do you want to exit?");
+						
+						
+						Optional<ButtonType> result = alert.showAndWait();
+						if (result.get() == ButtonType.OK){
+						    System.exit(1);
+						}
+					}
 					choose.play();
 				}
 				else if (key == KeyCode.UP || key == KeyCode.LEFT || key == KeyCode.W || key == KeyCode.A || key == KeyCode.KP_UP || key == KeyCode.KP_LEFT) {
