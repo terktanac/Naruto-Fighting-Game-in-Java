@@ -69,11 +69,11 @@ public class IntroScreen extends Scene{
 			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
 			@Override
 			public void handle(KeyEvent event) {
-				main.ChangeScene((Scene)main.mainmenu);
+				main.ChangeScene((Scene)main.getMainmenu());
 				System.out.println("Skipped Intro");
 				player.stop();
 				choose.play();
-				main.state = 1 ;
+				main.setState(1);
 			}
 		});
 		//root.getChildren().addAll(mediaview,pressKey,imageView);
