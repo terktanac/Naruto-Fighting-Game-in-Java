@@ -11,7 +11,7 @@ public class Main extends Application {
 	private int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
 	private IntroScreen intro;
 	private MainMenuScreen mainmenu;
-	private LoadScreen loadscreen;
+	private MultiPlayerScreen multiplayer;
 	private OptionScreen optionscreen;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -19,7 +19,7 @@ public class Main extends Application {
 
 		intro = new IntroScreen(this);
 		mainmenu = new MainMenuScreen(this);
-		loadscreen = new LoadScreen(this);
+		multiplayer = new MultiPlayerScreen(this);
 		optionscreen = new OptionScreen(this);
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
@@ -61,17 +61,17 @@ public class Main extends Application {
 	public void setMainmenu(MainMenuScreen mainmenu) {
 		this.mainmenu = mainmenu;
 	}
-	public LoadScreen getLoadscreen() {
-		return loadscreen;
-	}
-	public void setLoadscreen(LoadScreen loadscreen) {
-		this.loadscreen = loadscreen;
-	}
 	public OptionScreen getOptionscreen() {
 		return optionscreen;
 	}
 	public void setOptionscreen(OptionScreen optionscreen) {
 		this.optionscreen = optionscreen;
 	}
-
+	public MultiPlayerScreen getMultiplayer() {
+		return multiplayer;
+	}
+	public void setMultiplayer(MultiPlayerScreen multiplayer) {
+		this.multiplayer = multiplayer;
+	}
+	
 }
