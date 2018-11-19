@@ -27,9 +27,9 @@ public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
-	VBox MenuBox = new VBox(5);
-	int Oldchoice = 0 ;
-	int NewChoice = 0 ;
+	private VBox MenuBox = new VBox(5);
+	private int Oldchoice = 0 ;
+	private int NewChoice = 0 ;
 	public MainMenuScreen(Main main) {
 		super(root);
 		root.setPrefSize(1280, 720);
@@ -60,8 +60,8 @@ public class MainMenuScreen extends Scene {
 				System.out.println("MainMenu:Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
 					if(Oldchoice==0) {}
-					else if(Oldchoice==1) {main.ChangeScene(main.loadscreen);}
-					else if(Oldchoice==2) {main.ChangeScene(main.optionscreen);}
+					else if(Oldchoice==1) {main.ChangeScene(main.getLoadscreen());}
+					else if(Oldchoice==2) {main.ChangeScene(main.getOptionscreen());}
 					else if(Oldchoice==MenuBox.getChildren().size()-1) {
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setTitle("Confirmation Dialog");

@@ -72,7 +72,11 @@ public class IntroScreen extends Scene{
 				System.out.println("Skipped Intro");
 				player.stop();
 				choose.play();
+<<<<<<< HEAD
 				main.getState() = 1 ;
+=======
+				main.setState(1);
+>>>>>>> adb3aba4d8555c002e7acb28c1b373d580ca785f
 			}
 		});
 		//root.getChildren().addAll(mediaview,pressKey,imageView);

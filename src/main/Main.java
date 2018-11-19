@@ -8,11 +8,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private Stage stage ;
-	int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
-	IntroScreen intro;
-	MainMenuScreen mainmenu;
-	LoadScreen loadscreen;
-	OptionScreen optionscreen;
+	private int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
+	private IntroScreen intro;
+	private MainMenuScreen mainmenu;
+	private LoadScreen loadscreen;
+	private OptionScreen optionscreen;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
@@ -36,6 +36,42 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 
+	}
+	public Stage getStage() {
+		return stage;
+	}
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
+	public IntroScreen getIntro() {
+		return intro;
+	}
+	public void setIntro(IntroScreen intro) {
+		this.intro = intro;
+	}
+	public MainMenuScreen getMainmenu() {
+		return mainmenu;
+	}
+	public void setMainmenu(MainMenuScreen mainmenu) {
+		this.mainmenu = mainmenu;
+	}
+	public LoadScreen getLoadscreen() {
+		return loadscreen;
+	}
+	public void setLoadscreen(LoadScreen loadscreen) {
+		this.loadscreen = loadscreen;
+	}
+	public OptionScreen getOptionscreen() {
+		return optionscreen;
+	}
+	public void setOptionscreen(OptionScreen optionscreen) {
+		this.optionscreen = optionscreen;
 	}
 
 }
