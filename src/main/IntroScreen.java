@@ -21,13 +21,10 @@ import javafx.util.Duration;
 
 public class IntroScreen extends Scene{
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
-	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 800, 500, true, true));
-	private Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
-	MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
-	static Pane root = new Pane();
+	private static Pane root = new Pane();
 	public IntroScreen(Main main){
 		super(root);
-		
+		Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		root.setPrefSize(1280,720);
 		
@@ -52,6 +49,7 @@ public class IntroScreen extends Scene{
 		transition.play();*/
 
 		//Logo
+		ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 800, 500, true, true));
 		imageView.setTranslateX(260);
 		imageView.setTranslateY(120);
 		imageView.prefWidth(1000);
@@ -63,17 +61,18 @@ public class IntroScreen extends Scene{
 		timeline.play();
 		
 		// Music
+		MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
 		player.setAutoPlay(true);
 		
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
 			@Override
 			public void handle(KeyEvent event) {
-				main.ChangeScene((Scene)main.mainmenu);
+				main.ChangeScene((Scene)main.getMainmenu());
 				System.out.println("Skipped Intro");
 				player.stop();
 				choose.play();
-				main.state = 1 ;
+				main.getState() = 1 ;
 			}
 		});
 		//root.getChildren().addAll(mediaview,pressKey,imageView);

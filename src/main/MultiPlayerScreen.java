@@ -17,12 +17,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
-public class LoadScreen extends Scene{
+public class MultiPlayerScreen extends Scene{
 	private int player1 = 0,player2 = 0; //default character =0 : naruto
 	private static Pane root = new Pane();
-	private ImageView lhschar ;
-	private ImageView rhschar ;
-	public LoadScreen(Main main) {
+	public MultiPlayerScreen(Main main) {
 		super(root);
 		ArrayList<Image> Characters = new ArrayList<Image>();
 		ArrayList<String> CharactersName = new ArrayList<String>();
@@ -36,6 +34,8 @@ public class LoadScreen extends Scene{
 		
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.AQUA, null, null)));
+		
+		ImageView lhschar,rhschar ;
 		lhschar = new ImageView(Characters.get(player1));
 		lhschar.setTranslateX(290);
 		lhschar.setTranslateY(150);
