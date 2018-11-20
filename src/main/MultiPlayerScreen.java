@@ -26,12 +26,16 @@ public class MultiPlayerScreen extends Scene{
 		super(root);
 		
 		ArrayList<Image> Characters = new ArrayList<Image>();
+		ArrayList<Image> CharactersReady = new ArrayList<Image>();
 		ArrayList<String> CharactersName = new ArrayList<String>();
 		ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
 		ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();
 		
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),230,500,false,false));
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),230,500,false,false));
+		
+		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),290,500,false,false));
+		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(),230,500,false,false)); 
 		
 		CharactersName.add("Naruto");
 		CharactersName.add("Sasuke");
@@ -69,6 +73,8 @@ public class MultiPlayerScreen extends Scene{
 		scrollpy2.setTranslateX(900);
 		scrollpy2.setTranslateY(50);
 		
+		Check chosen1 = new Check(false);
+		Check chosen2 = new Check(false);
 		
 		root.getChildren().addAll(lhschar,rhschar,scrollpy1,scrollpy2,vs);
 		
@@ -86,38 +92,43 @@ public class MultiPlayerScreen extends Scene{
 			public void handle(KeyEvent event) {
 				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
 				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-				boolean chosen = false;
 				KeyCode key = event.getCode();
 				System.out.println("Multiplayer:Pressed " + key.toString());
 				
 				
 				
-				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
+				if (key == KeyCode.SPACE) {
+					lhschar.setImage(CharactersReady.get(player1));
 					choose.play();
-					chosen = true;
+					chosen1.check = true;
 				} 
-				else if ((key == KeyCode.W || key == KeyCode.A) && !chosen) {
+				if (key == KeyCode.ENTER) {
+					rhschar.setImage(CharactersReady.get(player2));
+					choose.play();
+					chosen2.check = true;
+				} 
+				else if ((key == KeyCode.W || key == KeyCode.A) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
 					click.play();
 					player1 = (player1+1)%Characters.size();
 					lhschar.setImage(Characters.get(player1));
 					listCharacterpy1.get(player1).setActive(true);
 				}
-				else if ((key == KeyCode.UP || key == KeyCode.LEFT) && !chosen) {
+				else if ((key == KeyCode.UP || key == KeyCode.LEFT) && !chosen2.check) {
 					click.play();
 					listCharacterpy2.get(player2).setActive(false);
 					player2 = (player2+1+Characters.size())%Characters.size();
 					rhschar.setImage(Characters.get(player2));
 					listCharacterpy2.get(player2).setActive(true);
 				}
-				else if ((key == KeyCode.S || key == KeyCode.D) && !chosen) {
+				else if ((key == KeyCode.S || key == KeyCode.D) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
 					click.play();
 					player1 = (player1-1+Characters.size())%Characters.size();
 					lhschar.setImage(Characters.get(player1));
 					listCharacterpy1.get(player1).setActive(true);
 				}
-				else if ((key == KeyCode.DOWN ||key == KeyCode.RIGHT) && !chosen) {
+				else if ((key == KeyCode.DOWN ||key == KeyCode.RIGHT) && !chosen2.check) {
 					click.play();
 					listCharacterpy2.get(player2).setActive(false);
 					player2 = (player2-1+Characters.size())%Characters.size();
@@ -144,6 +155,20 @@ public class MultiPlayerScreen extends Scene{
 				//want to make imageview's border 
 			else
 				img.setStyle("");
+		}
+	}
+	public class Check {
+		private boolean check;
+		
+		public Check(boolean c) {
+			check = c;
+		}
+		public boolean getCheck() {
+			return check;
+		}
+
+		public void setCheck(boolean check) {
+			this.check = check;
 		}
 	}
 	
