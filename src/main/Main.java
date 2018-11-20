@@ -13,6 +13,7 @@ public class Main extends Application {
 	private MainMenuScreen mainmenu;
 	private MultiPlayerScreen multiplayer;
 	private OptionScreen optionscreen;
+	private LoadingScreen loadscreen;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
@@ -21,6 +22,7 @@ public class Main extends Application {
 		mainmenu = new MainMenuScreen(this);
 		multiplayer = new MultiPlayerScreen(this);
 		optionscreen = new OptionScreen(this);
+		loadscreen = new LoadingScreen(this);
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm by C&T");

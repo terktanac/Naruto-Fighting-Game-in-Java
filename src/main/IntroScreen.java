@@ -47,7 +47,7 @@ public class IntroScreen extends Scene{
 		/*FadeTransition transition = new FadeTransition(Duration.seconds(30),mediaview);
 		transition.setToValue(0.0);
 		transition.play();*/
-
+		
 		//Logo
 		ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 800, 500, true, true));
 		imageView.setTranslateX(260);
