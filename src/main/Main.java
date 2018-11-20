@@ -86,6 +86,7 @@ public class Main extends Application {
 	public void setLoadscreen(LoadingScreen loadscreen) {
 		this.loadscreen = loadscreen;
 	}
+
 	public MapChooseScreen getMapscreen() {
 		return mapscreen;
 	}
@@ -98,5 +99,6 @@ public class Main extends Application {
 	public void setGamescreen(GameScreen gamescreen) {
 		this.gamescreen = gamescreen;
 	}
+
 	
 }
