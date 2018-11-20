@@ -14,7 +14,7 @@ public class Controller implements Runnable{
 	private boolean isJumping = false;
 	@Override
 	public void run() {
-		if(moveLeft()) {
+		/*if(moveLeft()) {
 			x_pos += x_speed ;
 		}
 		if(moveRight()) {
@@ -28,7 +28,7 @@ public class Controller implements Runnable{
 		}
 		if(crouch()) {
 			x /= 2;
-		}
+		}*/
 	}
 
 }

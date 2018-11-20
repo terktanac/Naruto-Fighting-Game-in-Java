@@ -14,6 +14,8 @@ public class Main extends Application {
 	private MultiPlayerScreen multiplayer;
 	private OptionScreen optionscreen;
 	private LoadingScreen loadscreen;
+	private GameScreen gamescreen;
+	private MapChooseScreen mapscreen;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
@@ -23,6 +25,8 @@ public class Main extends Application {
 		multiplayer = new MultiPlayerScreen(this);
 		optionscreen = new OptionScreen(this);
 		loadscreen = new LoadingScreen(this);
+		mapscreen = new MapChooseScreen(this);
+		gamescreen = new GameScreen(this);
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm by C&T");
@@ -78,11 +82,21 @@ public class Main extends Application {
 	public LoadingScreen getLoadscreen() {
 		return loadscreen;
 	}
-<<<<<<< HEAD
-=======
+
 	public void setLoadscreen(LoadingScreen loadscreen) {
 		this.loadscreen = loadscreen;
 	}
->>>>>>> 4fe343aa98f70ce03ba8218c3887f2bb75632565
+	public MapChooseScreen getMapscreen() {
+		return mapscreen;
+	}
+	public void setMapscreen(MapChooseScreen mapscreen) {
+		this.mapscreen = mapscreen;
+	}
+	public GameScreen getGamescreen() {
+		return gamescreen;
+	}
+	public void setGamescreen(GameScreen gamescreen) {
+		this.gamescreen = gamescreen;
+	}
 	
 }

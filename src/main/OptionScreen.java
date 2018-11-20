@@ -105,7 +105,7 @@ public class OptionScreen extends Scene{
 				OldChoice_1 = NewChoice_1;
 				((ListOption) optionmenu_2.getChildren().get(OldChoice_2)).setActive(false);
 				((ListOption) optionmenu_2.getChildren().get(NewChoice_2)).setActive(true);
-				OldChoice_1 = NewChoice_2;
+				OldChoice_2 = NewChoice_2;
 
 			}
 		});
@@ -113,8 +113,8 @@ public class OptionScreen extends Scene{
 	public class ListOption extends HBox {
 		private Text text;
 		private int player;
-		private ImageView shuriken1 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.gif").toString(),130,40,true,true));
-		private ImageView shuriken2 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.gif").toString(),130,40,true,true));
+		private ImageView shuriken1 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(),130,40,true,true));
+		private ImageView shuriken2 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(),130,40,true,true));
 		ListOption(String text,int player) {
 			this.setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("icon/frame.png").toString(),400,110,true,false), null, null, null, null)));
 			this.player = player;
@@ -125,14 +125,21 @@ public class OptionScreen extends Scene{
 			this.text.setFont(narutoFont);
 			this.text.setStrokeWidth(2);
 			getChildren().addAll(shuriken1, this.text,shuriken2);
+			//getChildren().addAll(this.text);
 			setActive(false);
 		}
 
 		void setActive(boolean check) {
 			shuriken1.setVisible(check);
 			shuriken2.setVisible(check);
-			if(player == 1) {text.setStroke(check ? Color.ORANGE : Color.YELLOW);}
-			else if(player == 2) {text.setStroke(check ? Color.RED : Color.YELLOW);}
+			if(player == 1) {
+				text.setStroke(check ? Color.ORANGE : Color.YELLOW);
+				text.setFill(check ?  Color.WHITE : Color.BLACK);
+			}
+			else if(player == 2) {
+				text.setStroke(check ? Color.RED : Color.YELLOW);
+				text.setFill(check ?  Color.WHITE : Color.BLACK);
+			}
 		}
 	}
 

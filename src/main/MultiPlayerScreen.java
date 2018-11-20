@@ -4,6 +4,9 @@ package main;
 
 import java.util.ArrayList;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -11,21 +14,27 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 public class MultiPlayerScreen extends Scene{
 	private int player1 = 0,player2 = 1; //default character =0 : naruto
 	private static Pane root = new Pane();
+	static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
+	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
+	
 	public MultiPlayerScreen(Main main) {
 		super(root);
 		
+		player.setVolume(0.3);
 		ArrayList<Image> Characters = new ArrayList<Image>();
 		ArrayList<Image> CharactersReady = new ArrayList<Image>();
 		ArrayList<String> CharactersName = new ArrayList<String>();
@@ -35,7 +44,7 @@ public class MultiPlayerScreen extends Scene{
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),230,500,false,false));
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),230,500,false,false));
 		
-		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),290,500,false,false));
+		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),280,480,false,false));
 		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(),230,500,false,false)); 
 		
 		CharactersName.add("Naruto");
@@ -47,8 +56,16 @@ public class MultiPlayerScreen extends Scene{
 		listCharacterpy2.add(new ListCharacter("characters/naruto_sage/face.jpg",980,130));
 		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.png",1085,130));
 		
+		Text pressKey = new Text("Press any key to Continue");
+		pressKey.setFont(narutoFont);
+		pressKey.setFill(Color.WHITE);
+		pressKey.setStroke(Color.BLACK);
+		pressKey.setTranslateX(340);
+		pressKey.setTranslateY(550);
+		pressKey.setVisible(false);
+		
 		root.setPrefSize(1280, 720);
-		Image background = new Image(ClassLoader.getSystemResource("background/four_symbols_seal.png").toString(),1300,740,false,false);
+		Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		
 		ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
@@ -78,7 +95,7 @@ public class MultiPlayerScreen extends Scene{
 		Check chosen1 = new Check(false);
 		Check chosen2 = new Check(false);
 		
-		root.getChildren().addAll(lhschar,rhschar,scrollpy1,scrollpy2,vs);
+		root.getChildren().addAll(lhschar,rhschar,scrollpy1,scrollpy2,vs,pressKey);
 		
 		for(int i = 0; i < listCharacterpy1.size(); i++)
 			root.getChildren().add(listCharacterpy1.get(i));
@@ -89,6 +106,10 @@ public class MultiPlayerScreen extends Scene{
 		listCharacterpy1.get(player1).setActive(true);
 		listCharacterpy2.get(player2).setActive(true);
 		
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey.setVisible(true)),
+				new KeyFrame(Duration.seconds(0.7), evt -> pressKey.setVisible(false)));
+		timeline.setCycleCount(Animation.INDEFINITE);
+		
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -97,17 +118,30 @@ public class MultiPlayerScreen extends Scene{
 				KeyCode key = event.getCode();
 				System.out.println("Multiplayer:Pressed " + key.toString());
 				
-				
+				if(chosen1.check == true && chosen2.check == true) {
+					player.stop();
+					choose.play();
+					Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{main.ChangeScene(main.getMapscreen());})
+							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+					main.ChangeScene(main.getLoadscreen());
+					load.play();
+				}
 				
 				if (key == KeyCode.SPACE) {
 					lhschar.setImage(CharactersReady.get(player1));
 					choose.play();
 					chosen1.check = true;
+					if(chosen1.check == true && chosen2.check == true) {
+						timeline.play();
+					}
 				} 
 				if (key == KeyCode.ENTER) {
 					rhschar.setImage(CharactersReady.get(player2));
 					choose.play();
 					chosen2.check = true;
+					if(chosen1.check == true && chosen2.check == true) {
+						timeline.play();
+					}
 				} 
 				else if ((key == KeyCode.W || key == KeyCode.A) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
