@@ -1,6 +1,7 @@
 package main;
 
 import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -37,8 +38,8 @@ public class IntroScreen extends Scene{
 		
 		//Intro video, to use changing scene would be a better way.
 		MediaPlayer vsource = new MediaPlayer(new Media(ClassLoader.getSystemResource("Untitled.mp4").toString()));
+		//vsource.setStopTime(Duration.seconds(6));
 		vsource.setAutoPlay(true);
-		vsource.setStopTime(Duration.seconds(6));
 		MediaView mediaview = new MediaView(vsource);
 		mediaview.setFitWidth(1300);
 		mediaview.setFitHeight(740);
@@ -62,7 +63,11 @@ public class IntroScreen extends Scene{
 		
 		// Music
 		MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
-		player.setAutoPlay(true);
+		//player.setAutoPlay(true);
+		Timeline timeline2 = new Timeline(new KeyFrame(
+		        Duration.millis(1300),
+		        ae -> {player.play();}));
+		timeline2.play();
 		
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
@@ -75,8 +80,14 @@ public class IntroScreen extends Scene{
 				main.setState(1);
 			}
 		});
-		//root.getChildren().addAll(mediaview,pressKey,imageView);
-		root.getChildren().addAll(pressKey,imageView);
+		root.getChildren().addAll(imageView,pressKey,mediaview);
+		Timeline timeline1 = new Timeline(new KeyFrame(
+		        Duration.millis(6450),
+		        ae -> {FadeTransition transition = new FadeTransition(Duration.millis(50),mediaview);
+				transition.setToValue(0.0);
+				transition.play();}));
+		timeline1.play();
+		//root.getChildren().addAll(pressKey,imageView);
 
 	}
 }
