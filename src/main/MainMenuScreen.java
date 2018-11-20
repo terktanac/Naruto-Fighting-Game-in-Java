@@ -34,20 +34,17 @@ public class MainMenuScreen extends Scene {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
-		//-----------<Menu Box>---------------------------------------------------------------
+
 		MenuBox.setTranslateX(350);
 		MenuBox.setTranslateY(250);
-		//----------<Menu List>---------------------------------------------------------------
-		ListMenu vsComp = new ListMenu("Singleplayer");
-		ListMenu vsHuman = new ListMenu("Multiplayer");
-		ListMenu option = new ListMenu("Option");
-		ListMenu exit = new ListMenu("Exit");
-		//----------<\Menu List>---------------------------------------------------------------
-		MenuBox.getChildren().addAll(vsComp,vsHuman,option,exit);
+		MenuBox.getChildren().addAll(new ListMenu("Singleplayer")
+				,new ListMenu("Multiplayer")
+				,new ListMenu("Option")
+				,new ListMenu("Exit"));
 		((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(true);
 		MenuBox.setAlignment(Pos.CENTER);
 		MenuBox.setSpacing(30);
-		//-----------<\Menu Box>---------------------------------------------------------------
+
 		
 		root.getChildren().addAll(MenuBox);
 		
@@ -58,8 +55,9 @@ public class MainMenuScreen extends Scene {
 				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
 				KeyCode key = event.getCode();
 				System.out.println("MainMenu:Pressed " + key.toString());
-				if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					if(Oldchoice==0) {
+				if (key == KeyCode.SPACE || key == KeyCode.ENTER
+						|| key == main.getOptionscreen().getMelee_1() || key == main.getOptionscreen().getMelee_2()) {
+					if(Oldchoice==0) { 
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Information Dialog");
 						alert.setHeaderText(null);
@@ -80,12 +78,14 @@ public class MainMenuScreen extends Scene {
 					}
 					choose.play();
 				}
-				else if (key == KeyCode.UP || key == KeyCode.LEFT || key == KeyCode.W || key == KeyCode.A || key == KeyCode.KP_UP || key == KeyCode.KP_LEFT) {
+				else if (key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getUp_2() 
+						|| key == main.getOptionscreen().getLeft_1() || key == main.getOptionscreen().getLeft_2()) {
 						if (Oldchoice == 0) {NewChoice = 3;} 
 						else {NewChoice = Oldchoice - 1;}
 						click.play();
 				} 
-				else if (key == KeyCode.DOWN ||key == KeyCode.RIGHT || key == KeyCode.S || key == KeyCode.D || key == KeyCode.KP_DOWN || key == KeyCode.KP_RIGHT) {
+				else if (key == main.getOptionscreen().getDown_1() ||key == main.getOptionscreen().getDown_2() 
+						|| key == main.getOptionscreen().getRight_1() || key == main.getOptionscreen().getRight_2()) {
 						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
 						else {NewChoice = Oldchoice + 1;}
 						click.play();

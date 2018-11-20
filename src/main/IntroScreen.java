@@ -73,8 +73,11 @@ public class IntroScreen extends Scene{
 			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
 			@Override
 			public void handle(KeyEvent event) {
-				main.ChangeScene((Scene)main.getMainmenu());
+				Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene((Scene)main.getMainmenu());})
+						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+				main.ChangeScene((Scene)main.getLoadscreen());
 				System.out.println("Skipped Intro");
+				load.play();
 				player.stop();
 				choose.play();
 				main.setState(1);

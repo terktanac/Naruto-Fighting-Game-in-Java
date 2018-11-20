@@ -75,5 +75,8 @@ public class Main extends Application {
 	public void setMultiplayer(MultiPlayerScreen multiplayer) {
 		this.multiplayer = multiplayer;
 	}
+	public LoadingScreen getLoadscreen() {
+		return loadscreen;
+	}
 	
 }
