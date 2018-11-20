@@ -27,6 +27,7 @@ public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
+	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 400, 250, true, true));
 	private VBox MenuBox = new VBox(5);
 	private int Oldchoice = 0 ;
 	private int NewChoice = 0 ;
@@ -45,8 +46,11 @@ public class MainMenuScreen extends Scene {
 		MenuBox.setAlignment(Pos.CENTER);
 		MenuBox.setSpacing(30);
 
+		imageView.setTranslateX(460);
+		imageView.setTranslateY(60);
+		imageView.prefWidth(1000);
 		
-		root.getChildren().addAll(MenuBox);
+		root.getChildren().addAll(MenuBox,imageView);
 		
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
