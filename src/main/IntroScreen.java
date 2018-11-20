@@ -85,7 +85,7 @@ public class IntroScreen extends Scene{
 		});
 		root.getChildren().addAll(imageView,pressKey,mediaview);
 		Timeline timeline1 = new Timeline(new KeyFrame(
-		        Duration.millis(6450),
+		        Duration.millis(6700),
 		        ae -> {FadeTransition transition = new FadeTransition(Duration.millis(50),mediaview);
 				transition.setToValue(0.0);
 				transition.play();}));
