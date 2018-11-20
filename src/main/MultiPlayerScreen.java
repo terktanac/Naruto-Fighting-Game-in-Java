@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
@@ -47,7 +48,8 @@ public class MultiPlayerScreen extends Scene{
 		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.png",1085,130));
 		
 		root.setPrefSize(1280, 720);
-		root.setBackground(new Background(new BackgroundFill(Color.AQUA, null, null)));
+		Image background = new Image(ClassLoader.getSystemResource("background/four_symbols_seal.png").toString(),1300,740,false,false);
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		
 		ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
 		//vs. logo
