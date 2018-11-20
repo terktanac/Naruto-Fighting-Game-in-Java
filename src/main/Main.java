@@ -78,11 +78,8 @@ public class Main extends Application {
 	public LoadingScreen getLoadscreen() {
 		return loadscreen;
 	}
-<<<<<<< HEAD
-=======
 	public void setLoadscreen(LoadingScreen loadscreen) {
 		this.loadscreen = loadscreen;
 	}
->>>>>>> 4fe343aa98f70ce03ba8218c3887f2bb75632565
 	
 }

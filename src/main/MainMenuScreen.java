@@ -56,7 +56,7 @@ public class MainMenuScreen extends Scene {
 				KeyCode key = event.getCode();
 				System.out.println("MainMenu:Pressed " + key.toString());
 				if (key == KeyCode.SPACE || key == KeyCode.ENTER
-						|| key == main.getOptionscreen().getMelee_1() || key == main.getOptionscreen().getMelee_2()) {
+						|| key == main.getOptionscreen().getKey_1()[4] || key == main.getOptionscreen().getKey_2()[4]) {
 					if(Oldchoice==0) { 
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Information Dialog");
@@ -78,14 +78,14 @@ public class MainMenuScreen extends Scene {
 					}
 					choose.play();
 				}
-				else if (key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getUp_2() 
-						|| key == main.getOptionscreen().getLeft_1() || key == main.getOptionscreen().getLeft_2()) {
+				else if (key == main.getOptionscreen().getKey_1()[0] || key == main.getOptionscreen().getKey_2()[0] 
+						|| key == main.getOptionscreen().getKey_1()[2] || key == main.getOptionscreen().getKey_2()[2]) {
 						if (Oldchoice == 0) {NewChoice = 3;} 
 						else {NewChoice = Oldchoice - 1;}
 						click.play();
 				} 
-				else if (key == main.getOptionscreen().getDown_1() ||key == main.getOptionscreen().getDown_2() 
-						|| key == main.getOptionscreen().getRight_1() || key == main.getOptionscreen().getRight_2()) {
+				else if (key == main.getOptionscreen().getKey_1()[1] ||key == main.getOptionscreen().getKey_2()[1]
+						|| key == main.getOptionscreen().getKey_1()[3] || key == main.getOptionscreen().getKey_2()[3]) {
 						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
 						else {NewChoice = Oldchoice + 1;}
 						click.play();
