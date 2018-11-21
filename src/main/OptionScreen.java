@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javafx.event.EventHandler;
@@ -44,20 +45,23 @@ public class OptionScreen extends Scene{
 	private KeyCode defense_2 = KeyCode.L;
 	private KeyCode dodge_1 = KeyCode.T;
 	private KeyCode dodge_2 = KeyCode.P;
-	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
+	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 25);
 	private int OldChoice_1 = 0 ;
 	private int NewChoice_1 = 0 ;
 	private int OldChoice_2 = 0 ;
 	private int NewChoice_2 = 0 ;
+	private ArrayList<KeyCode> keySetting = new ArrayList<KeyCode>();
 
 	public OptionScreen(Main main) {
 		super(root);
 		root.setPrefSize(1280, 720);
-		root.setBackground(new Background(new BackgroundFill(Color.BISQUE, null, null)));
+		Image image = new Image(ClassLoader.getSystemResource("background/paper.jpg").toString(),1300,720,false,true);
+		root.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
 		
 		VBox optionmenu_1 = new VBox(10);
-		optionmenu_1.setTranslateX(150);
-		optionmenu_1.setTranslateY(100);
+		optionmenu_1.setTranslateX(250);
+		optionmenu_1.setTranslateY(150);
+		optionmenu_1.setSpacing(10);
 		optionmenu_1.getChildren().addAll(
 		new ListOption("Jump: "+getUp_1(), 1)
 		,new ListOption("Crouch: "+getDown_1(), 1)
@@ -71,8 +75,9 @@ public class OptionScreen extends Scene{
 		((ListOption)optionmenu_1.getChildren().get(OldChoice_1)).setActive(true);
 		
 		VBox optionmenu_2 = new VBox(10);
-		optionmenu_2.setTranslateX(750);
-		optionmenu_2.setTranslateY(100);
+		optionmenu_2.setTranslateX(800);
+		optionmenu_2.setTranslateY(150);
+		optionmenu_2.setSpacing(10);
 		optionmenu_2.getChildren().addAll(
 		new ListOption("Jump: "+getUp_1(), 2)
 		,new ListOption("Crouch: "+getDown_1(), 2)
@@ -94,10 +99,14 @@ public class OptionScreen extends Scene{
 				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
 				KeyCode key = event.getCode();
 				System.out.println("OptionMenu:Pressed " + key.toString());
-				if(key == getMelee_1()) {}
+				if(key == getMelee_1()) {
+					
+				}
 				else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1)%8;click.play();}
 				else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1)%8;click.play();}
-				if(key == getMelee_2()) {}
+				if(key == getMelee_2()) {
+					
+				}
 				else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1)%8;click.play();}
 				else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1)%8;click.play();}
 				((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
@@ -116,11 +125,11 @@ public class OptionScreen extends Scene{
 		private ImageView shuriken1 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(),130,40,true,true));
 		private ImageView shuriken2 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(),130,40,true,true));
 		ListOption(String text,int player) {
-			this.setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("icon/frame.png").toString(),400,110,true,false), null, null, null, null)));
+			this.setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("icon/frame.png").toString(),230,60,false,true), null, null, null, null)));
 			this.player = player;
 			this.setSpacing(10);
 			this.setAlignment(Pos.CENTER);
-			this.setPrefSize(400, 100);
+			this.setPrefSize(180, 60);
 			this.text = new Text(text);
 			this.text.setFont(narutoFont);
 			this.text.setStrokeWidth(2);
@@ -238,6 +247,15 @@ public class OptionScreen extends Scene{
 	}
 	public void setDodge_2(KeyCode dodge_2) {
 		this.dodge_2 = dodge_2;
+	}
+	public ArrayList<KeyCode> getKeySetting() {
+		return keySetting;
+	}
+	public void setKeySetting(ArrayList<KeyCode> keySetting) {
+		this.keySetting = keySetting;
+	}
+	public void setKeySetting() {
+		this.keySetting.add(KeyCode.W);
 	}
 
 }

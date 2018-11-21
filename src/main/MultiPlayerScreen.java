@@ -41,20 +41,20 @@ public class MultiPlayerScreen extends Scene{
 		ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
 		ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();
 		
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),230,500,false,false));
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),230,500,false,false));
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),230,500,false,true));
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),230,500,false,true));
 		
-		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),300,480,false,false));
-		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(),230,500,false,false)); 
+		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),310,480,false,true));
+		CharactersReady.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(),230,500,false,true)); 
 		
 		CharactersName.add("Naruto");
 		CharactersName.add("Sasuke");
 
 		listCharacterpy1.add(new ListCharacter("characters/naruto_sage/face.jpg",100,130));
-		listCharacterpy1.add(new ListCharacter("characters/sasuke_aka/face.png",205,130));
+		listCharacterpy1.add(new ListCharacter("characters/sasuke_aka/face2.jpg",205,130));
 		
 		listCharacterpy2.add(new ListCharacter("characters/naruto_sage/face.jpg",980,130));
-		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.png",1085,130));
+		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face2.jpg",1085,130));
 		
 		Text pressKey = new Text("Press any key to Continue");
 		pressKey.setFont(narutoFont);
@@ -84,11 +84,11 @@ public class MultiPlayerScreen extends Scene{
 		rhschar.setRotationAxis(Rotate.Y_AXIS);
 		rhschar.setRotate(180);
 		
-		scrollpy1 = new ImageView(new Image(ClassLoader.getSystemResource("icon/scroll.png").toString(),350,600,false,false));
+		scrollpy1 = new ImageView(new Image(ClassLoader.getSystemResource("icon/scroll.png").toString(),350,600,false,true));
 		scrollpy1.setTranslateX(20);
 		scrollpy1.setTranslateY(50);
 		
-		scrollpy2 = new ImageView(new Image(ClassLoader.getSystemResource("icon/scroll.png").toString(),350,600,false,false));
+		scrollpy2 = new ImageView(new Image(ClassLoader.getSystemResource("icon/scroll.png").toString(),350,600,false,true));
 		scrollpy2.setTranslateX(900);
 		scrollpy2.setTranslateY(50);
 		
@@ -121,10 +121,6 @@ public class MultiPlayerScreen extends Scene{
 				if(chosen1.check == true && chosen2.check == true) {
 					player.stop();
 					choose.play();
-					Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{main.ChangeScene(main.getMapscreen());})
-							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-					main.ChangeScene(main.getLoadscreen());
-					load.play();
 				}
 				
 				if (key == KeyCode.SPACE) {
@@ -179,7 +175,7 @@ public class MultiPlayerScreen extends Scene{
 	public class ListCharacter extends HBox{
 		private ImageView img;
 		public ListCharacter(String s, int posx, int posy) {
-			img = new ImageView(new Image(ClassLoader.getSystemResource(s).toString(),100,100,false,false));
+			img = new ImageView(new Image(ClassLoader.getSystemResource(s).toString(),100,100,false,true));
 			img.setTranslateX(posx);
 			img.setTranslateY(posy);
 			this.getChildren().addAll(img);
