@@ -2,6 +2,9 @@ package main;
 
 import java.util.ArrayList;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,6 +22,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class OptionScreen extends Scene{
 	
@@ -93,6 +97,45 @@ public class OptionScreen extends Scene{
 		
 		root.getChildren().addAll(optionmenu_1,optionmenu_2);
 		
+		Text pressKey1 = new Text("Press "+getMelee_1().toString()+" key for player 1 or "+getMelee_2().toString()+" key for player 2 to change the key.");
+		pressKey1.setFont(narutoFont);
+		pressKey1.setFill(Color.WHITE);
+		pressKey1.setStroke(Color.BLACK);
+		pressKey1.setTranslateX(230);
+		pressKey1.setTranslateY(100);
+		pressKey1.setVisible(false);
+		
+		Text pressKey2 = new Text("Press the new key.");
+		pressKey2.setFont(narutoFont);
+		pressKey2.setFill(Color.WHITE);
+		pressKey2.setStroke(Color.BLACK);
+		pressKey2.setTranslateX(530);
+		pressKey2.setTranslateY(100);
+		pressKey2.setVisible(false);
+		
+		Text pressKey3 = new Text("Press Enter or Space to confirm your change.");
+		pressKey3.setFont(narutoFont);
+		pressKey3.setFill(Color.WHITE);
+		pressKey3.setStroke(Color.BLACK);
+		pressKey3.setTranslateX(400);
+		pressKey3.setTranslateY(100);
+		pressKey3.setVisible(false);
+		
+		root.getChildren().addAll(pressKey1,pressKey2,pressKey3);
+		
+		Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey1.setVisible(true)),
+				new KeyFrame(Duration.seconds(0.7), evt -> pressKey1.setVisible(false)));
+		timeline1.setCycleCount(Animation.INDEFINITE);
+		
+		Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey2.setVisible(true)),
+				new KeyFrame(Duration.seconds(0.7), evt -> pressKey2.setVisible(false)));
+		timeline2.setCycleCount(Animation.INDEFINITE);
+		
+		Timeline timeline3 = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey3.setVisible(true)),
+				new KeyFrame(Duration.seconds(0.7), evt -> pressKey3.setVisible(false)));
+		timeline3.setCycleCount(Animation.INDEFINITE);
+		
+		timeline1.play();
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -104,13 +147,22 @@ public class OptionScreen extends Scene{
 					System.out.println(OldChoice_1+key.toString());
 					keySetting.set(OldChoice_1, key);
 					setState1 = false;
+					timeline2.stop();
+					pressKey2.setVisible(false);
+					timeline3.play();
 				}
 				else if(setState2 == true) {
 					keySetting.set(OldChoice_2+8, key);
 					setState2 = false;
+					timeline2.stop();
+					pressKey2.setVisible(false);
+					timeline3.play();
 				}
 				else {
 					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
+						timeline3.stop();
+						pressKey3.setVisible(false);
+						timeline1.play();
 						choose.play();
 						setRealKey();
 						setListOption1();
@@ -121,11 +173,17 @@ public class OptionScreen extends Scene{
 					}
 					else if(key == getMelee_1()) {
 						setState1 = true;
+						timeline1.stop();
+						pressKey1.setVisible(false);
+						timeline2.play();
 					}
 					else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1+8)%8;click.play();}
 					else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1+8)%8;click.play();}
 					else if(key == getMelee_2()) {
 						setState2 = true;
+						timeline1.stop();
+						pressKey1.setVisible(false);
+						timeline2.play();
 					}
 					else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1+8)%8;click.play();}
 					else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1+8)%8;click.play();}
