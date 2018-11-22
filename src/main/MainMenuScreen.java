@@ -2,6 +2,8 @@ package main;
 
 import java.util.Optional;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,6 +24,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class MainMenuScreen extends Scene {
 	static Pane root = new Pane();
@@ -68,10 +71,18 @@ public class MainMenuScreen extends Scene {
 						alert.showAndWait();
 					}
 					else if(Oldchoice==1) {
-						main.ChangeScene(main.getMultiplayer());
+						main.ChangeScene((Scene)main.getLoadscreen());
+						Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene(main.getMultiplayer());})
+								,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+						load.play();
 						MultiPlayerScreen.player.setAutoPlay(true);
 					}
-					else if(Oldchoice==2) {main.ChangeScene(main.getOptionscreen());}
+					else if(Oldchoice==2) {
+						main.ChangeScene((Scene)main.getLoadscreen());
+						Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene(main.getOptionscreen());})
+								,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+						load.play();
+					}
 					else if(Oldchoice==MenuBox.getChildren().size()-1) {
 						Alert alert = new Alert(AlertType.CONFIRMATION);
 						alert.setTitle("Confirmation Dialog");

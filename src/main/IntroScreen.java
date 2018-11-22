@@ -23,8 +23,11 @@ import javafx.util.Duration;
 public class IntroScreen extends Scene{
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private static Pane root = new Pane();
+	private Main main;
+	private MediaPlayer player;
 	public IntroScreen(Main main){
 		super(root);
+		this.main = main ;
 		Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		root.setPrefSize(1280,720);
@@ -59,7 +62,7 @@ public class IntroScreen extends Scene{
 		timeline.play();
 		
 		// Music
-		MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
+		player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
 		//player.setAutoPlay(true);
 		Timeline timeline2 = new Timeline(new KeyFrame(
 		        Duration.millis(3100),
@@ -89,5 +92,21 @@ public class IntroScreen extends Scene{
 		timeline1.play();
 		//root.getChildren().addAll(pressKey,imageView);
 
+	}
+	public void keyHandling() {
+		setOnKeyPressed(new EventHandler<KeyEvent>() {
+			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
+			@Override
+			public void handle(KeyEvent event) {
+				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{main.ChangeScene(main.getMainmenu());})
+						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+				main.ChangeScene(main.getLoadscreen());
+				System.out.println("Skipped Intro");
+				load.play();
+				player.stop();
+				choose.play();
+				main.setState(1);
+			}
+		});
 	}
 }

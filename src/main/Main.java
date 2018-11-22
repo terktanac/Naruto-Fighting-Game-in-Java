@@ -3,6 +3,7 @@ package main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
@@ -16,6 +17,8 @@ public class Main extends Application {
 	private LoadingScreen loadscreen;
 	private GameScreen gamescreen;
 	private MapChooseScreen mapscreen;
+	private Controller player1;
+	private Controller player2;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
@@ -27,6 +30,12 @@ public class Main extends Application {
 		loadscreen = new LoadingScreen(this);
 		mapscreen = new MapChooseScreen(this);
 		gamescreen = new GameScreen(this);
+//		player1 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
+//		player1.setScene(optionscreen);
+//		player1.run();
+//		player2 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
+//		player2.setScene(optionscreen);
+//		player2.run();
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
