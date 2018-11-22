@@ -62,6 +62,8 @@ public class OptionScreen extends Scene{
 		Image image = new Image(ClassLoader.getSystemResource("background/paper.jpg").toString(),1300,720,false,true);
 		root.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
 		
+		setKeySetting();
+		
 		listoption1.add(new ListOption("Jump: "+getUp_1(), 1));
 		listoption1.add(new ListOption("Crouch: "+getDown_1(), 1));
 		listoption1.add(new ListOption("Left: "+getLeft_1(), 1));
@@ -70,7 +72,7 @@ public class OptionScreen extends Scene{
 		listoption1.add(new ListOption("Range: "+getRange_1(), 1));
 		listoption1.add(new ListOption("Defense: "+getDefense_1(), 1));
 		listoption1.add(new ListOption("Dodge: "+getDodge_1(), 1));
-				
+		
 		VBox optionmenu_1 = new VBox(10);
 		optionmenu_1.setTranslateX(250);
 		optionmenu_1.setTranslateY(150);
@@ -78,10 +80,6 @@ public class OptionScreen extends Scene{
 		optionmenu_1.getChildren().addAll(listoption1);
 		((ListOption)optionmenu_1.getChildren().get(OldChoice_1)).setActive(true);
 		
-		VBox optionmenu_2 = new VBox(10);
-		optionmenu_2.setTranslateX(800);
-		optionmenu_2.setTranslateY(150);
-		optionmenu_2.setSpacing(10);
 		listoption2.add(new ListOption("Jump: "+getUp_2(), 2));
 		listoption2.add(new ListOption("Crouch: "+getDown_2(), 2));
 		listoption2.add(new ListOption("Left: "+getLeft_2(), 2));
@@ -90,6 +88,12 @@ public class OptionScreen extends Scene{
 		listoption2.add(new ListOption("Range: "+getRange_2(), 2));
 		listoption2.add(new ListOption("Defense: "+getDefense_2(), 2));
 		listoption2.add(new ListOption("Dodge: "+getDodge_2(), 2));
+		
+		VBox optionmenu_2 = new VBox(10);
+		optionmenu_2.setTranslateX(800);
+		optionmenu_2.setTranslateY(150);
+		optionmenu_2.setSpacing(10);
+		
 		optionmenu_2.getChildren().addAll(listoption2);
 		((ListOption)optionmenu_2.getChildren().get(OldChoice_2)).setActive(true);
 		
@@ -103,26 +107,39 @@ public class OptionScreen extends Scene{
 				KeyCode key = event.getCode();
 				System.out.println("OptionMenu:Pressed " + key.toString());
 				if(setState1 == true) {
-					
+					System.out.println(OldChoice_1+key.toString());
+					keySetting.set(OldChoice_1, key);
 					setState1 = false;
 				}
 				else if(setState2 == true) {
+					keySetting.set(OldChoice_2+8, key);
 					setState2 = false;
 				}
 				else {
-					if(key == getMelee_1()) {
+					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
+						System.out.println("SetKey");
+						setRealKey();
+						setListOption1();
+						setListOption2();
+						for(int i = 0; i < keySetting.size(); i++) {
+							System.out.println(keySetting.get(i));
+						}
+					}
+					else if(key == getMelee_1()) {
 						setState1 = true;
 					}
-					else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1)%8;click.play();}
-					else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1)%8;click.play();}
-					if(key == getMelee_2()) {
+					else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1+8)%8;click.play();}
+					else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1+8)%8;click.play();}
+					else if(key == getMelee_2()) {
 						setState2 = true;
 					}
-					else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1)%8;click.play();}
-					else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1)%8;click.play();}
+					else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1+8)%8;click.play();}
+					else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1+8)%8;click.play();}
+					
 					((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
 					((ListOption) optionmenu_1.getChildren().get(NewChoice_1)).setActive(true);
 					OldChoice_1 = NewChoice_1;
+					
 					((ListOption) optionmenu_2.getChildren().get(OldChoice_2)).setActive(false);
 					((ListOption) optionmenu_2.getChildren().get(NewChoice_2)).setActive(true);
 					OldChoice_2 = NewChoice_2;
@@ -302,5 +319,24 @@ public class OptionScreen extends Scene{
 		dodge_1 = keySetting.get(7);
 		dodge_2 = keySetting.get(15);
 	}
-
+	public void setListOption1() {
+		listoption1.set(0, new ListOption("Jump: "+getUp_1(), 1));
+		listoption1.set(1, new ListOption("Crouch: "+getDown_1(), 1));
+		listoption1.set(2, new ListOption("Left: "+getLeft_1(), 1));
+		listoption1.set(3, new ListOption("Right: "+getRight_1(), 1));
+		listoption1.set(4, new ListOption("Melee: "+getMelee_1(), 1));
+		listoption1.set(5, new ListOption("Range: "+getRange_1(), 1));
+		listoption1.set(6, new ListOption("Defense: "+getDefense_1(), 1));
+		listoption1.set(7, new ListOption("Dodge: "+getDodge_1(), 1));
+	}
+	public void setListOption2() {
+		listoption2.set(0, new ListOption("Jump: "+getUp_2(), 2));
+		listoption2.set(1, new ListOption("Crouch: "+getDown_2(), 2));
+		listoption2.set(2, new ListOption("Left: "+getLeft_2(), 2));
+		listoption2.set(3, new ListOption("Right: "+getRight_2(), 2));
+		listoption2.set(4, new ListOption("Melee: "+getMelee_2(), 2));
+		listoption2.set(5, new ListOption("Range: "+getRange_2(), 2));
+		listoption2.set(6, new ListOption("Defense: "+getDefense_2(), 2));
+		listoption2.set(7, new ListOption("Dodge: "+getDodge_2(), 2));
+	}
 }
