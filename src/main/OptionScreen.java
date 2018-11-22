@@ -1,20 +1,15 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -24,7 +19,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import main.MainMenuScreen.ListMenu;
 
 public class OptionScreen extends Scene{
 	
@@ -117,7 +111,7 @@ public class OptionScreen extends Scene{
 				}
 				else {
 					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
-						System.out.println("SetKey");
+						choose.play();
 						setRealKey();
 						setListOption1();
 						setListOption2();
@@ -320,23 +314,23 @@ public class OptionScreen extends Scene{
 		dodge_2 = keySetting.get(15);
 	}
 	public void setListOption1() {
-		listoption1.set(0, new ListOption("Jump: "+getUp_1(), 1));
-		listoption1.set(1, new ListOption("Crouch: "+getDown_1(), 1));
-		listoption1.set(2, new ListOption("Left: "+getLeft_1(), 1));
-		listoption1.set(3, new ListOption("Right: "+getRight_1(), 1));
-		listoption1.set(4, new ListOption("Melee: "+getMelee_1(), 1));
-		listoption1.set(5, new ListOption("Range: "+getRange_1(), 1));
-		listoption1.set(6, new ListOption("Defense: "+getDefense_1(), 1));
-		listoption1.set(7, new ListOption("Dodge: "+getDodge_1(), 1));
+		listoption1.get(0).text.setText("Jump: "+getUp_1());
+		listoption1.get(1).text.setText("Crouch: "+getDown_1());
+		listoption1.get(2).text.setText("Left: "+getLeft_1());
+		listoption1.get(3).text.setText("Right: "+getRight_1());
+		listoption1.get(4).text.setText("Melee: "+getMelee_1());
+		listoption1.get(5).text.setText("Range: "+getRange_1());
+		listoption1.get(6).text.setText("Defense: "+getDefense_1());
+		listoption1.get(7).text.setText("Dodge: "+getDodge_1());
 	}
 	public void setListOption2() {
-		listoption2.set(0, new ListOption("Jump: "+getUp_2(), 2));
-		listoption2.set(1, new ListOption("Crouch: "+getDown_2(), 2));
-		listoption2.set(2, new ListOption("Left: "+getLeft_2(), 2));
-		listoption2.set(3, new ListOption("Right: "+getRight_2(), 2));
-		listoption2.set(4, new ListOption("Melee: "+getMelee_2(), 2));
-		listoption2.set(5, new ListOption("Range: "+getRange_2(), 2));
-		listoption2.set(6, new ListOption("Defense: "+getDefense_2(), 2));
-		listoption2.set(7, new ListOption("Dodge: "+getDodge_2(), 2));
+		listoption2.get(0).text.setText("Jump: "+getUp_2());
+		listoption2.get(1).text.setText("Crouch: "+getDown_2());
+		listoption2.get(2).text.setText("Left: "+getLeft_2());
+		listoption2.get(3).text.setText("Right: "+getRight_2());
+		listoption2.get(4).text.setText("Melee: "+getMelee_2());
+		listoption2.get(5).text.setText("Range: "+getRange_2());
+		listoption2.get(6).text.setText("Defense: "+getDefense_2());
+		listoption2.get(7).text.setText("Dodge: "+getDodge_2());
 	}
 }

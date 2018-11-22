@@ -29,7 +29,7 @@ public class Main extends Application {
 		gamescreen = new GameScreen(this);
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
-		stage.setTitle("Naruto Ultimate Ninja Storm by C&T");
+		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
 		stage.setScene(intro);
 		stage.setResizable(false);
 		stage.show();
