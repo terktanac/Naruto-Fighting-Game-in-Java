@@ -37,20 +37,24 @@ public class OptionScreen extends Scene{
 	private KeyCode right_2 = KeyCode.RIGHT;
 	private KeyCode left_1 = KeyCode.A;
 	private KeyCode left_2 = KeyCode.LEFT;
-	private KeyCode melee_1 = KeyCode.F;
-	private KeyCode melee_2 = KeyCode.QUOTE;
-	private KeyCode range_1 = KeyCode.G;
-	private KeyCode range_2 = KeyCode.SEMICOLON;
-	private KeyCode defense_1 = KeyCode.H;
-	private KeyCode defense_2 = KeyCode.L;
-	private KeyCode dodge_1 = KeyCode.T;
-	private KeyCode dodge_2 = KeyCode.P;
+	private KeyCode melee_1 = KeyCode.J;
+	private KeyCode melee_2 = KeyCode.NUMPAD1;
+	private KeyCode range_1 = KeyCode.K;
+	private KeyCode range_2 = KeyCode.NUMPAD2;
+	private KeyCode defense_1 = KeyCode.L;
+	private KeyCode defense_2 = KeyCode.NUMPAD3;
+	private KeyCode dodge_1 = KeyCode.I;
+	private KeyCode dodge_2 = KeyCode.NUMPAD5;
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 25);
 	private int OldChoice_1 = 0 ;
 	private int NewChoice_1 = 0 ;
 	private int OldChoice_2 = 0 ;
 	private int NewChoice_2 = 0 ;
 	private ArrayList<KeyCode> keySetting = new ArrayList<KeyCode>();
+	private ArrayList<ListOption> listoption1 = new ArrayList<ListOption>();
+	private ArrayList<ListOption> listoption2 = new ArrayList<ListOption>();
+	private boolean setState1 = false;
+	private boolean setState2 = false;
 
 	public OptionScreen(Main main) {
 		super(root);
@@ -58,36 +62,35 @@ public class OptionScreen extends Scene{
 		Image image = new Image(ClassLoader.getSystemResource("background/paper.jpg").toString(),1300,720,false,true);
 		root.setBackground(new Background(new BackgroundImage(image, null, null, null, null)));
 		
+		listoption1.add(new ListOption("Jump: "+getUp_1(), 1));
+		listoption1.add(new ListOption("Crouch: "+getDown_1(), 1));
+		listoption1.add(new ListOption("Left: "+getLeft_1(), 1));
+		listoption1.add(new ListOption("Right: "+getRight_1(), 1));
+		listoption1.add(new ListOption("Melee: "+getMelee_1(), 1));
+		listoption1.add(new ListOption("Range: "+getRange_1(), 1));
+		listoption1.add(new ListOption("Defense: "+getDefense_1(), 1));
+		listoption1.add(new ListOption("Dodge: "+getDodge_1(), 1));
+				
 		VBox optionmenu_1 = new VBox(10);
 		optionmenu_1.setTranslateX(250);
 		optionmenu_1.setTranslateY(150);
 		optionmenu_1.setSpacing(10);
-		optionmenu_1.getChildren().addAll(
-		new ListOption("Jump: "+getUp_1(), 1)
-		,new ListOption("Crouch: "+getDown_1(), 1)
-		,new ListOption("Left: "+getLeft_1(), 1)
-		,new ListOption("Right: "+getRight_1(), 1)
-		,new ListOption("Melee: "+getMelee_1(), 1)
-		,new ListOption("Range: "+getRange_1(), 1)
-		,new ListOption("Defense: "+getDefense_1(), 1)
-		,new ListOption("Dodge: "+getDodge_1(), 1)
-		);
+		optionmenu_1.getChildren().addAll(listoption1);
 		((ListOption)optionmenu_1.getChildren().get(OldChoice_1)).setActive(true);
 		
 		VBox optionmenu_2 = new VBox(10);
 		optionmenu_2.setTranslateX(800);
 		optionmenu_2.setTranslateY(150);
 		optionmenu_2.setSpacing(10);
-		optionmenu_2.getChildren().addAll(
-		new ListOption("Jump: "+getUp_1(), 2)
-		,new ListOption("Crouch: "+getDown_1(), 2)
-		,new ListOption("Left: "+getLeft_1(), 2)
-		,new ListOption("Right: "+getRight_1(), 2)
-		,new ListOption("Melee: "+getMelee_1(), 2)
-		,new ListOption("Range: "+getRange_1(), 2)
-		,new ListOption("Defense: "+getDefense_1(), 2)
-		,new ListOption("Dodge: "+getDodge_1(), 2)
-		);
+		listoption2.add(new ListOption("Jump: "+getUp_2(), 2));
+		listoption2.add(new ListOption("Crouch: "+getDown_2(), 2));
+		listoption2.add(new ListOption("Left: "+getLeft_2(), 2));
+		listoption2.add(new ListOption("Right: "+getRight_2(), 2));
+		listoption2.add(new ListOption("Melee: "+getMelee_2(), 2));
+		listoption2.add(new ListOption("Range: "+getRange_2(), 2));
+		listoption2.add(new ListOption("Defense: "+getDefense_2(), 2));
+		listoption2.add(new ListOption("Dodge: "+getDodge_2(), 2));
+		optionmenu_2.getChildren().addAll(listoption2);
 		((ListOption)optionmenu_2.getChildren().get(OldChoice_2)).setActive(true);
 		
 		root.getChildren().addAll(optionmenu_1,optionmenu_2);
@@ -99,22 +102,31 @@ public class OptionScreen extends Scene{
 				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
 				KeyCode key = event.getCode();
 				System.out.println("OptionMenu:Pressed " + key.toString());
-				if(key == getMelee_1()) {
+				if(setState1 == true) {
 					
+					setState1 = false;
 				}
-				else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1)%8;click.play();}
-				else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1)%8;click.play();}
-				if(key == getMelee_2()) {
-					
+				else if(setState2 == true) {
+					setState2 = false;
 				}
-				else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1)%8;click.play();}
-				else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1)%8;click.play();}
-				((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
-				((ListOption) optionmenu_1.getChildren().get(NewChoice_1)).setActive(true);
-				OldChoice_1 = NewChoice_1;
-				((ListOption) optionmenu_2.getChildren().get(OldChoice_2)).setActive(false);
-				((ListOption) optionmenu_2.getChildren().get(NewChoice_2)).setActive(true);
-				OldChoice_2 = NewChoice_2;
+				else {
+					if(key == getMelee_1()) {
+						setState1 = true;
+					}
+					else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1)%8;click.play();}
+					else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1)%8;click.play();}
+					if(key == getMelee_2()) {
+						setState2 = true;
+					}
+					else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1)%8;click.play();}
+					else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1)%8;click.play();}
+					((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
+					((ListOption) optionmenu_1.getChildren().get(NewChoice_1)).setActive(true);
+					OldChoice_1 = NewChoice_1;
+					((ListOption) optionmenu_2.getChildren().get(OldChoice_2)).setActive(false);
+					((ListOption) optionmenu_2.getChildren().get(NewChoice_2)).setActive(true);
+					OldChoice_2 = NewChoice_2;
+				}
 
 			}
 		});
@@ -255,7 +267,40 @@ public class OptionScreen extends Scene{
 		this.keySetting = keySetting;
 	}
 	public void setKeySetting() {
-		this.keySetting.add(KeyCode.W);
+		this.keySetting.add(up_1);
+		this.keySetting.add(down_1);
+		this.keySetting.add(right_1);
+		this.keySetting.add(left_1);
+		this.keySetting.add(melee_1);
+		this.keySetting.add(range_1);
+		this.keySetting.add(defense_1);
+		this.keySetting.add(dodge_1);
+		this.keySetting.add(up_2);
+		this.keySetting.add(down_2);
+		this.keySetting.add(right_2);
+		this.keySetting.add(left_2);
+		this.keySetting.add(melee_2);
+		this.keySetting.add(range_2);
+		this.keySetting.add(defense_2);
+		this.keySetting.add(dodge_2);
+	}
+	public void setRealKey() {
+		up_1 = keySetting.get(0);
+		up_2 = keySetting.get(8);
+		down_1 = keySetting.get(1);
+		down_2 = keySetting.get(9);
+		right_1 = keySetting.get(2);
+		right_2 = keySetting.get(10);
+		left_1 = keySetting.get(3);
+		left_2 = keySetting.get(11);
+		melee_1 = keySetting.get(4);
+		melee_2 = keySetting.get(12);
+		range_1 = keySetting.get(5);
+		range_2 = keySetting.get(13);
+		defense_1 = keySetting.get(6);
+		defense_2 = keySetting.get(14);
+		dodge_1 = keySetting.get(7);
+		dodge_2 = keySetting.get(15);
 	}
 
 }
