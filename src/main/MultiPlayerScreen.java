@@ -94,7 +94,7 @@ public class MultiPlayerScreen extends Scene{
 		
 		Check chosen1 = new Check(false);
 		Check chosen2 = new Check(false);
-		
+
 		root.getChildren().addAll(lhschar,rhschar,scrollpy1,scrollpy2,vs,pressKey);
 		
 		for(int i = 0; i < listCharacterpy1.size(); i++)
@@ -121,6 +121,7 @@ public class MultiPlayerScreen extends Scene{
 				if(chosen1.check == true && chosen2.check == true) {
 					player.stop();
 					choose.play();
+					main.ChangeScene(main.getMapscreen());
 				}
 				
 				if (key == KeyCode.SPACE) {

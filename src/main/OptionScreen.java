@@ -159,6 +159,9 @@ public class OptionScreen extends Scene{
 					timeline3.play();
 				}
 				else {
+					if(key == KeyCode.BACK_SPACE) {
+						main.ChangeScene(main.getMainmenu());
+					}
 					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
 						timeline3.stop();
 						pressKey3.setVisible(false);

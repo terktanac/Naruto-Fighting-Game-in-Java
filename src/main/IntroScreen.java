@@ -83,14 +83,14 @@ public class IntroScreen extends Scene{
 				main.setState(1);
 			}
 		});
-		root.getChildren().addAll(imageView,pressKey,mediaview);
+		
 		Timeline timeline1 = new Timeline(new KeyFrame(
 		        Duration.millis(8100),
 		        ae -> {FadeTransition transition = new FadeTransition(Duration.millis(100),mediaview);
 				transition.setToValue(0.0);
 				transition.play();}));
 		timeline1.play();
-		//root.getChildren().addAll(pressKey,imageView);
+		root.getChildren().addAll(imageView,pressKey,mediaview);
 
 	}
 	public void keyHandling() {
