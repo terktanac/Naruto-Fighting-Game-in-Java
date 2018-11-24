@@ -48,7 +48,7 @@ public class OptionScreen extends Scene{
 	private int NewChoice_1 = 0 ;
 	private int OldChoice_2 = 0 ;
 	private int NewChoice_2 = 0 ;
-	private ArrayList<KeyCode> keySetting = new ArrayList<KeyCode>();
+	private static ArrayList<KeyCode> keySetting = new ArrayList<KeyCode>();
 	private ArrayList<ListOption> listoption1 = new ArrayList<ListOption>();
 	private ArrayList<ListOption> listoption2 = new ArrayList<ListOption>();
 	private boolean setState1 = false;
@@ -160,6 +160,7 @@ public class OptionScreen extends Scene{
 				}
 				else {
 					if(key == KeyCode.BACK_SPACE) {
+						choose.play();
 						main.ChangeScene(main.getMainmenu());
 					}
 					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
@@ -176,6 +177,7 @@ public class OptionScreen extends Scene{
 					}
 					else if(key == getMelee_1()) {
 						setState1 = true;
+						choose.play();
 						timeline1.stop();
 						pressKey1.setVisible(false);
 						timeline2.play();
@@ -184,6 +186,7 @@ public class OptionScreen extends Scene{
 					else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1+8)%8;click.play();}
 					else if(key == getMelee_2()) {
 						setState2 = true;
+						choose.play();
 						timeline1.stop();
 						pressKey1.setVisible(false);
 						timeline2.play();
@@ -332,29 +335,29 @@ public class OptionScreen extends Scene{
 	public void setDodge_2(KeyCode dodge_2) {
 		this.dodge_2 = dodge_2;
 	}
-	public ArrayList<KeyCode> getKeySetting() {
+	public static ArrayList<KeyCode> getKeySetting() {
 		return keySetting;
 	}
 	public void setKeySetting(ArrayList<KeyCode> keySetting) {
-		this.keySetting = keySetting;
+		OptionScreen.keySetting = keySetting;
 	}
 	public void setKeySetting() {
-		this.keySetting.add(up_1);
-		this.keySetting.add(down_1);
-		this.keySetting.add(right_1);
-		this.keySetting.add(left_1);
-		this.keySetting.add(melee_1);
-		this.keySetting.add(range_1);
-		this.keySetting.add(defense_1);
-		this.keySetting.add(dodge_1);
-		this.keySetting.add(up_2);
-		this.keySetting.add(down_2);
-		this.keySetting.add(right_2);
-		this.keySetting.add(left_2);
-		this.keySetting.add(melee_2);
-		this.keySetting.add(range_2);
-		this.keySetting.add(defense_2);
-		this.keySetting.add(dodge_2);
+		OptionScreen.keySetting.add(up_1);
+		OptionScreen.keySetting.add(down_1);
+		OptionScreen.keySetting.add(right_1);
+		OptionScreen.keySetting.add(left_1);
+		OptionScreen.keySetting.add(melee_1);
+		OptionScreen.keySetting.add(range_1);
+		OptionScreen.keySetting.add(defense_1);
+		OptionScreen.keySetting.add(dodge_1);
+		OptionScreen.keySetting.add(up_2);
+		OptionScreen.keySetting.add(down_2);
+		OptionScreen.keySetting.add(right_2);
+		OptionScreen.keySetting.add(left_2);
+		OptionScreen.keySetting.add(melee_2);
+		OptionScreen.keySetting.add(range_2);
+		OptionScreen.keySetting.add(defense_2);
+		OptionScreen.keySetting.add(dodge_2);
 	}
 	public void setRealKey() {
 		up_1 = keySetting.get(0);
