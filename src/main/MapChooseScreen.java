@@ -23,6 +23,7 @@ public class MapChooseScreen extends Scene{
 	public MapChooseScreen(Main main) {
 		super(root);
 		root.setPrefSize(1280, 720);
+		root.setAlignment(Pos.CENTER);
 		root.setTileAlignment(Pos.CENTER);
 		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN, null, null)));
 		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/arena.png").toString())));
