@@ -21,7 +21,7 @@ public class Controller implements Runnable{
 	private double x;
 	private double y;
 	private boolean isJumping = false;
-	private Scene scene;
+	private myScene scene;
 	
 	
 	public Controller(KeyCode upKey, KeyCode downKey, KeyCode leftKey, KeyCode rightKey, KeyCode meleeKey,
@@ -41,6 +41,15 @@ public class Controller implements Runnable{
 	@Override
 	public void run() {
 		System.out.println("HI");
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				KeyCode key = event.getCode();
+				if(key == upKey) {scene.upPressed();}
+				else if(key == downKey) {scene.downPressed();}
+			}
+		});
 	}
 
 //	public void keyHandling() {
@@ -53,7 +62,7 @@ public class Controller implements Runnable{
 //			}
 //		});
 //	}
-	public void setScene(Scene scene) {
+	public void setScene(myScene scene) {
 		this.scene = scene;
 	}
 

@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,7 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class OptionScreen extends Scene{
+public class OptionScreen extends myScene{
 	
 	private static Pane root = new Pane();
 	private KeyCode up_1 = KeyCode.W ;
@@ -396,5 +395,15 @@ public class OptionScreen extends Scene{
 		listoption2.get(5).text.setText("Range: "+getRange_2());
 		listoption2.get(6).text.setText("Defense: "+getDefense_2());
 		listoption2.get(7).text.setText("Dodge: "+getDodge_2());
+	}
+	@Override
+	public void upPressed() {
+		// TODO Auto-generated method stub
+		System.out.println("option up");
+	}
+	@Override
+	public void downPressed() {
+		// TODO Auto-generated method stub
+		System.out.println("option down");
 	}
 }

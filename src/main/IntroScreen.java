@@ -20,7 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class IntroScreen extends Scene{
+public class IntroScreen extends myScene{
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private static Pane root = new Pane();
 	private Main main;
@@ -108,5 +108,15 @@ public class IntroScreen extends Scene{
 				main.setState(1);
 			}
 		});
+	}
+	@Override
+	public void upPressed() {
+		// TODO Auto-generated method stub
+		System.out.println("intro up");
+	}
+	@Override
+	public void downPressed() {
+		// TODO Auto-generated method stub
+		System.out.println("intro down");
 	}
 }
