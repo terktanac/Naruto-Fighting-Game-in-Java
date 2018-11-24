@@ -35,11 +35,7 @@ public class MapChooseScreen extends Scene{
 		
 		root.getChildren().addAll(listOfBackground);
 		
-//		for(int i = 0; i < 6; i++) {
-//			listOfBackground.get(i).setFitWidth(400);
-//			listOfBackground.get(i).setFitHeight(200);
-//			root.setMargin(listOfBackground.get(i),new Insets(10));
-//		}
+
 		setOnKeyPressed(new EventHandler<KeyEvent>(){
 
 			@Override

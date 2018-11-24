@@ -26,7 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class MainMenuScreen extends Scene {
+public class MainMenuScreen extends myScene {
 	static Pane root = new Pane();
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
@@ -144,5 +144,17 @@ public class MainMenuScreen extends Scene {
 //	                script.run();
 //	     }
 		
+	}
+
+	@Override
+	public void upPressed() {
+		// TODO Auto-generated method stub
+		System.out.println("mainmenu up");
+	}
+
+	@Override
+	public void downPressed() {
+		// TODO Auto-generated method stub
+		System.out.println("mainmenu down");
 	}
 }

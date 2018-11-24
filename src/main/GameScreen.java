@@ -1,7 +1,6 @@
 package main;
 
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 public class GameScreen extends Scene{
@@ -11,6 +10,8 @@ public class GameScreen extends Scene{
 		super(root);
 		this.main = main ;
 		root.setPrefSize(1280, 720);
+		
 	}
+	
 
 }
