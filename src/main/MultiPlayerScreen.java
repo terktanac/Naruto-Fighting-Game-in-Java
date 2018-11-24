@@ -28,7 +28,7 @@ import javafx.util.Duration;
 public class MultiPlayerScreen extends Scene{
 	private int player1 = 0,player2 = 1; //default character =0 : naruto
 	private static Pane root = new Pane();
-	static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
+	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	
 	public MultiPlayerScreen(Main main) {
@@ -140,28 +140,28 @@ public class MultiPlayerScreen extends Scene{
 						timeline.play();
 					}
 				} 
-				else if ((key == KeyCode.W || key == KeyCode.A) && !chosen1.check) {
+				else if ((key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getLeft_1()) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
 					click.play();
 					player1 = (player1+1)%Characters.size();
 					lhschar.setImage(Characters.get(player1));
 					listCharacterpy1.get(player1).setActive(true);
 				}
-				else if ((key == KeyCode.UP || key == KeyCode.LEFT) && !chosen2.check) {
+				else if ((key == main.getOptionscreen().getUp_2() || key == main.getOptionscreen().getLeft_2()) && !chosen2.check) {
 					click.play();
 					listCharacterpy2.get(player2).setActive(false);
 					player2 = (player2+1+Characters.size())%Characters.size();
 					rhschar.setImage(Characters.get(player2));
 					listCharacterpy2.get(player2).setActive(true);
 				}
-				else if ((key == KeyCode.S || key == KeyCode.D) && !chosen1.check) {
+				else if ((key == main.getOptionscreen().getDown_1() || key == main.getOptionscreen().getRight_1()) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
 					click.play();
 					player1 = (player1-1+Characters.size())%Characters.size();
 					lhschar.setImage(Characters.get(player1));
 					listCharacterpy1.get(player1).setActive(true);
 				}
-				else if ((key == KeyCode.DOWN ||key == KeyCode.RIGHT) && !chosen2.check) {
+				else if ((key == main.getOptionscreen().getDown_2() ||key == main.getOptionscreen().getRight_2()) && !chosen2.check) {
 					click.play();
 					listCharacterpy2.get(player2).setActive(false);
 					player2 = (player2-1+Characters.size())%Characters.size();

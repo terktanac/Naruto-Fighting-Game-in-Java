@@ -101,7 +101,7 @@ public class MainMenuScreen extends Scene {
 						else {NewChoice = Oldchoice - 1;}
 						click.play();
 				} 
-				else if (key == main.getOptionscreen().getDown_1() ||key == main.getOptionscreen().getDown_2() 
+				else if (key == main.getOptionscreen().getDown_1() || key == main.getOptionscreen().getDown_2() 
 						|| key == main.getOptionscreen().getRight_1() || key == main.getOptionscreen().getRight_2()) {
 						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
 						else {NewChoice = Oldchoice + 1;}
