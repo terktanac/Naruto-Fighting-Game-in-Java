@@ -2,49 +2,117 @@ package main;
 
 import java.util.ArrayList;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
-public class MapChooseScreen extends Scene{
+public class MapChooseScreen extends Scene {
 
 	private static TilePane root = new TilePane(20,20);
+	private ArrayList<listMap> listOfBackground= new ArrayList<listMap>();
+	private int row,column,choice = 0;
+	private Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
 	
-	ArrayList<ImageView> listOfBackground= new ArrayList<ImageView>();
 	public MapChooseScreen(Main main) {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setAlignment(Pos.CENTER);
 		root.setPadding(new Insets(10));
-		root.setBackground(new Background(new BackgroundFill(Color.DARKOLIVEGREEN, null, null)));
-		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/arena.png").toString(),400,200,false,false)));
-		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/final_valley.jpg").toString(),400,200,false,false)));
-		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/forest.png").toString(),400,200,false,false)));
-		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/konoha_road.jpg").toString(),400,200,false,false)));
-		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/konoha_village.png").toString(),400,200,false,false)));
-		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/hospital.png").toString(),400,200,false,false)));
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
+		
+		listOfBackground.add(new listMap("background/arena.png","background/arena_active.jpg"));
+		listOfBackground.add(new listMap("background/final_valley1.jpg","background/final_valley_active.jpg"));
+		listOfBackground.add(new listMap("background/forest.png","background/forest_active.jpg"));
+		listOfBackground.add(new listMap("background/hospital.png","background/hospital_active.jpg"));
+		listOfBackground.add(new listMap("background/konoha_road.jpg","background/konoha_road_active.jpg"));
+		listOfBackground.add(new listMap("background/konoha_village.png","background/konoha_village_active.jpg"));
+		
+		listOfBackground.get(choice).setActive(true);
 		
 		root.getChildren().addAll(listOfBackground);
 
-		setOnKeyPressed(new EventHandler<KeyEvent>(){
-
+		setOnKeyPressed(new EventHandler<KeyEvent>() {		
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
+				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
+				KeyCode key = event.getCode();
+				System.out.println("Multiplayer:Pressed " + key.toString());
 				
+				if (key == KeyCode.BACK_SPACE) {
+					choose.play();
+					main.ChangeScene(main.getMultiplayer());
+				}
+				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
+					Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene(main.getMultiplayer());})
+							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+					main.ChangeScene(main.getGamescreen());
+					choose.play();
+					load.play();
+				} 
+				else if ((key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getUp_2())) {
+					listOfBackground.get(choice).setActive(false);
+					column = (column - 1 + 2)%2;
+					choice = (3*column + row)%listOfBackground.size();
+					listOfBackground.get(choice).setActive(true);
+				}
+				else if ((key == main.getOptionscreen().getDown_1() || key == main.getOptionscreen().getDown_2())) {
+					listOfBackground.get(choice).setActive(false);
+					column = (column + 1)%2;
+					choice = (3*column + row)%listOfBackground.size();
+					listOfBackground.get(choice).setActive(true);
+				}
+				else if ((key == main.getOptionscreen().getLeft_1() || key == main.getOptionscreen().getLeft_2())) {
+					listOfBackground.get(choice).setActive(false);
+					row = (row - 1 + 3)%3;
+					choice = (3*column + row)%listOfBackground.size();
+					listOfBackground.get(choice).setActive(true);
+				}
+				else if ((key == main.getOptionscreen().getRight_1() ||key == main.getOptionscreen().getRight_2())) {
+					listOfBackground.get(choice).setActive(false);
+					row = (row + 1)%3;
+					choice = (3*column + row)%listOfBackground.size();
+					listOfBackground.get(choice).setActive(true);
+				}
 			}
 			
 		});
+		
 	}
-	
-
+	public class listMap extends ImageView{
+		private String normal,active;
+		private Image imgn,imga;
+		public listMap(String n,String a) {
+			this.normal = n;
+			this.active= a;
+			this.imgn = new Image(ClassLoader.getSystemResource(normal).toString(),400,200,false,true);
+			this.imga = new Image(ClassLoader.getSystemResource(active).toString(),400,200,false,true);
+			this.setImage(imgn);
+		}
+		public void setActive(boolean check) {
+			if(check == true) {
+				this.setImage(imga);
+			}
+			else {
+				this.setImage(imgn);
+			}
+		}
+	}
 }

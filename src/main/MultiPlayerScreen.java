@@ -119,7 +119,6 @@ public class MultiPlayerScreen extends Scene{
 				System.out.println("Multiplayer:Pressed " + key.toString());
 				
 				if(chosen1.check == true && chosen2.check == true) {
-					player.stop();
 					choose.play();
 					main.ChangeScene(main.getMapscreen());
 				}
