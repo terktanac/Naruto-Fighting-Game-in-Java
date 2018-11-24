@@ -26,7 +26,7 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class MultiPlayerScreen extends Scene{
-	private int player1 = 0,player2 = 1; //default character =0 : naruto
+	private int player1 = 1,player2 = 0; //default character =0 : naruto
 	private static Pane root = new Pane();
 	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
