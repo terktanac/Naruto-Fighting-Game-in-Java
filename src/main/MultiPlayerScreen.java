@@ -50,18 +50,18 @@ public class MultiPlayerScreen extends Scene{
 		CharactersName.add("Naruto");
 		CharactersName.add("Sasuke");
 
-		listCharacterpy1.add(new ListCharacter("characters/naruto_sage/face.jpg",100,130));
-		listCharacterpy1.add(new ListCharacter("characters/sasuke_aka/face2.jpg",205,130));
+		listCharacterpy1.add(new ListCharacter("characters/naruto_sage/face.jpg","characters/naruto_sage/face_active.jpg",100,130));
+		listCharacterpy1.add(new ListCharacter("characters/sasuke_aka/face.jpg","characters/sasuke_aka/face_active.jpg",205,130));
 		
-		listCharacterpy2.add(new ListCharacter("characters/naruto_sage/face.jpg",980,130));
-		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face2.jpg",1085,130));
+		listCharacterpy2.add(new ListCharacter("characters/naruto_sage/face.jpg","characters/naruto_sage/face_active.jpg",980,130));
+		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.jpg","characters/sasuke_aka/face_active.jpg",1085,130));
 		
 		Text pressKey = new Text("Press any key to Continue");
 		pressKey.setFont(narutoFont);
 		pressKey.setFill(Color.WHITE);
 		pressKey.setStroke(Color.BLACK);
 		pressKey.setTranslateX(340);
-		pressKey.setTranslateY(550);
+		pressKey.setTranslateY(600);
 		pressKey.setVisible(false);
 		
 		root.setPrefSize(1280, 720);
@@ -123,8 +123,12 @@ public class MultiPlayerScreen extends Scene{
 					choose.play();
 					main.ChangeScene(main.getMapscreen());
 				}
-				
-				if (key == KeyCode.SPACE) {
+				else if (key == KeyCode.BACK_SPACE) {
+					player.stop();
+					choose.play();
+					main.ChangeScene(main.getMainmenu());
+				}
+				else if (key == KeyCode.SPACE) {
 					lhschar.setImage(CharactersReady.get(player1));
 					choose.play();
 					chosen1.check = true;
@@ -132,7 +136,7 @@ public class MultiPlayerScreen extends Scene{
 						timeline.play();
 					}
 				} 
-				if (key == KeyCode.ENTER) {
+				else if (key == KeyCode.ENTER) {
 					rhschar.setImage(CharactersReady.get(player2));
 					choose.play();
 					chosen2.check = true;
@@ -175,19 +179,26 @@ public class MultiPlayerScreen extends Scene{
 	}
 	public class ListCharacter extends HBox{
 		private ImageView img;
-		public ListCharacter(String s, int posx, int posy) {
-			img = new ImageView(new Image(ClassLoader.getSystemResource(s).toString(),100,100,false,true));
+		private String normal,active;
+		int px,py;
+		public ListCharacter(String n,String a, int posx, int posy) {
+			this.normal = n;
+			this.active = a;
+			this.px = posx;
+			this.py = posy;		
+			img = new ImageView(new Image(ClassLoader.getSystemResource(n).toString(),100,100,false,true));
 			img.setTranslateX(posx);
 			img.setTranslateY(posy);
 			this.getChildren().addAll(img);
 			setActive(false);
 		}
 		public void setActive(boolean check) {
-			if(check == true)
-				img.setStyle("");
-				//want to make imageview's border 
-			else
-				img.setStyle("");
+			if(check == true) {
+				img.setImage(new Image(ClassLoader.getSystemResource(this.active).toString(),100,100,false,true));
+			}
+			else {
+				img.setImage(new Image(ClassLoader.getSystemResource(this.normal).toString(),100,100,false,true));
+			}
 		}
 	}
 	public class Check {
@@ -204,7 +215,6 @@ public class MultiPlayerScreen extends Scene{
 			this.check = check;
 		}
 	}
-	
 }
 
 	

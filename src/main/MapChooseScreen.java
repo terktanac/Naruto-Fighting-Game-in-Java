@@ -34,26 +34,7 @@ public class MapChooseScreen extends Scene{
 		listOfBackground.add(new ImageView(new Image(ClassLoader.getSystemResource("background/hospital.png").toString(),400,200,false,false)));
 		
 		root.getChildren().addAll(listOfBackground);
-		
-<<<<<<< HEAD
-		for(int i = 0; i < 6; i++) {
-			listOfBackground.get(i).setFitWidth(400);
-			listOfBackground.get(i).setFitHeight(200);
-			TilePane.setMargin(listOfBackground.get(i),new Insets(10));
-		}
-||||||| merged common ancestors
-		for(int i = 0; i < 6; i++) {
-			listOfBackground.get(i).setFitWidth(400);
-			listOfBackground.get(i).setFitHeight(200);
-			root.setMargin(listOfBackground.get(i),new Insets(10));
-		}
-=======
-//		for(int i = 0; i < 6; i++) {
-//			listOfBackground.get(i).setFitWidth(400);
-//			listOfBackground.get(i).setFitHeight(200);
-//			root.setMargin(listOfBackground.get(i),new Insets(10));
-//		}
->>>>>>> 857f28ca1bdb9a96aaef3c05474593acb33de349
+
 		setOnKeyPressed(new EventHandler<KeyEvent>(){
 
 			@Override
