@@ -30,16 +30,16 @@ public class Main extends Application {
 		loadscreen = new LoadingScreen(this);
 		mapscreen = new MapChooseScreen(this);
 		gamescreen = new GameScreen(this);
-		player1 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
-		player1.setScene(optionscreen);
-		player1.run();
-		player2 = new Controller(KeyCode.UP,KeyCode.DOWN,KeyCode.LEFT,KeyCode.RIGHT,KeyCode.NUMPAD1,KeyCode.NUMPAD2,KeyCode.NUMPAD3,KeyCode.NUMPAD5);
-		player2.setScene(optionscreen);
-		player2.run();
+//		player1 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
+//		player1.setScene(optionscreen);
+//		player1.run();
+//		player2 = new Controller(KeyCode.UP,KeyCode.DOWN,KeyCode.LEFT,KeyCode.RIGHT,KeyCode.NUMPAD1,KeyCode.NUMPAD2,KeyCode.NUMPAD3,KeyCode.NUMPAD5);
+//		player2.setScene(optionscreen);
+//		player2.run();
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
-		stage.setScene(intro);
+		stage.setScene(gamescreen);
 		stage.setResizable(false);
 		stage.show();
 
