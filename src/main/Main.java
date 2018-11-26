@@ -3,33 +3,32 @@ package main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
 public class Main extends Application {
-	private Stage stage ;
-	private int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
-	private IntroScreen intro;
-	private MainMenuScreen mainmenu;
-	private MultiPlayerScreen multiplayer;
-	private OptionScreen optionscreen;
-	private LoadingScreen loadscreen;
-	private GameScreen gamescreen;
-	private MapChooseScreen mapscreen;
-	private Controller player1;
-	private Controller player2;
+	private static Stage stage ;
+	private static int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
+	private static IntroScreen intro;
+	private static MainMenuScreen mainmenu;
+	private static MultiPlayerScreen multiplayer;
+	private static OptionScreen optionscreen;
+	private static LoadingScreen loadscreen;
+	private static GameScreen gamescreen;
+	private static MapChooseScreen mapscreen;
+	private static Controller player1;
+	private static Controller player2;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		this.stage = primaryStage;
+		Main.stage = primaryStage;
 
-		intro = new IntroScreen(this);
-		mainmenu = new MainMenuScreen(this);
-		multiplayer = new MultiPlayerScreen(this);
-		optionscreen = new OptionScreen(this);
-		loadscreen = new LoadingScreen(this);
-		mapscreen = new MapChooseScreen(this);
-		gamescreen = new GameScreen(this);
+		intro = new IntroScreen();
+		mainmenu = new MainMenuScreen();
+		multiplayer = new MultiPlayerScreen();
+		optionscreen = new OptionScreen();
+		loadscreen = new LoadingScreen();
+		mapscreen = new MapChooseScreen();
+		gamescreen = new GameScreen();
 //		player1 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
 //		player1.setScene(optionscreen);
 //		player1.run();
@@ -39,12 +38,12 @@ public class Main extends Application {
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
-		stage.setScene(gamescreen);
+		stage.setScene(intro);
 		stage.setResizable(false);
 		stage.show();
 
 	}
-	public void ChangeScene(Scene nextScene) {
+	public static void ChangeScene(Scene nextScene) {
 		stage.setScene(nextScene);
 	}
 
@@ -55,58 +54,55 @@ public class Main extends Application {
 	public Stage getStage() {
 		return stage;
 	}
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
 	public int getState() {
 		return state;
 	}
-	public void setState(int state) {
-		this.state = state;
+	public static void setState(int state) {
+		Main.state = state;
 	}
-	public IntroScreen getIntro() {
+	public static IntroScreen getIntro() {
 		return intro;
 	}
-	public void setIntro(IntroScreen intro) {
-		this.intro = intro;
+	public static void setIntro(IntroScreen intro) {
+		Main.intro = intro;
 	}
-	public MainMenuScreen getMainmenu() {
+	public static MainMenuScreen getMainmenu() {
 		return mainmenu;
 	}
-	public void setMainmenu(MainMenuScreen mainmenu) {
-		this.mainmenu = mainmenu;
+	public static void setMainmenu(MainMenuScreen mainmenu) {
+		Main.mainmenu = mainmenu;
 	}
-	public OptionScreen getOptionscreen() {
+	public static OptionScreen getOptionscreen() {
 		return optionscreen;
 	}
-	public void setOptionscreen(OptionScreen optionscreen) {
-		this.optionscreen = optionscreen;
+	public static void setOptionscreen(OptionScreen optionscreen) {
+		Main.optionscreen = optionscreen;
 	}
-	public MultiPlayerScreen getMultiplayer() {
+	public static MultiPlayerScreen getMultiplayer() {
 		return multiplayer;
 	}
 	public void setMultiplayer(MultiPlayerScreen multiplayer) {
-		this.multiplayer = multiplayer;
+		Main.multiplayer = multiplayer;
 	}
-	public LoadingScreen getLoadscreen() {
+	public static LoadingScreen getLoadscreen() {
 		return loadscreen;
 	}
 
-	public void setLoadscreen(LoadingScreen loadscreen) {
-		this.loadscreen = loadscreen;
+	public static void setLoadscreen(LoadingScreen loadscreen) {
+		Main.loadscreen = loadscreen;
 	}
 
-	public MapChooseScreen getMapscreen() {
+	public static MapChooseScreen getMapscreen() {
 		return mapscreen;
 	}
-	public void setMapscreen(MapChooseScreen mapscreen) {
-		this.mapscreen = mapscreen;
+	public static void setMapscreen(MapChooseScreen mapscreen) {
+		Main.mapscreen = mapscreen;
 	}
-	public GameScreen getGamescreen() {
+	public static  GameScreen getGamescreen() {
 		return gamescreen;
 	}
-	public void setGamescreen(GameScreen gamescreen) {
-		this.gamescreen = gamescreen;
+	public static void setGamescreen(GameScreen gamescreen) {
+		Main.gamescreen = gamescreen;
 	}
 
 	

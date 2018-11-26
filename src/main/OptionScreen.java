@@ -6,7 +6,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -53,7 +52,7 @@ public class OptionScreen extends myScene{
 	private boolean setState1 = false;
 	private boolean setState2 = false;
 
-	public OptionScreen(Main main) {
+	public OptionScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		Image image = new Image(ClassLoader.getSystemResource("background/paper.jpg").toString(),1300,720,false,true);
@@ -160,7 +159,7 @@ public class OptionScreen extends myScene{
 				else {
 					if(key == KeyCode.BACK_SPACE) {
 						choose.play();
-						main.ChangeScene(main.getMainmenu());
+						Main.ChangeScene(Main.getMainmenu());
 					}
 					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
 						timeline3.stop();

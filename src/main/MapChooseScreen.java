@@ -13,13 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class MapChooseScreen extends Scene {
@@ -29,7 +26,7 @@ public class MapChooseScreen extends Scene {
 	private int row,column,choice = 0;
 	private Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
 	
-	public MapChooseScreen(Main main) {
+	public MapChooseScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setAlignment(Pos.CENTER);
@@ -58,38 +55,42 @@ public class MapChooseScreen extends Scene {
 				
 				if (key == KeyCode.BACK_SPACE) {
 					choose.play();
-					main.ChangeScene(main.getMultiplayer());
+					Main.ChangeScene(Main.getMultiplayer());
 				}
 				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene(main.getMultiplayer());})
+					Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
 							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-					main.ChangeScene(main.getGamescreen());
+					Main.ChangeScene(Main.getGamescreen());
 					choose.play();
 					load.play();
 				} 
-				else if ((key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getUp_2())) {
+				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2())) {
 					listOfBackground.get(choice).setActive(false);
 					column = (column - 1 + 2)%2;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
+					click.play();
 				}
-				else if ((key == main.getOptionscreen().getDown_1() || key == main.getOptionscreen().getDown_2())) {
+				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getDown_2())) {
 					listOfBackground.get(choice).setActive(false);
 					column = (column + 1)%2;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
+					click.play();
 				}
-				else if ((key == main.getOptionscreen().getLeft_1() || key == main.getOptionscreen().getLeft_2())) {
+				else if ((key == Main.getOptionscreen().getLeft_1() || key == Main.getOptionscreen().getLeft_2())) {
 					listOfBackground.get(choice).setActive(false);
 					row = (row - 1 + 3)%3;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
+					click.play();
 				}
-				else if ((key == main.getOptionscreen().getRight_1() ||key == main.getOptionscreen().getRight_2())) {
+				else if ((key == Main.getOptionscreen().getRight_1() ||key == Main.getOptionscreen().getRight_2())) {
 					listOfBackground.get(choice).setActive(false);
 					row = (row + 1)%3;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
+					click.play();
 				}
 			}
 			

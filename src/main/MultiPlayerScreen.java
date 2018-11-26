@@ -8,7 +8,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -25,13 +24,13 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-public class MultiPlayerScreen extends Scene{
+public class MultiPlayerScreen extends myScene{
 	private int player1 = 1,player2 = 0; //default character =0 : naruto
 	private static Pane root = new Pane();
 	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	
-	public MultiPlayerScreen(Main main) {
+	public MultiPlayerScreen() {
 		super(root);
 		
 		player.setVolume(0.3);
@@ -120,12 +119,12 @@ public class MultiPlayerScreen extends Scene{
 				
 				if(chosen1.check == true && chosen2.check == true) {
 					choose.play();
-					main.ChangeScene(main.getMapscreen());
+					Main.ChangeScene(Main.getMapscreen());
 				}
 				else if (key == KeyCode.BACK_SPACE) {
 					player.stop();
 					choose.play();
-					main.ChangeScene(main.getMainmenu());
+					Main.ChangeScene(Main.getMainmenu());
 				}
 				else if (key == KeyCode.SPACE) {
 					lhschar.setImage(CharactersReady.get(player1));
@@ -143,28 +142,28 @@ public class MultiPlayerScreen extends Scene{
 						timeline.play();
 					}
 				} 
-				else if ((key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getLeft_1()) && !chosen1.check) {
+				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getLeft_1()) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
 					click.play();
 					player1 = (player1+1)%Characters.size();
 					lhschar.setImage(Characters.get(player1));
 					listCharacterpy1.get(player1).setActive(true);
 				}
-				else if ((key == main.getOptionscreen().getUp_2() || key == main.getOptionscreen().getLeft_2()) && !chosen2.check) {
+				else if ((key == Main.getOptionscreen().getUp_2() || key == Main.getOptionscreen().getLeft_2()) && !chosen2.check) {
 					click.play();
 					listCharacterpy2.get(player2).setActive(false);
 					player2 = (player2+1+Characters.size())%Characters.size();
 					rhschar.setImage(Characters.get(player2));
 					listCharacterpy2.get(player2).setActive(true);
 				}
-				else if ((key == main.getOptionscreen().getDown_1() || key == main.getOptionscreen().getRight_1()) && !chosen1.check) {
+				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getRight_1()) && !chosen1.check) {
 					listCharacterpy1.get(player1).setActive(false);
 					click.play();
 					player1 = (player1-1+Characters.size())%Characters.size();
 					lhschar.setImage(Characters.get(player1));
 					listCharacterpy1.get(player1).setActive(true);
 				}
-				else if ((key == main.getOptionscreen().getDown_2() ||key == main.getOptionscreen().getRight_2()) && !chosen2.check) {
+				else if ((key == Main.getOptionscreen().getDown_2() ||key == Main.getOptionscreen().getRight_2()) && !chosen2.check) {
 					click.play();
 					listCharacterpy2.get(player2).setActive(false);
 					player2 = (player2-1+Characters.size())%Characters.size();
@@ -213,6 +212,16 @@ public class MultiPlayerScreen extends Scene{
 		public void setCheck(boolean check) {
 			this.check = check;
 		}
+	}
+	@Override
+	public void upPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void downPressed() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

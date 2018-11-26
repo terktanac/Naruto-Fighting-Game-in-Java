@@ -18,13 +18,11 @@ import javafx.util.Duration;
 
 public class GameScreen extends Scene{
 	private static Pane root = new Pane();
-	private Main main ;
-	private Image image = new Image(ClassLoader.getSystemResource("icon/naruto_sage.png").toString());
+	private Image image = new Image(ClassLoader.getSystemResource("icon/naruto_sage.png").toString());//why cant i use in character.naruto_sage? should i rename it?
 	private ImageView imageV = new ImageView(image);
 	private Characters player = new Characters(imageV);
-	public GameScreen(Main main) {
+	public GameScreen() {
 		super(root);
-		this.main = main ;
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
