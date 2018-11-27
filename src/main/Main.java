@@ -30,6 +30,7 @@ public class Main extends Application {
 		loadscreen = new LoadingScreen(this);
 		mapscreen = new MapChooseScreen(this);
 		gamescreen = new GameScreen(this);
+		
 		player1 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
 		player1.setScene(optionscreen);
 		player1.run();

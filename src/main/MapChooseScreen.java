@@ -25,8 +25,9 @@ import javafx.util.Duration;
 public class MapChooseScreen extends Scene {
 
 	private static TilePane root = new TilePane(20,20);
-	private ArrayList<listMap> listOfBackground= new ArrayList<listMap>();
-	private int row,column,choice = 0;
+	private static ArrayList<listMap> listOfBackground= new ArrayList<listMap>();
+	private int row,column;
+	private int choice;
 	private Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
 	
 	public MapChooseScreen(Main main) {
@@ -46,7 +47,8 @@ public class MapChooseScreen extends Scene {
 		listOfBackground.get(choice).setActive(true);
 		
 		root.getChildren().addAll(listOfBackground);
-
+		
+		choice = 0;
 		setOnKeyPressed(new EventHandler<KeyEvent>() {		
 			@Override
 			public void handle(KeyEvent event) {
@@ -61,42 +63,47 @@ public class MapChooseScreen extends Scene {
 					main.ChangeScene(main.getMultiplayer());
 				}
 				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene(main.getMultiplayer());})
+					main.ChangeScene(main.getLoadscreen());
+					Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{main.ChangeScene(main.getGamescreen());})
 							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-					main.ChangeScene(main.getGamescreen());
-					choose.play();
 					load.play();
+					choose.play();
 				} 
 				else if ((key == main.getOptionscreen().getUp_1() || key == main.getOptionscreen().getUp_2())) {
+					click.play();
 					listOfBackground.get(choice).setActive(false);
 					column = (column - 1 + 2)%2;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
 				}
 				else if ((key == main.getOptionscreen().getDown_1() || key == main.getOptionscreen().getDown_2())) {
+					click.play();
 					listOfBackground.get(choice).setActive(false);
 					column = (column + 1)%2;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
 				}
 				else if ((key == main.getOptionscreen().getLeft_1() || key == main.getOptionscreen().getLeft_2())) {
+					click.play();
 					listOfBackground.get(choice).setActive(false);
 					row = (row - 1 + 3)%3;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
 				}
 				else if ((key == main.getOptionscreen().getRight_1() ||key == main.getOptionscreen().getRight_2())) {
+					click.play();
 					listOfBackground.get(choice).setActive(false);
 					row = (row + 1)%3;
 					choice = (3*column + row)%listOfBackground.size();
 					listOfBackground.get(choice).setActive(true);
 				}
+				System.out.println(choice);
 			}
 			
 		});
 		
 	}
-	public class listMap extends ImageView{
+	public static class listMap extends ImageView{
 		private String normal,active;
 		private Image imgn,imga;
 		public listMap(String n,String a) {
@@ -114,5 +121,19 @@ public class MapChooseScreen extends Scene {
 				this.setImage(imgn);
 			}
 		}
+		public String getSrcBackground() {
+			return normal;
+		}
+	}
+	public Background getBackground() {
+		Image bg = new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getSrcBackground()).toString(),1300,740,false,false);
+		return new Background(new BackgroundImage(bg, null, null, null, null));
+		
+	}
+	public int getChoice() {
+		return choice;
+	}
+	public void setChoice(int choice) {
+		this.choice = choice;
 	}
 }

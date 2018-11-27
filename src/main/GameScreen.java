@@ -10,7 +10,7 @@ public class GameScreen extends Scene{
 		super(root);
 		this.main = main ;
 		root.setPrefSize(1280, 720);
-		
+		root.setBackground(main.getMapscreen().getBackground());
 	}
 	
 
