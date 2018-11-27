@@ -25,7 +25,7 @@ public class MapChooseScreen extends Scene {
 	private ArrayList<listMap> listOfBackground= new ArrayList<listMap>();
 	private int row,column,choice = 0;
 	private Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
-	
+	private static Image chooseBackground  = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
 	public MapChooseScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
@@ -63,6 +63,8 @@ public class MapChooseScreen extends Scene {
 					Main.ChangeScene(Main.getLoadscreen());
 					choose.play();
 					load.play();
+					setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
+					GameScreen.setBackground(chooseBackground);
 				} 
 				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2())) {
 					listOfBackground.get(choice).setActive(false);
@@ -97,6 +99,12 @@ public class MapChooseScreen extends Scene {
 		});
 		
 	}
+	public static Image getChooseBackground() {
+		return chooseBackground;
+	}
+	public static void setChooseBackground(Image chooseBackground) {
+		MapChooseScreen.chooseBackground = chooseBackground;
+	}
 	public class listMap extends ImageView{
 		private String normal,active;
 		private Image imgn,imga;
@@ -106,6 +114,9 @@ public class MapChooseScreen extends Scene {
 			this.imgn = new Image(ClassLoader.getSystemResource(normal).toString(),400,200,false,true);
 			this.imga = new Image(ClassLoader.getSystemResource(active).toString(),400,200,false,true);
 			this.setImage(imgn);
+		}
+		public String getNormal() {
+			return normal;
 		}
 		public void setActive(boolean check) {
 			if(check == true) {

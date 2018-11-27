@@ -13,13 +13,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
-	private Image image = new Image(ClassLoader.getSystemResource("icon/naruto_sage.png").toString());//why cant i use in character.naruto_sage? should i rename it?
+	private Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString());
 	private ImageView imageV = new ImageView(image);
 	private Characters player = new Characters(imageV);
 	private AnimationTimer timer ;
@@ -171,6 +172,10 @@ public class GameScreen extends myScene{
 			player.moveX(2);
 			System.out.println("RightPressed");
 		}
+	}
+
+	public static void setBackground(Image background) {
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 	}
 
 }
