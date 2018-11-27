@@ -5,7 +5,6 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -23,11 +22,10 @@ import javafx.util.Duration;
 public class IntroScreen extends myScene{
 	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private static Pane root = new Pane();
-	private Main main;
 	private MediaPlayer player;
-	public IntroScreen(Main main){
+	public IntroScreen(){
 		super(root);
-		this.main = main ;
+//		this.main = main ;
 		Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(),1300,740,false,false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		root.setPrefSize(1280,720);
@@ -73,14 +71,14 @@ public class IntroScreen extends myScene{
 			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
 			@Override
 			public void handle(KeyEvent event) {
-				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{main.ChangeScene(main.getMainmenu());})
+				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
 						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-				main.ChangeScene(main.getLoadscreen());
+				Main.ChangeScene(Main.getLoadscreen());
 				System.out.println("Skipped Intro");
 				load.play();
 				player.stop();
 				choose.play();
-				main.setState(1);
+				Main.setState(1);
 			}
 		});
 		
@@ -98,25 +96,23 @@ public class IntroScreen extends myScene{
 			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
 			@Override
 			public void handle(KeyEvent event) {
-				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{main.ChangeScene(main.getMainmenu());})
+				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
 						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-				main.ChangeScene(main.getLoadscreen());
+				Main.ChangeScene(Main.getLoadscreen());
 				System.out.println("Skipped Intro");
 				load.play();
 				player.stop();
 				choose.play();
-				main.setState(1);
+				Main.setState(1);
 			}
 		});
 	}
 	@Override
 	public void upPressed() {
-		// TODO Auto-generated method stub
 		System.out.println("intro up");
 	}
 	@Override
 	public void downPressed() {
-		// TODO Auto-generated method stub
 		System.out.println("intro down");
 	}
 }
