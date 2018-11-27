@@ -156,4 +156,16 @@ public class MainMenuScreen extends myScene {
 		// TODO Auto-generated method stub
 		System.out.println("mainmenu down");
 	}
+
+	@Override
+	public void leftPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
 }

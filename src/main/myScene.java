@@ -10,4 +10,6 @@ public abstract class myScene extends Scene{
 	}
 	public abstract void upPressed();
 	public abstract void downPressed();
+	public abstract void leftPressed();
+	public abstract void rightPressed();
 }

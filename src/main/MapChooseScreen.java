@@ -58,9 +58,9 @@ public class MapChooseScreen extends Scene {
 					Main.ChangeScene(Main.getMultiplayer());
 				}
 				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
+					Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
 							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-					Main.ChangeScene(Main.getGamescreen());
+					Main.ChangeScene(Main.getLoadscreen());
 					choose.play();
 					load.play();
 				} 

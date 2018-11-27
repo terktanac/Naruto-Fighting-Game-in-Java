@@ -405,4 +405,14 @@ public class OptionScreen extends myScene{
 		// TODO Auto-generated method stub
 		System.out.println("option down");
 	}
+	@Override
+	public void leftPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
 }

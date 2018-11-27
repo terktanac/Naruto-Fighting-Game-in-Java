@@ -3,6 +3,7 @@ package main;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
@@ -29,11 +30,11 @@ public class Main extends Application {
 		loadscreen = new LoadingScreen();
 		mapscreen = new MapChooseScreen();
 		gamescreen = new GameScreen();
-//		player1 = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
-//		player1.setScene(optionscreen);
-//		player1.run();
-//		player2 = new Controller(KeyCode.UP,KeyCode.DOWN,KeyCode.LEFT,KeyCode.RIGHT,KeyCode.NUMPAD1,KeyCode.NUMPAD2,KeyCode.NUMPAD3,KeyCode.NUMPAD5);
-//		player2.setScene(optionscreen);
+		player1 = new Controller("player1",KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
+		player1.setScene(gamescreen);
+		player1.run();
+//		player2 = new Controller("player2",KeyCode.UP,KeyCode.DOWN,KeyCode.LEFT,KeyCode.RIGHT,KeyCode.NUMPAD1,KeyCode.NUMPAD2,KeyCode.NUMPAD3,KeyCode.NUMPAD5);
+//		player2.setScene(gamescreen);
 //		player2.run();
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
@@ -104,6 +105,10 @@ public class Main extends Application {
 	public static void setGamescreen(GameScreen gamescreen) {
 		Main.gamescreen = gamescreen;
 	}
+	public static Controller getPlayer1() {
+		return player1;
+	}
 
+	
 	
 }

@@ -1,5 +1,8 @@
 package main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,33 +24,52 @@ public class Controller implements Runnable{
 	private double y;
 	private boolean isJumping = false;
 	private myScene scene;
+	private String name;
+	private static Map<KeyCode, Boolean> isPressed = new HashMap<KeyCode,Boolean>();
 	
-	
-	public Controller(KeyCode upKey, KeyCode downKey, KeyCode leftKey, KeyCode rightKey, KeyCode meleeKey,
+	public Controller(String name,KeyCode upKey, KeyCode downKey, KeyCode leftKey, KeyCode rightKey, KeyCode meleeKey,
 			KeyCode rangeKey, KeyCode blockKey, KeyCode dodgeKey) {
 		super();
-		this.upKey = upKey;
-		this.downKey = downKey;
-		this.leftKey = leftKey;
-		this.rightKey = rightKey;
-		this.meleeKey = meleeKey;
-		this.rangeKey = rangeKey;
-		this.blockKey = blockKey;
-		this.dodgeKey = dodgeKey;
+		this.name = name ;
+		this.upKey = upKey; isPressed.put(this.upKey, false);
+		this.downKey = downKey; isPressed.put(this.downKey, false);
+		this.leftKey = leftKey; isPressed.put(this.leftKey, false);
+		this.rightKey = rightKey; isPressed.put(this.rightKey, false);
+		this.meleeKey = meleeKey; isPressed.put(this.meleeKey, false);
+		this.rangeKey = rangeKey; isPressed.put(this.rangeKey, false);
+		this.blockKey = blockKey; isPressed.put(this.blockKey, false);
+		this.dodgeKey = dodgeKey; isPressed.put(this.dodgeKey, false);
+		
 	}
 
 
 	@Override
 	public void run() {
-		System.out.println("HI");
+		System.out.println(name + " start");
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
 				KeyCode key = event.getCode();
-				if(key == upKey) {scene.upPressed();}
-				else if(key == downKey) {scene.downPressed();}
+				System.out.println(name + " pressed: "+key);
+				if(isPressed.containsKey(key)) {
+					isPressed.put(key,true);
+					System.out.println(isPressed.get(key).toString()+" "+key);
+				}
 			}
+		});
+		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				KeyCode key = event.getCode();
+				System.out.println(name + " release: "+key);
+				if(isPressed.containsKey(key)) {
+					isPressed.put(key, false);
+					System.out.println(isPressed.get(key).toString()+" "+key);
+				}
+			}
+			
 		});
 	}
 
@@ -143,6 +165,16 @@ public class Controller implements Runnable{
 
 	public void setDodgeKey(KeyCode dodgeKey) {
 		this.dodgeKey = dodgeKey;
+	}
+
+
+	public static Map<KeyCode, Boolean> getIsPressed() {
+		return isPressed;
+	}
+
+
+	public static void setIsPressed(Map<KeyCode, Boolean> isPressed) {
+		Controller.isPressed = isPressed;
 	}
 	
 	

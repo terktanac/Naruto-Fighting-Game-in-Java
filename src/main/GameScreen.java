@@ -1,11 +1,12 @@
 package main;
 
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
+import javafx.animation.Timeline;
 import javafx.animation.Transition;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -16,32 +17,46 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class GameScreen extends Scene{
+public class GameScreen extends myScene{
 	private static Pane root = new Pane();
 	private Image image = new Image(ClassLoader.getSystemResource("icon/naruto_sage.png").toString());//why cant i use in character.naruto_sage? should i rename it?
 	private ImageView imageV = new ImageView(image);
 	private Characters player = new Characters(imageV);
+	private AnimationTimer timer ;
+	private long lastTimeTriggered = -1;
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-		setOnKeyPressed(new EventHandler<KeyEvent>() {
-
+		timer = new AnimationTimer() {
+			
 			@Override
-			public void handle(KeyEvent event) {
-				KeyCode key = event.getCode();
-				if(key == KeyCode.UP) {
-					player.animation.play();
-					player.animation.setOffSetY(96);
-					player.moveY(-2);
-				}
-				else if(key == KeyCode.DOWN) {
-					player.animation.play();
-					player.animation.setOffSetY(0);
-					player.moveY(2);
-				}
+			public void handle(long now) {
+				upPressed();
+				leftPressed();
+				downPressed();
+				rightPressed();
 			}
-		});
+		};
+		timer.start();
+//		setOnKeyPressed(new EventHandler<KeyEvent>() {
+//
+//			@Override
+//			public void handle(KeyEvent event) {
+//				KeyCode key = event.getCode();
+//				if(key == KeyCode.UP) {
+//					player.animation.play();
+//					player.animation.setOffSetY(96);
+//					player.moveY(-2);
+//				}
+//				else if(key == KeyCode.DOWN) {
+//					player.animation.play();
+//					player.animation.setOffSetY(0);
+//					player.moveY(2);
+//				}
+//			}
+//		});
+		player.setTranslateX(500);player.setTranslateY(500);
 		root.getChildren().addAll(player);
 	}
 	public class CharacterAnimation extends Transition{
@@ -124,6 +139,38 @@ public class GameScreen extends Scene{
 			}
 		}
 		
+	}
+
+	@Override
+	public void upPressed() {
+		if(Controller.getIsPressed().get(Main.getPlayer1().getUpKey())) {
+			player.moveY(-2);
+			System.out.println("UPPressed");
+		}
+	}
+
+	@Override
+	public void downPressed() {
+		if(Controller.getIsPressed().get(Main.getPlayer1().getDownKey())) {
+			player.moveY(2);
+			System.out.println("DOWNPressed");
+		}
+	}
+
+	@Override
+	public void leftPressed() {
+		if(Controller.getIsPressed().get(Main.getPlayer1().getLeftKey())) {
+			player.moveX(-2);
+			System.out.println("LeftPressed");
+		}
+	}
+
+	@Override
+	public void rightPressed() {
+		if(Controller.getIsPressed().get(Main.getPlayer1().getRightKey())) {
+			player.moveX(2);
+			System.out.println("RightPressed");
+		}
 	}
 
 }

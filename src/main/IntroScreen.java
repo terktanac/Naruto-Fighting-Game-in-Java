@@ -115,4 +115,14 @@ public class IntroScreen extends myScene{
 	public void downPressed() {
 		System.out.println("intro down");
 	}
+	@Override
+	public void leftPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
 }
