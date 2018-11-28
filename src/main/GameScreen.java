@@ -1,16 +1,11 @@
 package main;
 
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
-import javafx.animation.Timeline;
 import javafx.animation.Transition;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -23,40 +18,11 @@ public class GameScreen extends myScene{
 	private Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString());
 	private ImageView imageV = new ImageView(image);
 	private Characters player = new Characters(imageV);
-	private AnimationTimer timer ;
-	private long lastTimeTriggered = -1;
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-		timer = new AnimationTimer() {
-			
-			@Override
-			public void handle(long now) {
-				upPressed();
-				leftPressed();
-				downPressed();
-				rightPressed();
-			}
-		};
-		timer.start();
-//		setOnKeyPressed(new EventHandler<KeyEvent>() {
-//
-//			@Override
-//			public void handle(KeyEvent event) {
-//				KeyCode key = event.getCode();
-//				if(key == KeyCode.UP) {
-//					player.animation.play();
-//					player.animation.setOffSetY(96);
-//					player.moveY(-2);
-//				}
-//				else if(key == KeyCode.DOWN) {
-//					player.animation.play();
-//					player.animation.setOffSetY(0);
-//					player.moveY(2);
-//				}
-//			}
-//		});
+
 		player.setTranslateX(500);player.setTranslateY(500);
 		root.getChildren().addAll(player);
 	}
@@ -124,17 +90,17 @@ public class GameScreen extends myScene{
 			getChildren().addAll(imageview);
 		}
 		
-		public void moveX(int x) {
-			boolean right = x>0 ? true:false;
-			for(int i=0;i<Math.abs(x);i++) {
+		public void moveX(double d) {
+			boolean right = d>0 ? true:false;
+			for(int i=0;i<Math.abs(d);i++) {
 				if(right)this.setTranslateX(this.getTranslateX()+1);
 				else this.setTranslateX(this.getTranslateX()-1);
 			}
 		}
 		
-		public void moveY(int y) {
-			boolean right = y>0 ? true:false;
-			for(int i=0;i<Math.abs(y);i++) {
+		public void moveY(double d) {
+			boolean right = d>0 ? true:false;
+			for(int i=0;i<Math.abs(d);i++) {
 				if(right)this.setTranslateY(this.getTranslateY()+1);
 				else this.setTranslateY(this.getTranslateY()-1);
 			}
@@ -145,7 +111,7 @@ public class GameScreen extends myScene{
 	@Override
 	public void upPressed() {
 		if(Controller.getIsPressed().get(Main.getPlayer1().getUpKey())) {
-			player.moveY(-2);
+			player.moveY(-Controller.getY_speed());
 			System.out.println("UPPressed");
 		}
 	}
@@ -153,7 +119,7 @@ public class GameScreen extends myScene{
 	@Override
 	public void downPressed() {
 		if(Controller.getIsPressed().get(Main.getPlayer1().getDownKey())) {
-			player.moveY(2);
+			player.moveY(Controller.getY_speed());
 			System.out.println("DOWNPressed");
 		}
 	}
@@ -161,7 +127,7 @@ public class GameScreen extends myScene{
 	@Override
 	public void leftPressed() {
 		if(Controller.getIsPressed().get(Main.getPlayer1().getLeftKey())) {
-			player.moveX(-2);
+			player.moveX(-Controller.getX_speed());
 			System.out.println("LeftPressed");
 		}
 	}
@@ -169,7 +135,7 @@ public class GameScreen extends myScene{
 	@Override
 	public void rightPressed() {
 		if(Controller.getIsPressed().get(Main.getPlayer1().getRightKey())) {
-			player.moveX(2);
+			player.moveX(Controller.getX_speed());
 			System.out.println("RightPressed");
 		}
 	}

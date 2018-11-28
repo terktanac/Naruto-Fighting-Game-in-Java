@@ -3,6 +3,7 @@ package main;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,14 +19,15 @@ public class Controller implements Runnable{
 	private KeyCode dodgeKey ;
 	private double x_pos;
 	private double y_pos;
-	private double x_speed;
-	private double y_speed;
+	private static double x_speed = 2;
+	private static double y_speed = 2;
 	private double x;
 	private double y;
 	private boolean isJumping = false;
 	private myScene scene;
 	private String name;
 	private static Map<KeyCode, Boolean> isPressed = new HashMap<KeyCode,Boolean>();
+	private AnimationTimer gameLoop ;
 	
 	public Controller(String name,KeyCode upKey, KeyCode downKey, KeyCode leftKey, KeyCode rightKey, KeyCode meleeKey,
 			KeyCode rangeKey, KeyCode blockKey, KeyCode dodgeKey) {
@@ -71,6 +73,18 @@ public class Controller implements Runnable{
 			}
 			
 		});
+		
+		gameLoop = new AnimationTimer() {
+			
+			@Override
+			public void handle(long now) {
+				scene.upPressed();
+				scene.leftPressed();
+				scene.downPressed();
+				scene.rightPressed();
+			}
+		};
+		gameLoop.start();
 	}
 
 //	public void keyHandling() {
@@ -175,6 +189,16 @@ public class Controller implements Runnable{
 
 	public static void setIsPressed(Map<KeyCode, Boolean> isPressed) {
 		Controller.isPressed = isPressed;
+	}
+
+
+	public static double getX_speed() {
+		return x_speed;
+	}
+
+
+	public static double getY_speed() {
+		return y_speed;
 	}
 	
 	
