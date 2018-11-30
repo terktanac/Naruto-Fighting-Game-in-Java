@@ -48,30 +48,22 @@ public class Controller implements Runnable{
 	@Override
 	public void run() {
 		System.out.println(name + " start");
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				KeyCode key = event.getCode();
-				System.out.println(name + " pressed: "+key);
-				if(isPressed.containsKey(key)) {
-					isPressed.put(key,true);
-					System.out.println(isPressed.get(key).toString()+" "+key);
-				}
+		scene.setOnKeyPressed((KeyEvent event)->{
+			KeyCode key = event.getCode();
+			System.out.println(name + " Pressed:"+key);
+			if(isPressed.containsKey(key)) {
+				isPressed.put(key, true);
+				System.out.println(isPressed.get(key).toString()+" "+key);
 			}
 		});
-		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				KeyCode key = event.getCode();
-				System.out.println(name + " release: "+key);
-				if(isPressed.containsKey(key)) {
-					isPressed.put(key, false);
-					System.out.println(isPressed.get(key).toString()+" "+key);
-				}
+		
+		scene.setOnKeyReleased((KeyEvent event)->{
+			KeyCode key = event.getCode();
+			System.out.println(name + " Release:"+key);
+			if(isPressed.containsKey(key)) {
+				isPressed.put(key,false);
+				System.out.println(isPressed.get(key).toString()+" "+key);
 			}
-			
 		});
 		
 		gameLoop = new AnimationTimer() {
