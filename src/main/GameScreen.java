@@ -1,5 +1,6 @@
 package main;
 
+
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -11,11 +12,12 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
-	private Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString());
+	private Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString(),1110, 2220, false, false);
 	private ImageView imageV = new ImageView(image);
 	private Characters player = new Characters(imageV);
 	public GameScreen() {
@@ -55,10 +57,11 @@ public class GameScreen extends myScene{
 
 		@Override
 		protected void interpolate(double frac) {
-			int index = Math.min((int)Math.floor(count*frac),count-1);
-			int x = (index%col)*width+offSetX;
-			int y = (index/col)*height+offSetY;
-			image.setViewport(new Rectangle2D(x, y, width, height));
+			int index = (int) ((count*frac) % count);
+			int x = (index)*width+offSetX;
+			int y = offSetY;
+			System.out.println(frac+"<<<<<"+x+">>>>"+y);
+			image.setViewport(new Rectangle2D(x, y, width - 15, height - 1.3));
 		}
 
 		public void setOffSetX(int offSetX) {
@@ -73,20 +76,23 @@ public class GameScreen extends myScene{
 	
 	public class Characters extends Pane{
 		ImageView imageview ;
-		int count = 3;
-		int col = 5 ;
-		int offSetX = 2;
-		int offSetY = 5;
-		int width = 100 ;
-		int height = 100 ;
+		int count = 6;
+		int col = 0;
+		int offSetX = 0;
+		int offSetY = 222;
+		int width = 111 ;
+		int height = 111 ;
+		boolean isRight = true;
 		
 		CharacterAnimation animation ;
 
 		public Characters(ImageView imageview) {
 			super();
 			this.imageview = imageview;
-			this.imageview.setViewport(new Rectangle2D(offSetX, offSetY, width, height));
-			animation = new CharacterAnimation(imageview, Duration.millis(200), count, col, offSetX, offSetY, width, height);
+			this.imageview.setViewport(new Rectangle2D(offSetX, offSetY, width - 15, height - 1.3));
+			this.imageview.setFitHeight(350);
+			this.imageview.setFitWidth(350);
+			animation = new CharacterAnimation(this.imageview, Duration.millis(300), count, col, offSetX, offSetY, width, height);
 			getChildren().addAll(imageview);
 		}
 		
@@ -127,16 +133,28 @@ public class GameScreen extends myScene{
 	@Override
 	public void leftPressed() {
 		if(Controller.getIsPressed().get(Main.getPlayer1().getLeftKey())) {
+			if(player.isRight == true) {
+				player.imageview.setRotationAxis(Rotate.Y_AXIS);
+				player.imageview.setRotate(180);
+				player.isRight = false;
+			}
 			player.moveX(-Controller.getX_speed());
 			System.out.println("LeftPressed");
+			player.animation.play();
 		}
 	}
 
 	@Override
 	public void rightPressed() {
 		if(Controller.getIsPressed().get(Main.getPlayer1().getRightKey())) {
+			if(player.isRight != true) {
+				player.imageview.setRotationAxis(Rotate.Y_AXIS);
+				player.imageview.setRotate(0);
+				player.isRight = true;
+			}
 			player.moveX(Controller.getX_speed());
 			System.out.println("RightPressed");
+			player.animation.play();
 		}
 	}
 
