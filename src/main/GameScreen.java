@@ -39,18 +39,26 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void upPressed() {
+		
 		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Main.getPlayer().getKeyP1().get(0))) {
+			player.jump();
 			System.out.println("UPPressed");
-			if(!player.isJump()) {
-				player.getAnimation().setOffSetX(222);
-				player.getAnimation().setOffSetY(333);
-				player.getAnimation().stop();
-				player.setJump(true);
-				Timeline load = new Timeline(
-						new KeyFrame(Duration.millis(300), ae ->{player.moveY(characters.Character.getY_speed());})
-						,new KeyFrame(Duration.millis(100), ae->{player.moveY(-characters.Character.getY_speed());}));
-				load.play();
+		}
+		if(player.isJump()) {
+			if(player.getTranslateY() > 100) {
+				player.setTranslateY(player.getTranslateY()-10);
+				player.getImageview().setViewport(new Rectangle2D(444, 333, player.get_Width() - 15, player.get_Height() - 1.3));
+			}
+			else
 				player.setJump(false);
+		}
+		else if(player.isAir()) {
+			if(player.getTranslateY() < 300) {
+				player.setTranslateY(player.getTranslateY()+10);
+				player.getImageview().setViewport(new Rectangle2D(555, 333, player.get_Width() - 15, player.get_Height() - 1.3));
+			}
+			else {
+				player.setAir(false);
 				player.getAnimation().play();
 			}
 		}
@@ -59,43 +67,27 @@ public class GameScreen extends myScene{
 	@Override
 	public void downPressed() {
 		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Main.getPlayer().getKeyP1().get(1))) {
-			player.moveY(characters.Character.getY_speed());
+			player.crouch();
 			System.out.println("DOWNPressed");
 		}
 	}
 
 	@Override
 	public void leftPressed() {
+		
 		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(2)))) {
-			if(player.isRight() == true) {
-				player.getImageview().setRotationAxis(Rotate.Y_AXIS);
-				player.getImageview().setRotate(180);
-				player.setRight(false);
-			}
-			player.getAnimation().setOffSetX(0);
-			player.getAnimation().setOffSetY(222);
-			player.moveX(-characters.Character.getX_speed());
+			player.walk_left();
 			System.out.println("LeftPressed");
-			player.getAnimation().play();
 		}
 	}
 
 	@Override
 	public void rightPressed() {
-		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(3)))) {
-			if(player.isRight() != true) {
-				player.getImageview().setRotationAxis(Rotate.Y_AXIS);
-				player.getImageview().setRotate(0);
-				player.setRight(true);
-			}
-			player.getAnimation().setOffSetX(0);
-			player.getAnimation().setOffSetY(222);
-			player.moveX(characters.Character.getX_speed());
-			System.out.println("RightPressed");
-			player.getAnimation().play();
-		}
 		
-
+		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(3)))) {
+			player.walk_right();
+			System.out.println("RightPressed");
+		}
 	}
 
 	@Override

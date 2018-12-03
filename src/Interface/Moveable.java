@@ -1,7 +1,8 @@
 package Interface;
 
 public interface Moveable {
-	public int walk();
+	public int walk_right();
+	public int walk_left();
 	public int crouch();
-	public int dash();
+	public int jump();
 }
