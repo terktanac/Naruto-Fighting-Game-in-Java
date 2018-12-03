@@ -14,8 +14,8 @@ public class Controller implements Runnable{
 	private static Map<KeyCode, Boolean> isPressedMap = new HashMap<KeyCode,Boolean>();
 	private static ArrayList<KeyCode> pressedListP1 = new ArrayList<KeyCode>();
 	private static ArrayList<KeyCode> pressedListP2 = new ArrayList<KeyCode>();
-	private ArrayList<KeyCode> KeyP1 ;
-	private ArrayList<KeyCode> KeyP2 ;
+	private ArrayList<KeyCode> KeyP1 = new ArrayList<KeyCode>();
+	private ArrayList<KeyCode> KeyP2 = new ArrayList<KeyCode>();
 	private AnimationTimer gameLoop ;
 	private long lastTime = -1;
 	
@@ -115,6 +115,22 @@ public class Controller implements Runnable{
 
 	public AnimationTimer getGameLoop() {
 		return gameLoop;
+	}
+
+	public static ArrayList<KeyCode> getPressedListP1() {
+		return pressedListP1;
+	}
+
+	public static void setPressedListP1(ArrayList<KeyCode> pressedListP1) {
+		Controller.pressedListP1 = pressedListP1;
+	}
+
+	public static ArrayList<KeyCode> getPressedListP2() {
+		return pressedListP2;
+	}
+
+	public static void setPressedListP2(ArrayList<KeyCode> pressedListP2) {
+		Controller.pressedListP2 = pressedListP2;
 	}
 	
 	
