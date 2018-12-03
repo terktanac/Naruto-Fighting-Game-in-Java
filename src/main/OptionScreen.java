@@ -24,22 +24,22 @@ import javafx.util.Duration;
 public class OptionScreen extends myScene{
 	
 	private static Pane root = new Pane();
-	private KeyCode up_1 = KeyCode.W ;
-	private KeyCode up_2 = KeyCode.UP;
-	private KeyCode down_1 = KeyCode.S;
-	private KeyCode down_2 = KeyCode.DOWN;
-	private KeyCode right_1 = KeyCode.D;
-	private KeyCode right_2 = KeyCode.RIGHT;
-	private KeyCode left_1 = KeyCode.A;
-	private KeyCode left_2 = KeyCode.LEFT;
-	private KeyCode melee_1 = KeyCode.J;
-	private KeyCode melee_2 = KeyCode.NUMPAD1;
-	private KeyCode range_1 = KeyCode.K;
-	private KeyCode range_2 = KeyCode.NUMPAD2;
-	private KeyCode defense_1 = KeyCode.L;
-	private KeyCode defense_2 = KeyCode.NUMPAD3;
-	private KeyCode dodge_1 = KeyCode.I;
-	private KeyCode dodge_2 = KeyCode.NUMPAD5;
+//	private KeyCode up_1 = KeyCode.W ;
+//	private KeyCode up_2 = KeyCode.UP;
+//	private KeyCode down_1 = KeyCode.S;
+//	private KeyCode down_2 = KeyCode.DOWN;
+//	private KeyCode right_1 = KeyCode.D;
+//	private KeyCode right_2 = KeyCode.RIGHT;
+//	private KeyCode left_1 = KeyCode.A;
+//	private KeyCode left_2 = KeyCode.LEFT;
+//	private KeyCode melee_1 = KeyCode.J;
+//	private KeyCode melee_2 = KeyCode.NUMPAD1;
+//	private KeyCode range_1 = KeyCode.K;
+//	private KeyCode range_2 = KeyCode.NUMPAD2;
+//	private KeyCode defense_1 = KeyCode.L;
+//	private KeyCode defense_2 = KeyCode.NUMPAD3;
+//	private KeyCode dodge_1 = KeyCode.I;
+//	private KeyCode dodge_2 = KeyCode.NUMPAD5;
 	private int OldChoice_1 = 0 ;
 	private int NewChoice_1 = 0 ;
 	private int OldChoice_2 = 0 ;
@@ -235,102 +235,7 @@ public class OptionScreen extends myScene{
 		}
 	}
 
-	public KeyCode getUp_1() {
-		return up_1;
-	}
-	public void setUp_1(KeyCode up_1) {
-		this.up_1 = up_1;
-	}
-	public KeyCode getUp_2() {
-		return up_2;
-	}
-	public void setUp_2(KeyCode up_2) {
-		this.up_2 = up_2;
-	}
-	public KeyCode getDown_1() {
-		return down_1;
-	}
-	public void setDown_1(KeyCode down_1) {
-		this.down_1 = down_1;
-	}
-	public KeyCode getDown_2() {
-		return down_2;
-	}
-	public void setDown_2(KeyCode down_2) {
-		this.down_2 = down_2;
-	}
-	public KeyCode getRight_1() {
-		return right_1;
-	}
-	public void setRight_1(KeyCode right_1) {
-		this.right_1 = right_1;
-	}
-	public KeyCode getRight_2() {
-		return right_2;
-	}
-	public void setRight_2(KeyCode right_2) {
-		this.right_2 = right_2;
-	}
-	public KeyCode getLeft_1() {
-		return left_1;
-	}
-	public void setLeft_1(KeyCode left_1) {
-		this.left_1 = left_1;
-	}
-	public KeyCode getLeft_2() {
-		return left_2;
-	}
-	public void setLeft_2(KeyCode left_2) {
-		this.left_2 = left_2;
-	}
-	public KeyCode getMelee_1() {
-		return melee_1;
-	}
-	public void setMelee_1(KeyCode melee_1) {
-		this.melee_1 = melee_1;
-	}
-	public KeyCode getMelee_2() {
-		return melee_2;
-	}
-	public void setMelee_2(KeyCode melee_2) {
-		this.melee_2 = melee_2;
-	}
-	public KeyCode getRange_1() {
-		return range_1;
-	}
-	public void setRange_1(KeyCode range_1) {
-		this.range_1 = range_1;
-	}
-	public KeyCode getRange_2() {
-		return range_2;
-	}
-	public void setRange_2(KeyCode range_2) {
-		this.range_2 = range_2;
-	}
-	public KeyCode getDefense_1() {
-		return defense_1;
-	}
-	public void setDefense_1(KeyCode defense_1) {
-		this.defense_1 = defense_1;
-	}
-	public KeyCode getDefense_2() {
-		return defense_2;
-	}
-	public void setDefense_2(KeyCode defense_2) {
-		this.defense_2 = defense_2;
-	}
-	public KeyCode getDodge_1() {
-		return dodge_1;
-	}
-	public void setDodge_1(KeyCode dodge_1) {
-		this.dodge_1 = dodge_1;
-	}
-	public KeyCode getDodge_2() {
-		return dodge_2;
-	}
-	public void setDodge_2(KeyCode dodge_2) {
-		this.dodge_2 = dodge_2;
-	}
+
 	public static ArrayList<KeyCode> getKeySetting() {
 		return keySetting;
 	}
@@ -394,58 +299,76 @@ public class OptionScreen extends myScene{
 		listoption2.get(7).text.setText("Dodge: "+getDodge_2());
 	}
 	@Override
-	public void upPressed() {
-		// TODO Auto-generated method stub
-		System.out.println("option up");
+	public void update() {
+		update_P1();
+		update_P2();
 	}
-	@Override
-	public void downPressed() {
-		// TODO Auto-generated method stub
-		System.out.println("option down");
+	private void update_P1() {
+		moveUp_1();
+		moveDown_1();
+		choose_1();
+		back_1();
 	}
-	@Override
-	public void leftPressed() {
-		// TODO Auto-generated method stub
-		
+
+	private void update_P2() {
+		moveUp_2();
+		moveDown_2();
+		choose_2();
+		back_2();
 	}
-	@Override
-	public void rightPressed() {
-		// TODO Auto-generated method stub
-		
+	public void changeKeyCode(int player,int choice) {
+		setOnKeyPressed((KeyEvent event)->{
+			KeyCode key = event.getCode();
+			if(player == 1) {Controller.getKeyP1().set(choice, key);}
+			else {Controller.getKeyP2().set(choice, key);}
+		});
 	}
-	@Override
-	public void meleePressed() {
-		// TODO Auto-generated method stub
-		
+	private void moveUp_1() {
+		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P1(2)) {
+			NewChoice_1 = (OldChoice_1-1+8)%8;
+			click.play();
+		}
 	}
-	@Override
-	public void rangePressed() {
-		// TODO Auto-generated method stub
-		
+	private void moveDown_1() {
+		if(Controller.getKeyMove_P1(1) || Controller.getKeyMove_P1(3)) {
+			NewChoice_1 = (OldChoice_1+1+8)%8;
+			click.play();
+		}
 	}
-	@Override
-	public void dodgePressed() {
-		// TODO Auto-generated method stub
-		
+	private void choose_1() {
+		if(Controller.getKeySkill_P1(0)) {
+			setState1 = true;
+			choose.play();
+			changeKeyCode(1, OldChoice_1);
+		}
 	}
-	@Override
-	public void blockPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void SpacePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void EnterPressed() {
+	private void back_1() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void nonePressed() {
+	private void moveUp_2() {
+		if(Controller.getKeyMove_P2(0) || Controller.getKeyMove_P2(2)) {
+			NewChoice_2 = (OldChoice_2-1+8)%8;
+			click.play();
+		}
+	}
+	private void moveDown_2() {
+		if(Controller.getKeyMove_P2(1) || Controller.getKeyMove_P2(3)) {
+			NewChoice_2 = (OldChoice_2+1+8)%8;
+			click.play();
+		}
+	}
+	private void choose_2() {
+		if(Controller.getKeySkill_P2(0)) {
+			setState2 = true;
+			choose.play();
+			changeKeyCode(2, OldChoice_2);
+
+		}
+	}
+	private void back_2() {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

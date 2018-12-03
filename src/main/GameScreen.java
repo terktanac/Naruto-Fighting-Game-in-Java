@@ -113,26 +113,52 @@ public class GameScreen extends myScene{
 		}
 		
 	}
+	public static void setBackground(Image background) {
+		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
+	}
 
 	@Override
-	public void upPressed() {
-		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Main.getPlayer().getKeyP1().get(0))) {
+	public void update() {
+		update_P1();
+		update_P2();
+		
+	}
+	public void update_P1() {
+		upPressed_1();
+		downPressed_1();
+		leftPressed_1();
+		rightPressed_1();
+		meleePressed_1();
+		rangePressed_1();
+		blockPressed_1();
+		dodgePressed_1();
+	}
+	public void update_P2() {
+		upPressed_2();
+		downPressed_2();
+		leftPressed_2();
+		rightPressed_2();
+		meleePressed_2();
+		rangePressed_2();
+		blockPressed_2();
+		dodgePressed_2();
+	}
+	public void upPressed_1() {
+		if(Controller.getIsPressedMap().get(Main.getPlayer().getKeyP1().get(0))) {
 			player.moveY(-characters.Character.getY_speed());
 			System.out.println("UPPressed");
 		}
 	}
 
-	@Override
-	public void downPressed() {
-		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Main.getPlayer().getKeyP1().get(1))) {
+	public void downPressed_1() {
+		if(Controller.getIsPressedMap().get(Main.getPlayer().getKeyP1().get(1))) {
 			player.moveY(characters.Character.getY_speed());
 			System.out.println("DOWNPressed");
 		}
 	}
 
-	@Override
-	public void leftPressed() {
-		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(2)))) {
+	public void leftPressed_1() {
+		if(Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(2)))) {
 			if(player.isRight == true) {
 				player.imageview.setRotationAxis(Rotate.Y_AXIS);
 				player.imageview.setRotate(180);
@@ -144,9 +170,8 @@ public class GameScreen extends myScene{
 		}
 	}
 
-	@Override
-	public void rightPressed() {
-		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(3)))) {
+	public void rightPressed_1() {
+		if(Controller.getIsPressedMap().get((Main.getPlayer().getKeyP1().get(3)))) {
 			if(player.isRight != true) {
 				player.imageview.setRotationAxis(Rotate.Y_AXIS);
 				player.imageview.setRotate(0);
@@ -158,51 +183,90 @@ public class GameScreen extends myScene{
 		}
 	}
 
-	public static void setBackground(Image background) {
-		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
-	}
 
-	@Override
-	public void meleePressed() {
+	
+	public void meleePressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void rangePressed() {
+	public void rangePressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void dodgePressed() {
+	public void dodgePressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void blockPressed() {
+	public void blockPressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void SpacePressed() {
+	public void SpacePressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void EnterPressed() {
+	public void EnterPressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void nonePressed() {
+	public void nonePressed_1() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void upPressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void downPressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void leftPressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void rightPressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void meleePressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void rangePressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void dodgePressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void blockPressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void nonePressed_2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 }
 

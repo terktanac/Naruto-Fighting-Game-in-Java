@@ -7,11 +7,8 @@ import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
@@ -27,16 +24,23 @@ public class MultiPlayerScreen extends myScene{
 	private int player1 = 1,player2 = 0; //default character =0 : naruto
 	private static Pane root = new Pane();
 	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
+	ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
+	ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
+	ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();
+	ArrayList<Image> Characters = new ArrayList<Image>();
+	ArrayList<Image> CharactersReady = new ArrayList<Image>();
+	ArrayList<String> CharactersName = new ArrayList<String>();
+	Check chosen1 = new Check(false);
+	Check chosen2 = new Check(false);
+	Timeline timeline;
+
 	
 	public MultiPlayerScreen() {
 		super(root);
 		
 		player.setVolume(0.3);
-		ArrayList<Image> Characters = new ArrayList<Image>();
-		ArrayList<Image> CharactersReady = new ArrayList<Image>();
-		ArrayList<String> CharactersName = new ArrayList<String>();
-		ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
-		ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();
+
+
 		
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),230,500,false,true));
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),230,500,false,true));
@@ -65,7 +69,7 @@ public class MultiPlayerScreen extends myScene{
 		Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(),1300,740,false,false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 		
-		ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
+
 		//vs. logo
 		vs = new ImageView(new Image(ClassLoader.getSystemResource("icon/vs.png").toString(),170,170,false,false));
 		vs.setTranslateX(560);
@@ -89,8 +93,6 @@ public class MultiPlayerScreen extends myScene{
 		scrollpy2.setTranslateX(900);
 		scrollpy2.setTranslateY(50);
 		
-		Check chosen1 = new Check(false);
-		Check chosen2 = new Check(false);
 
 		root.getChildren().addAll(lhschar,rhschar,scrollpy1,scrollpy2,vs,pressKey);
 		
@@ -103,73 +105,73 @@ public class MultiPlayerScreen extends myScene{
 		listCharacterpy1.get(player1).setActive(true);
 		listCharacterpy2.get(player2).setActive(true);
 		
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey.setVisible(true)),
+		timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey.setVisible(true)),
 				new KeyFrame(Duration.seconds(0.7), evt -> pressKey.setVisible(false)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		
-		setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-				KeyCode key = event.getCode();
-				System.out.println("Multiplayer:Pressed " + key.toString());
-				
-				if(chosen1.check == true && chosen2.check == true) {
-					choose.play();
-					Main.ChangeScene(Main.getMapscreen());
-				}
-				else if (key == KeyCode.BACK_SPACE) {
-					player.stop();
-					choose.play();
-					Main.ChangeScene(Main.getMainmenu());
-				}
-				else if (key == KeyCode.SPACE) {
-					lhschar.setImage(CharactersReady.get(player1));
-					choose.play();
-					chosen1.check = true;
-					if(chosen1.check == true && chosen2.check == true) {
-						timeline.play();
-					}
-				} 
-				else if (key == KeyCode.ENTER) {
-					rhschar.setImage(CharactersReady.get(player2));
-					choose.play();
-					chosen2.check = true;
-					if(chosen1.check == true && chosen2.check == true) {
-						timeline.play();
-					}
-				} 
-				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getLeft_1()) && !chosen1.check) {
-					listCharacterpy1.get(player1).setActive(false);
-					click.play();
-					player1 = (player1+1)%Characters.size();
-					lhschar.setImage(Characters.get(player1));
-					listCharacterpy1.get(player1).setActive(true);
-				}
-				else if ((key == Main.getOptionscreen().getUp_2() || key == Main.getOptionscreen().getLeft_2()) && !chosen2.check) {
-					click.play();
-					listCharacterpy2.get(player2).setActive(false);
-					player2 = (player2+1+Characters.size())%Characters.size();
-					rhschar.setImage(Characters.get(player2));
-					listCharacterpy2.get(player2).setActive(true);
-				}
-				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getRight_1()) && !chosen1.check) {
-					listCharacterpy1.get(player1).setActive(false);
-					click.play();
-					player1 = (player1-1+Characters.size())%Characters.size();
-					lhschar.setImage(Characters.get(player1));
-					listCharacterpy1.get(player1).setActive(true);
-				}
-				else if ((key == Main.getOptionscreen().getDown_2() ||key == Main.getOptionscreen().getRight_2()) && !chosen2.check) {
-					click.play();
-					listCharacterpy2.get(player2).setActive(false);
-					player2 = (player2-1+Characters.size())%Characters.size();
-					rhschar.setImage(Characters.get(player2));
-					listCharacterpy2.get(player2).setActive(true);
-				}
-			}
-		});
+//		setOnKeyPressed(new EventHandler<KeyEvent>() {
+//			@Override
+//			public void handle(KeyEvent event) {
+//				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+//				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
+//				KeyCode key = event.getCode();
+//				System.out.println("Multiplayer:Pressed " + key.toString());
+//				
+//				if(chosen1.check == true && chosen2.check == true) {
+//					choose.play();
+//					Main.ChangeScene(Main.getMapscreen());
+//				}
+//				else if (key == KeyCode.BACK_SPACE) {
+//					player.stop();
+//					choose.play();
+//					Main.ChangeScene(Main.getMainmenu());
+//				}
+//				else if (key == KeyCode.SPACE) {
+//					lhschar.setImage(CharactersReady.get(player1));
+//					choose.play();
+//					chosen1.check = true;
+//					if(chosen1.check == true && chosen2.check == true) {
+//						timeline.play();
+//					}
+//				} 
+//				else if (key == KeyCode.ENTER) {
+//					rhschar.setImage(CharactersReady.get(player2));
+//					choose.play();
+//					chosen2.check = true;
+//					if(chosen1.check == true && chosen2.check == true) {
+//						timeline.play();
+//					}
+//				} 
+//				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getLeft_1()) && !chosen1.check) {
+//					listCharacterpy1.get(player1).setActive(false);
+//					click.play();
+//					player1 = (player1+1)%Characters.size();
+//					lhschar.setImage(Characters.get(player1));
+//					listCharacterpy1.get(player1).setActive(true);
+//				}
+//				else if ((key == Main.getOptionscreen().getUp_2() || key == Main.getOptionscreen().getLeft_2()) && !chosen2.check) {
+//					click.play();
+//					listCharacterpy2.get(player2).setActive(false);
+//					player2 = (player2+1+Characters.size())%Characters.size();
+//					rhschar.setImage(Characters.get(player2));
+//					listCharacterpy2.get(player2).setActive(true);
+//				}
+//				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getRight_1()) && !chosen1.check) {
+//					listCharacterpy1.get(player1).setActive(false);
+//					click.play();
+//					player1 = (player1-1+Characters.size())%Characters.size();
+//					lhschar.setImage(Characters.get(player1));
+//					listCharacterpy1.get(player1).setActive(true);
+//				}
+//				else if ((key == Main.getOptionscreen().getDown_2() ||key == Main.getOptionscreen().getRight_2()) && !chosen2.check) {
+//					click.play();
+//					listCharacterpy2.get(player2).setActive(false);
+//					player2 = (player2-1+Characters.size())%Characters.size();
+//					rhschar.setImage(Characters.get(player2));
+//					listCharacterpy2.get(player2).setActive(true);
+//				}
+//			}
+//		});
 		
 
 	}
@@ -211,60 +213,163 @@ public class MultiPlayerScreen extends myScene{
 			this.check = check;
 		}
 	}
+	
 	@Override
-	public void upPressed() {
-		// TODO Auto-generated method stub
-		
+	public void update() {
+		update_P1();
+		update_P2();
+
 	}
-	@Override
-	public void downPressed() {
-		// TODO Auto-generated method stub
-		
+	private void update_P1() {
+		upPressed_1();
+		downPressed_1();
+		leftPressed_1();
+		rightPressed_1();
+		choose_1();
+		back_1();
 	}
-	@Override
-	public void leftPressed() {
-		// TODO Auto-generated method stub
-		
+	private void update_P2() {
+		upPressed_2();
+		downPressed_2();
+		leftPressed_2();
+		rightPressed_2();
+		choose_2();
+		back_2();
 	}
-	@Override
-	public void rightPressed() {
-		// TODO Auto-generated method stub
-		
+	private void upPressed_1() {
+		if(Controller.getKeyMove_P1(0)&& !chosen1.check) {
+			listCharacterpy1.get(player1).setActive(false);
+			playClick();
+			player1 = (player1+1)%Characters.size();
+			lhschar.setImage(Characters.get(player1));
+			listCharacterpy1.get(player1).setActive(true);
+		}
 	}
-	@Override
-	public void meleePressed() {
-		// TODO Auto-generated method stub
-		
+
+	private void downPressed_1() {
+		if(Controller.getKeyMove_P1(1) && !chosen1.check) {
+			listCharacterpy1.get(player1).setActive(false);
+			playClick();
+			player1 = (player1-1+Characters.size())%Characters.size();
+			lhschar.setImage(Characters.get(player1));
+			listCharacterpy1.get(player1).setActive(true);
+		}
 	}
-	@Override
-	public void rangePressed() {
-		// TODO Auto-generated method stub
-		
+
+	private void leftPressed_1() {
+		if(Controller.getKeyMove_P1(2)&& !chosen1.check) {
+			listCharacterpy1.get(player1).setActive(false);
+			playClick();
+			player1 = (player1+1)%Characters.size();
+			lhschar.setImage(Characters.get(player1));
+			listCharacterpy1.get(player1).setActive(true);
+		}
 	}
-	@Override
-	public void dodgePressed() {
-		// TODO Auto-generated method stub
-		
+
+	private void rightPressed_1() {
+		if(Controller.getKeyMove_P1(3) && !chosen1.check) {
+			listCharacterpy1.get(player1).setActive(false);
+			playClick();
+			player1 = (player1-1+Characters.size())%Characters.size();
+			lhschar.setImage(Characters.get(player1));
+			listCharacterpy1.get(player1).setActive(true);
+		}
 	}
-	@Override
-	public void blockPressed() {
-		// TODO Auto-generated method stub
-		
+
+	private void choose_1() {
+		if(Controller.getKeySkill_P1(0)) {
+			haveChose();
+			lhschar.setImage(CharactersReady.get(player1));
+			playChoose();
+			chosen1.check = true;
+		}
 	}
-	@Override
-	public void SpacePressed() {
-		// TODO Auto-generated method stub
-		
+
+	private void back_1() {
+		if(Controller.getKeySkill_P1(1)) {
+			if(chosen1.check) {
+				lhschar.setImage(Characters.get(player1));
+				chosen1.check = false;
+			}
+			else {goBacktoMainmenu();}
+		}
 	}
-	@Override
-	public void EnterPressed() {
-		// TODO Auto-generated method stub
-		
+	private void upPressed_2() {
+		if(Controller.getKeyMove_P2(0)&& !chosen2.check) {
+			playClick();
+			listCharacterpy2.get(player2).setActive(false);
+			player2 = (player2+1+Characters.size())%Characters.size();
+			rhschar.setImage(Characters.get(player2));
+			listCharacterpy2.get(player2).setActive(true);
+		}
 	}
-	@Override
-	public void nonePressed() {
-		// TODO Auto-generated method stub
-		
+	private void downPressed_2() {
+		if(Controller.getKeyMove_P2(1) && !chosen2.check) {
+			playClick();
+			listCharacterpy2.get(player2).setActive(false);
+			player2 = (player2-1+Characters.size())%Characters.size();
+			rhschar.setImage(Characters.get(player2));
+			listCharacterpy2.get(player2).setActive(true);
+		}
+	}
+
+	private void leftPressed_2() {
+		if(Controller.getKeyMove_P2(2) && !chosen2.check) {
+			playClick();
+			listCharacterpy2.get(player2).setActive(false);
+			player2 = (player2+1+Characters.size())%Characters.size();
+			rhschar.setImage(Characters.get(player2));
+			listCharacterpy2.get(player2).setActive(true);
+		}
+	}
+
+	private void rightPressed_2() {
+		if(Controller.getKeyMove_P2(3) && !chosen2.check) {
+			playClick();
+			listCharacterpy2.get(player2).setActive(false);
+			player2 = (player2-1+Characters.size())%Characters.size();
+			rhschar.setImage(Characters.get(player2));
+			listCharacterpy2.get(player2).setActive(true);
+		}
+	}
+
+	private void choose_2() {
+		if(Controller.getKeySkill_P2(0)) {
+			haveChose();
+			rhschar.setImage(CharactersReady.get(player2));
+			playChoose();
+			chosen2.check = true;
+		}
+	}
+
+	private void back_2() {
+		if(Controller.getKeySkill_P2(1)) {
+			if(chosen2.check) {
+				chosen2.check = false ;
+				rhschar.setImage(Characters.get(player2));
+			}
+			else {goBacktoMainmenu();}
+		}
+	}
+	private void haveChose() {
+		if(chosen1.check == true && chosen2.check == true) {
+			playChoose();
+			Main.ChangeScene(Main.getMapscreen());
+			Main.getPlayer().setScene(Main.getMapscreen());
+			Main.getPlayer().run();
+			timeline.play();
+		}
+	}
+	private void goBacktoMainmenu() {
+		player.stop();
+		playChoose();
+		chosen1.check = false ;
+		chosen2.check = false ;
+		rhschar.setImage(Characters.get(player2));
+		lhschar.setImage(Characters.get(player1));
+		Main.ChangeScene(Main.getMainmenu());
+		Main.getPlayer().setScene(Main.getMainmenu());
+		Main.getPlayer().run();
 	}
 }
 

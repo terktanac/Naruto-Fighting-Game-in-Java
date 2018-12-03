@@ -4,18 +4,13 @@ import java.util.ArrayList;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.TilePane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class MapChooseScreen extends myScene {
@@ -43,59 +38,59 @@ public class MapChooseScreen extends myScene {
 		
 		root.getChildren().addAll(listOfBackground);
 
-		setOnKeyPressed(new EventHandler<KeyEvent>() {		
-			@Override
-			public void handle(KeyEvent event) {
-				// TODO Auto-generated method stub
-				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-				KeyCode key = event.getCode();
-				System.out.println("Multiplayer:Pressed " + key.toString());
-				
-				if (key == KeyCode.BACK_SPACE) {
-					choose.play();
-					Main.ChangeScene(Main.getMultiplayer());
-				}
-				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-					Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
-							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-					Main.ChangeScene(Main.getLoadscreen());
-					choose.play();
-					load.play();
-					setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
-					GameScreen.setBackground(chooseBackground);
-				} 
-				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2())) {
-					listOfBackground.get(choice).setActive(false);
-					column = (column - 1 + 2)%2;
-					choice = (3*column + row)%listOfBackground.size();
-					listOfBackground.get(choice).setActive(true);
-					click.play();
-				}
-				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getDown_2())) {
-					listOfBackground.get(choice).setActive(false);
-					column = (column + 1)%2;
-					choice = (3*column + row)%listOfBackground.size();
-					listOfBackground.get(choice).setActive(true);
-					click.play();
-				}
-				else if ((key == Main.getOptionscreen().getLeft_1() || key == Main.getOptionscreen().getLeft_2())) {
-					listOfBackground.get(choice).setActive(false);
-					row = (row - 1 + 3)%3;
-					choice = (3*column + row)%listOfBackground.size();
-					listOfBackground.get(choice).setActive(true);
-					click.play();
-				}
-				else if ((key == Main.getOptionscreen().getRight_1() ||key == Main.getOptionscreen().getRight_2())) {
-					listOfBackground.get(choice).setActive(false);
-					row = (row + 1)%3;
-					choice = (3*column + row)%listOfBackground.size();
-					listOfBackground.get(choice).setActive(true);
-					click.play();
-				}
-			}
-			
-		});
+//		setOnKeyPressed(new EventHandler<KeyEvent>() {		
+//			@Override
+//			public void handle(KeyEvent event) {
+//				// TODO Auto-generated method stub
+//				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+//				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
+//				KeyCode key = event.getCode();
+//				System.out.println("Multiplayer:Pressed " + key.toString());
+//				
+//				if (key == KeyCode.BACK_SPACE) {
+//					choose.play();
+//					Main.ChangeScene(Main.getMultiplayer());
+//				}
+//				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
+//					Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
+//							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+//					Main.ChangeScene(Main.getLoadscreen());
+//					choose.play();
+//					load.play();
+//					setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
+//					GameScreen.setBackground(chooseBackground);
+//				} 
+//				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2())) {
+//					listOfBackground.get(choice).setActive(false);
+//					column = (column - 1 + 2)%2;
+//					choice = (3*column + row)%listOfBackground.size();
+//					listOfBackground.get(choice).setActive(true);
+//					click.play();
+//				}
+//				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getDown_2())) {
+//					listOfBackground.get(choice).setActive(false);
+//					column = (column + 1)%2;
+//					choice = (3*column + row)%listOfBackground.size();
+//					listOfBackground.get(choice).setActive(true);
+//					click.play();
+//				}
+//				else if ((key == Main.getOptionscreen().getLeft_1() || key == Main.getOptionscreen().getLeft_2())) {
+//					listOfBackground.get(choice).setActive(false);
+//					row = (row - 1 + 3)%3;
+//					choice = (3*column + row)%listOfBackground.size();
+//					listOfBackground.get(choice).setActive(true);
+//					click.play();
+//				}
+//				else if ((key == Main.getOptionscreen().getRight_1() ||key == Main.getOptionscreen().getRight_2())) {
+//					listOfBackground.get(choice).setActive(false);
+//					row = (row + 1)%3;
+//					choice = (3*column + row)%listOfBackground.size();
+//					listOfBackground.get(choice).setActive(true);
+//					click.play();
+//				}
+//			}
+//			
+//		});
 		
 	}
 	public static Image getChooseBackground() {
@@ -127,58 +122,66 @@ public class MapChooseScreen extends myScene {
 		}
 	}
 	@Override
+	public void update() {
+		upPressed();
+		downPressed();
+		leftPressed();
+		rightPressed();
+		choose();
+		back();
+	}
 	public void upPressed() {
-		// TODO Auto-generated method stub
-		
+		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P2(0)) {
+			listOfBackground.get(choice).setActive(false);
+			column = (column - 1 + 2)%2;
+			choice = (3*column + row)%listOfBackground.size();
+			listOfBackground.get(choice).setActive(true);
+			click.play();
+		}
 	}
-	@Override
 	public void downPressed() {
-		// TODO Auto-generated method stub
-		
+		if(Controller.getKeyMove_P1(1) || Controller.getKeyMove_P2(1)) {
+			listOfBackground.get(choice).setActive(false);
+			column = (column + 1)%2;
+			choice = (3*column + row)%listOfBackground.size();
+			listOfBackground.get(choice).setActive(true);
+			click.play();
+		}
 	}
-	@Override
 	public void leftPressed() {
-		// TODO Auto-generated method stub
-		
+		if(Controller.getKeyMove_P1(2) || Controller.getKeyMove_P2(2)) {
+			listOfBackground.get(choice).setActive(false);
+			row = (row - 1 + 3)%3;
+			choice = (3*column + row)%listOfBackground.size();
+			listOfBackground.get(choice).setActive(true);
+			click.play();
+		}
 	}
-	@Override
 	public void rightPressed() {
-		// TODO Auto-generated method stub
-		
+		if(Controller.getKeyMove_P1(3) || Controller.getKeyMove_P2(3)) {
+			listOfBackground.get(choice).setActive(false);
+			row = (row + 1)%3;
+			choice = (3*column + row)%listOfBackground.size();
+			listOfBackground.get(choice).setActive(true);
+			click.play();
+		}
 	}
-	@Override
-	public void meleePressed() {
-		// TODO Auto-generated method stub
-		
+	public void choose() {
+		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0) ) {
+			Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
+					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+			Main.ChangeScene(Main.getLoadscreen());
+			choose.play();
+			load.play();
+			setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
+			GameScreen.setBackground(chooseBackground);
+		}
 	}
-	@Override
-	public void rangePressed() {
-		// TODO Auto-generated method stub
-		
+	public void back() {
+		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1)) {
+			choose.play();
+			Main.ChangeScene(Main.getMultiplayer());
+			Main.getPlayer().setScene(Main.getMultiplayer());
+		}
 	}
-	@Override
-	public void dodgePressed() {
-		// TODO Auto-generated method stub
-		
 	}
-	@Override
-	public void blockPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void SpacePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void EnterPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void nonePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-}

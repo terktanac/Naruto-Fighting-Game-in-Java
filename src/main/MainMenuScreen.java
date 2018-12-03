@@ -3,7 +3,6 @@ package main;
 import java.util.Optional;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -11,15 +10,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -52,63 +47,63 @@ public class MainMenuScreen extends myScene {
 		
 		root.getChildren().addAll(MenuBox,imageView);
 		
-		setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-				KeyCode key = event.getCode();
-				System.out.println("MainMenu:Pressed " + key.toString());
-				if (key == KeyCode.SPACE || key == KeyCode.ENTER || key == Main.getOptionscreen().getMelee_1() || key == Main.getOptionscreen().getMelee_2()) {
-					if(Oldchoice==0) { 
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("Information Dialog");
-						alert.setHeaderText(null);
-						alert.setContentText("Coming Soon.");
-						alert.showAndWait();
-					}
-					else if(Oldchoice==1) {
-						Main.ChangeScene((Scene)Main.getLoadscreen());
-						Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
-								,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-						load.play();
-						MultiPlayerScreen.player.setAutoPlay(true);
-					}
-					else if(Oldchoice==2) {
-						Main.ChangeScene((Scene)Main.getLoadscreen());
-						Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getOptionscreen());})
-								,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-						load.play();
-					}
-					else if(Oldchoice==MenuBox.getChildren().size()-1) {
-						Alert alert = new Alert(AlertType.CONFIRMATION);
-						alert.setTitle("Confirmation Dialog");
-						alert.setHeaderText(null);
-						alert.setContentText("Do you want to exit?");
-						Optional<ButtonType> result = alert.showAndWait();
-						if (result.get() == ButtonType.OK){
-						    System.exit(1);
-						}
-					}
-					choose.play();
-				}
-				else if (key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2() 
-						|| key == Main.getOptionscreen().getLeft_1() || key == Main.getOptionscreen().getLeft_2()) {
-						if (Oldchoice == 0) {NewChoice = 3;} 
-						else {NewChoice = Oldchoice - 1;}
-						click.play();
-				} 
-				else if (key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getDown_2() 
-						|| key == Main.getOptionscreen().getRight_1() || key == Main.getOptionscreen().getRight_2()) {
-						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
-						else {NewChoice = Oldchoice + 1;}
-						click.play();
-				}
-				((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
-				((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
-				Oldchoice = NewChoice;
-			}
-		});
+//		setOnKeyPressed(new EventHandler<KeyEvent>() {
+//			@Override
+//			public void handle(KeyEvent event) {
+//				
+//				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
+//				KeyCode key = event.getCode();
+//				System.out.println("MainMenu:Pressed " + key.toString());
+//				if (key == KeyCode.SPACE || key == KeyCode.ENTER || key == Main.getOptionscreen().getMelee_1() || key == Main.getOptionscreen().getMelee_2()) {
+//					if(Oldchoice==0) { 
+//						Alert alert = new Alert(AlertType.INFORMATION);
+//						alert.setTitle("Information Dialog");
+//						alert.setHeaderText(null);
+//						alert.setContentText("Coming Soon.");
+//						alert.showAndWait();
+//					}
+//					else if(Oldchoice==1) {
+//						Main.ChangeScene((Scene)Main.getLoadscreen());
+//						Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
+//								,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+//						load.play();
+//						MultiPlayerScreen.player.setAutoPlay(true);
+//					}
+//					else if(Oldchoice==2) {
+//						Main.ChangeScene((Scene)Main.getLoadscreen());
+//						Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getOptionscreen());})
+//								,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+//						load.play();
+//					}
+//					else if(Oldchoice==MenuBox.getChildren().size()-1) {
+//						Alert alert = new Alert(AlertType.CONFIRMATION);
+//						alert.setTitle("Confirmation Dialog");
+//						alert.setHeaderText(null);
+//						alert.setContentText("Do you want to exit?");
+//						Optional<ButtonType> result = alert.showAndWait();
+//						if (result.get() == ButtonType.OK){
+//						    System.exit(1);
+//						}
+//					}
+//					choose.play();
+//				}
+//				else if (key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2() 
+//						|| key == Main.getOptionscreen().getLeft_1() || key == Main.getOptionscreen().getLeft_2()) {
+//						if (Oldchoice == 0) {NewChoice = 3;} 
+//						else {NewChoice = Oldchoice - 1;}
+//						click.play();
+//				} 
+//				else if (key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getDown_2() 
+//						|| key == Main.getOptionscreen().getRight_1() || key == Main.getOptionscreen().getRight_2()) {
+//						if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
+//						else {NewChoice = Oldchoice + 1;}
+//						click.play();
+//				}
+//				((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
+//				((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
+//				Oldchoice = NewChoice;
+//			}
+//		});
 	
 	}
 
@@ -144,68 +139,86 @@ public class MainMenuScreen extends myScene {
 	}
 
 	@Override
-	public void upPressed() {
-		// TODO Auto-generated method stub
-		System.out.println("mainmenu up");
+	public void update() {
+		moveUp();
+		moveDown();
+		select();
+		back();
 	}
 
-	@Override
-	public void downPressed() {
-		// TODO Auto-generated method stub
-		System.out.println("mainmenu down");
+	private void back() {
+		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1)) {
+			Main.ChangeScene((Scene)Main.getLoadscreen());
+			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getIntro());})
+					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+			load.play();
+			
+		}
 	}
 
-	@Override
-	public void leftPressed() {
-		// TODO Auto-generated method stub
-		
+	private void select() {
+		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0)) {
+			chooseMenu();
+		}
 	}
 
-	@Override
-	public void rightPressed() {
-		// TODO Auto-generated method stub
-		
+	private void moveDown() {
+		if(Controller.getKeyMove_P1(3) || Controller.getKeyMove_P2(3) || Controller.getKeyMove_P1(1) || Controller.getKeyMove_P2(1)) {
+			if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
+			else {NewChoice = Oldchoice + 1;}
+			click.play();
+			((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
+			((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
+			Oldchoice = NewChoice;
+		}
+	}
+	private void moveUp() {
+		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P2(0) || Controller.getKeyMove_P1(2) || Controller.getKeyMove_P2(2)) {
+			if (Oldchoice == 0) {NewChoice = 3;} 
+			else {NewChoice = Oldchoice - 1;}
+			click.play();
+			((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
+			((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
+			Oldchoice = NewChoice;
+
+		}
 	}
 
-	@Override
-	public void meleePressed() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void rangePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dodgePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void blockPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void SpacePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void EnterPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void nonePressed() {
-		// TODO Auto-generated method stub
-		
+	private void chooseMenu() {
+		if(Oldchoice==0) { 
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("Coming Soon.");
+			alert.showAndWait();
+		}
+		else if(Oldchoice==1) {
+			Main.ChangeScene((Scene)Main.getLoadscreen());
+			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
+					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+			load.play();
+			MultiPlayerScreen.player.setAutoPlay(true);
+			Main.getPlayer().setScene(Main.getMultiplayer());
+			Main.getPlayer().run();
+		}
+		else if(Oldchoice==2) {
+			Main.ChangeScene((Scene)Main.getLoadscreen());
+			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getOptionscreen());})
+					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+			load.play();
+			Main.getPlayer().setScene(Main.getOptionscreen());
+		}
+		else if(Oldchoice==MenuBox.getChildren().size()-1) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmation Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("Do you want to exit?");
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK){
+			    System.exit(1);
+			}
+		}
+		playChoose();
 	}
 }

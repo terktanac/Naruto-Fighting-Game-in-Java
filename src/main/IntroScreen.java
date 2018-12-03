@@ -66,20 +66,6 @@ public class IntroScreen extends myScene{
 		        ae -> {player.play();}));
 		timeline2.play();
 		
-//		setOnKeyPressed(new EventHandler<KeyEvent>() {
-//			@Override
-//			public void handle(KeyEvent event) {
-//				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
-//						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-//				Main.ChangeScene(Main.getLoadscreen());
-//				System.out.println("Skipped Intro");
-//				load.play();
-//				player.stop();
-//				choose.play();
-//				Main.setState(1);
-//			}
-//		});
-//		
 		Timeline timeline1 = new Timeline(new KeyFrame(
 		        Duration.millis(8100),
 		        ae -> {FadeTransition transition = new FadeTransition(Duration.millis(100),mediaview);
@@ -102,59 +88,14 @@ public class IntroScreen extends myScene{
 				player.stop();
 				choose.play();
 				Main.setState(1);
+				Main.getPlayer().setScene(Main.getMainmenu());
+				Main.getPlayer().run();
 			}
 		});
 	}
 	@Override
-	public void upPressed() {
-		
+	public void update() {
+		keyHandling();
 	}
-	@Override
-	public void downPressed() {
-	}
-	@Override
-	public void leftPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void rightPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void meleePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void rangePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void dodgePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void blockPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void SpacePressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void EnterPressed() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void nonePressed() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
