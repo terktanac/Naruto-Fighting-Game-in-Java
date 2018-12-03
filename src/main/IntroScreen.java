@@ -66,20 +66,20 @@ public class IntroScreen extends myScene{
 		        ae -> {player.play();}));
 		timeline2.play();
 		
-//		setOnKeyPressed(new EventHandler<KeyEvent>() {
-//			@Override
-//			public void handle(KeyEvent event) {
-//				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
-//						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-//				Main.ChangeScene(Main.getLoadscreen());
-//				System.out.println("Skipped Intro");
-//				load.play();
-//				player.stop();
-//				choose.play();
-//				Main.setState(1);
-//			}
-//		});
-//		
+		setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
+						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+				Main.ChangeScene(Main.getLoadscreen());
+				System.out.println("Skipped Intro");
+				load.play();
+		player.stop();
+				choose.play();
+				Main.setState(1);
+			}
+		});
+		
 		Timeline timeline1 = new Timeline(new KeyFrame(
 		        Duration.millis(8100),
 		        ae -> {FadeTransition transition = new FadeTransition(Duration.millis(100),mediaview);

@@ -3,8 +3,12 @@ package characters;
 import Interface.Fightable;
 import Interface.Moveable;
 import Interface.Skillable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
-public abstract class Character implements Fightable, Moveable, Skillable{
+public abstract class Character extends Pane implements Fightable, Moveable, Skillable{
 	String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private int health; // standard:100
@@ -12,13 +16,23 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 	private int def; // standard:5
 	private boolean isDead;//true = Dead = EndGame
 	private boolean isAir ; //knock up or jump
-	private boolean isJump ;
+	private boolean isJump = false;
 	private double isFall; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked; //if true user can't move for 0.1 s(or less)
 	private double standTime ;//Time period that a character need for stand avg=1 s
-	private static double x_speed = 2;
-	private static double y_speed = 2;
-	public Character(String name, int element, int health, int atk, int def,double standTme) {
+	private static double x_speed = 4;
+	private static double y_speed = 4;
+	private ImageView imageview ;
+	private int count;
+	private int col;
+	private int offSetX;
+	private int offSetY;
+	private int width;
+	private int height;
+	private int state;
+	private boolean isRight = true;
+	private CharacterAnimation animation ;
+	public Character(String name, int element, int health, int atk, int def,double standTme,ImageView imageview) {
 		super();
 		this.name = name;
 		this.element = element;
@@ -26,6 +40,40 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 		this.atk = atk;
 		this.def = def;
 		this.standTime = standTme;
+		this.state = 0;
+		this.count = 6;
+		this.col = 0;
+		this.offSetX = 0;
+		this.offSetY = 0;
+		this.width = 111 ;
+		this.height = 111 ;
+		this.setImageview(imageview);
+		this.getImageview().setViewport(new Rectangle2D(offSetX, offSetY, width - 15, height - 1.3));
+		this.getImageview().setFitHeight(350);
+		this.getImageview().setFitWidth(350);	
+		setAnimation(new CharacterAnimation(this.getImageview(), Duration.millis(300), count, col, offSetX, offSetY, width, height));
+		getChildren().addAll(imageview);
+	}
+	public void moveX(double d) {
+		boolean right = d>0 ? true:false;
+		for(int i=0;i<Math.abs(d);i++) {
+			if(right)this.setTranslateX(this.getTranslateX()+1);
+			else this.setTranslateX(this.getTranslateX()-1);
+		}
+	}
+	
+	public void moveY(double d) {
+		boolean right = d>0 ? true:false;
+		for(int i=0;i<Math.abs(d);i++) {
+			if(right)this.setTranslateY(this.getTranslateY()+1);
+			else this.setTranslateY(this.getTranslateY()-1);
+		}
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
 	}
 	public String getName() {
 		return name;
@@ -71,6 +119,93 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 	}
 	public boolean isJump() {
 		return isJump;
+	}
+	public boolean isRight() {
+		return isRight;
+	}
+	public void setRight(boolean isRight) {
+		this.isRight = isRight;
+	}
+	public ImageView getImageview() {
+		return imageview;
+	}
+	public void setImageview(ImageView imageview) {
+		this.imageview = imageview;
+	}
+	public CharacterAnimation getAnimation() {
+		return animation;
+	}
+	public void setAnimation(CharacterAnimation animation) {
+		this.animation = animation;
+	}
+	public boolean isAir() {
+		return isAir;
+	}
+	public void setAir(boolean isAir) {
+		this.isAir = isAir;
+	}
+	public double getIsFall() {
+		return isFall;
+	}
+	public void setIsFall(double isFall) {
+		this.isFall = isFall;
+	}
+	public boolean isAttacked() {
+		return isAttacked;
+	}
+	public void setAttacked(boolean isAttacked) {
+		this.isAttacked = isAttacked;
+	}
+	public double getStandTime() {
+		return standTime;
+	}
+	public void setStandTime(double standTime) {
+		this.standTime = standTime;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getCol() {
+		return col;
+	}
+	public void setCol(int col) {
+		this.col = col;
+	}
+	public int getOffSetX() {
+		return offSetX;
+	}
+	public void setOffSetX(int offSetX) {
+		this.offSetX = offSetX;
+	}
+	public int getOffSetY() {
+		return offSetY;
+	}
+	public void setOffSetY(int offSetY) {
+		this.offSetY = offSetY;
+	}
+	public int get_Width() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int get_Height() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public void setJump(boolean isJump) {
+		this.isJump = isJump;
+	}
+	public static void setX_speed(double x_speed) {
+		Character.x_speed = x_speed;
+	}
+	public static void setY_speed(double y_speed) {
+		Character.y_speed = y_speed;
 	}
 	
 
