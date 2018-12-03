@@ -261,6 +261,11 @@ public class MultiPlayerScreen extends myScene{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void nonePressed() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 	
