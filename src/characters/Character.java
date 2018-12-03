@@ -12,9 +12,12 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 	private int def; // standard:5
 	private boolean isDead;//true = Dead = EndGame
 	private boolean isAir ; //knock up or jump
+	private boolean isJump ;
 	private double isFall; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked; //if true user can't move for 0.1 s(or less)
 	private double standTime ;//Time period that a character need for stand avg=1 s
+	private static double x_speed = 2;
+	private static double y_speed = 2;
 	public Character(String name, int element, int health, int atk, int def,double standTme) {
 		super();
 		this.name = name;
@@ -59,6 +62,15 @@ public abstract class Character implements Fightable, Moveable, Skillable{
 	}
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
+	}
+	public static double getX_speed() {
+		return x_speed;
+	}
+	public static double getY_speed() {
+		return y_speed;
+	}
+	public boolean isJump() {
+		return isJump;
 	}
 	
 

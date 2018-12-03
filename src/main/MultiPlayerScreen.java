@@ -19,7 +19,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -28,7 +27,6 @@ public class MultiPlayerScreen extends myScene{
 	private int player1 = 1,player2 = 0; //default character =0 : naruto
 	private static Pane root = new Pane();
 	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
-	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	
 	public MultiPlayerScreen() {
 		super(root);
@@ -56,7 +54,7 @@ public class MultiPlayerScreen extends myScene{
 		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.jpg","characters/sasuke_aka/face_active.jpg",1085,130));
 		
 		Text pressKey = new Text("Press any key to Continue");
-		pressKey.setFont(narutoFont);
+		pressKey.setFont(getNarutoFont());
 		pressKey.setFill(Color.WHITE);
 		pressKey.setStroke(Color.BLACK);
 		pressKey.setTranslateX(340);
@@ -230,6 +228,36 @@ public class MultiPlayerScreen extends myScene{
 	}
 	@Override
 	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void meleePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rangePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void dodgePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void blockPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void SpacePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void EnterPressed() {
 		// TODO Auto-generated method stub
 		
 	}

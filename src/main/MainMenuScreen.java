@@ -21,13 +21,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class MainMenuScreen extends myScene {
 	static Pane root = new Pane();
-	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
 	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 400, 250, true, true));
 	private VBox MenuBox = new VBox(5);
@@ -124,7 +122,7 @@ public class MainMenuScreen extends myScene {
 			this.setSpacing(10);
 			this.setAlignment(Pos.CENTER);
 			name = new Text(text);
-			name.setFont(MainMenuScreen.this.narutoFont);
+			name.setFont(getNarutoFont());
 			name.setStrokeWidth(2);
 			getChildren().addAll(kunai, name);
 			setActive(false);
@@ -165,6 +163,48 @@ public class MainMenuScreen extends myScene {
 
 	@Override
 	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void meleePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rangePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dodgePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void blockPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void SpacePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void EnterPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void nonePressed() {
 		// TODO Auto-generated method stub
 		
 	}

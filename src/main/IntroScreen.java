@@ -15,12 +15,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
 import javafx.util.Duration;
 
 public class IntroScreen extends myScene{
-	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private static Pane root = new Pane();
 	private MediaPlayer player;
 	public IntroScreen(){
@@ -31,7 +30,7 @@ public class IntroScreen extends myScene{
 		root.setPrefSize(1280,720);
 		
 		Text pressKey = new Text("Press any key to START");
-		pressKey.setFont(narutoFont);
+		pressKey.setFont(getNarutoFont());
 		pressKey.setFill(Color.ORANGE);
 		pressKey.setStroke(Color.WHITE);
 		pressKey.setTranslateX(370);
@@ -67,21 +66,20 @@ public class IntroScreen extends myScene{
 		        ae -> {player.play();}));
 		timeline2.play();
 		
-		setOnKeyPressed(new EventHandler<KeyEvent>() {
-			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
-			@Override
-			public void handle(KeyEvent event) {
-				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
-						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-				Main.ChangeScene(Main.getLoadscreen());
-				System.out.println("Skipped Intro");
-				load.play();
-				player.stop();
-				choose.play();
-				Main.setState(1);
-			}
-		});
-		
+//		setOnKeyPressed(new EventHandler<KeyEvent>() {
+//			@Override
+//			public void handle(KeyEvent event) {
+//				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
+//						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+//				Main.ChangeScene(Main.getLoadscreen());
+//				System.out.println("Skipped Intro");
+//				load.play();
+//				player.stop();
+//				choose.play();
+//				Main.setState(1);
+//			}
+//		});
+//		
 		Timeline timeline1 = new Timeline(new KeyFrame(
 		        Duration.millis(8100),
 		        ae -> {FadeTransition transition = new FadeTransition(Duration.millis(100),mediaview);
@@ -109,11 +107,10 @@ public class IntroScreen extends myScene{
 	}
 	@Override
 	public void upPressed() {
-		System.out.println("intro up");
+
 	}
 	@Override
 	public void downPressed() {
-		System.out.println("intro down");
 	}
 	@Override
 	public void leftPressed() {
@@ -122,6 +119,41 @@ public class IntroScreen extends myScene{
 	}
 	@Override
 	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void meleePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rangePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void dodgePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void blockPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void SpacePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void EnterPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void nonePressed() {
 		// TODO Auto-generated method stub
 		
 	}

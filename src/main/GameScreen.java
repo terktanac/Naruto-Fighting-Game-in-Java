@@ -1,5 +1,8 @@
 package main;
 
+import java.util.ResourceBundle.Control;
+
+import characters.Character;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -79,6 +82,7 @@ public class GameScreen extends myScene{
 		int offSetY = 5;
 		int width = 100 ;
 		int height = 100 ;
+		boolean isJump = false ;
 		
 		CharacterAnimation animation ;
 
@@ -90,58 +94,96 @@ public class GameScreen extends myScene{
 			getChildren().addAll(imageview);
 		}
 		
-		public void moveX(double d) {
-			boolean right = d>0 ? true:false;
-			for(int i=0;i<Math.abs(d);i++) {
-				if(right)this.setTranslateX(this.getTranslateX()+1);
-				else this.setTranslateX(this.getTranslateX()-1);
-			}
+		public void moveX(boolean move) {
+				if(move)this.setTranslateX(this.getTranslateX()+ Character.getX_speed());
+				else this.setTranslateX(this.getTranslateX()-Character.getX_speed());
 		}
 		
-		public void moveY(double d) {
-			boolean right = d>0 ? true:false;
-			for(int i=0;i<Math.abs(d);i++) {
-				if(right)this.setTranslateY(this.getTranslateY()+1);
-				else this.setTranslateY(this.getTranslateY()-1);
+		public void moveY(boolean move) {
+			for(int i=0 ; i < 20 ;i++ ) {
+			if(move)this.setTranslateY(this.getTranslateY()+ Character.getY_speed());
+			else this.setTranslateY(this.getTranslateY()-Character.getY_speed());
 			}
 		}
+		}
 		
-	}
+	
 
 	@Override
 	public void upPressed() {
-		if(Controller.getIsPressed().get(Main.getPlayer1().getUpKey())) {
-			player.moveY(-Controller.getY_speed());
-			System.out.println("UPPressed");
+		if(Controller.getIsPressedMap().get(Main.getPlayer1().getUpKey()) && !player.isJump) {
+			player.moveY(false);
+			System.out.println("UpPressed");
+			player.isJump = true ;
+			player.moveY(true);
 		}
 	}
 
 	@Override
 	public void downPressed() {
-		if(Controller.getIsPressed().get(Main.getPlayer1().getDownKey())) {
-			player.moveY(Controller.getY_speed());
-			System.out.println("DOWNPressed");
-		}
+		
 	}
 
 	@Override
 	public void leftPressed() {
-		if(Controller.getIsPressed().get(Main.getPlayer1().getLeftKey())) {
-			player.moveX(-Controller.getX_speed());
+		if(Controller.getIsPressedMap().get(Main.getPlayer1().getLeftKey())) {
+			player.moveX(false);
 			System.out.println("LeftPressed");
 		}
 	}
 
 	@Override
 	public void rightPressed() {
-		if(Controller.getIsPressed().get(Main.getPlayer1().getRightKey())) {
-			player.moveX(Controller.getX_speed());
+		if(Controller.getIsPressedMap().get(Main.getPlayer1().getRightKey())) {
+			player.moveX(true);
 			System.out.println("RightPressed");
 		}
 	}
 
 	public static void setBackground(Image background) {
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
+	}
+
+	@Override
+	public void meleePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rangePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dodgePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void blockPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void SpacePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void EnterPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void nonePressed() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -17,8 +17,8 @@ public class Main extends Application {
 	private static LoadingScreen loadscreen;
 	private static GameScreen gamescreen;
 	private static MapChooseScreen mapscreen;
-	private static Controller player1;
-	private static Controller player2;
+	private static Controller player;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Main.stage = primaryStage;
@@ -30,12 +30,10 @@ public class Main extends Application {
 		loadscreen = new LoadingScreen();
 		mapscreen = new MapChooseScreen();
 		gamescreen = new GameScreen();
-		player1 = new Controller("player1",KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I);
-		player1.setScene(gamescreen);
-		player1.run();
-//		player2 = new Controller("player2",KeyCode.UP,KeyCode.DOWN,KeyCode.LEFT,KeyCode.RIGHT,KeyCode.NUMPAD1,KeyCode.NUMPAD2,KeyCode.NUMPAD3,KeyCode.NUMPAD5);
-//		player2.setScene(gamescreen);
-//		player2.run();
+		
+		player = new Controller(KeyCode.W,KeyCode.S,KeyCode.A,KeyCode.D,KeyCode.J,KeyCode.K,KeyCode.L,KeyCode.I,KeyCode.UP,KeyCode.DOWN,KeyCode.LEFT,KeyCode.RIGHT,KeyCode.NUMPAD1,KeyCode.NUMPAD2,KeyCode.NUMPAD3,KeyCode.NUMPAD5);
+		player.setScene(intro);
+		player.run();
 		
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
@@ -104,9 +102,6 @@ public class Main extends Application {
 	}
 	public static void setGamescreen(GameScreen gamescreen) {
 		Main.gamescreen = gamescreen;
-	}
-	public static Controller getPlayer1() {
-		return player1;
 	}
 
 	

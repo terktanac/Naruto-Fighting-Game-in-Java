@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -41,7 +40,6 @@ public class OptionScreen extends myScene{
 	private KeyCode defense_2 = KeyCode.NUMPAD3;
 	private KeyCode dodge_1 = KeyCode.I;
 	private KeyCode dodge_2 = KeyCode.NUMPAD5;
-	private Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 25);
 	private int OldChoice_1 = 0 ;
 	private int NewChoice_1 = 0 ;
 	private int OldChoice_2 = 0 ;
@@ -96,7 +94,7 @@ public class OptionScreen extends myScene{
 		root.getChildren().addAll(optionmenu_1,optionmenu_2);
 		
 		Text pressKey1 = new Text("Press "+getMelee_1().toString()+" key for player 1 or "+getMelee_2().toString()+" key for player 2 to change the key.");
-		pressKey1.setFont(narutoFont);
+		pressKey1.setFont(getNarutoFont());
 		pressKey1.setFill(Color.WHITE);
 		pressKey1.setStroke(Color.BLACK);
 		pressKey1.setTranslateX(230);
@@ -104,7 +102,7 @@ public class OptionScreen extends myScene{
 		pressKey1.setVisible(false);
 		
 		Text pressKey2 = new Text("Press the new key.");
-		pressKey2.setFont(narutoFont);
+		pressKey2.setFont(getNarutoFont());
 		pressKey2.setFill(Color.WHITE);
 		pressKey2.setStroke(Color.BLACK);
 		pressKey2.setTranslateX(530);
@@ -112,7 +110,7 @@ public class OptionScreen extends myScene{
 		pressKey2.setVisible(false);
 		
 		Text pressKey3 = new Text("Press Enter or Space to confirm your change.");
-		pressKey3.setFont(narutoFont);
+		pressKey3.setFont(getNarutoFont());
 		pressKey3.setFill(Color.WHITE);
 		pressKey3.setStroke(Color.BLACK);
 		pressKey3.setTranslateX(400);
@@ -216,7 +214,7 @@ public class OptionScreen extends myScene{
 			this.setAlignment(Pos.CENTER);
 			this.setPrefSize(180, 60);
 			this.text = new Text(text);
-			this.text.setFont(narutoFont);
+			this.text.setFont(getNarutoFont());
 			this.text.setStrokeWidth(2);
 			getChildren().addAll(shuriken1, this.text,shuriken2);
 			//getChildren().addAll(this.text);
@@ -412,6 +410,36 @@ public class OptionScreen extends myScene{
 	}
 	@Override
 	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void meleePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rangePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void dodgePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void blockPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void SpacePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void EnterPressed() {
 		// TODO Auto-generated method stub
 		
 	}

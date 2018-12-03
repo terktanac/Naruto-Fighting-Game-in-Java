@@ -7,7 +7,6 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -19,7 +18,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-public class MapChooseScreen extends Scene {
+public class MapChooseScreen extends myScene {
 
 	private static TilePane root = new TilePane(20,20);
 	private ArrayList<listMap> listOfBackground= new ArrayList<listMap>();
@@ -126,5 +125,60 @@ public class MapChooseScreen extends Scene {
 				this.setImage(imgn);
 			}
 		}
+	}
+	@Override
+	public void upPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void downPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void leftPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rightPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void meleePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void rangePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void dodgePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void blockPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void SpacePressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void EnterPressed() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void nonePressed() {
+		// TODO Auto-generated method stub
+		
 	}
 }

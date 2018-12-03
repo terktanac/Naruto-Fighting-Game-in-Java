@@ -1,68 +1,71 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class Controller implements Runnable{
-	private KeyCode upKey;
-	private KeyCode downKey;
-	private KeyCode leftKey ;
-	private KeyCode rightKey;
-	private KeyCode meleeKey ;
-	private KeyCode rangeKey;
-	private KeyCode blockKey;
-	private KeyCode dodgeKey ;
-	private double x_pos;
-	private double y_pos;
-	private static double x_speed = 2;
-	private static double y_speed = 2;
-	private double x;
-	private double y;
-	private boolean isJumping = false;
+
 	private myScene scene;
-	private String name;
-	private static Map<KeyCode, Boolean> isPressed = new HashMap<KeyCode,Boolean>();
+	private static Map<KeyCode, Boolean> isPressedMap = new HashMap<KeyCode,Boolean>();
+	private static ArrayList<KeyCode> pressedListP1 = new ArrayList<KeyCode>();
+	private static ArrayList<KeyCode> pressedListP2 = new ArrayList<KeyCode>();
+	private ArrayList<KeyCode> KeyP1 ;
+	private ArrayList<KeyCode> KeyP2 ;
 	private AnimationTimer gameLoop ;
+	private long lastTime = -1;
 	
-	public Controller(String name,KeyCode upKey, KeyCode downKey, KeyCode leftKey, KeyCode rightKey, KeyCode meleeKey,
-			KeyCode rangeKey, KeyCode blockKey, KeyCode dodgeKey) {
+	
+
+
+	public Controller(KeyCode upKey_1, KeyCode downKey_1, KeyCode leftKey_1, KeyCode rightKey_1
+					, KeyCode meleeKey_1,KeyCode rangeKey_1, KeyCode blockKey_1, KeyCode dodgeKey_1
+					, KeyCode upKey_2, KeyCode downKey_2,KeyCode leftKey_2, KeyCode rightKey_2
+					, KeyCode meleeKey_2, KeyCode rangeKey_2, KeyCode blockKey_2,KeyCode dodgeKey_2) {
 		super();
-		this.name = name ;
-		this.upKey = upKey; isPressed.put(this.upKey, false);
-		this.downKey = downKey; isPressed.put(this.downKey, false);
-		this.leftKey = leftKey; isPressed.put(this.leftKey, false);
-		this.rightKey = rightKey; isPressed.put(this.rightKey, false);
-		this.meleeKey = meleeKey; isPressed.put(this.meleeKey, false);
-		this.rangeKey = rangeKey; isPressed.put(this.rangeKey, false);
-		this.blockKey = blockKey; isPressed.put(this.blockKey, false);
-		this.dodgeKey = dodgeKey; isPressed.put(this.dodgeKey, false);
+		this.KeyP1.add(upKey_1);		isPressedMap.put(upKey_1, false);
+		this.KeyP1.add(downKey_1);		isPressedMap.put(downKey_1, false);
+		this.KeyP1.add(leftKey_1);		isPressedMap.put(leftKey_1, false);
+		this.KeyP1.add(rightKey_1);		isPressedMap.put(rightKey_1, false);
+		this.KeyP1.add(meleeKey_1);		isPressedMap.put(meleeKey_1, false);
+		this.KeyP1.add(rangeKey_1);		isPressedMap.put(rangeKey_1, false);
+		this.KeyP1.add(blockKey_1);		isPressedMap.put(blockKey_1, false);
+		this.KeyP1.add(dodgeKey_1);		isPressedMap.put(dodgeKey_1, false);
+		this.KeyP2.add(upKey_2);		isPressedMap.put(upKey_2, false);
+		this.KeyP2.add(downKey_2);		isPressedMap.put(downKey_2, false);
+		this.KeyP2.add(leftKey_2);		isPressedMap.put(leftKey_2, false);
+		this.KeyP2.add(rightKey_2);		isPressedMap.put(rightKey_2, false);
+		this.KeyP2.add(meleeKey_2);		isPressedMap.put(meleeKey_2, false);
+		this.KeyP2.add(rangeKey_2);		isPressedMap.put(rangeKey_2, false);
+		this.KeyP2.add(blockKey_2);		isPressedMap.put(blockKey_2, false);
+		this.KeyP2.add(dodgeKey_2);		isPressedMap.put(dodgeKey_2, false);
 		
 	}
 
-
 	@Override
 	public void run() {
-		System.out.println(name + " start");
+		System.out.println("start");
 		scene.setOnKeyPressed((KeyEvent event)->{
 			KeyCode key = event.getCode();
-			System.out.println(name + " Pressed:"+key);
-			if(isPressed.containsKey(key)) {
-				isPressed.put(key, true);
-				System.out.println(isPressed.get(key).toString()+" "+key);
+			System.out.println("Pressed:"+key);
+			if(isPressedMap.containsKey(key) && !isPressedMap.get(key)) {
+				isPressedMap.put(key, true);
+				if(KeyP1.contains(key)) {pressedListP1.add(key);}
+				else {pressedListP2.add(key);}
+				System.out.println(isPressedMap.get(key).toString()+" "+key);
 			}
 		});
 		
 		scene.setOnKeyReleased((KeyEvent event)->{
 			KeyCode key = event.getCode();
-			System.out.println(name + " Release:"+key);
-			if(isPressed.containsKey(key)) {
-				isPressed.put(key,false);
-				System.out.println(isPressed.get(key).toString()+" "+key);
+			System.out.println("Release:"+key);
+			if(isPressedMap.containsKey(key)) {
+				isPressedMap.put(key,false);
+				System.out.println(isPressedMap.get(key).toString()+" "+key);
 			}
 		});
 		
@@ -74,124 +77,47 @@ public class Controller implements Runnable{
 				scene.leftPressed();
 				scene.downPressed();
 				scene.rightPressed();
+				scene.blockPressed();
+				scene.dodgePressed();
+				scene.meleePressed();
+				scene.rangePressed();
+				scene.nonePressed();
+				if(now - lastTime > 1000000000) {
+					System.out.println("In Thread "+scene);
+					lastTime = now;
+				}
 			}
 		};
 		gameLoop.start();
 	}
 
-//	public void keyHandling() {
-//		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//			@Override
-//			public void handle(KeyEvent event) {
-//				KeyCode key = event.getCode();
-//				System.out.println("Controller: "+key);
-//				
-//			}
-//		});
-//	}
 	public void setScene(myScene scene) {
 		this.scene = scene;
 	}
 
 
-	public KeyCode getUpKey() {
-		return upKey;
+	public static Map<KeyCode, Boolean> getIsPressedMap() {
+		return isPressedMap;
 	}
 
 
-	public void setUpKey(KeyCode upKey) {
-		this.upKey = upKey;
+	public static void setIsPressedMap(Map<KeyCode, Boolean> isPressedMap) {
+		Controller.isPressedMap = isPressedMap;
 	}
 
 
-	public KeyCode getDownKey() {
-		return downKey;
+	
+	public myScene getScene() {
+		return scene;
 	}
 
 
-	public void setDownKey(KeyCode downKey) {
-		this.downKey = downKey;
+
+	public AnimationTimer getGameLoop() {
+		return gameLoop;
 	}
-
-
-	public KeyCode getLeftKey() {
-		return leftKey;
-	}
-
-
-	public void setLeftKey(KeyCode leftKey) {
-		this.leftKey = leftKey;
-	}
-
-
-	public KeyCode getRightKey() {
-		return rightKey;
-	}
-
-
-	public void setRightKey(KeyCode rightKey) {
-		this.rightKey = rightKey;
-	}
-
-
-	public KeyCode getMeleeKey() {
-		return meleeKey;
-	}
-
-
-	public void setMeleeKey(KeyCode meleeKey) {
-		this.meleeKey = meleeKey;
-	}
-
-
-	public KeyCode getRangeKey() {
-		return rangeKey;
-	}
-
-
-	public void setRangeKey(KeyCode rangeKey) {
-		this.rangeKey = rangeKey;
-	}
-
-
-	public KeyCode getBlockKey() {
-		return blockKey;
-	}
-
-
-	public void setBlockKey(KeyCode blockKey) {
-		this.blockKey = blockKey;
-	}
-
-
-	public KeyCode getDodgeKey() {
-		return dodgeKey;
-	}
-
-
-	public void setDodgeKey(KeyCode dodgeKey) {
-		this.dodgeKey = dodgeKey;
-	}
-
-
-	public static Map<KeyCode, Boolean> getIsPressed() {
-		return isPressed;
-	}
-
-
-	public static void setIsPressed(Map<KeyCode, Boolean> isPressed) {
-		Controller.isPressed = isPressed;
-	}
-
-
-	public static double getX_speed() {
-		return x_speed;
-	}
-
-
-	public static double getY_speed() {
-		return y_speed;
-	}
+	
+	
 	
 	
 }
