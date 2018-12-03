@@ -116,6 +116,14 @@ public class Controller implements Runnable{
 	public AnimationTimer getGameLoop() {
 		return gameLoop;
 	}
+
+	public static ArrayList<KeyCode> getPressedListP1() {
+		return pressedListP1;
+	}
+
+	public static ArrayList<KeyCode> getPressedListP2() {
+		return pressedListP2;
+	}
 	
 	
 	
