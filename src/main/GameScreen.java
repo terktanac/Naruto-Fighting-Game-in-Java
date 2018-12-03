@@ -1,12 +1,6 @@
 package main;
 
-<<<<<<< HEAD
-import java.util.ResourceBundle.Control;
 
-import characters.Character;
-=======
-
->>>>>>> 5757be41977bd9a5927689e5019bfe477cc6c75f
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.Transition;
@@ -82,15 +76,6 @@ public class GameScreen extends myScene{
 	
 	public class Characters extends Pane{
 		ImageView imageview ;
-<<<<<<< HEAD
-		int count = 3;
-		int col = 5 ;
-		int offSetX = 2;
-		int offSetY = 5;
-		int width = 100 ;
-		int height = 100 ;
-		boolean isJump = false ;
-=======
 		int count = 6;
 		int col = 0;
 		int offSetX = 0;
@@ -98,7 +83,6 @@ public class GameScreen extends myScene{
 		int width = 111 ;
 		int height = 111 ;
 		boolean isRight = true;
->>>>>>> 5757be41977bd9a5927689e5019bfe477cc6c75f
 		
 		CharacterAnimation animation ;
 
@@ -112,50 +96,49 @@ public class GameScreen extends myScene{
 			getChildren().addAll(imageview);
 		}
 		
-		public void moveX(boolean move) {
-				if(move)this.setTranslateX(this.getTranslateX()+ Character.getX_speed());
-				else this.setTranslateX(this.getTranslateX()-Character.getX_speed());
-		}
-		
-		public void moveY(boolean move) {
-			for(int i=0 ; i < 20 ;i++ ) {
-			if(move)this.setTranslateY(this.getTranslateY()+ Character.getY_speed());
-			else this.setTranslateY(this.getTranslateY()-Character.getY_speed());
+		public void moveX(double d) {
+			boolean right = d>0 ? true:false;
+			for(int i=0;i<Math.abs(d);i++) {
+				if(right)this.setTranslateX(this.getTranslateX()+1);
+				else this.setTranslateX(this.getTranslateX()-1);
 			}
 		}
+		
+		public void moveY(double d) {
+			boolean right = d>0 ? true:false;
+			for(int i=0;i<Math.abs(d);i++) {
+				if(right)this.setTranslateY(this.getTranslateY()+1);
+				else this.setTranslateY(this.getTranslateY()-1);
+			}
 		}
 		
-	
+	}
 
 	@Override
 	public void upPressed() {
-		if(Controller.getIsPressedMap().get(Main.getPlayer1().getUpKey()) && !player.isJump) {
-			player.moveY(false);
-			System.out.println("UpPressed");
-			player.isJump = true ;
-			player.moveY(true);
+		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(0))) {
+			player.moveY(-characters.Character.getY_speed());
+			System.out.println("UPPressed");
 		}
 	}
 
 	@Override
 	public void downPressed() {
-		
+		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(1))) {
+			player.moveY(characters.Character.getY_speed());
+			System.out.println("DOWNPressed");
+		}
 	}
 
 	@Override
 	public void leftPressed() {
-<<<<<<< HEAD
-		if(Controller.getIsPressedMap().get(Main.getPlayer1().getLeftKey())) {
-			player.moveX(false);
-=======
-		if(Controller.getIsPressed().get(Main.getPlayer1().getLeftKey())) {
+		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(2))) {
 			if(player.isRight == true) {
 				player.imageview.setRotationAxis(Rotate.Y_AXIS);
 				player.imageview.setRotate(180);
 				player.isRight = false;
 			}
-			player.moveX(-Controller.getX_speed());
->>>>>>> 5757be41977bd9a5927689e5019bfe477cc6c75f
+			player.moveX(-characters.Character.getX_speed());
 			System.out.println("LeftPressed");
 			player.animation.play();
 		}
@@ -163,18 +146,13 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void rightPressed() {
-<<<<<<< HEAD
-		if(Controller.getIsPressedMap().get(Main.getPlayer1().getRightKey())) {
-			player.moveX(true);
-=======
-		if(Controller.getIsPressed().get(Main.getPlayer1().getRightKey())) {
+		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(3))) {
 			if(player.isRight != true) {
 				player.imageview.setRotationAxis(Rotate.Y_AXIS);
 				player.imageview.setRotate(0);
 				player.isRight = true;
 			}
-			player.moveX(Controller.getX_speed());
->>>>>>> 5757be41977bd9a5927689e5019bfe477cc6c75f
+			player.moveX(characters.Character.getX_speed());
 			System.out.println("RightPressed");
 			player.animation.play();
 		}
