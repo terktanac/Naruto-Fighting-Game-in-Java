@@ -133,6 +133,14 @@ public class Controller implements Runnable{
 		Controller.pressedListP2 = pressedListP2;
 	}
 
+	public ArrayList<KeyCode> getKeyP1() {
+		return KeyP1;
+	}
+
+	public ArrayList<KeyCode> getKeyP2() {
+		return KeyP2;
+	}
+
 	
 	
 	
