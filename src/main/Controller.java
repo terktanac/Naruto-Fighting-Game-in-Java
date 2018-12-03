@@ -29,23 +29,23 @@ public class Controller implements Runnable{
 					, KeyCode upKey_2, KeyCode downKey_2,KeyCode leftKey_2, KeyCode rightKey_2
 					, KeyCode meleeKey_2, KeyCode rangeKey_2, KeyCode blockKey_2,KeyCode dodgeKey_2) {
 		super();
-		this.KeyP1.add(upKey_1);		isPressedMap.put(upKey_1, false);
-		this.KeyP1.add(downKey_1);		isPressedMap.put(downKey_1, false);
-		this.KeyP1.add(leftKey_1);		isPressedMap.put(leftKey_1, false);
-		this.KeyP1.add(rightKey_1);		isPressedMap.put(rightKey_1, false);
-		this.KeyP1.add(meleeKey_1);		isPressedMap.put(meleeKey_1, false);
-		this.KeyP1.add(rangeKey_1);		isPressedMap.put(rangeKey_1, false);
-		this.KeyP1.add(blockKey_1);		isPressedMap.put(blockKey_1, false);
-		this.KeyP1.add(dodgeKey_1);		isPressedMap.put(dodgeKey_1, false);
+		Controller.KeyP1.add(upKey_1);		isPressedMap.put(upKey_1, false);
+		Controller.KeyP1.add(downKey_1);		isPressedMap.put(downKey_1, false);
+		Controller.KeyP1.add(leftKey_1);		isPressedMap.put(leftKey_1, false);
+		Controller.KeyP1.add(rightKey_1);		isPressedMap.put(rightKey_1, false);
+		Controller.KeyP1.add(meleeKey_1);		isPressedMap.put(meleeKey_1, false);
+		Controller.KeyP1.add(rangeKey_1);		isPressedMap.put(rangeKey_1, false);
+		Controller.KeyP1.add(blockKey_1);		isPressedMap.put(blockKey_1, false);
+		Controller.KeyP1.add(dodgeKey_1);		isPressedMap.put(dodgeKey_1, false);
 		
-		this.KeyP2.add(upKey_2);		isPressedMap.put(upKey_2, false);
-		this.KeyP2.add(downKey_2);		isPressedMap.put(downKey_2, false);
-		this.KeyP2.add(leftKey_2);		isPressedMap.put(leftKey_2, false);
-		this.KeyP2.add(rightKey_2);		isPressedMap.put(rightKey_2, false);
-		this.KeyP2.add(meleeKey_2);		isPressedMap.put(meleeKey_2, false);
-		this.KeyP2.add(rangeKey_2);		isPressedMap.put(rangeKey_2, false);
-		this.KeyP2.add(blockKey_2);		isPressedMap.put(blockKey_2, false);
-		this.KeyP2.add(dodgeKey_2);		isPressedMap.put(dodgeKey_2, false);
+		Controller.KeyP2.add(upKey_2);		isPressedMap.put(upKey_2, false);
+		Controller.KeyP2.add(downKey_2);		isPressedMap.put(downKey_2, false);
+		Controller.KeyP2.add(leftKey_2);		isPressedMap.put(leftKey_2, false);
+		Controller.KeyP2.add(rightKey_2);		isPressedMap.put(rightKey_2, false);
+		Controller.KeyP2.add(meleeKey_2);		isPressedMap.put(meleeKey_2, false);
+		Controller.KeyP2.add(rangeKey_2);		isPressedMap.put(rangeKey_2, false);
+		Controller.KeyP2.add(blockKey_2);		isPressedMap.put(blockKey_2, false);
+		Controller.KeyP2.add(dodgeKey_2);		isPressedMap.put(dodgeKey_2, false);
 		
 	}
 
@@ -144,22 +144,22 @@ public class Controller implements Runnable{
 		return pressedListSkillP2;
 	}
 	public static boolean getKeyMove_P1(int index) {
-		boolean result  = getPressedListMoveP1().contains(Main.getPlayer().getKeyP1().get(index)) ;
+		boolean result  = getPressedListMoveP1().contains(Controller.getKeyP1().get(index)) ;
 		if(result) {getPressedListMoveP1().remove(0);}
 		return result;
 	}
 	public static boolean getKeyMove_P2(int index) {
-		boolean result = getPressedListMoveP2().contains(Main.getPlayer().getKeyP2().get(index));
+		boolean result = getPressedListMoveP2().contains(Controller.getKeyP2().get(index));
 		if(result) {getPressedListMoveP2().remove(0);}
 		return result;
 	}
 	public static boolean getKeySkill_P1(int index) {
-		boolean result = getPressedListSkillP1().contains(Main.getPlayer().getKeyP1().get(index+4));
+		boolean result = getPressedListSkillP1().contains(Controller.getKeyP1().get(index+4));
 		if(result) {getPressedListSkillP1().remove(0);}
 		return result;
 	}
 	public static boolean getKeySkill_P2(int index) {
-		boolean result = getPressedListSkillP2().contains(Main.getPlayer().getKeyP2().get(index+4));
+		boolean result = getPressedListSkillP2().contains(Controller.getKeyP2().get(index+4));
 		if(result) {getPressedListSkillP2().remove(0);}
 		return result;
 	}
