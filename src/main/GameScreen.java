@@ -116,7 +116,7 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void upPressed() {
-		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(0))) {
+		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Controller.getPressedListP1().get(0))) {
 			player.moveY(-characters.Character.getY_speed());
 			System.out.println("UPPressed");
 		}
@@ -124,7 +124,7 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void downPressed() {
-		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(1))) {
+		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Controller.getPressedListP1().get(1))) {
 			player.moveY(characters.Character.getY_speed());
 			System.out.println("DOWNPressed");
 		}
@@ -132,7 +132,7 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void leftPressed() {
-		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(2))) {
+		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Controller.getPressedListP1().get(2))) {
 			if(player.isRight == true) {
 				player.imageview.setRotationAxis(Rotate.Y_AXIS);
 				player.imageview.setRotate(180);
@@ -146,7 +146,7 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void rightPressed() {
-		if(Controller.getIsPressedMap().get(Controller.getPressedListP1().get(3))) {
+		if(!Controller.getPressedListP1().isEmpty() && Controller.getIsPressedMap().get(Controller.getPressedListP1().get(3))) {
 			if(player.isRight != true) {
 				player.imageview.setRotationAxis(Rotate.Y_AXIS);
 				player.imageview.setRotate(0);

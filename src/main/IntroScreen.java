@@ -107,7 +107,7 @@ public class IntroScreen extends myScene{
 	}
 	@Override
 	public void upPressed() {
-
+		
 	}
 	@Override
 	public void downPressed() {

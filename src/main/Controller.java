@@ -121,11 +121,6 @@ public class Controller implements Runnable{
 		return pressedListP1;
 	}
 
-<<<<<<< HEAD
-	public static ArrayList<KeyCode> getPressedListP2() {
-		return pressedListP2;
-	}
-=======
 	public static void setPressedListP1(ArrayList<KeyCode> pressedListP1) {
 		Controller.pressedListP1 = pressedListP1;
 	}
@@ -137,7 +132,7 @@ public class Controller implements Runnable{
 	public static void setPressedListP2(ArrayList<KeyCode> pressedListP2) {
 		Controller.pressedListP2 = pressedListP2;
 	}
->>>>>>> 204a052f790735f578bb215aaed7f0ff3846d1d1
+
 	
 	
 	

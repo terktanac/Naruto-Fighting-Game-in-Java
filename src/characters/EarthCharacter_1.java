@@ -66,4 +66,5 @@ public class EarthCharacter_1 extends Character {
 		return 0;
 	}
 
+
 }
