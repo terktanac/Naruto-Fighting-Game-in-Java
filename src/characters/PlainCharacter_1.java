@@ -3,7 +3,7 @@ package characters;
 public class PlainCharacter_1 extends Character{
 
 	public PlainCharacter_1() {
-		super("Sakura", 0, 100, 15, 5, 1);
+		super("Sakura", 0, 100, 15, 5, 1, null);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,11 +31,6 @@ public class PlainCharacter_1 extends Character{
 		return 0;
 	}
 
-	@Override
-	public int walk() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int crouch() {
@@ -43,11 +38,6 @@ public class PlainCharacter_1 extends Character{
 		return 0;
 	}
 
-	@Override
-	public int dash() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int basic_skill() {

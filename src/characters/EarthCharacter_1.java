@@ -3,7 +3,7 @@ package characters;
 public class EarthCharacter_1 extends Character {
 
 	public EarthCharacter_1() {
-		super("Gaara", 2, 100, 5, 10,2);
+		super("Gaara", 2, 100, 5, 10,2, null);
 	}
 
 	@Override
@@ -30,11 +30,6 @@ public class EarthCharacter_1 extends Character {
 		return 0;
 	}
 
-	@Override
-	public int walk() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int crouch() {
@@ -42,11 +37,7 @@ public class EarthCharacter_1 extends Character {
 		return 0;
 	}
 
-	@Override
-	public int dash() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int basic_skill() {

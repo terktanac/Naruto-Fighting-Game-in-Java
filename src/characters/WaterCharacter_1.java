@@ -3,7 +3,7 @@ package characters;
 public class WaterCharacter_1 extends Character{
 
 	public WaterCharacter_1() {
-		super("Suigetsu", 3, 100,10, 6,0.8);
+		super("Suigetsu", 3, 100,10, 6,0.8, null);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,11 +31,7 @@ public class WaterCharacter_1 extends Character{
 		return 0;
 	}
 
-	@Override
-	public int walk() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int crouch() {
@@ -43,11 +39,7 @@ public class WaterCharacter_1 extends Character{
 		return 0;
 	}
 
-	@Override
-	public int dash() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int basic_skill() {
