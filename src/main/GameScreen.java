@@ -37,6 +37,12 @@ public class GameScreen extends myScene{
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 	}
 	
+	public void updateArrays() {
+		//เช็คคอมโบ กะให้วนทุกๆ0.2-0.5วิ 
+		//การทำงานคือตัดออกทีละตัว ถ้าเจอคอมโบก็ให้ทำคอมโบที่ว่า ถ้าไม่เจอให้ทำอันแรก(เฉพาะการโจมตี) --> จะทำให้ทุกการโจมตีมีเว้นชั่วเวลาหนึ่ง
+		//สำรหับการเปลี่ยนตัว *ไว้ทีหลัง* สนใจแค่ว่ามีมั้ยถ้าไม่มีเอาอันแรกออกส่วนปุ่มทำต่อเนื่องอยู่แล้ว
+	}
+	
 	@Override
 	public void update() {
 		update_1();
@@ -83,6 +89,7 @@ public class GameScreen extends myScene{
 			}
 		}
 	}
+
 	
 	public void downPressed_1() {
 		if(Controller.getIsPressedMap().get(Controller.getKeyP1().get(1))) {

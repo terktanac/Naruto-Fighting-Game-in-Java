@@ -96,6 +96,19 @@ public class IntroScreen extends myScene{
 	@Override
 	public void update() {
 		keyHandling();
+//		if(!Controller.getOtherKeys().isEmpty() || !Controller.getPressedListMoveP1().isEmpty() || !Controller.getPressedListMoveP2().isEmpty() || !Controller.getPressedListSkillP1().isEmpty() || !Controller.getPressedListSkillP2().isEmpty()) {
+//			Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
+//					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+//			Main.ChangeScene(Main.getLoadscreen());
+//			System.out.println("Skipped Intro");
+//			load.play();
+//			player.stop();
+//			choose.play();
+//			Main.setState(1);
+//			Main.getPlayer().setScene(Main.getMainmenu());
+//			Main.getPlayer().run();
+//			
+//		}
 	}
 	
 }
