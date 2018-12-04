@@ -3,6 +3,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
@@ -13,6 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -62,8 +64,34 @@ public class GameScreen extends myScene{
 		//เช็คคอมโบ กะให้วนทุกๆ0.2-0.5วิ 
 		//การทำงานคือตัดออกทีละตัว ถ้าเจอคอมโบก็ให้ทำคอมโบที่ว่า ถ้าไม่เจอให้ทำอันแรก(เฉพาะการโจมตี) --> จะทำให้ทุกการโจมตีมีเว้นชั่วเวลาหนึ่ง
 		//สำรหับการเปลี่ยนตัว *ไว้ทีหลัง* สนใจแค่ว่ามีมั้ยถ้าไม่มีเอาอันแรกออกส่วนปุ่มทำต่อเนื่องอยู่แล้ว
+		updatemove(1);
+		updatemove(2);
 	}
 	
+	private void updatemove(int player) {
+		ArrayList<KeyCode> pressed = (player == 1 ? Controller.getPressedListMoveP1(): Controller.getPressedListMoveP2());
+		ArrayList<KeyCode> key = (player==1 ? Controller.getKeyP1() : Controller.getKeyP2()) ;
+		if(pressed.size() >= 3) {
+			if(pressed.get(0) == key.get(0) && pressed.get(1) == key.get(1) && pressed.get(2) == key.get(0)) {
+				System.out.println("Change char to earth");
+				Controller.removePressedMove(player,3);
+			}
+			else {Controller.removePressedMove(player,1);}
+		}
+		else if(!pressed.isEmpty()) {Controller.removePressedMove(player,1);}
+		
+	}
+
+
+	private void updateskillP1() {
+
+	}
+
+	private void updateskillP2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void update() {
 		update_1();
@@ -87,7 +115,7 @@ public class GameScreen extends myScene{
 	}
 	
 	public void upPressed_1() {
-		if(!Controller.getPressedListMoveP1().isEmpty() && Controller.getIsPressedMap().get(Controller.getKeyP1().get(0))) {
+		if(!Controller.getPressedListMoveP1().isEmpty() && Controller.getIsPressedMap1().get(Controller.getKeyP1().get(0))) {
 			player1.jump();
 			System.out.println("UPPressed");
 		}
@@ -113,7 +141,7 @@ public class GameScreen extends myScene{
 
 	
 	public void downPressed_1() {
-		if(Controller.getIsPressedMap().get(Controller.getKeyP1().get(1))) {
+		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1))) {
 			player1.crouch();
 			System.out.println("DOWNPressed");
 		}
@@ -124,14 +152,14 @@ public class GameScreen extends myScene{
 	}
 	
 	public void leftPressed_1() {
-		if(Controller.getIsPressedMap().get((Controller.getKeyP1().get(2)))) {
+		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(2)))) {
 			player1.walk_left();
 			System.out.println("LeftPressed");
 		}
 	}
 
 	public void rightPressed_1() {
-		if(Controller.getIsPressedMap().get((Controller.getKeyP1().get(3)))) {
+		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(3)))) {
 			player1.walk_right();
 			System.out.println("RightPressed");
 		}
@@ -141,14 +169,16 @@ public class GameScreen extends myScene{
 	}
 
 	public void nonePressed_1() {
-		if(Controller.getPressedListMoveP1().isEmpty() && Controller.getPressedListSkillP1().isEmpty()) {
+		ArrayList<KeyCode> key = Controller.getKeyP1();
+		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
+		if(!pressed.containsValue(true)) {
 			player1.stand();
 		}
 		
 	}
 	
 	public void upPressed_2() {
-		if(!Controller.getPressedListMoveP2().isEmpty() && Controller.getIsPressedMap().get(Controller.getKeyP2().get(0))) {
+		if(!Controller.getPressedListMoveP2().isEmpty() && Controller.getIsPressedMap2().get(Controller.getKeyP2().get(0))) {
 			player2.jump();
 			System.out.println("UPPressed");
 		}
@@ -173,7 +203,7 @@ public class GameScreen extends myScene{
 	}
 	
 	public void downPressed_2() {
-		if(Controller.getIsPressedMap().get(Controller.getKeyP2().get(1))) {
+		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1))) {
 			player2.crouch();
 			System.out.println("DOWNPressed");
 		}
@@ -184,14 +214,14 @@ public class GameScreen extends myScene{
 	}
 	
 	public void leftPressed_2() {
-		if(Controller.getIsPressedMap().get((Controller.getKeyP2().get(2)))) {
+		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(2)))) {
 			player2.walk_left();
 			System.out.println("LeftPressed");
 		}
 	}
 
 	public void rightPressed_2() {
-		if(Controller.getIsPressedMap().get((Controller.getKeyP2().get(3)))) {
+		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(3)))) {
 			player2.walk_right();
 			System.out.println("RightPressed");
 		}
@@ -201,8 +231,10 @@ public class GameScreen extends myScene{
 	}
 
 	public void nonePressed_2() {
-		if(Controller.getPressedListMoveP2().isEmpty() && Controller.getPressedListSkillP2().isEmpty()) {
-			//player2.stand();
+		ArrayList<KeyCode> key = Controller.getKeyP2();
+		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
+		if(!pressed.containsValue(true)) {
+			player2.stand();
 		}
 		
 	}
