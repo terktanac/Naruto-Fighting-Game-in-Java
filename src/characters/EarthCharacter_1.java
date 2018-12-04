@@ -17,7 +17,10 @@ public class EarthCharacter_1 extends Character {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	@Override
+	public int doRange() {
+		return 0;
+	}
 	@Override
 	public int dodge() {
 		// TODO Auto-generated method stub

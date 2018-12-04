@@ -85,7 +85,7 @@ public class FireCharacter_1 extends Character{
 	@Override
 	public int melee() {
 		if(!isAttacked() && !isDead() && !isCrouch()) {
-			setAttacking(true);
+			setMelee(true);
 			setMove(true);
 			this.getAnimation().stop();
 			return 1;
@@ -110,7 +110,7 @@ public class FireCharacter_1 extends Character{
 			else {
 				setAir(false);
 				setMove(false);
-				//stand();
+				stand();
 			}
 		}
 		return 1;
@@ -118,21 +118,29 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int doMelee() {
-		if(isAttacking()) {
-			if(getDelay() >= 70) {
+		if(isMelee()) {
+			if(getDelay() >= 80) {
 				getImageview().setViewport(new Rectangle2D(555, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
-			else if(getDelay() >= 50) {
+			else if(getDelay() >= 60) {
 				getImageview().setViewport(new Rectangle2D(666, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
-			else if(getDelay() >= 0) {
+			else if(getDelay() >= 40) {
 				getImageview().setViewport(new Rectangle2D(777, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
+			else if(getDelay() >= 20) {
+				getImageview().setViewport(new Rectangle2D(888, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 0) {
+				getImageview().setViewport(new Rectangle2D(999, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
 			else {
-				setAttacking(false);
+				setMelee(false);
 				setDelay(100);
 			}
 		}
@@ -141,10 +149,42 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int range() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(!isAttacked() && !isDead() && !isCrouch()) {
+			setRange(true);
+			setMove(true);
+			this.getAnimation().stop();
+			return 1;
+		}
+		return 1;
 	}
 
+	@Override
+	public int doRange() {
+		if(isRange()) {
+			if(getDelay() >= 80) {
+				getImageview().setViewport(new Rectangle2D(777, 999, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 60) {
+				getImageview().setViewport(new Rectangle2D(888, 999, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 40) {
+				getImageview().setViewport(new Rectangle2D(999, 999, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 20) {
+				getImageview().setViewport(new Rectangle2D(0, 1110, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else {
+				setRange(false);
+				setDelay(100);
+			}
+		}
+		return 1;
+	}
+	
 	@Override
 	public int dodge() {
 		// TODO Auto-generated method stub

@@ -20,6 +20,11 @@ public class WaterCharacter_1 extends Character{
 	}
 
 	@Override
+	public int doRange() {
+		return 0;
+	}
+	
+	@Override
 	public int dodge() {
 		// TODO Auto-generated method stub
 		return 0;

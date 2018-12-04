@@ -7,5 +7,4 @@ public interface Moveable {
 	public int crouch();
 	public int jump();
 	public int doJump();
-	public int doMelee();
 }

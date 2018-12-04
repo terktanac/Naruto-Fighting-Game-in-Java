@@ -24,7 +24,8 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private boolean isMove = false;
 	private double isFall = 0; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked = false; //if true user can't move for 0.1 s(or less)
-	private boolean isAttacking = false;
+	private boolean isMelee = false;
+	private boolean isRange = false;
 	private double standTime ;//Time period that a character need for stand avg=1 s
 	private static double x_speed = 2;
 	private static double y_speed = 2;
@@ -152,11 +153,17 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setAttacked(boolean isAttacked) {
 		this.isAttacked = isAttacked;
 	}
-	public boolean isAttacking() {
-		return isAttacking;
+	public boolean isMelee() {
+		return isMelee;
 	}
-	public void setAttacking(boolean isAttacking) {
-		this.isAttacking = isAttacking;
+	public void setMelee(boolean isMelee) {
+		this.isMelee = isMelee;
+	}
+	public boolean isRange() {
+		return isRange;
+	}
+	public void setRange(boolean isRange) {
+		this.isRange = isRange;
 	}
 	public boolean isMove() {
 		return isMove;

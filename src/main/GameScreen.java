@@ -117,6 +117,7 @@ public class GameScreen extends myScene{
 		rightPressed_1();
 		nonePressed_1();
 		meleePressed_1();
+		rangePressed_1();
 	}
 	
 	public void update_2() {
@@ -126,6 +127,7 @@ public class GameScreen extends myScene{
 		rightPressed_2();
 		nonePressed_2();
 		meleePressed_2();
+		rangePressed_2();
 	}
 	
 	public void upPressed_1() {
@@ -172,6 +174,13 @@ public class GameScreen extends myScene{
 			player1.melee();
 		}
 		player1.doMelee();
+	}
+	
+	public void rangePressed_1() {
+		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
+			player1.range();
+		}
+		player1.doRange();
 	}
 	
 	public void nonePressed_1() {
@@ -227,6 +236,13 @@ public class GameScreen extends myScene{
 		player2.doMelee();
 	}
 
+	public void rangePressed_2() {
+		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(5)))) {
+			player2.range();
+		}
+		player2.doRange();
+	}
+	
 	public void nonePressed_2() {
 		ArrayList<KeyCode> key = Controller.getKeyP2();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
