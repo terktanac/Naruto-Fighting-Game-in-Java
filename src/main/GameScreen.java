@@ -1,36 +1,54 @@
 package main;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.transform.Rotate;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
 	private WindCharacter_1 player1 = new WindCharacter_1();
 	private FireCharacter_1 player2 = new FireCharacter_1();
+	private HealthBar healthbarP1 = new HealthBar(300, 50, new ImageView());
+	private HealthBar healthbarP2 = new HealthBar(300, 50, new ImageView());
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-
+		
+		healthbarP1.setTranslateX(-50); healthbarP1.setTranslateY(-80);
+		
+		healthbarP2.setTranslateX(530); healthbarP2.setTranslateY(-80);
+		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
+		healthbarP2.setRotate(180);
+		
 		player1.setTranslateX(300);player1.setTranslateY(300);
 		player2.setTranslateX(500);player2.setTranslateY(300);
 		
 		player2.getImageview().setRotationAxis(Rotate.Y_AXIS);
 		player2.getImageview().setRotate(180);
 		
-		root.getChildren().addAll(player1,player2);
+		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2);
 		
 		player1.getAnimation().play();
 		player2.getAnimation().play();
@@ -189,13 +207,40 @@ public class GameScreen extends myScene{
 		
 	}
 
-	public class HealthBar extends HBox{
-
-		public HealthBar(Node... children) {
-			super(children);
-			// TODO Auto-generated constructor stub
+	public class HealthBar extends StackPane{
+		private int width ;
+		private int height ;
+		private ImageView healthbarPlain = new ImageView("icon/healthbar.png");
+		private ImageView healthbarBorder = new ImageView("icon/healthbarborder.png");
+		GraphicsContext gc ;
+		public HealthBar(int width,int height ,ImageView characters) {
+			this.width = width;
+			this.height = height ;
+			double[] xPoints = {0,height,height,height*0.42,height*0.42,0};
+			double[] yPoints = {0,0,width*0.562,width*0.579,width*0.99,width};
+			setPrefSize(width, height);
+			Canvas healthbar = new Canvas(width, height);
+			gc = healthbar.getGraphicsContext2D();
+			setHealthBar(1);
+			gc.fillPolygon(xPoints, yPoints,6 );
+			gc.strokePolygon(xPoints, yPoints, 6);
+//			gc.fillRoundRect(0, 0, width, height-10, 20, 20);
+			
+			characters.setTranslateX(0);
+			characters.setTranslateY(0);
+			
+			getChildren().addAll(healthbarPlain,healthbar,healthbarBorder,characters);
 		}
-		
+		public double setHealthBar(double curDIVmax) {
+			int firstcolor = 0, secondcolor = 255;
+			if(curDIVmax>0.5) {firstcolor = (int) (255*(1-curDIVmax));}
+			else {secondcolor = (int) (255*(1-curDIVmax));}
+			gc.setFill(new LinearGradient(0, 0, (double)height, (double)width*curDIVmax, true, CycleMethod.REFLECT
+					,new Stop(0.0, Color.rgb(firstcolor, secondcolor, 0))
+					,new Stop(1.0,Color.rgb(firstcolor, secondcolor, 100))));
+			return curDIVmax *100;
+		}
+
 	}
 
 }

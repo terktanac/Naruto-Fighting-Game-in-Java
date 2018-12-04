@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
@@ -111,6 +112,9 @@ public class Controller implements Runnable{
 		if(!pressedListMoveP2.isEmpty())pressedListMoveP2.clear();
 		if(!pressedListSkillP1.isEmpty())pressedListSkillP1.clear();
 		if(!pressedListSkillP2.isEmpty())pressedListSkillP2.clear();
+		for(Entry<KeyCode, Boolean> entry : isPressedMap.entrySet()) {
+			isPressedMap.put(entry.getKey(), false);
+		}
 	}
 
 
