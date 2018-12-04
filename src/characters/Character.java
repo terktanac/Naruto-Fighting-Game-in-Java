@@ -15,14 +15,16 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int health; // standard:100
 	private int atk; // standard:10
 	private int def; // standard:5
+	private int melee_round = 0;
 	private boolean isDead = false;//true = Dead = EndGame
 	private boolean isAir = false; //knock up or jump
 	private boolean isJump = false;
+	private boolean isCrouch = false;
 	private double isFall = 0; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked = false; //if true user can't move for 0.1 s(or less)
 	private double standTime ;//Time period that a character need for stand avg=1 s
-	private static double x_speed = 8;
-	private static double y_speed = 4;
+	private static double x_speed = 2;
+	private static double y_speed = 2;
 	private ImageView imageview ;
 	private int count;
 	private int col;
@@ -52,7 +54,6 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.getImageview().setViewport(new Rectangle2D(offSetX, offSetY, width - 15, height - 1.3));
 		this.getImageview().setFitHeight(350);
 		this.getImageview().setFitWidth(350);	
-		setAnimation(new CharacterAnimation(this.getImageview(), Duration.millis(300), count, col, offSetX, offSetY, width, height));
 		getChildren().addAll(imageview);
 	}
 	public void moveX(double d) {
@@ -69,96 +70,6 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 			if(right)this.setTranslateY(this.getTranslateY()+1);
 			else this.setTranslateY(this.getTranslateY()-1);
 		}
-	}
-	@Override
-	public int basic_skill() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int mid_skill() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int High_skill() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int walk_right() {
-		if(!isAttacked && !isDead) {
-			if(this.isRight() != true) {
-				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
-				this.getImageview().setRotate(0);
-				this.setRight(true);
-			}
-			this.getAnimation().setOffSetX(0);
-			this.getAnimation().setOffSetY(222);
-			this.moveX(characters.Character.getX_speed());
-			this.getAnimation().play();
-			return 1;
-		}
-		else
-			return 0;
-	}
-	@Override
-	public int walk_left() {
-		if(!isAttacked && !isDead) {
-			if(this.isRight() == true) {
-				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
-				this.getImageview().setRotate(180);
-				this.setRight(false);
-			}
-			this.getAnimation().setOffSetX(0);
-			this.getAnimation().setOffSetY(222);
-			this.moveX(-characters.Character.getX_speed());
-			this.getAnimation().play();
-			return 1;
-		}
-		else
-			return 0;
-	}
-	@Override
-	public int crouch() {
-		if(!isAir && !isAttacked && !isJump && !isDead) {
-			this.getImageview().setViewport(new Rectangle2D(333, 333, width - 15, height - 1.3));
-			return 1;
-		}
-		else
-			return 0;
-	}
-	@Override
-	public int jump() {
-		if(!isAir && !isAttacked && !isJump && !isDead) {
-			
-			this.isJump = true;
-			this.isAir = true;
-			this.getAnimation().stop();
-			return 1;
-		}
-		else
-			return 0;
-	}
-	@Override
-	public int melee() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int range() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int dodge() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int block() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	public int getState() {
 		return state;
@@ -234,6 +145,12 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public void setAir(boolean isAir) {
 		this.isAir = isAir;
+	}
+	public boolean isCrouch() {
+		return isCrouch;
+	}
+	public void setCrouch(boolean isCrouch) {
+		this.isCrouch = isCrouch;
 	}
 	public double getIsFall() {
 		return isFall;

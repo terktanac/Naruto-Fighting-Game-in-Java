@@ -56,6 +56,30 @@ public class PlainCharacter_1 extends Character{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int stand() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int walk_right() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int walk_left() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int jump() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

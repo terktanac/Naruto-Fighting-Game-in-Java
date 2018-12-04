@@ -136,7 +136,7 @@ public class MapChooseScreen extends myScene {
 			column = (column - 1 + 2)%2;
 			choice = (3*column + row)%listOfBackground.size();
 			listOfBackground.get(choice).setActive(true);
-			click.play();
+			playClick();
 		}
 	}
 	public void downPressed() {
@@ -145,7 +145,7 @@ public class MapChooseScreen extends myScene {
 			column = (column + 1)%2;
 			choice = (3*column + row)%listOfBackground.size();
 			listOfBackground.get(choice).setActive(true);
-			click.play();
+			playClick();
 		}
 	}
 	public void leftPressed() {
@@ -154,7 +154,7 @@ public class MapChooseScreen extends myScene {
 			row = (row - 1 + 3)%3;
 			choice = (3*column + row)%listOfBackground.size();
 			listOfBackground.get(choice).setActive(true);
-			click.play();
+			playClick();
 		}
 	}
 	public void rightPressed() {
@@ -163,15 +163,15 @@ public class MapChooseScreen extends myScene {
 			row = (row + 1)%3;
 			choice = (3*column + row)%listOfBackground.size();
 			listOfBackground.get(choice).setActive(true);
-			click.play();
+			playClick();
 		}
 	}
 	public void choose() {
 		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0) ) {
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
-					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			Main.ChangeScene(Main.getLoadscreen());
-			choose.play();
+			playChoose();
 			load.play();
 			setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
 			GameScreen.setBackground(chooseBackground);
@@ -181,7 +181,7 @@ public class MapChooseScreen extends myScene {
 	}
 	public void back() {
 		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1)) {
-			choose.play();
+			playChoose();
 			Main.ChangeScene(Main.getMultiplayer());
 			Main.getPlayer().setScene(Main.getMultiplayer());
 		}
