@@ -252,19 +252,19 @@ public class OptionScreen extends myScene{
 	private void moveUp_1() {
 		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P1(2)) {
 			NewChoice_1 = (OldChoice_1-1+8)%8;
-			click.play();
+			playClick();
 		}
 	}
 	private void moveDown_1() {
 		if(Controller.getKeyMove_P1(1) || Controller.getKeyMove_P1(3)) {
 			NewChoice_1 = (OldChoice_1+1+8)%8;
-			click.play();
+			playClick();
 		}
 	}
 	private void choose_1() {
 		if(Controller.getKeySkill_P1(0)) {
 			setState1 = true;
-			choose.play();
+			playChoose();
 			changeKeyCode(1, OldChoice_1);
 		}
 	}
@@ -275,19 +275,19 @@ public class OptionScreen extends myScene{
 	private void moveUp_2() {
 		if(Controller.getKeyMove_P2(0) || Controller.getKeyMove_P2(2)) {
 			NewChoice_2 = (OldChoice_2-1+8)%8;
-			click.play();
+			playClick();
 		}
 	}
 	private void moveDown_2() {
 		if(Controller.getKeyMove_P2(1) || Controller.getKeyMove_P2(3)) {
 			NewChoice_2 = (OldChoice_2+1+8)%8;
-			click.play();
+			playClick();
 		}
 	}
 	private void choose_2() {
 		if(Controller.getKeySkill_P2(0)) {
 			setState2 = true;
-			choose.play();
+			playChoose();
 			changeKeyCode(2, OldChoice_2);
 
 		}

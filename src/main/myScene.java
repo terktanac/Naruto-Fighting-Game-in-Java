@@ -8,8 +8,7 @@ import javafx.scene.text.Font;
 
 public abstract class myScene extends Scene{
 	private static Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
-	static MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
-	static MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+	//static MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
 	public myScene(Pane root) {
 		super(root);
 	}
@@ -18,6 +17,12 @@ public abstract class myScene extends Scene{
 	public static Font getNarutoFont() {
 		return narutoFont;
 	}
-	 public static void playChoose() {choose.play();choose.stop();}
-	 public static void playClick() {click.play();click.stop();}
+	 public static void playChoose() {
+		MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString())); 
+		choose.play();
+	}
+	 public static void playClick() {
+		MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
+		click.play();
+	 }
 }

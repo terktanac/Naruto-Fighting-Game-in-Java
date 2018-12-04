@@ -16,6 +16,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -94,7 +96,7 @@ public class MainMenuScreen extends myScene {
 		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1) || Controller.getOtherKeys().contains(KeyCode.ESCAPE) || Controller.getOtherKeys().contains(KeyCode.BACK_SPACE)) {
 			Main.ChangeScene((Scene)Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getIntro());})
-					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
 		}
 	}
@@ -109,7 +111,7 @@ public class MainMenuScreen extends myScene {
 		if(Controller.getKeyMove_P1(3) || Controller.getKeyMove_P2(3) || Controller.getKeyMove_P1(1) || Controller.getKeyMove_P2(1)) {
 			if (Oldchoice == MenuBox.getChildren().size()-1) {NewChoice = 0;} 
 			else {NewChoice = Oldchoice + 1;}
-			click.play();
+			playClick();
 			((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
 			((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
 			Oldchoice = NewChoice;
@@ -119,7 +121,7 @@ public class MainMenuScreen extends myScene {
 		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P2(0) || Controller.getKeyMove_P1(2) || Controller.getKeyMove_P2(2)) {
 			if (Oldchoice == 0) {NewChoice = 3;} 
 			else {NewChoice = Oldchoice - 1;}
-			click.play();
+			playClick();
 			((ListMenu) MenuBox.getChildren().get(Oldchoice)).setActive(false);
 			((ListMenu) MenuBox.getChildren().get(NewChoice)).setActive(true);
 			Oldchoice = NewChoice;
@@ -139,7 +141,7 @@ public class MainMenuScreen extends myScene {
 		else if(Oldchoice==1) {
 			Main.ChangeScene((Scene)Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
-					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
 			MultiPlayerScreen.player.setAutoPlay(true);
 			Main.getPlayer().setScene(Main.getMultiplayer());
@@ -148,7 +150,7 @@ public class MainMenuScreen extends myScene {
 		else if(Oldchoice==2) {
 			Main.ChangeScene((Scene)Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getOptionscreen());})
-					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
+					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
 			Main.getPlayer().setScene(Main.getOptionscreen());
 			Main.getPlayer().run();
