@@ -63,9 +63,12 @@ public class GameScreen extends myScene{
 	public void updateArrays() {
 		//เช็คคอมโบ กะให้วนทุกๆ0.2-0.5วิ 
 		//การทำงานคือตัดออกทีละตัว ถ้าเจอคอมโบก็ให้ทำคอมโบที่ว่า ถ้าไม่เจอให้ทำอันแรก(เฉพาะการโจมตี) --> จะทำให้ทุกการโจมตีมีเว้นชั่วเวลาหนึ่ง
+		updateskill(1);
+		updateskill(2);
 		//สำรหับการเปลี่ยนตัว *ไว้ทีหลัง* สนใจแค่ว่ามีมั้ยถ้าไม่มีเอาอันแรกออกส่วนปุ่มทำต่อเนื่องอยู่แล้ว
 		updatemove(1);
 		updatemove(2);
+
 	}
 	
 	private void updatemove(int player) {
@@ -74,23 +77,29 @@ public class GameScreen extends myScene{
 		if(pressed.size() >= 3) {
 			if(pressed.get(0) == key.get(0) && pressed.get(1) == key.get(1) && pressed.get(2) == key.get(0)) {
 				System.out.println("Change char to earth");
-				Controller.removePressedMove(player,3);
+				Controller.removePressed(player,"MOVE",3);
 			}
-			else {Controller.removePressedMove(player,1);}
 		}
-		else if(!pressed.isEmpty()) {Controller.removePressedMove(player,1);}
+		if(pressed.size()>=1) {Controller.removePressed(player,"MOVE",1);}
 		
 	}
 
 
-	private void updateskillP1() {
-
+	private void updateskill(int player) {
+		ArrayList<KeyCode> pressed = (player== 1 ? Controller.getPressedListSkillP1() : Controller.getPressedListSkillP2());
+		ArrayList<KeyCode> key = (player == 1 ? Controller.getKeyP1() : Controller.getKeyP2());
+		if(pressed.size() >= 2) {
+			if(pressed.get(0)==key.get(5) && pressed.get(1)==key.get(4)) {
+				System.out.println("Tier 1 skill");
+				Controller.removePressed(player, "SKILL", 2);
+				return;
+			}
+		}
+		if(pressed.size() >= 1) {
+			System.out.println();
+			Controller.removePressed(player, "SKILL", 1);}
 	}
 
-	private void updateskillP2() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void update() {

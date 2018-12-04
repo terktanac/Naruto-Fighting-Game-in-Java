@@ -93,7 +93,7 @@ public class Controller implements Runnable{
 			@Override
 			public void handle(long now) {
 				scene.update();
-				if(scene == Main.getGamescreen() && now-inGameLastTime > 500000000) {Main.getGamescreen().updateArrays();inGameLastTime=now;}
+				if(scene == Main.getGamescreen() && now-inGameLastTime > 350000000) {Main.getGamescreen().updateArrays();inGameLastTime=now;}
 				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);
 					lastTime = now;
@@ -196,10 +196,16 @@ public class Controller implements Runnable{
 		if(result) {getPressedListSkillP2().remove(0);}
 		return result;
 	}
-	public static void removePressedMove(int player,int amount) {
+	public static void removePressed(int player,String type,int amount) {
 		for(int i=0 ;i<amount ; i++) {
-			if(player == 1) {pressedListMoveP1.remove(0);}
-			else if(player == 2) {pressedListMoveP2.remove(0);}
+			if(player == 1) {
+				if(type == "MOVE") {pressedListMoveP1.remove(0);}
+				else if(type == "SKILL") {pressedListSkillP1.remove(0);}
+			}
+			else if(player == 2) {
+				if(type == "MOVE") {pressedListMoveP2.remove(0);}
+				else if(type == "SKILL") {pressedListSkillP2.remove(0);}
+			}
 		}
 	}
 }
