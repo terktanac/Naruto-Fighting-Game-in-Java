@@ -185,19 +185,24 @@ public class GameScreen extends myScene{
 	}
 	
 	public void rangePressed_1() {
+		//System.out.println(player1.getTranslateX());
 		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
-			shurikens1.add(new Shuriken(player1.getOffSetX(), player1.getOffSetY()));
+			shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
 			root.getChildren().add(shurikens1.get(shurikens1.size()-1));
+			shurikens1.get(shurikens1.size()-1).animation.play();
+			//System.out.println(shurikens1.get(shurikens1.size()-1).getTranslateX()+"<<<<<<");
 			player1.range();
 		}
 		player1.doRange();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
-				shurikens1.get(i).animation.play();
-				if(player1.isRight() && shurikens1.get(i).getTranslateX() <= 1280)
+				System.out.println(shurikens1.get(i).getTranslateX());
+				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
 					shurikens1.get(i).moveX(player1.getX_speed());
-				else if(player1.isRight() && shurikens1.get(i).getTranslateX() >= 0)
+				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
 					shurikens1.get(i).moveX(-player1.getX_speed());
+				else
+					shurikens1.remove(i);
 			}
 		}
 	}
@@ -306,30 +311,33 @@ public class GameScreen extends myScene{
 
 	}
 	
-	public class Shuriken extends ImageView {
-		private int posX;
-		private int posY;
+	public class Shuriken extends Pane {
+		
 		private int offSetX = 70;
 		private int offSetY = 50;
 		private int width = 70;
 		private int height = 50;
 		private int count = 2;
+		private boolean direction;
 		private ImageView imageview ;
 		private CharacterAnimation animation ;
 		
-		public Shuriken(int posX, int posY) {
+		public Shuriken(double posx, double posy, boolean direction) {
 			super();
+			this.direction = direction;
 			imageview = new ImageView("sys/weapons.png");
-			imageview.setTranslateX(posX);
-			imageview.setTranslateY(posY);
+			this.setTranslateX(posx);
+			this.setTranslateY(posy);
 			animation = (new CharacterAnimation(imageview, Duration.millis(300), count, 0, offSetX, offSetY, width, height));
+			imageview.setFitHeight(70);
+			imageview.setFitWidth(50);
+			getChildren().addAll(imageview);
 		}
 
 		public void moveX(double d) {
-			boolean right = d>0 ? true:false;
 			for(int i=0;i<Math.abs(d);i++) {
-				if(right)setTranslateX(getTranslateX()+3);
-				else setTranslateX(getTranslateX()-3);
+				if(direction)setTranslateX(getTranslateX()+2);
+				else setTranslateX(getTranslateX()-2);
 			}
 		}
 	}
