@@ -10,6 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
@@ -90,17 +91,16 @@ public class MainMenuScreen extends myScene {
 	}
 
 	private void back() {
-		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1)) {
+		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1) || Controller.getOtherKeys().contains(KeyCode.ESCAPE) || Controller.getOtherKeys().contains(KeyCode.BACK_SPACE)) {
 			Main.ChangeScene((Scene)Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getIntro());})
 					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
 			load.play();
-			
 		}
 	}
 
 	private void select() {
-		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0)) {
+		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0) || Controller.getOtherKeys().contains(KeyCode.ENTER) || Controller.getOtherKeys().contains(KeyCode.SPACE)) {
 			chooseMenu();
 		}
 	}

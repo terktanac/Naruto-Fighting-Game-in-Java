@@ -86,6 +86,7 @@ public class Controller implements Runnable{
 			
 			@Override
 			public void handle(long now) {
+				if(scene == Main.getGamescreen()) {Main.getGamescreen().updateArrays();}
 				scene.update();
 				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);
@@ -105,6 +106,11 @@ public class Controller implements Runnable{
 
 	public void setScene(myScene scene) {
 		this.scene = scene;
+		if(!otherKeys.isEmpty())otherKeys.clear();
+		if(!pressedListMoveP1.isEmpty())pressedListMoveP1.clear();
+		if(!pressedListMoveP2.isEmpty())pressedListMoveP2.clear();
+		if(!pressedListSkillP1.isEmpty())pressedListSkillP1.clear();
+		if(!pressedListSkillP2.isEmpty())pressedListSkillP2.clear();
 	}
 
 
@@ -152,6 +158,11 @@ public class Controller implements Runnable{
 	public static ArrayList<KeyCode> getPressedListSkillP2() {
 		return pressedListSkillP2;
 	}
+	
+	public static ArrayList<KeyCode> getOtherKeys() {
+		return otherKeys;
+	}
+
 	public static boolean getKeyMove_P1(int index) {
 		boolean result  = getPressedListMoveP1().contains(Controller.getKeyP1().get(index)) ;
 		if(result) {getPressedListMoveP1().remove(0);}

@@ -51,6 +51,9 @@ public class GameScreen extends myScene{
 			}
 		}
 	}
+	public void updateArrays() {
+		
+	}
 	@Override
 	public void update() {
 		upPressed();
