@@ -3,10 +3,13 @@ package main;
 
 import characters.WindCharacter_1;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -96,6 +99,13 @@ public class GameScreen extends myScene{
 		
 	}
 
+	public class HealthBar extends HBox{
 
+		public HealthBar(Node... children) {
+			super(children);
+			// TODO Auto-generated constructor stub
+		}
+		
+	}
 
 }
