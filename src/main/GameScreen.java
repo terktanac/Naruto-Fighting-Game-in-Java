@@ -133,25 +133,7 @@ public class GameScreen extends myScene{
 			player1.jump();
 			System.out.println("UPPressed");
 		}
-		if(player1.isJump()) {
-			if(player1.getTranslateY() > 100) {
-				player1.setTranslateY(player1.getTranslateY()-3);
-				player1.getImageview().setViewport(new Rectangle2D(444, 333, player1.get_Width() - 15, player1.get_Height() - 1.3));
-			}
-			else
-				player1.setJump(false);
-		}
-		else if(player1.isAir()) {
-			if(player1.getTranslateY() < 300) {
-				player1.setTranslateY(player1.getTranslateY()+3);
-				player1.getImageview().setViewport(new Rectangle2D(555, 333, player1.get_Width() - 15, player1.get_Height() - 1.3));
-			}
-			else {
-				player1.setAir(false);
-				player1.setMove(false);
-				//player1.stand();
-			}
-		}
+		player1.doJump();
 	}
 
 	
@@ -162,7 +144,6 @@ public class GameScreen extends myScene{
 		}
 		else if(player1.isCrouch()) {
 			player1.setCrouch(false);
-			//player1.stand();
 		}
 	}
 	
@@ -173,7 +154,6 @@ public class GameScreen extends myScene{
 		}
 		else if(player1.isMove()) {
 			player1.setMove(false);
-			//player1.stand();
 		}
 	}
 
@@ -184,7 +164,6 @@ public class GameScreen extends myScene{
 		}
 		else if(player1.isMove()) {
 			player1.setMove(false);
-			//player1.stand();
 		}
 	}
 
@@ -192,26 +171,7 @@ public class GameScreen extends myScene{
 		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(4)))) {
 			player1.melee();
 		}
-		if(player1.isAttacking()) {
-			if(player1.getDelay() >= 70) {
-				player1.getImageview().setViewport(new Rectangle2D(555, 555, player1.get_Width() - 15, player1.get_Height() - 1.3));
-				player1.setDelay(player1.getDelay()-1);
-			}
-			else if(player1.getDelay() >= 50) {
-				player1.getImageview().setViewport(new Rectangle2D(666, 555, player1.get_Width() - 15, player1.get_Height() - 1.3));
-				player1.setDelay(player1.getDelay()-1);
-			}
-			else if(player1.getDelay() >= 0) {
-				player1.getImageview().setViewport(new Rectangle2D(777, 555, player1.get_Width() - 15, player1.get_Height() - 1.3));
-				player1.setDelay(player1.getDelay()-1);
-			}
-			else {
-				player1.setAttacking(false);
-				player1.setDelay(100);
-			}
-			
-		}
-		
+		player1.doMelee();
 	}
 	
 	public void nonePressed_1() {
@@ -220,7 +180,6 @@ public class GameScreen extends myScene{
 		if(!pressed.containsValue(true)) {
 			player1.stand();
 		}
-		
 	}
 	
 	public void upPressed_2() {
@@ -228,25 +187,7 @@ public class GameScreen extends myScene{
 			player2.jump();
 			System.out.println("UPPressed");
 		}
-		if(player2.isJump()) {
-			if(player2.getTranslateY() > 100) {
-				player2.setTranslateY(player2.getTranslateY()-3);
-				player2.getImageview().setViewport(new Rectangle2D(444, 333, player2.get_Width() - 15, player2.get_Height() - 1.3));
-			}
-			else
-				player2.setJump(false);
-		}
-		else if(player2.isAir()) {
-			if(player2.getTranslateY() < 300) {
-				player2.setTranslateY(player2.getTranslateY()+3);
-				player2.getImageview().setViewport(new Rectangle2D(555, 333, player2.get_Width() - 15, player2.get_Height() - 1.3));
-			}
-			else {
-				player2.setAir(false);
-				player2.setMove(false);
-				//player2.stand();
-			}
-		}
+		player2.doJump();
 	}
 	
 	public void downPressed_2() {
@@ -256,7 +197,6 @@ public class GameScreen extends myScene{
 		}
 		else if(player2.isCrouch()) {
 			player2.setCrouch(false);
-			//player2.stand();
 		}
 	}
 	
@@ -267,7 +207,6 @@ public class GameScreen extends myScene{
 		}
 		else if(player2.isMove()) {
 			player2.setMove(false);
-			//player2.stand();
 		}
 	}
 
@@ -278,7 +217,6 @@ public class GameScreen extends myScene{
 		}
 		else if(player2.isMove()) {
 			player2.setMove(false);
-			//player2.stand();
 		}
 	}
 	
@@ -286,46 +224,15 @@ public class GameScreen extends myScene{
 		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(4)))) {
 			player2.melee();
 		}
-		if(player2.isAttacking()) {
-			if(player2.getDelay() >= 70) {
-				player2.getImageview().setViewport(new Rectangle2D(555, 555, player2.get_Width() - 15, player2.get_Height() - 1.3));
-				player2.setDelay(player2.getDelay()-1);
-			}
-			else if(player2.getDelay() >= 50) {
-				player2.getImageview().setViewport(new Rectangle2D(666, 555, player2.get_Width() - 15, player2.get_Height() - 1.3));
-				player2.setDelay(player2.getDelay()-1);
-			}
-			else if(player2.getDelay() >= 0) {
-				player2.getImageview().setViewport(new Rectangle2D(777, 555, player2.get_Width() - 15, player2.get_Height() - 1.3));
-				player2.setDelay(player2.getDelay()-1);
-			}
-			else {
-				player2.setAttacking(false);
-				player2.setDelay(100);
-			}
-			
-		}
-		
+		player2.doMelee();
 	}
 
-	/*public void nonePressed_2() {
-		if(Controller.getPressedListMoveP2().isEmpty() && Controller.getPressedListSkillP2().isEmpty()) {
-			player2.stand();
-			ArrayList<KeyCode> key = Controller.getKeyP2();
-			Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
-			if(!pressed.containsValue(true)) {
-				player2.stand();
-			}
-		
-		}	
-	}*/
 	public void nonePressed_2() {
 		ArrayList<KeyCode> key = Controller.getKeyP2();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
 		if(!pressed.containsValue(true)) {
 			player2.stand();
 		}
-		
 	}
 
 	public class HealthBar extends StackPane {

@@ -78,6 +78,29 @@ public class WindCharacter_1 extends Character{
 			return 0;
 	}
 	@Override
+	public int doJump() {
+		if(isJump()) {
+			if(getTranslateY() > 100) {
+				setTranslateY(getTranslateY()-3);
+				getImageview().setViewport(new Rectangle2D(444, 333, get_Width() - 15, get_Height() - 1.3));
+			}
+			else
+				setJump(false);
+		}
+		else if(isAir()) {
+			if(getTranslateY() < 300) {
+				setTranslateY(getTranslateY()+3);
+				getImageview().setViewport(new Rectangle2D(555, 333, get_Width() - 15, get_Height() - 1.3));
+			}
+			else {
+				setAir(false);
+				setMove(false);
+				//stand();
+			}
+		}
+		return 1;
+	}
+	@Override
 	public int melee() {
 		if(!isAttacked() && !isDead() && !isCrouch()) {
 			setAttacking(true);
@@ -85,7 +108,29 @@ public class WindCharacter_1 extends Character{
 			this.getAnimation().stop();
 			return 1;
 		}
-		return 0;
+		return 1;
+	}
+	@Override
+	public int doMelee() {
+		if(isAttacking()) {
+			if(getDelay() >= 70) {
+				getImageview().setViewport(new Rectangle2D(555, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 50) {
+				getImageview().setViewport(new Rectangle2D(666, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 0) {
+				getImageview().setViewport(new Rectangle2D(777, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else {
+				setAttacking(false);
+				setDelay(100);
+			}
+		}
+		return 1;
 	}
 	@Override
 	public int range() {
