@@ -80,6 +80,18 @@ public class PlainCharacter_1 extends Character{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int doJump() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int doMelee() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 }

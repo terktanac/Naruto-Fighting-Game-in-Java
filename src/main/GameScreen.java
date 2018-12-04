@@ -54,6 +54,9 @@ public class GameScreen extends myScene{
 		
 		player1.getAnimation().play();
 		player2.getAnimation().play();
+		
+		player1.stand();
+		player2.stand();
 	}
 
 	public static void setBackground(Image background) {
@@ -113,6 +116,7 @@ public class GameScreen extends myScene{
 		leftPressed_1();
 		rightPressed_1();
 		nonePressed_1();
+		meleePressed_1();
 	}
 	
 	public void update_2() {
@@ -121,6 +125,7 @@ public class GameScreen extends myScene{
 		leftPressed_2();
 		rightPressed_2();
 		nonePressed_2();
+		meleePressed_2();
 	}
 	
 	public void upPressed_1() {
@@ -128,24 +133,7 @@ public class GameScreen extends myScene{
 			player1.jump();
 			System.out.println("UPPressed");
 		}
-		if(player1.isJump()) {
-			if(player1.getTranslateY() > 100) {
-				player1.setTranslateY(player1.getTranslateY()-3);
-				player1.getImageview().setViewport(new Rectangle2D(444, 333, player1.get_Width() - 15, player1.get_Height() - 1.3));
-			}
-			else
-				player1.setJump(false);
-		}
-		else if(player1.isAir()) {
-			if(player1.getTranslateY() < 300) {
-				player1.setTranslateY(player1.getTranslateY()+3);
-				player1.getImageview().setViewport(new Rectangle2D(555, 333, player1.get_Width() - 15, player1.get_Height() - 1.3));
-			}
-			else {
-				player1.setAir(false);
-				//player1.stand();
-			}
-		}
+		player1.doJump();
 	}
 
 	
@@ -154,9 +142,8 @@ public class GameScreen extends myScene{
 			player1.crouch();
 			System.out.println("DOWNPressed");
 		}
-		else {
+		else if(player1.isCrouch()) {
 			player1.setCrouch(false);
-			//player1.stand();
 		}
 	}
 	
@@ -165,6 +152,9 @@ public class GameScreen extends myScene{
 			player1.walk_left();
 			System.out.println("LeftPressed");
 		}
+		else if(player1.isMove()) {
+			player1.setMove(false);
+		}
 	}
 
 	public void rightPressed_1() {
@@ -172,18 +162,24 @@ public class GameScreen extends myScene{
 			player1.walk_right();
 			System.out.println("RightPressed");
 		}
-		else {
-			//player1.stand();
+		else if(player1.isMove()) {
+			player1.setMove(false);
 		}
 	}
 
+	public void meleePressed_1() {
+		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(4)))) {
+			player1.melee();
+		}
+		player1.doMelee();
+	}
+	
 	public void nonePressed_1() {
 		ArrayList<KeyCode> key = Controller.getKeyP1();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if(!pressed.containsValue(true)) {
 			player1.stand();
 		}
-		
 	}
 	
 	public void upPressed_2() {
@@ -191,24 +187,7 @@ public class GameScreen extends myScene{
 			player2.jump();
 			System.out.println("UPPressed");
 		}
-		if(player2.isJump()) {
-			if(player2.getTranslateY() > 100) {
-				player2.setTranslateY(player2.getTranslateY()-3);
-				player2.getImageview().setViewport(new Rectangle2D(444, 333, player2.get_Width() - 15, player2.get_Height() - 1.3));
-			}
-			else
-				player2.setJump(false);
-		}
-		else if(player2.isAir()) {
-			if(player2.getTranslateY() < 300) {
-				player2.setTranslateY(player2.getTranslateY()+3);
-				player2.getImageview().setViewport(new Rectangle2D(555, 333, player2.get_Width() - 15, player2.get_Height() - 1.3));
-			}
-			else {
-				player2.setAir(false);
-				//player2.stand();
-			}
-		}
+		player2.doJump();
 	}
 	
 	public void downPressed_2() {
@@ -216,9 +195,8 @@ public class GameScreen extends myScene{
 			player2.crouch();
 			System.out.println("DOWNPressed");
 		}
-		else {
+		else if(player2.isCrouch()) {
 			player2.setCrouch(false);
-			//player2.stand();
 		}
 	}
 	
@@ -227,6 +205,9 @@ public class GameScreen extends myScene{
 			player2.walk_left();
 			System.out.println("LeftPressed");
 		}
+		else if(player2.isMove()) {
+			player2.setMove(false);
+		}
 	}
 
 	public void rightPressed_2() {
@@ -234,9 +215,16 @@ public class GameScreen extends myScene{
 			player2.walk_right();
 			System.out.println("RightPressed");
 		}
-		else {
-			//player2.stand();
+		else if(player2.isMove()) {
+			player2.setMove(false);
 		}
+	}
+	
+	public void meleePressed_2() {
+		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(4)))) {
+			player2.melee();
+		}
+		player2.doMelee();
 	}
 
 	public void nonePressed_2() {
@@ -245,10 +233,9 @@ public class GameScreen extends myScene{
 		if(!pressed.containsValue(true)) {
 			player2.stand();
 		}
-		
 	}
 
-	public class HealthBar extends StackPane{
+	public class HealthBar extends StackPane {
 		private int width ;
 		private int height ;
 		private ImageView healthbarPlain = new ImageView("icon/healthbar.png");

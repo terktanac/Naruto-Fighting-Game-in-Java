@@ -10,18 +10,21 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public abstract class Character extends Pane implements Fightable, Moveable, Skillable{
-	String name;
+	private String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private int health; // standard:100
 	private int atk; // standard:10
 	private int def; // standard:5
+	private int delay = 100;
 	private int melee_round = 0;
 	private boolean isDead = false;//true = Dead = EndGame
 	private boolean isAir = false; //knock up or jump
 	private boolean isJump = false;
 	private boolean isCrouch = false;
+	private boolean isMove = false;
 	private double isFall = 0; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked = false; //if true user can't move for 0.1 s(or less)
+	private boolean isAttacking = false;
 	private double standTime ;//Time period that a character need for stand avg=1 s
 	private static double x_speed = 2;
 	private static double y_speed = 2;
@@ -71,12 +74,6 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 			else this.setTranslateY(this.getTranslateY()-1);
 		}
 	}
-	public int getState() {
-		return state;
-	}
-	public void setState(int state) {
-		this.state = state;
-	}
 	public String getName() {
 		return name;
 	}
@@ -107,44 +104,35 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setDef(int def) {
 		this.def = def;
 	}
+	public int getDelay() {
+		return delay;
+	}
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
+	public int getMelee_round() {
+		return melee_round;
+	}
+	public void setMelee_round(int melee_round) {
+		this.melee_round = melee_round;
+	}
 	public boolean isDead() {
 		return isDead;
 	}
 	public void setDead(boolean isDead) {
 		this.isDead = isDead;
 	}
-	public static double getX_speed() {
-		return x_speed;
-	}
-	public static double getY_speed() {
-		return y_speed;
-	}
-	public boolean isJump() {
-		return isJump;
-	}
-	public boolean isRight() {
-		return isRight;
-	}
-	public void setRight(boolean isRight) {
-		this.isRight = isRight;
-	}
-	public ImageView getImageview() {
-		return imageview;
-	}
-	public void setImageview(ImageView imageview) {
-		this.imageview = imageview;
-	}
-	public CharacterAnimation getAnimation() {
-		return animation;
-	}
-	public void setAnimation(CharacterAnimation animation) {
-		this.animation = animation;
-	}
 	public boolean isAir() {
 		return isAir;
 	}
 	public void setAir(boolean isAir) {
 		this.isAir = isAir;
+	}
+	public boolean isJump() {
+		return isJump;
+	}
+	public void setJump(boolean isJump) {
+		this.isJump = isJump;
 	}
 	public boolean isCrouch() {
 		return isCrouch;
@@ -164,11 +152,41 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setAttacked(boolean isAttacked) {
 		this.isAttacked = isAttacked;
 	}
+	public boolean isAttacking() {
+		return isAttacking;
+	}
+	public void setAttacking(boolean isAttacking) {
+		this.isAttacking = isAttacking;
+	}
+	public boolean isMove() {
+		return isMove;
+	}
+	public void setMove(boolean isMove) {
+		this.isMove = isMove;
+	}
 	public double getStandTime() {
 		return standTime;
 	}
 	public void setStandTime(double standTime) {
 		this.standTime = standTime;
+	}
+	public static double getX_speed() {
+		return x_speed;
+	}
+	public static void setX_speed(double x_speed) {
+		Character.x_speed = x_speed;
+	}
+	public static double getY_speed() {
+		return y_speed;
+	}
+	public static void setY_speed(double y_speed) {
+		Character.y_speed = y_speed;
+	}
+	public ImageView getImageview() {
+		return imageview;
+	}
+	public void setImageview(ImageView imageview) {
+		this.imageview = imageview;
 	}
 	public int getCount() {
 		return count;
@@ -206,15 +224,25 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	public void setJump(boolean isJump) {
-		this.isJump = isJump;
+	public int getState() {
+		return state;
 	}
-	public static void setX_speed(double x_speed) {
-		Character.x_speed = x_speed;
+	public void setState(int state) {
+		this.state = state;
 	}
-	public static void setY_speed(double y_speed) {
-		Character.y_speed = y_speed;
+	public boolean isRight() {
+		return isRight;
 	}
+	public void setRight(boolean isRight) {
+		this.isRight = isRight;
+	}
+	public CharacterAnimation getAnimation() {
+		return animation;
+	}
+	public void setAnimation(CharacterAnimation animation) {
+		this.animation = animation;
+	}
+	
 	
 
 }

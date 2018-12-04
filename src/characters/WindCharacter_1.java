@@ -17,6 +17,7 @@ public class WindCharacter_1 extends Character{
 	@Override
 	public int walk_right() {
 		if(!isAttacked() && !isDead() && !isCrouch()) {
+			this.setMove(true);
 			if(this.isRight() != true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(0);
@@ -29,11 +30,14 @@ public class WindCharacter_1 extends Character{
 			
 			return 1;
 		}
-		else
+		else {
+			this.setMove(false);
 			return 0;
+		}
 	}
 	@Override
 	public int walk_left() {
+		this.setMove(true);
 		if(!isAttacked() && !isDead() && !isCrouch()) {
 			if(this.isRight() == true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
@@ -46,12 +50,14 @@ public class WindCharacter_1 extends Character{
 			this.moveX(-characters.Character.getX_speed());
 			return 1;
 		}
-		else
+		else {
+			this.setMove(false);
 			return 0;
+		}
 	}
 	@Override
 	public int crouch() {
-		if(!isAir() && !isAttacked() && !isJump() && !isDead()) {
+		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isMove()) {
 			setCrouch(true);
 			this.getImageview().setViewport(new Rectangle2D(333, 333, get_Width() - 15, get_Height() - 1.3));
 			return 1;
@@ -62,7 +68,7 @@ public class WindCharacter_1 extends Character{
 	@Override
 	public int jump() {
 		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch()) {
-			
+			setMove(true);
 			setJump(true);
 			setAir(true);
 			this.getAnimation().stop();
@@ -72,9 +78,59 @@ public class WindCharacter_1 extends Character{
 			return 0;
 	}
 	@Override
+	public int doJump() {
+		if(isJump()) {
+			if(getTranslateY() > 100) {
+				setTranslateY(getTranslateY()-3);
+				getImageview().setViewport(new Rectangle2D(444, 333, get_Width() - 15, get_Height() - 1.3));
+			}
+			else
+				setJump(false);
+		}
+		else if(isAir()) {
+			if(getTranslateY() < 300) {
+				setTranslateY(getTranslateY()+3);
+				getImageview().setViewport(new Rectangle2D(555, 333, get_Width() - 15, get_Height() - 1.3));
+			}
+			else {
+				setAir(false);
+				setMove(false);
+				//stand();
+			}
+		}
+		return 1;
+	}
+	@Override
 	public int melee() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(!isAttacked() && !isDead() && !isCrouch()) {
+			setAttacking(true);
+			setMove(true);
+			this.getAnimation().stop();
+			return 1;
+		}
+		return 1;
+	}
+	@Override
+	public int doMelee() {
+		if(isAttacking()) {
+			if(getDelay() >= 70) {
+				getImageview().setViewport(new Rectangle2D(555, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 50) {
+				getImageview().setViewport(new Rectangle2D(666, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 0) {
+				getImageview().setViewport(new Rectangle2D(777, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+			}
+			else {
+				setAttacking(false);
+				setDelay(100);
+			}
+		}
+		return 1;
 	}
 	@Override
 	public int range() {
