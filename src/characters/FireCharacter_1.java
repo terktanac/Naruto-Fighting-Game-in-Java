@@ -81,18 +81,8 @@ public class FireCharacter_1 extends Character{
 		else
 			return 0;
 	}
-
-	@Override
-	public int melee() {
-		if(!isAttacked() && !isDead() && !isCrouch()) {
-			setMelee(true);
-			setMove(true);
-			this.getAnimation().stop();
-			return 1;
-		}
-		return 0;
-	}
-	@Override
+	
+@Override
 	public int doJump() {
 		if(isJump()) {
 			if(getTranslateY() > 100) {
@@ -115,7 +105,18 @@ public class FireCharacter_1 extends Character{
 		}
 		return 1;
 	}
-
+	
+	@Override
+	public int melee() {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isRange()) {
+			setMelee(true);
+			setMove(true);
+			this.getAnimation().stop();
+			return 1;
+		}
+		return 0;
+	}
+	
 	@Override
 	public int doMelee() {
 		if(isMelee()) {
@@ -149,7 +150,7 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int range() {
-		if(!isAttacked() && !isDead() && !isCrouch()) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee()) {
 			setRange(true);
 			setMove(true);
 			this.getAnimation().stop();

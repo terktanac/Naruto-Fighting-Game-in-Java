@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
+import org.omg.CosNaming.IstringHelper;
+
+import characters.CharacterAnimation;
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.geometry.Rectangle2D;
@@ -26,6 +29,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
@@ -33,6 +37,8 @@ public class GameScreen extends myScene{
 	private FireCharacter_1 player2 = new FireCharacter_1();
 	private HealthBar healthbarP1 = new HealthBar(300, 50, new ImageView());
 	private HealthBar healthbarP2 = new HealthBar(300, 50, new ImageView());
+	private ArrayList<Shuriken> shurikens1 = new ArrayList<Shuriken>();
+	private ArrayList<Shuriken> shurikens2 = new ArrayList<Shuriken>();
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
@@ -49,8 +55,10 @@ public class GameScreen extends myScene{
 		
 		player2.getImageview().setRotationAxis(Rotate.Y_AXIS);
 		player2.getImageview().setRotate(180);
+		player2.setRight(false);
 		
 		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2);
+		root.getChildren().addAll(shurikens1);
 		
 		player1.getAnimation().play();
 		player2.getAnimation().play();
@@ -178,9 +186,20 @@ public class GameScreen extends myScene{
 	
 	public void rangePressed_1() {
 		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
+			shurikens1.add(new Shuriken(player1.getOffSetX(), player1.getOffSetY()));
+			root.getChildren().add(shurikens1.get(shurikens1.size()-1));
 			player1.range();
 		}
 		player1.doRange();
+		if(!shurikens1.isEmpty()) {
+			for(int i = 0; i < shurikens1.size(); i++) {
+				shurikens1.get(i).animation.play();
+				if(player1.isRight() && shurikens1.get(i).getTranslateX() <= 1280)
+					shurikens1.get(i).moveX(player1.getX_speed());
+				else if(player1.isRight() && shurikens1.get(i).getTranslateX() >= 0)
+					shurikens1.get(i).moveX(-player1.getX_speed());
+			}
+		}
 	}
 	
 	public void nonePressed_1() {
@@ -285,6 +304,34 @@ public class GameScreen extends myScene{
 			return curDIVmax *100;
 		}
 
+	}
+	
+	public class Shuriken extends ImageView {
+		private int posX;
+		private int posY;
+		private int offSetX = 70;
+		private int offSetY = 50;
+		private int width = 70;
+		private int height = 50;
+		private int count = 2;
+		private ImageView imageview ;
+		private CharacterAnimation animation ;
+		
+		public Shuriken(int posX, int posY) {
+			super();
+			imageview = new ImageView("sys/weapons.png");
+			imageview.setTranslateX(posX);
+			imageview.setTranslateY(posY);
+			animation = (new CharacterAnimation(imageview, Duration.millis(300), count, 0, offSetX, offSetY, width, height));
+		}
+
+		public void moveX(double d) {
+			boolean right = d>0 ? true:false;
+			for(int i=0;i<Math.abs(d);i++) {
+				if(right)setTranslateX(getTranslateX()+3);
+				else setTranslateX(getTranslateX()-3);
+			}
+		}
 	}
 
 }

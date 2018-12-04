@@ -11,7 +11,7 @@ public class WindCharacter_1 extends Character{
 	private static Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString(),1110, 2220, false, false);
 	public WindCharacter_1() {
 		super("Naruto", 4, 100, 8, 2,0.6, new ImageView(image));
-		setOffSetY(111);
+		setOffSetY(0);
 		setAnimation(new CharacterAnimation(this.getImageview(), Duration.millis(300), getCount(), getCol(), getOffSetX(), getOffSetY(), get_Width(), get_Height()));
 	}
 	@Override
@@ -102,7 +102,7 @@ public class WindCharacter_1 extends Character{
 	}
 	@Override
 	public int melee() {
-		if(!isAttacked() && !isDead() && !isCrouch()) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isRange()) {
 			setMelee(true);
 			setMove(true);
 			this.getAnimation().stop();
@@ -121,7 +121,7 @@ public class WindCharacter_1 extends Character{
 				getImageview().setViewport(new Rectangle2D(666, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
-			else if(getDelay() >= 0) {
+			else if(getDelay() >= 30) {
 				getImageview().setViewport(new Rectangle2D(777, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
@@ -135,7 +135,7 @@ public class WindCharacter_1 extends Character{
 	
 	@Override
 	public int range() {
-		if(!isAttacked() && !isDead() && !isCrouch()) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee()) {
 			setRange(true);
 			setMove(true);
 			this.getAnimation().stop();
