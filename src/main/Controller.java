@@ -83,10 +83,10 @@ public class Controller implements Runnable{
 			@Override
 			public void handle(long now) {
 				scene.update();
-
-				if(now - lastTime > 1000000000) {
+				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);
 					lastTime = now;
+
 				}
 			}
 		};

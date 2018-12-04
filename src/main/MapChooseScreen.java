@@ -175,6 +175,8 @@ public class MapChooseScreen extends myScene {
 			load.play();
 			setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
 			GameScreen.setBackground(chooseBackground);
+			Main.getPlayer().setScene(Main.getGamescreen());
+			Main.getPlayer().run();
 		}
 	}
 	public void back() {

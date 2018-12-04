@@ -243,17 +243,11 @@ public class OptionScreen extends myScene{
 		OldChoice_2 = NewChoice_2;
 	}
 	public void changeKeyCode(int player,int choice) {
-		setOnKeyPressed((KeyEvent event)->{
-			KeyCode key = event.getCode();
-			if(player == 1) {
-				Controller.getKeyP1().set(choice, key);
-				listoption1.get(choice).text.setText(textList.get(choice)+": "+Controller.getKeyP1().get(choice));
-				}
-			else {
-				Controller.getKeyP2().set(choice, key);
-				listoption2.get(choice).text.setText(textList.get(choice)+": "+Controller.getKeyP2().get(choice));
-				}
-		});
+		if(player==1) {
+			optionmenu_1.getChildren().get(OldChoice_1).setOnKeyPressed((KeyEvent event)->{
+				System.out.println(event);
+			});
+		}
 	}
 	private void moveUp_1() {
 		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P1(2)) {

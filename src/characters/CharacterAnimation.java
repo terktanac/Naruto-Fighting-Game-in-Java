@@ -39,7 +39,7 @@ public class CharacterAnimation extends Transition{
 		int index = (int) ((count*frac) % count);
 		int x = (index)*width+offSetX;
 		int y = offSetY;
-		System.out.println(frac+"<<<<<"+x+">>>>"+y);
+//		System.out.println(frac+"<<<<<"+x+">>>>"+y);
 		image.setViewport(new Rectangle2D(x, y, width - 15, height - 1.3));
 	}
 
