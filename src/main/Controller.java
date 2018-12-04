@@ -16,13 +16,14 @@ public class Controller implements Runnable{
 	private static ArrayList<KeyCode> pressedListSkillP1 = new ArrayList<KeyCode>();
 	private static ArrayList<KeyCode> pressedListMoveP2 = new ArrayList<KeyCode>();
 	private static ArrayList<KeyCode> pressedListSkillP2 = new ArrayList<KeyCode>();
+	private static ArrayList<KeyCode> otherKeys = new ArrayList<KeyCode>();
 	private static ArrayList<KeyCode> KeyP1 = new ArrayList<KeyCode>();
 	private static ArrayList<KeyCode> KeyP2 = new ArrayList<KeyCode>();
 	private AnimationTimer gameLoop ;
 	private long lastTime = -1;
+	private long otherCheckTime = -1 ;
+	private long inGameLastTime = -1 ;
 	
-	
-
 
 	public Controller(KeyCode upKey_1, KeyCode downKey_1, KeyCode leftKey_1, KeyCode rightKey_1
 					, KeyCode meleeKey_1,KeyCode rangeKey_1, KeyCode blockKey_1, KeyCode dodgeKey_1
@@ -67,6 +68,9 @@ public class Controller implements Runnable{
 				}
 				System.out.println(isPressedMap.get(key).toString()+" "+key);
 			}
+			else if(!isPressedMap.containsKey(key) && !otherKeys.contains(key)) {
+				otherKeys.add(key);
+			}
 		});
 		
 		scene.setOnKeyReleased((KeyEvent event)->{
@@ -86,7 +90,12 @@ public class Controller implements Runnable{
 				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);
 					lastTime = now;
-
+					System.out.println("=====================");
+					System.out.println(pressedListMoveP1);
+					System.out.println(pressedListMoveP2);
+					System.out.println(pressedListSkillP1);
+					System.out.println(pressedListSkillP2);
+					System.out.println(otherKeys);
 				}
 			}
 		};
