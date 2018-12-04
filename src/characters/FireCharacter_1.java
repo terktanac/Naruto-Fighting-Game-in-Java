@@ -18,8 +18,8 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int walk_right() {
-		if(!isAttacked() && !isDead() && !isCrouch()) {
-			this.setMove(true);
+		this.setMove(true);
+		if(!isAttacked() && !isDead() && !isCrouch()) {	
 			if(this.isRight() != true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(0);
@@ -40,8 +40,8 @@ public class FireCharacter_1 extends Character{
 	}
 	@Override
 	public int walk_left() {
-		if(!isAttacked() && !isDead() && !isCrouch()) {
-			this.setMove(true);
+		this.setMove(true);
+		if(!isAttacked() && !isDead() && !isCrouch()) {	
 			if(this.isRight() == true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(180);
@@ -84,10 +84,14 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int melee() {
-		// TODO Auto-generated method stub
+		if(!isAttacked() && !isDead() && !isCrouch()) {
+			setAttacking(true);
+			setMove(true);
+			this.getAnimation().stop();
+			return 1;
+		}
 		return 0;
 	}
-
 	@Override
 	public int range() {
 		// TODO Auto-generated method stub
