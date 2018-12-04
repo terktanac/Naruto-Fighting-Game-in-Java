@@ -129,6 +129,7 @@ public class WindCharacter_1 extends Character{
 				setMelee(false);
 				setDelay(100);
 			}
+			System.out.println(getDelay());
 		}
 		return 1;
 	}

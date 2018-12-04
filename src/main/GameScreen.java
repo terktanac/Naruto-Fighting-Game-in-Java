@@ -107,8 +107,17 @@ public class GameScreen extends myScene{
 			}
 		}
 		if(pressed.size() >= 1) {
-			System.out.println();
-			Controller.removePressed(player, "SKILL", 1);}
+			if(pressed.get(0) == key.get(4)) {
+				if(player == 1) {meleePressed_1();}
+				else if(player == 2) {meleePressed_2();}
+			}
+			else if(pressed.get(0) == key.get(5)) {
+				if(player == 1) {rangePressed_1();}
+				else if(player == 2) {rangePressed_2();}
+			}
+			if(player == 1) {Controller.getPressedListSkillP1().clear();}
+			else if(player == 2) {Controller.getPressedListSkillP2().clear();}
+		}
 	}
 
 
@@ -124,8 +133,9 @@ public class GameScreen extends myScene{
 		leftPressed_1();
 		rightPressed_1();
 		nonePressed_1();
-		meleePressed_1();
-		rangePressed_1();
+//		meleePressed_1();
+//		rangePressed_1();
+		renderAttack_1();
 	}
 	
 	public void update_2() {
@@ -178,33 +188,39 @@ public class GameScreen extends myScene{
 	}
 
 	public void meleePressed_1() {
-		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(4)))) {
-			player1.melee();
-		}
-		player1.doMelee();
+//		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(4)))) {
+//			player1.melee();
+//		}
+//		player1.doMelee();
+		player1.melee();
 	}
 	
 	public void rangePressed_1() {
 		//System.out.println(player1.getTranslateX());
-		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
-			shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
-			root.getChildren().add(shurikens1.get(shurikens1.size()-1));
-			shurikens1.get(shurikens1.size()-1).animation.play();
-			//System.out.println(shurikens1.get(shurikens1.size()-1).getTranslateX()+"<<<<<<");
-			player1.range();
-		}
-		player1.doRange();
-		if(!shurikens1.isEmpty()) {
-			for(int i = 0; i < shurikens1.size(); i++) {
-				System.out.println(shurikens1.get(i).getTranslateX());
-				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
-					shurikens1.get(i).moveX(player1.getX_speed());
-				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
-					shurikens1.get(i).moveX(-player1.getX_speed());
-				else
-					shurikens1.remove(i);
-			}
-		}
+//		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
+//			shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
+//			root.getChildren().add(shurikens1.get(shurikens1.size()-1));
+//			shurikens1.get(shurikens1.size()-1).animation.play();
+//			//System.out.println(shurikens1.get(shurikens1.size()-1).getTranslateX()+"<<<<<<");
+//			player1.range();
+//		}
+//		player1.doRange();
+//		if(!shurikens1.isEmpty()) {
+//			for(int i = 0; i < shurikens1.size(); i++) {
+//				System.out.println(shurikens1.get(i).getTranslateX());
+//				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
+//					shurikens1.get(i).moveX(player1.getX_speed());
+//				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
+//					shurikens1.get(i).moveX(-player1.getX_speed());
+//				else
+//					shurikens1.remove(i);
+//			}
+//		}
+		shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
+		root.getChildren().add(shurikens1.get(shurikens1.size()-1));
+		shurikens1.get(shurikens1.size()-1).animation.play();
+		player1.range();
+
 	}
 	
 	public void nonePressed_1() {
@@ -212,6 +228,20 @@ public class GameScreen extends myScene{
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if(!pressed.containsValue(true)) {
 			player1.stand();
+		}
+	}
+	public void renderAttack_1() {
+		player1.doRange();
+		player1.doMelee();
+		if(!shurikens1.isEmpty()) {
+			for(int i = 0; i < shurikens1.size(); i++) {
+				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
+					shurikens1.get(i).moveX(player1.getX_speed());
+				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
+					shurikens1.get(i).moveX(-player1.getX_speed());
+				else
+					shurikens1.remove(i);
+			}
 		}
 	}
 	
