@@ -34,6 +34,9 @@ public class GameScreen extends myScene{
 		
 		player1.getAnimation().play();
 		player2.getAnimation().play();
+		
+		player1.stand();
+		player2.stand();
 	}
 
 	public static void setBackground(Image background) {
@@ -58,6 +61,8 @@ public class GameScreen extends myScene{
 		leftPressed_1();
 		rightPressed_1();
 		nonePressed_1();
+		meleePressed_1();
+		System.out.println(Controller.getIsPressedMap().get((Controller.getKeyP1().get(4))));
 	}
 	
 	public void update_2() {
@@ -88,6 +93,7 @@ public class GameScreen extends myScene{
 			}
 			else {
 				player1.setAir(false);
+				player1.setMove(false);
 				//player1.stand();
 			}
 		}
@@ -99,7 +105,7 @@ public class GameScreen extends myScene{
 			player1.crouch();
 			System.out.println("DOWNPressed");
 		}
-		else {
+		else if(player1.isCrouch()) {
 			player1.setCrouch(false);
 			//player1.stand();
 		}
@@ -110,6 +116,10 @@ public class GameScreen extends myScene{
 			player1.walk_left();
 			System.out.println("LeftPressed");
 		}
+		else if(player1.isMove()) {
+			player1.setMove(false);
+			//player1.stand();
+		}
 	}
 
 	public void rightPressed_1() {
@@ -117,11 +127,38 @@ public class GameScreen extends myScene{
 			player1.walk_right();
 			System.out.println("RightPressed");
 		}
-		else {
+		else if(player1.isMove()) {
+			player1.setMove(false);
 			//player1.stand();
 		}
 	}
 
+	public void meleePressed_1() {
+		if(Controller.getIsPressedMap().get((Controller.getKeyP1().get(4)))) {
+			player1.melee();
+		}
+		if(player1.isAttacking()) {
+			if(player1.getDelay() >= 70) {
+				player1.getImageview().setViewport(new Rectangle2D(555, 555, player1.get_Width() - 15, player1.get_Height() - 1.3));
+				player1.setDelay(player1.getDelay()-1);
+			}
+			else if(player1.getDelay() >= 50) {
+				player1.getImageview().setViewport(new Rectangle2D(666, 555, player1.get_Width() - 15, player1.get_Height() - 1.3));
+				player1.setDelay(player1.getDelay()-1);
+			}
+			else if(player1.getDelay() >= 0) {
+				player1.getImageview().setViewport(new Rectangle2D(777, 555, player1.get_Width() - 15, player1.get_Height() - 1.3));
+				player1.setDelay(player1.getDelay()-1);
+			}
+			else {
+				player1.setAttacking(false);
+				player1.setDelay(100);
+			}
+			
+		}
+		
+	}
+	
 	public void nonePressed_1() {
 		if(Controller.getPressedListMoveP1().isEmpty() && Controller.getPressedListSkillP1().isEmpty()) {
 			player1.stand();
@@ -149,6 +186,7 @@ public class GameScreen extends myScene{
 			}
 			else {
 				player2.setAir(false);
+				player2.setMove(false);
 				//player2.stand();
 			}
 		}
@@ -159,7 +197,7 @@ public class GameScreen extends myScene{
 			player2.crouch();
 			System.out.println("DOWNPressed");
 		}
-		else {
+		else if(player2.isCrouch()) {
 			player2.setCrouch(false);
 			//player2.stand();
 		}
@@ -170,6 +208,10 @@ public class GameScreen extends myScene{
 			player2.walk_left();
 			System.out.println("LeftPressed");
 		}
+		else if(player2.isMove()) {
+			player2.setMove(false);
+			//player2.stand();
+		}
 	}
 
 	public void rightPressed_2() {
@@ -177,14 +219,15 @@ public class GameScreen extends myScene{
 			player2.walk_right();
 			System.out.println("RightPressed");
 		}
-		else {
+		else if(player2.isMove()) {
+			player2.setMove(false);
 			//player2.stand();
 		}
 	}
 
 	public void nonePressed_2() {
 		if(Controller.getPressedListMoveP2().isEmpty() && Controller.getPressedListSkillP2().isEmpty()) {
-			//player2.stand();
+			player2.stand();
 		}
 		
 	}

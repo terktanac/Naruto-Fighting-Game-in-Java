@@ -19,6 +19,7 @@ public class FireCharacter_1 extends Character{
 	@Override
 	public int walk_right() {
 		if(!isAttacked() && !isDead() && !isCrouch()) {
+			this.setMove(true);
 			if(this.isRight() != true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(0);
@@ -32,12 +33,15 @@ public class FireCharacter_1 extends Character{
 			
 			return 1;
 		}
-		else
+		else {
+			this.setMove(false);
 			return 0;
+		}
 	}
 	@Override
 	public int walk_left() {
 		if(!isAttacked() && !isDead() && !isCrouch()) {
+			this.setMove(true);
 			if(this.isRight() == true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(180);
@@ -50,12 +54,14 @@ public class FireCharacter_1 extends Character{
 			this.moveX(-characters.Character.getX_speed());
 			return 1;
 		}
-		else
+		else {
+			this.setMove(false);
 			return 0;
+		}
 	}
 	@Override
 	public int crouch() {
-		if(!isAir() && !isAttacked() && !isJump() && !isDead()) {
+		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isMove()) {
 			setCrouch(true);
 			this.getImageview().setViewport(new Rectangle2D(333, 333, get_Width() - 15, get_Height() - 1.3));
 			return 1;
