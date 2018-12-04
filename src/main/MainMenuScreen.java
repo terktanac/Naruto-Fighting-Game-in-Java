@@ -1,6 +1,10 @@
 package main;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -136,7 +140,8 @@ public class MainMenuScreen extends myScene {
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
 			alert.setContentText("Coming Soon.");
-			alert.showAndWait();
+			alert.show();
+			Main.getPlayer().setScene(Main.getMainmenu());
 		}
 		else if(Oldchoice==1) {
 			Main.ChangeScene((Scene)Main.getLoadscreen());
@@ -156,14 +161,16 @@ public class MainMenuScreen extends myScene {
 			Main.getPlayer().run();
 		}
 		else if(Oldchoice==MenuBox.getChildren().size()-1) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Confirmation Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("Do you want to exit?");
-			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.OK){
-			    System.exit(1);
-			}
+//			Alert alert = new Alert(AlertType.CONFIRMATION);
+//			alert.setTitle("Confirmation Dialog");
+//			alert.setHeaderText(null);
+//			alert.setContentText("Do you want to exit?");
+//			Optional<ButtonType> result = alert.showAndWait();
+//			if (result.get() == ButtonType.OK){
+//			    System.exit(1);
+//			}
+			// didn't work but if you want we will make it from scratch
+			System.exit(1);
 		}
 		playChoose();
 	}
