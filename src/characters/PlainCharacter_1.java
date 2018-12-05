@@ -97,6 +97,8 @@ public class PlainCharacter_1 extends Character{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 	
 
 }

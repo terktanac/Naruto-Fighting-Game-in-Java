@@ -206,6 +206,7 @@ public class Controller implements Runnable{
 				if(type == "MOVE") {pressedListMoveP2.remove(0);}
 				else if(type == "SKILL") {pressedListSkillP2.remove(0);}
 			}
+			else if(type == "OTHER") {otherKeys.remove(0);}
 		}
 	}
 }

@@ -227,4 +227,5 @@ public class FireCharacter_1 extends Character{
 		return 0;
 	}
 
+
 }

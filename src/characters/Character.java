@@ -1,5 +1,6 @@
 package characters;
 
+import Interface.Collidable;
 import Interface.Fightable;
 import Interface.Moveable;
 import Interface.Skillable;
@@ -9,7 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-public abstract class Character extends Pane implements Fightable, Moveable, Skillable{
+public abstract class Character extends Pane implements Fightable, Moveable, Skillable,Collidable{
 	private String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private int health; // standard:100
@@ -75,6 +76,18 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 			else this.setTranslateY(this.getTranslateY()-1);
 		}
 	}
+	@Override
+	public Rectangle2D getBoundary() {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int takeDamage() {
+		return 0;
+		
+	}
+
 	public String getName() {
 		return name;
 	}

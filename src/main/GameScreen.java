@@ -2,26 +2,21 @@ package main;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
-import org.omg.CosNaming.IstringHelper;
-
-import characters.CharacterAnimation;
+import GameObject.Shuriken;
+import Interface.Collidable;
+import characters.Character;
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -29,7 +24,6 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
@@ -120,6 +114,7 @@ public class GameScreen extends myScene{
 	public void update() {
 		update_1();
 		update_2();
+		otherKeyPressed();
 	}
 	
 	public void update_1() {
@@ -185,13 +180,12 @@ public class GameScreen extends myScene{
 	public void rangePressed_1() {
 		shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
 		root.getChildren().add(shurikens1.get(shurikens1.size()-1));
-		shurikens1.get(shurikens1.size()-1).animation.play();
+		shurikens1.get(shurikens1.size()-1).getAnimation().play();
 		player1.range();
 
 	}
 	
 	public void nonePressed_1() {
-		ArrayList<KeyCode> key = Controller.getKeyP1();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if(!pressed.containsValue(true)) {
 			player1.stand();
@@ -203,10 +197,10 @@ public class GameScreen extends myScene{
 		player1.doMelee();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
-				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
-					shurikens1.get(i).moveX(player1.getX_speed());
-				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
-					shurikens1.get(i).moveX(-player1.getX_speed());
+				if(shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() <= 1280)
+					shurikens1.get(i).moveX(Character.getX_speed());
+				else if(!shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() >= -50)
+					shurikens1.get(i).moveX(-Character.getX_speed());
 				else
 					shurikens1.remove(i);
 			}
@@ -260,13 +254,26 @@ public class GameScreen extends myScene{
 	}
 	
 	public void nonePressed_2() {
-		ArrayList<KeyCode> key = Controller.getKeyP2();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
 		if(!pressed.containsValue(true)) {
 			player2.stand();
 		}
 	}
-	
+	public void otherKeyPressed() {
+		ArrayList<KeyCode> others = Controller.getOtherKeys();
+		if(others.size()>0) {
+			KeyCode key = others.get(0);
+			if(key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) {
+				//change to pause screen
+			}
+			Controller.removePressed(0, "OTHER", 1);
+		}
+	}
+	public void checkCollide(Collidable obj1,Collidable obj2) {
+		if(obj1.getBoundary().intersects(obj2.getBoundary())){
+			obj2.takeDamage();
+		}
+	}
 	public void doAnimation_2() {
 		player2.doRange();
 		player2.doMelee();
@@ -308,35 +315,5 @@ public class GameScreen extends myScene{
 
 	}
 	
-	public class Shuriken extends Pane {
-		
-		private int offSetX = 70;
-		private int offSetY = 50;
-		private int width = 70;
-		private int height = 50;
-		private int count = 2;
-		private boolean direction;
-		private ImageView imageview ;
-		private CharacterAnimation animation ;
-		
-		public Shuriken(double posx, double posy, boolean direction) {
-			super();
-			this.direction = direction;
-			imageview = new ImageView("sys/weapons.png");
-			this.setTranslateX(posx);
-			this.setTranslateY(posy);
-			animation = (new CharacterAnimation(imageview, Duration.millis(300), count, 0, offSetX, offSetY, width, height));
-			imageview.setFitHeight(70);
-			imageview.setFitWidth(50);
-			getChildren().addAll(imageview);
-		}
-
-		public void moveX(double d) {
-			for(int i=0;i<Math.abs(d);i++) {
-				if(direction)setTranslateX(getTranslateX()+2);
-				else setTranslateX(getTranslateX()-2);
-			}
-		}
-	}
 
 }
