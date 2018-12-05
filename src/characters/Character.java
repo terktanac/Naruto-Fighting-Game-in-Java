@@ -17,6 +17,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int def; // standard:5
 	private int delay = 100;
 	private int melee_round = 0;
+	private int limitDodge = 5;
 	private boolean isDead = false;//true = Dead = EndGame
 	private boolean isAir = false; //knock up or jump
 	private boolean isJump = false;
@@ -32,6 +33,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private static double x_speed = 2;
 	private static double y_speed = 2;
 	private ImageView imageview ;
+	private ImageView smoke;
 	private int count;
 	private int col;
 	private int offSetX;
@@ -57,6 +59,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.offSetY = 0;
 		this.width = 111 ;
 		this.height = 111 ;
+		this.smoke = new ImageView("sys/big_smoke_log.png");
 		this.setImageview(imageview);
 		this.getImageview().setViewport(new Rectangle2D(offSetX, offSetY, width - 15, height - 1.3));
 		this.getImageview().setFitHeight(350);
@@ -287,6 +290,18 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public void setDodge(boolean isDodge) {
 		this.isDodge = isDodge;
+	}
+	public int getLimitDodge() {
+		return limitDodge;
+	}
+	public void setLimitDodge(int limitDodge) {
+		this.limitDodge = limitDodge;
+	}
+	public ImageView getSmoke() {
+		return smoke;
+	}
+	public void setSmoke(ImageView smoke) {
+		this.smoke = smoke;
 	}
 	
 	

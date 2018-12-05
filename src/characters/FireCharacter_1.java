@@ -19,7 +19,7 @@ public class FireCharacter_1 extends Character{
 	@Override
 	public int walk_right() {
 		this.setMove(true);
-		if(!isAttacked() && !isDead() && !isCrouch()) {	
+		if(!isAttacked() && !isDead() && !isCrouch() && !isBlock()) {	
 			if(this.isRight() != true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(0);
@@ -41,7 +41,7 @@ public class FireCharacter_1 extends Character{
 	@Override
 	public int walk_left() {
 		this.setMove(true);
-		if(!isAttacked() && !isDead() && !isCrouch()) {	
+		if(!isAttacked() && !isDead() && !isCrouch() && !isBlock()) {	
 			if(this.isRight() == true) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(180);
@@ -71,7 +71,7 @@ public class FireCharacter_1 extends Character{
 	}
 	@Override
 	public int jump() {
-		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch()) {
+		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch() && !isBlock()) {
 			
 			setJump(true);
 			setAir(true);
@@ -108,7 +108,7 @@ public class FireCharacter_1 extends Character{
 	
 	@Override
 	public int melee() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isRange()) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isRange() && !isBlock()) {
 			setMelee(true);
 			setMove(true);
 			this.getAnimation().stop();
@@ -151,7 +151,7 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int range() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee()) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isBlock()) {
 			setRange(true);
 			setMove(true);
 			this.getAnimation().stop();
@@ -189,17 +189,79 @@ public class FireCharacter_1 extends Character{
 	}
 	
 	@Override
-	public int dodge() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int block() {
+		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isMove()) {
+			setBlock(true);
+			this.getImageview().setViewport(new Rectangle2D(222, 333, get_Width() - 15, get_Height() - 1.3));
+			return 1;
+		}
+		else 
+			return 0;
 	}
 
 	@Override
-	public int block() {
-		// TODO Auto-generated method stub
+	public int dodge() {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump() && !isDodge()) {
+			setDodge(true);
+			setMove(true);
+			this.getAnimation().stop();
+			getImageview().setImage(getSmoke().getImage());
+			setWidth(440);
+			setHeight(199);
+			getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));
+			getImageview().setFitWidth(440.0*(350.0/199.0));
+			getImageview().setFitHeight(350);
+			setTranslateX(getTranslateX()-250);
+			return 1;
+		}
 		return 0;
 	}
-
+	
+	@Override
+	public int doDodge() {
+		if(isDodge()) {
+			System.out.println("dodge");
+			if(getDelay() >= 80) {
+				getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 60) {
+				getImageview().setViewport(new Rectangle2D(880, 0, get_Width(), get_Height()));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 40) {
+				getImageview().setViewport(new Rectangle2D(1320, 0, get_Width(), get_Height()));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 20) {
+				getImageview().setViewport(new Rectangle2D(880, 0, get_Width(), get_Height()));
+				setDelay(getDelay()-1);
+			}
+			else if(getDelay() >= 0) {
+				getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));
+				setDelay(getDelay()-1);
+			}
+			else {
+				setOffSetX(0);
+				setOffSetY(0);
+				setWidth(111);
+				setHeight(111);
+				getImageview().setImage(image);
+				getImageview().setViewport(new Rectangle2D(getOffSetX(), getOffSetY(), get_Width() - 15, get_Height() - 1.3));
+				getImageview().setFitHeight(350);
+				getImageview().setFitWidth(350);	
+				setDodge(false);
+				setDelay(100);
+				setTranslateX(getTranslateX()+250);
+				setLimitDodge(getLimitDodge()-1);
+				stand();
+			}
+			return 1;
+		}
+		return 0;
+		
+	}
+	
 	@Override
 	public int stand() {
 		this.setCount(4);

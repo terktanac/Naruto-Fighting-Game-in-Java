@@ -28,6 +28,12 @@ public class EarthCharacter_1 extends Character {
 	}
 
 	@Override
+	public int doDodge() {
+		return 0;
+		
+	}
+	
+	@Override
 	public int block() {
 		// TODO Auto-generated method stub
 		return 0;

@@ -105,6 +105,10 @@ public class GameScreen extends myScene{
 				if(player == 1) {rangePressed_1();}
 				else if(player == 2) {rangePressed_2();}
 			}
+			else if(pressed.get(0) == key.get(7)) {
+				if(player == 1) {dodgePressed_1();}
+				else if(player == 2) {dodgePressed_2();}
+			}
 			if(player == 1) {Controller.getPressedListSkillP1().clear();}
 			else if(player == 2) {Controller.getPressedListSkillP2().clear();}
 		}
@@ -122,6 +126,7 @@ public class GameScreen extends myScene{
 		downPressed_1();
 		leftPressed_1();
 		rightPressed_1();
+		blockPressed_1();
 		nonePressed_1();
 		doAnimation_1();
 	}
@@ -131,6 +136,7 @@ public class GameScreen extends myScene{
 		downPressed_2();
 		leftPressed_2();
 		rightPressed_2();
+		blockPressed_2();
 		nonePressed_2();
 		doAnimation_2();
 	}
@@ -188,6 +194,20 @@ public class GameScreen extends myScene{
 
 	}
 	
+	public void blockPressed_1() {
+		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(6))) {
+			player1.block();
+		}
+		else if(player1.isBlock()) {
+			player1.setBlock(false);
+		}
+	}
+	
+	public void dodgePressed_1() {
+		player1.dodge();
+
+	}
+	
 	public void nonePressed_1() {
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if(!pressed.containsValue(true)) {
@@ -198,6 +218,7 @@ public class GameScreen extends myScene{
 	public void doAnimation_1() {
 		player1.doRange();
 		player1.doMelee();
+		player1.doDodge();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
 				if(shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() <= 1280)
@@ -263,6 +284,20 @@ public class GameScreen extends myScene{
 
 	}
 	
+	public void blockPressed_2() {
+		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(6))) {
+			player2.block();
+		}
+		else if(player2.isBlock()) {
+			player2.setBlock(false);
+		}
+	}
+	
+	public void dodgePressed_2() {
+		player2.dodge();
+
+	}
+	
 	public void nonePressed_2() {
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
 		if(!pressed.containsValue(true)) {
@@ -285,6 +320,7 @@ public class GameScreen extends myScene{
 	public void doAnimation_2() {
 		player2.doRange();
 		player2.doMelee();
+		player2.doDodge();
 		if(!shurikens2.isEmpty()) {
 			for(int i = 0; i < shurikens2.size(); i++) {
 				if(shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() <= 1280)
