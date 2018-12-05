@@ -119,6 +119,9 @@ public class GameScreen extends myScene{
 		update_1();
 		update_2();
 		otherKeyPressed();
+		if(player1.isDead() || player2.isDead()){
+			//endgame
+		}
 	}
 	
 	public void update_1() {
@@ -221,12 +224,20 @@ public class GameScreen extends myScene{
 		player1.doDodge();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
-				if(shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() <= 1280)
-					shurikens1.get(i).moveX(Character.getX_speed());
-				else if(!shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() >= -50)
-					shurikens1.get(i).moveX(-Character.getX_speed());
-				else
+				Shuriken shu = shurikens1.get(i);
+				if(shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
+					if(shu.isDirection()) {shurikens1.get(i).moveX(Shuriken.getSpeed());}
+					else{shurikens1.get(i).moveX(-Shuriken.getSpeed());}
+					if(checkCollide(shu, player2)) {
+						player2.takeDamage(4);
+						root.getChildren().remove(i+4);
+						shurikens1.remove(i);
+					}
+				}
+				else {
+					root.getChildren().remove(i+4);
 					shurikens1.remove(i);
+				}
 			}
 		}
 	}

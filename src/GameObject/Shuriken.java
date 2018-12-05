@@ -14,6 +14,7 @@ public class Shuriken extends Pane implements Collidable{
 	private int width = 70;
 	private int height = 50;
 	private int count = 2;
+	private static int speed = 4 ;
 	private boolean direction;
 	private ImageView imageview ;
 	private CharacterAnimation animation ;
@@ -47,10 +48,13 @@ public class Shuriken extends Pane implements Collidable{
 
 	@Override
 	public Rectangle2D getBoundary() {
-		return null;
-		// TODO Auto-generated method stub
+		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
 		
 	}
 
+	public static int getSpeed() {
+		return speed;
+	}
+	
 	
 }
