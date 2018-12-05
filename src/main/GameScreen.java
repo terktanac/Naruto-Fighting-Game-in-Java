@@ -162,7 +162,7 @@ public class GameScreen extends myScene{
 			player1.jump();
 			System.out.println("UPPressed");
 		}
-		else if(isPause) {moveUp();}
+		else if(!Controller.getPressedListMoveP1().isEmpty() && Controller.getIsPressedMap1().get(Controller.getKeyP1().get(0)) && isPause) {moveUp();}
 		player1.doJump();
 	}
 
@@ -174,7 +174,7 @@ public class GameScreen extends myScene{
 		else if(player1.isCrouch() && !isPause) {
 			player1.setCrouch(false);
 		}
-		else if(isPause) {moveDown();}
+		else if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && isPause) {moveDown();}
 	}
 	
 	public void leftPressed_1() {
@@ -185,7 +185,7 @@ public class GameScreen extends myScene{
 		else if(player1.isMove() && !isPause) {
 			player1.setMove(false);
 		}
-		else if(isPause) {moveUp();}
+		else if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(2))) && isPause) {moveUp();}
 			
 		}
 
@@ -194,10 +194,10 @@ public class GameScreen extends myScene{
 			player1.walk_right();
 			System.out.println("RightPressed");
 		}
-		else if(player1.isMove() && isPause) {
+		else if(player1.isMove() && !isPause) {
 			player1.setMove(false);
 		}
-		else if(isPause) {moveDown();}
+		else if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(3))) && isPause) {moveDown();}
 	}
 	public void meleePressed_1() {
 		player1.melee();
