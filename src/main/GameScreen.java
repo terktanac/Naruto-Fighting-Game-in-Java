@@ -125,6 +125,7 @@ public class GameScreen extends myScene{
 	}
 	
 	public void update_1() {
+		System.out.println(player1.isAttacked());
 		upPressed_1();
 		downPressed_1();
 		leftPressed_1();
@@ -222,6 +223,7 @@ public class GameScreen extends myScene{
 		player1.doRange();
 		player1.doMelee();
 		player1.doDodge();
+		player1.dotakeDamage();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
 				Shuriken shu = shurikens1.get(i);
