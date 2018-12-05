@@ -72,11 +72,8 @@ public class GameScreen extends myScene{
 	}
 	
 	public void updateArrays() {
-		//เช็คคอมโบ กะให้วนทุกๆ0.2-0.5วิ 
-		//การทำงานคือตัดออกทีละตัว ถ้าเจอคอมโบก็ให้ทำคอมโบที่ว่า ถ้าไม่เจอให้ทำอันแรก(เฉพาะการโจมตี) --> จะทำให้ทุกการโจมตีมีเว้นชั่วเวลาหนึ่ง
 		updateskill(1);
 		updateskill(2);
-		//สำรหับการเปลี่ยนตัว *ไว้ทีหลัง* สนใจแค่ว่ามีมั้ยถ้าไม่มีเอาอันแรกออกส่วนปุ่มทำต่อเนื่องอยู่แล้ว
 		updatemove(1);
 		updatemove(2);
 
@@ -94,7 +91,6 @@ public class GameScreen extends myScene{
 		if(pressed.size()>=1) {Controller.removePressed(player,"MOVE",1);}
 		
 	}
-
 
 	private void updateskill(int player) {
 		ArrayList<KeyCode> pressed = (player== 1 ? Controller.getPressedListSkillP1() : Controller.getPressedListSkillP2());
@@ -120,7 +116,6 @@ public class GameScreen extends myScene{
 		}
 	}
 
-
 	@Override
 	public void update() {
 		update_1();
@@ -133,9 +128,7 @@ public class GameScreen extends myScene{
 		leftPressed_1();
 		rightPressed_1();
 		nonePressed_1();
-//		meleePressed_1();
-//		rangePressed_1();
-		renderAttack_1();
+		doAnimation_1();
 	}
 	
 	public void update_2() {
@@ -144,8 +137,7 @@ public class GameScreen extends myScene{
 		leftPressed_2();
 		rightPressed_2();
 		nonePressed_2();
-		meleePressed_2();
-		rangePressed_2();
+		doAnimation_2();
 	}
 	
 	public void upPressed_1() {
@@ -156,7 +148,6 @@ public class GameScreen extends myScene{
 		player1.doJump();
 	}
 
-	
 	public void downPressed_1() {
 		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1))) {
 			player1.crouch();
@@ -188,34 +179,10 @@ public class GameScreen extends myScene{
 	}
 
 	public void meleePressed_1() {
-//		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(4)))) {
-//			player1.melee();
-//		}
-//		player1.doMelee();
 		player1.melee();
 	}
 	
 	public void rangePressed_1() {
-		//System.out.println(player1.getTranslateX());
-//		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
-//			shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
-//			root.getChildren().add(shurikens1.get(shurikens1.size()-1));
-//			shurikens1.get(shurikens1.size()-1).animation.play();
-//			//System.out.println(shurikens1.get(shurikens1.size()-1).getTranslateX()+"<<<<<<");
-//			player1.range();
-//		}
-//		player1.doRange();
-//		if(!shurikens1.isEmpty()) {
-//			for(int i = 0; i < shurikens1.size(); i++) {
-//				System.out.println(shurikens1.get(i).getTranslateX());
-//				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
-//					shurikens1.get(i).moveX(player1.getX_speed());
-//				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
-//					shurikens1.get(i).moveX(-player1.getX_speed());
-//				else
-//					shurikens1.remove(i);
-//			}
-//		}
 		shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
 		root.getChildren().add(shurikens1.get(shurikens1.size()-1));
 		shurikens1.get(shurikens1.size()-1).animation.play();
@@ -230,7 +197,8 @@ public class GameScreen extends myScene{
 			player1.stand();
 		}
 	}
-	public void renderAttack_1() {
+	
+	public void doAnimation_1() {
 		player1.doRange();
 		player1.doMelee();
 		if(!shurikens1.isEmpty()) {
@@ -284,17 +252,11 @@ public class GameScreen extends myScene{
 	}
 	
 	public void meleePressed_2() {
-		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(4)))) {
-			player2.melee();
-		}
-		player2.doMelee();
+		player2.melee();
 	}
 
 	public void rangePressed_2() {
-		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(5)))) {
-			player2.range();
-		}
-		player2.doRange();
+		player2.range();
 	}
 	
 	public void nonePressed_2() {
@@ -303,6 +265,11 @@ public class GameScreen extends myScene{
 		if(!pressed.containsValue(true)) {
 			player2.stand();
 		}
+	}
+	
+	public void doAnimation_2() {
+		player2.doRange();
+		player2.doMelee();
 	}
 
 	public class HealthBar extends StackPane {
