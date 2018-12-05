@@ -261,10 +261,26 @@ public class GameScreen extends myScene{
 	}
 
 	public void rangePressed_2() {
+		//System.out.println(player2.getTranslateX());
 		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(5)))) {
+			shurikens2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY()+150,player2.isRight()));
+			root.getChildren().add(shurikens2.get(shurikens2.size()-1));
+			shurikens2.get(shurikens2.size()-1).animation.play();
+			//System.out.println(shurikens2.get(shurikens2.size()-1).getTranslateX()+"<<<<<<");
 			player2.range();
 		}
 		player2.doRange();
+		if(!shurikens2.isEmpty()) {
+			for(int i = 0; i < shurikens2.size(); i++) {
+				System.out.println(shurikens2.get(i).getTranslateX());
+				if(shurikens2.get(i).direction && shurikens2.get(i).getTranslateX() <= 1280)
+					shurikens2.get(i).moveX(player2.getX_speed());
+				else if(!shurikens2.get(i).direction && shurikens2.get(i).getTranslateX() >= -50)
+					shurikens2.get(i).moveX(-player2.getX_speed());
+				else
+					shurikens2.remove(i);
+			}
+		}
 	}
 	
 	public void nonePressed_2() {
