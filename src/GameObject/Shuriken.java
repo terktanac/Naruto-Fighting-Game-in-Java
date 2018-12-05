@@ -15,6 +15,7 @@ public class Shuriken extends Pane implements Collidable{
 	private int height = 50;
 	private int count = 2;
 	private static int speed = 4 ;
+	private static int damage = 4 ;
 	private boolean direction;
 	private ImageView imageview ;
 	private CharacterAnimation animation ;
@@ -55,6 +56,11 @@ public class Shuriken extends Pane implements Collidable{
 	public static int getSpeed() {
 		return speed;
 	}
+
+	public static int getDamage() {
+		return damage;
+	}
+	
 	
 	
 }

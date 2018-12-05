@@ -97,7 +97,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 			}
 			if(getCurrenthealth() <= 0) {setDead(true);}
 		}
-		System.out.println(getCurrenthealth());
+		System.out.println("Current Health: "+getCurrenthealth());
 		return getCurrenthealth();
 	}
 	

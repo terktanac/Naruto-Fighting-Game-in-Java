@@ -229,13 +229,13 @@ public class GameScreen extends myScene{
 					if(shu.isDirection()) {shurikens1.get(i).moveX(Shuriken.getSpeed());}
 					else{shurikens1.get(i).moveX(-Shuriken.getSpeed());}
 					if(checkCollide(shu, player2)) {
-						player2.takeDamage(4);
-						root.getChildren().remove(i+4);
+						player2.takeDamage(Shuriken.getDamage());
+						root.getChildren().remove(root.getChildren().indexOf(shu));
 						shurikens1.remove(i);
 					}
 				}
 				else {
-					root.getChildren().remove(i+4);
+					root.getChildren().remove(root.getChildren().indexOf(shu));
 					shurikens1.remove(i);
 				}
 			}
@@ -334,12 +334,20 @@ public class GameScreen extends myScene{
 		player2.doDodge();
 		if(!shurikens2.isEmpty()) {
 			for(int i = 0; i < shurikens2.size(); i++) {
-				if(shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() <= 1280)
-					shurikens2.get(i).moveX(Character.getX_speed());
-				else if(!shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() >= -50)
-					shurikens2.get(i).moveX(-Character.getX_speed());
-				else
+				Shuriken shu = shurikens2.get(i);
+				if(shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
+					if(shu.isDirection()) {shurikens2.get(i).moveX(Shuriken.getSpeed());}
+					else{shurikens2.get(i).moveX(-Shuriken.getSpeed());}
+					if(checkCollide(shu, player1)) {
+						player1.takeDamage(Shuriken.getDamage());
+						root.getChildren().remove(root.getChildren().indexOf(shu));
+						shurikens2.remove(i);
+					}
+				}
+				else {
+					root.getChildren().remove(root.getChildren().indexOf(shu));
 					shurikens2.remove(i);
+				}
 			}
 		}
 	}
