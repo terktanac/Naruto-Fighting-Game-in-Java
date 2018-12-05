@@ -236,9 +236,11 @@ public class GameScreen extends myScene{
 	}
 	
 	public void doAnimation_1() {
+		player1.dead();
 		player1.doRange();
 		player1.doMelee();
 		player1.doDodge();
+		player1.dotakeDamage();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
 				Shuriken shu = shurikens1.get(i);
@@ -356,9 +358,11 @@ public class GameScreen extends myScene{
 		return obj1.getBoundary().intersects(obj2.getBoundary());
 	}
 	public void doAnimation_2() {
+		player2.dead();
 		player2.doRange();
 		player2.doMelee();
 		player2.doDodge();
+		player2.dotakeDamage();
 		if(!shurikens2.isEmpty()) {
 			for(int i = 0; i < shurikens2.size(); i++) {
 				Shuriken shu = shurikens2.get(i);

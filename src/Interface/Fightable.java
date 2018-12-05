@@ -10,4 +10,5 @@ public interface Fightable {
 	public int block();
 	public int takeDamage(int dmg);
 	public int dotakeDamage();
+	public int dead();
 }

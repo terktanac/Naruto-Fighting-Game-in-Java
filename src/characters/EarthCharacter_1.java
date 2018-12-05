@@ -115,5 +115,11 @@ public class EarthCharacter_1 extends Character {
 		return 0;
 	}
 
+	@Override
+	public int dead() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

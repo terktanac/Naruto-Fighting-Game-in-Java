@@ -12,12 +12,14 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private int maxHealth;
-	private int currenthealth; // standard:100
+	private int currenthealth; // standard:1000
 	private int atk; // standard:10
 	private int def; // standard:5
 	private int delay = 100;
+	private int longDelay = 170;
 	private int melee_round = 0;
 	private int limitDodge = 5;
+	private int stackFly = 3;
 	private boolean isDead = false;//true = Dead = EndGame
 	private boolean isAir = false; //knock up or jump
 	private boolean isJump = false;
@@ -95,14 +97,19 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 
 	@Override
 	public int takeDamage(int dmg) {
-		if(!isDodge()) {
+		if(!isDodge() && !isAttacked) {
 			if(isBlock()) {
 				setCurrenthealth(getCurrenthealth()- (dmg-getDef()));
 			}
 			else {
 				setCurrenthealth(getCurrenthealth()-dmg);
+				setAttacked(true);
+				this.animation.stop();
 			}
-			if(getCurrenthealth() <= 0) {setDead(true);}
+			if(getCurrenthealth() <= 0) {
+				setDead(true);
+				setLongDelay(170);
+			}
 		}
 		System.out.println("Current Health: "+getCurrenthealth());
 		return getCurrenthealth();
@@ -147,6 +154,12 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public void setDelay(int delay) {
 		this.delay = delay;
+	}
+	public int getLongDelay() {
+		return longDelay;
+	}
+	public void setLongDelay(int longDelay) {
+		this.longDelay = longDelay;
 	}
 	public int getMelee_round() {
 		return melee_round;
@@ -309,6 +322,12 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public void setSmoke(ImageView smoke) {
 		this.smoke = smoke;
+	}
+	public int getStackFly() {
+		return stackFly;
+	}
+	public void setStackFly(int stackFly) {
+		this.stackFly = stackFly;
 	}
 	
 	
