@@ -9,6 +9,7 @@ import javafx.util.Duration;
 public class WindCharacter_1 extends Character{
 
 	private static Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString(),1110, 2220, false, false);
+	
 	public WindCharacter_1() {
 		super("Naruto", 4, 100, 8, 2,0.6, new ImageView(image));
 		setOffSetY(0);
@@ -206,6 +207,11 @@ public class WindCharacter_1 extends Character{
 	}
 	@Override
 	public int High_skill() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int dotakeDamage() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

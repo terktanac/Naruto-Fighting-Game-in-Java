@@ -52,10 +52,5 @@ public class Shuriken extends Pane implements Collidable{
 		
 	}
 
-	@Override
-	public int takeDamage() {
-		// do nothing
-		return 0;
-	}
 	
 }

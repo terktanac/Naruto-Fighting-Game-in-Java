@@ -175,6 +175,9 @@ public class GameScreen extends myScene{
 
 	public void meleePressed_1() {
 		player1.melee();
+		if(checkCollide(player1, player2)) {
+			player2.takeDamage(player1.getAtk());
+		}
 	}
 	
 	public void rangePressed_1() {
@@ -247,6 +250,9 @@ public class GameScreen extends myScene{
 	
 	public void meleePressed_2() {
 		player2.melee();
+		if(checkCollide(player2, player1)) {
+			player1.takeDamage(player2.getAtk());
+		}
 	}
 
 	public void rangePressed_2() {
@@ -269,10 +275,8 @@ public class GameScreen extends myScene{
 			Controller.removePressed(0, "OTHER", 1);
 		}
 	}
-	public void checkCollide(Collidable obj1,Collidable obj2) {
-		if(obj1.getBoundary().intersects(obj2.getBoundary())){
-			obj2.takeDamage();
-		}
+	public boolean checkCollide(Collidable obj1,Collidable obj2) {
+		return obj1.getBoundary().intersects(obj2.getBoundary());
 	}
 	public void doAnimation_2() {
 		player2.doRange();

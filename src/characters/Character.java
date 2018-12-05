@@ -7,13 +7,12 @@ import Interface.Skillable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 
 public abstract class Character extends Pane implements Fightable, Moveable, Skillable,Collidable{
 	private String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
-	private int health; // standard:100
+	private int maxHealth;
+	private int currenthealth; // standard:100
 	private int atk; // standard:10
 	private int def; // standard:5
 	private int delay = 100;
@@ -22,6 +21,8 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private boolean isAir = false; //knock up or jump
 	private boolean isJump = false;
 	private boolean isCrouch = false;
+	private boolean isBlock = false;
+	private boolean isDodge = false;
 	private boolean isMove = false;
 	private double isFall = 0; //if > 0.00 user can't do anything and need to wait for stand
 	private boolean isAttacked = false; //if true user can't move for 0.1 s(or less)
@@ -44,7 +45,8 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		super();
 		this.name = name;
 		this.element = element;
-		this.health = health;
+		this.currenthealth = health;
+		this.maxHealth = health;
 		this.atk = atk;
 		this.def = def;
 		this.standTime = standTme;
@@ -78,16 +80,24 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	@Override
 	public Rectangle2D getBoundary() {
-		return null;
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public int takeDamage() {
-		return 0;
-		
+		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
 	}
 
+	@Override
+	public int takeDamage(int dmg) {
+		if(!isDodge()) {
+			if(isBlock()) {
+				setCurrenthealth(getCurrenthealth()- (dmg-getDef()));
+			}
+			else {
+				setCurrenthealth(getCurrenthealth()-dmg);
+			}
+			if(getCurrenthealth() <= 0) {setDead(true);}
+		}
+		System.out.println(getCurrenthealth());
+		return getCurrenthealth();
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -100,11 +110,15 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setElement(int element) {
 		this.element = element;
 	}
-	public int getHealth() {
-		return health;
+
+	public int getCurrenthealth() {
+		return currenthealth;
 	}
-	public void setHealth(int health) {
-		this.health = health;
+	public void setCurrenthealth(int currenthealth) {
+		this.currenthealth = currenthealth;
+	}
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 	public int getAtk() {
 		return atk;
@@ -262,6 +276,19 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setAnimation(CharacterAnimation animation) {
 		this.animation = animation;
 	}
+	public boolean isBlock() {
+		return isBlock;
+	}
+	public void setBlock(boolean isBlock) {
+		this.isBlock = isBlock;
+	}
+	public boolean isDodge() {
+		return isDodge;
+	}
+	public void setDodge(boolean isDodge) {
+		this.isDodge = isDodge;
+	}
+	
 	
 	
 

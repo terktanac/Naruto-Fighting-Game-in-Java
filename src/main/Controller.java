@@ -23,7 +23,6 @@ public class Controller implements Runnable{
 	private static ArrayList<KeyCode> KeyP2 = new ArrayList<KeyCode>();
 	private AnimationTimer gameLoop ;
 	private long lastTime = -1;
-	private long otherCheckTime = -1 ;
 	private long inGameLastTime = -1 ;
 	
 
