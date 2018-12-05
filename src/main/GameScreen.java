@@ -11,6 +11,8 @@ import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -33,10 +35,15 @@ public class GameScreen extends myScene{
 	private HealthBar healthbarP2 = new HealthBar(300, 50, new ImageView());
 	private ArrayList<Shuriken> shurikens1 = new ArrayList<Shuriken>();
 	private ArrayList<Shuriken> shurikens2 = new ArrayList<Shuriken>();
+	private PauseMenuScreen pause ;
+	private boolean isPause = false ;
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+		pause = new PauseMenuScreen();
+		pause.setOpacity(0.5);
+		pause.setVisible(false);
 		
 		healthbarP1.setTranslateX(-50); healthbarP1.setTranslateY(-80);
 		
@@ -51,7 +58,7 @@ public class GameScreen extends myScene{
 		player2.getImageview().setRotate(180);
 		player2.setRight(false);
 		
-		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2);
+		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2,pause);
 		root.getChildren().addAll(shurikens1);
 		
 		player1.getAnimation().play();
@@ -98,12 +105,18 @@ public class GameScreen extends myScene{
 		}
 		if(pressed.size() >= 1) {
 			if(pressed.get(0) == key.get(4)) {
-				if(player == 1) {meleePressed_1();}
-				else if(player == 2) {meleePressed_2();}
+				if(!isPause) {
+					if(player == 1) {meleePressed_1();}
+					else if(player == 2) {meleePressed_2();}
+				}
+				else {choosen();}
 			}
 			else if(pressed.get(0) == key.get(5)) {
-				if(player == 1) {rangePressed_1();}
-				else if(player == 2) {rangePressed_2();}
+				if(!isPause) {
+					if(player == 1) {rangePressed_1();}
+					else if(player == 2) {rangePressed_2();}
+				}
+				else {pause.setVisible(false);isPause = false;}
 			}
 			else if(pressed.get(0) == key.get(7)) {
 				if(player == 1) {dodgePressed_1();}
@@ -146,43 +159,47 @@ public class GameScreen extends myScene{
 	}
 	
 	public void upPressed_1() {
-		if(!Controller.getPressedListMoveP1().isEmpty() && Controller.getIsPressedMap1().get(Controller.getKeyP1().get(0))) {
+		if(!Controller.getPressedListMoveP1().isEmpty() && Controller.getIsPressedMap1().get(Controller.getKeyP1().get(0)) && !isPause) {
 			player1.jump();
 			System.out.println("UPPressed");
 		}
+		else if(isPause) {moveUp();}
 		player1.doJump();
 	}
 
 	public void downPressed_1() {
-		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1))) {
+		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
 			player1.crouch();
 			System.out.println("DOWNPressed");
 		}
-		else if(player1.isCrouch()) {
+		else if(player1.isCrouch() && !isPause) {
 			player1.setCrouch(false);
 		}
+		else if(isPause) {moveDown();}
 	}
 	
 	public void leftPressed_1() {
-		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(2)))) {
+		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(2))) && !isPause) {
 			player1.walk_left();
 			System.out.println("LeftPressed");
 		}
-		else if(player1.isMove()) {
+		else if(player1.isMove() && !isPause) {
 			player1.setMove(false);
 		}
-	}
+		else if(isPause) {moveUp();}
+			
+		}
 
 	public void rightPressed_1() {
-		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(3)))) {
+		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(3))) && !isPause) {
 			player1.walk_right();
 			System.out.println("RightPressed");
 		}
-		else if(player1.isMove()) {
+		else if(player1.isMove() && isPause) {
 			player1.setMove(false);
 		}
+		else if(isPause) {moveDown();}
 	}
-
 	public void meleePressed_1() {
 		player1.melee();
 		if(checkCollide(player1, player2)) {
@@ -322,7 +339,17 @@ public class GameScreen extends myScene{
 		if(others.size()>0) {
 			KeyCode key = others.get(0);
 			if(key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) {
-				//change to pause screen
+				if(!isPause) {
+					isPause = true ;
+					pause.setVisible(true);
+				}
+				else {
+					isPause = false;
+					pause.setVisible(false);
+					Main.ChangeScene(Main.getMainmenu());
+					Main.getPlayer().setScene(Main.getMainmenu());
+					Main.getPlayer().run();
+				}
 			}
 			Controller.removePressed(0, "OTHER", 1);
 		}
@@ -351,6 +378,57 @@ public class GameScreen extends myScene{
 					shurikens2.remove(i);
 				}
 			}
+		}
+	}
+	public void moveDown() {
+		if(pause.getCurChoice() == pause.getMenu().getChildren().size()-1) {pause.setNewChoice(0);}
+		else {pause.setNewChoice(pause.getCurChoice()+1);}
+		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
+		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
+		pause.setCurChoice(pause.getNewChoice());
+	}
+	
+	public void moveUp() {
+		if(pause.getCurChoice() == 0) {pause.setNewChoice(pause.getMenu().getChildren().size()-1);}
+		else {pause.setNewChoice(pause.getCurChoice()-1);}
+		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
+		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
+		pause.setCurChoice(pause.getNewChoice());
+	}
+	public void choosen() {
+		if(pause.getCurChoice() == 0) {
+			pause.setVisible(false);
+			isPause = false;
+		}
+		else if(pause.getCurChoice() == 1) {
+			//to option
+			isPause = false;
+			pause.setVisible(false);
+			Main.ChangeScene(Main.getOptionscreen());
+			Main.getPlayer().setScene(Main.getOptionscreen());
+			Main.getPlayer().run();
+		}
+		else if(pause.getCurChoice() == 2) {
+			//to howto
+			isPause = false;
+			pause.setVisible(false);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("Coming Soon.");
+			alert.show();
+			Main.getPlayer().setScene(Main.getGamescreen());
+		}
+		else if(pause.getCurChoice() == 3) {
+			//to mainmenu
+			isPause = false;
+			pause.setVisible(false);
+			Main.ChangeScene(Main.getMainmenu());
+			Main.getPlayer().setScene(Main.getMainmenu());
+			Main.getPlayer().run();
+		}
+		else if(pause.getCurChoice() == 4) {
+			System.exit(1);
 		}
 	}
 
