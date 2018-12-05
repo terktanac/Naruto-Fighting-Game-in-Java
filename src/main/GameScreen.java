@@ -6,7 +6,6 @@ import java.util.Map;
 
 import GameObject.Shuriken;
 import Interface.Collidable;
-import characters.Character;
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.scene.canvas.Canvas;
@@ -42,7 +41,6 @@ public class GameScreen extends myScene{
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		pause = new PauseMenuScreen();
-		pause.setOpacity(0.5);
 		pause.setVisible(false);
 		
 		healthbarP1.setTranslateX(-50); healthbarP1.setTranslateY(-80);
@@ -346,12 +344,13 @@ public class GameScreen extends myScene{
 				else {
 					isPause = false;
 					pause.setVisible(false);
+					MultiPlayerScreen.player.stop();
 					Main.ChangeScene(Main.getMainmenu());
 					Main.getPlayer().setScene(Main.getMainmenu());
 					Main.getPlayer().run();
 				}
 			}
-			Controller.removePressed(0, "OTHER", 1);
+			if(!Controller.getOtherKeys().isEmpty())Controller.removePressed(0, "OTHER", 1);
 		}
 	}
 	public boolean checkCollide(Collidable obj1,Collidable obj2) {

@@ -17,8 +17,9 @@ public class PauseMenuScreen extends Pane{
 	public PauseMenuScreen() {
 		super();
 		setPadding(new Insets(10));
-		setBackground(new Background(new BackgroundFill(Color.BLANCHEDALMOND, null, null)));
+		setBackground(new Background(new BackgroundFill(Color.WHITESMOKE, null, null)));
 		setPrefSize(1280, 720);
+		setOpacity(0.5);
 		
 		menu = new VBox();
 		menu.setSpacing(10);
@@ -28,8 +29,8 @@ public class PauseMenuScreen extends Pane{
 								,new ListMenu("How to play")
 								,new ListMenu("Exit to Mainmenu")
 								,new ListMenu("Quit game"));
-		menu.setTranslateX(460);
-		menu.setTranslateY(60);
+		menu.setTranslateX(500);
+		menu.setTranslateY(100);
 		
 		((ListMenu) menu.getChildren().get(CurChoice)).setActive(true);
 		getChildren().addAll(menu);
