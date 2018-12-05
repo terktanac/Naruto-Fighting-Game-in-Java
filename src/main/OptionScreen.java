@@ -373,5 +373,14 @@ public class OptionScreen extends myScene{
 //		// TODO Auto-generated method stub
 //		
 //	}
+	@Override
+	public void setDefault() {
+		OldChoice_1 = 0;
+		OldChoice_2 = 0;
+		NewChoice_1 = 0;
+		NewChoice_2 = 0;
+		setState1 = false ;
+		setState2 = false ;
+	}
 
 }

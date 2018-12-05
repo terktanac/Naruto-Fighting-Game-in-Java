@@ -19,6 +19,11 @@ public class LoadingScreen extends myScene{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void setDefault() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

@@ -21,7 +21,7 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class MultiPlayerScreen extends myScene{
-	private int player1 = 1,player2 = 0; //default character =0 : naruto
+	private int player1 = 0,player2 = 1; //default character =0 : naruto
 	private static Pane root = new Pane();
 	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
 	ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
@@ -370,6 +370,14 @@ public class MultiPlayerScreen extends myScene{
 		Main.ChangeScene(Main.getMainmenu());
 		Main.getPlayer().setScene(Main.getMainmenu());
 		Main.getPlayer().run();
+	}
+	@Override
+	public void setDefault() {
+		player1 = 0 ;
+		player2 = 1 ;
+		chosen1.setCheck(false);
+		chosen2.setCheck(false);
+		player.stop();
 	}
 }
 

@@ -13,6 +13,7 @@ public abstract class myScene extends Scene{
 		super(root);
 	}
 	public abstract void update();
+	public abstract void setDefault();
 
 	public static Font getNarutoFont() {
 		return narutoFont;

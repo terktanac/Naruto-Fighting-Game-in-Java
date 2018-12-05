@@ -186,4 +186,10 @@ public class MapChooseScreen extends myScene {
 			Main.getPlayer().setScene(Main.getMultiplayer());
 		}
 	}
+	@Override
+	public void setDefault() {
+		row = 0;
+		column = 0;
+		choice = 0;
+	}
 	}

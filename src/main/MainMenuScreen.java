@@ -166,4 +166,10 @@ public class MainMenuScreen extends myScene {
 		}
 		playChoose();
 	}
+
+	@Override
+	public void setDefault() {
+		Oldchoice = 0;
+		NewChoice = 0;
+	}
 }

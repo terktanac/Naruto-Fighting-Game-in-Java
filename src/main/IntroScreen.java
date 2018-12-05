@@ -4,10 +4,8 @@ import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
@@ -75,40 +73,25 @@ public class IntroScreen extends myScene{
 		root.getChildren().addAll(imageView,pressKey,mediaview);
 
 	}
-	public void keyHandling() {
-		setOnKeyPressed(new EventHandler<KeyEvent>() {
-			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept.wav").toString()));
-			@Override
-			public void handle(KeyEvent event) {
-				Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
-						,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-				Main.ChangeScene(Main.getLoadscreen());
-				System.out.println("Skipped Intro");
-				load.play();
-				player.stop();
-				choose.play();
-				Main.setState(1);
-				Main.getPlayer().setScene(Main.getMainmenu());
-				Main.getPlayer().run();
-			}
-		});
-	}
 	@Override
 	public void update() {
-		keyHandling();
-//		if(!Controller.getOtherKeys().isEmpty() || !Controller.getPressedListMoveP1().isEmpty() || !Controller.getPressedListMoveP2().isEmpty() || !Controller.getPressedListSkillP1().isEmpty() || !Controller.getPressedListSkillP2().isEmpty()) {
-//			Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
-//					,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-//			Main.ChangeScene(Main.getLoadscreen());
-//			System.out.println("Skipped Intro");
-//			load.play();
-//			player.stop();
-//			choose.play();
-//			Main.setState(1);
-//			Main.getPlayer().setScene(Main.getMainmenu());
-//			Main.getPlayer().run();
-//			
-//		}
+		if(Controller.getIsPressedMap1().containsValue(true) || Controller.getIsPressedMap2().containsValue(true)|| !Controller.getOtherKeys().isEmpty()) {
+			Timeline load = new Timeline(new KeyFrame(Duration.millis(1000), ae ->{Main.ChangeScene(Main.getMainmenu());})
+					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
+			Main.ChangeScene(Main.getLoadscreen());
+			System.out.println("Skipped Intro");
+			load.play();
+			player.stop();
+			playChoose();
+			Main.setState(1);
+			Main.getPlayer().setScene(Main.getMainmenu());
+			Main.getPlayer().run();
+			
+		}
+	}
+	@Override
+	public void setDefault() {
+		player.stop();
 	}
 	
 }

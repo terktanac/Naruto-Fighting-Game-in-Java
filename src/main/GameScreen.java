@@ -6,8 +6,13 @@ import java.util.Map;
 
 import GameObject.Shuriken;
 import Interface.Collidable;
+import characters.Character;
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
+import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
+import javafx.animation.FadeTransition;
+import javafx.animation.SequentialTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -24,7 +29,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
+import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
@@ -34,14 +41,36 @@ public class GameScreen extends myScene{
 	private HealthBar healthbarP2 = new HealthBar(300, 50, new ImageView());
 	private ArrayList<Shuriken> shurikens1 = new ArrayList<Shuriken>();
 	private ArrayList<Shuriken> shurikens2 = new ArrayList<Shuriken>();
+	private boolean isEnd = false ;
 	private PauseMenuScreen pause ;
 	private boolean isPause = false ;
+	private int currentTime = 300 ;
+	private AnimationTimer timer ;
+	private long lastTime = -1 ;
+	private Text time;
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		pause = new PauseMenuScreen();
 		pause.setVisible(false);
+		
+		time = new Text(""+currentTime);
+		time.setTranslateX(640);
+		time.setTranslateY(100);
+		timer = new AnimationTimer() {
+			
+			@Override
+			public void handle(long now) {
+				if(now-lastTime > 1000000000) {
+					currentTime-- ;
+					lastTime = now ;
+					time.setText(""+currentTime);
+					if(currentTime == 0) {isEnd = true ;}
+				}
+			}
+		};
+		timer.start();
 		
 		healthbarP1.setTranslateX(-50); healthbarP1.setTranslateY(-80);
 		
@@ -56,7 +85,7 @@ public class GameScreen extends myScene{
 		player2.getImageview().setRotate(180);
 		player2.setRight(false);
 		
-		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2,pause);
+		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2,time,pause);
 		root.getChildren().addAll(shurikens1);
 		
 		player1.getAnimation().play();
@@ -116,7 +145,11 @@ public class GameScreen extends myScene{
 				}
 				else {pause.setVisible(false);isPause = false;}
 			}
-			else if(pressed.get(0) == key.get(7)) {
+			else if(pressed.get(0) == key.get(6) && !isPause) {
+				if(player == 1) {blockPressed_1();}
+				else if(player == 2) {blockPressed_2();}
+			}
+			else if(pressed.get(0) == key.get(7) && !isPause) {
 				if(player == 1) {dodgePressed_1();}
 				else if(player == 2) {dodgePressed_2();}
 			}
@@ -130,9 +163,8 @@ public class GameScreen extends myScene{
 		update_1();
 		update_2();
 		otherKeyPressed();
-		if(player1.isDead() || player2.isDead()){
-			//endgame
-		}
+		if(player1.isDead() || player2.isDead()) {isEnd = true;}
+		EndGame();
 	}
 	
 	public void update_1() {
@@ -140,7 +172,6 @@ public class GameScreen extends myScene{
 		downPressed_1();
 		leftPressed_1();
 		rightPressed_1();
-		blockPressed_1();
 		nonePressed_1();
 		doAnimation_1();
 	}
@@ -150,7 +181,6 @@ public class GameScreen extends myScene{
 		downPressed_2();
 		leftPressed_2();
 		rightPressed_2();
-		blockPressed_2();
 		nonePressed_2();
 		doAnimation_2();
 	}
@@ -213,12 +243,7 @@ public class GameScreen extends myScene{
 	}
 	
 	public void blockPressed_1() {
-		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(6))) {
-			player1.block();
-		}
-		else if(player1.isBlock()) {
-			player1.setBlock(false);
-		}
+		player1.block();
 	}
 	
 	public void dodgePressed_1() {
@@ -260,40 +285,52 @@ public class GameScreen extends myScene{
 	}
 	
 	public void upPressed_2() {
-		if(!Controller.getPressedListMoveP2().isEmpty() && Controller.getIsPressedMap2().get(Controller.getKeyP2().get(0))) {
+		if(!Controller.getPressedListMoveP2().isEmpty() && Controller.getIsPressedMap2().get(Controller.getKeyP2().get(0)) && !isPause) {
 			player2.jump();
 			System.out.println("UPPressed");
+		}
+		else if(!Controller.getPressedListMoveP2().isEmpty() && Controller.getIsPressedMap2().get(Controller.getKeyP2().get(0)) && isPause) {
+			moveUp();
 		}
 		player2.doJump();
 	}
 	
 	public void downPressed_2() {
-		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1))) {
+		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
 			player2.crouch();
 			System.out.println("DOWNPressed");
 		}
-		else if(player2.isCrouch()) {
+		else if(player2.isCrouch() && !isPause) {
 			player2.setCrouch(false);
+		}
+		else if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && isPause) {
+			moveDown();
 		}
 	}
 	
 	public void leftPressed_2() {
-		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(2)))) {
+		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(2))) && !isPause) {
 			player2.walk_left();
 			System.out.println("LeftPressed");
 		}
-		else if(player2.isMove()) {
+		else if(player2.isMove() && !isPause) {
 			player2.setMove(false);
+		}
+		else if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(2))) && isPause) {
+			moveUp();
 		}
 	}
 
 	public void rightPressed_2() {
-		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(3)))) {
+		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(3))) && !isPause) {
 			player2.walk_right();
 			System.out.println("RightPressed");
 		}
-		else if(player2.isMove()) {
+		else if(player2.isMove() && isPause) {
 			player2.setMove(false);
+		}
+		else if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(3))) && isPause) {
+			moveDown();
 		}
 	}
 	
@@ -313,12 +350,7 @@ public class GameScreen extends myScene{
 	}
 	
 	public void blockPressed_2() {
-		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(6))) {
-			player2.block();
-		}
-		else if(player2.isBlock()) {
-			player2.setBlock(false);
-		}
+		player2.block();
 	}
 	
 	public void dodgePressed_2() {
@@ -349,6 +381,15 @@ public class GameScreen extends myScene{
 					Main.getPlayer().setScene(Main.getMainmenu());
 					Main.getPlayer().run();
 				}
+			}
+			else if(isPause && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
+				choosen();
+			}
+			else if(isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
+				Main.setDefault();
+				Main.ChangeScene(Main.getIntro());
+				Main.getPlayer().setScene(Main.getIntro());
+				Main.getPlayer().run();
 			}
 			if(!Controller.getOtherKeys().isEmpty())Controller.removePressed(0, "OTHER", 1);
 		}
@@ -432,6 +473,41 @@ public class GameScreen extends myScene{
 			System.exit(1);
 		}
 	}
+	public void EndGame() {
+		if(isEnd) {
+			Text Endtext = new Text("KO!");
+			Text Continue = new Text("Press Enter to restart");
+			Endtext.setFont(getNarutoFont());
+			if(player1.getCurrenthealth() == player1.getMaxHealth() || player2.getCurrenthealth() == player2.getMaxHealth()) {
+				Endtext.setText("Perfect!");
+			}
+			else if(player1.getCurrenthealth() == player2.getCurrenthealth()) {
+				Endtext.setText("Tie!");
+			}
+			else if(player1.getCurrenthealth() < player2.getCurrenthealth()) {
+				Endtext.setText("Player 2 Win!");
+			}
+			else if(player1.getCurrenthealth() > player2.getCurrenthealth()) {
+				Endtext.setText("Player 1 Win!");
+			}
+			FadeTransition end = new FadeTransition(Duration.seconds(3), Endtext);
+			end.setFromValue(0.3);
+			end.setToValue(1.0);
+			end.setAutoReverse(true);
+			end.setCycleCount(2);
+			
+			FadeTransition con = new FadeTransition(Duration.seconds(2),Continue);
+			con.setFromValue(0.3);
+			con.setToValue(1.0);
+			con.setAutoReverse(true);
+			con.setCycleCount(Animation.INDEFINITE);
+			
+			SequentialTransition play = new SequentialTransition(end,con);
+			play.play();
+			
+			root.getChildren().addAll(Endtext,Continue);
+		}
+	}
 
 	public class HealthBar extends StackPane {
 		private int width ;
@@ -468,6 +544,47 @@ public class GameScreen extends myScene{
 		}
 
 	}
+
+	public void setEnd(boolean isEnd) {
+		this.isEnd = isEnd;
+	}
+
+	public Character getPlayer1() {
+		return player1;
+	}
+
+	public Character getPlayer2() {
+		return player2;
+	}
+
+	public ArrayList<Shuriken> getShurikens1() {
+		return shurikens1;
+	}
+
+	public ArrayList<Shuriken> getShurikens2() {
+		return shurikens2;
+	}
+
+	public void setPause(boolean isPause) {
+		this.isPause = isPause;
+	}
+
+	@Override
+	public void setDefault() {
+		player1.setCurrenthealth(player1.getMaxHealth());
+		player2.setCurrenthealth(player2.getMaxHealth());
+		healthbarP1.setHealthBar(1);
+		healthbarP2.setHealthBar(1);
+		shurikens1.clear();
+		shurikens2.clear();
+		isEnd = false;
+		isPause = false;
+		pause.setCurChoice(0);
+		pause.setNewChoice(0);
+		currentTime = 300 ;
+	}
+	
+	
 	
 
 }

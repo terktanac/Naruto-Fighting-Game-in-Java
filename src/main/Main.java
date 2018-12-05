@@ -46,6 +46,15 @@ public class Main extends Application {
 	public static void ChangeScene(Scene nextScene) {
 		stage.setScene(nextScene);
 	}
+	public static void setDefault() {
+		intro.setDefault();
+		mainmenu.setDefault();
+		multiplayer.setDefault();
+		optionscreen.setDefault();
+		loadscreen.setDefault();
+		mapscreen.setDefault();
+		gamescreen.setDefault();
+	}
 
 	public static void main(String[] args) {
 		launch(args);
