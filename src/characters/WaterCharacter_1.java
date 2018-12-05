@@ -101,4 +101,17 @@ public class WaterCharacter_1 extends Character{
 	}
 
 
+	@Override
+	public int takeDamage(int dmg) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int dotakeDamage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 }

@@ -228,4 +228,14 @@ public class FireCharacter_1 extends Character{
 	}
 
 
+
+	@Override
+	public int dotakeDamage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
 }

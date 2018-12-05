@@ -7,4 +7,6 @@ public interface Fightable {
 	public int doRange();
 	public int dodge();
 	public int block();
+	public int takeDamage(int dmg);
+	public int dotakeDamage();
 }
