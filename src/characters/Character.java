@@ -12,7 +12,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private int maxHealth;
-	private int currenthealth; // standard:100
+	private int currenthealth; // standard:1000
 	private int atk; // standard:10
 	private int def; // standard:5
 	private int delay = 100;
@@ -99,7 +99,10 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 				setAttacked(true);
 				this.animation.stop();
 			}
-			if(getCurrenthealth() <= 0) {setDead(true);}
+			if(getCurrenthealth() <= 0) {
+				setDead(true);
+				setLongDelay(170);
+			}
 		}
 		System.out.println("Current Health: "+getCurrenthealth());
 		return getCurrenthealth();

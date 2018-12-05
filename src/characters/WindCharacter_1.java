@@ -277,7 +277,7 @@ public class WindCharacter_1 extends Character{
 	}
 	@Override
 	public int dotakeDamage() {
-		if(isAttacked()) {
+		if(isAttacked() && !isDead()) {
 			if(getStackFly() == 3) {
 				if(getDelay() >= 0) {
 					this.getImageview().setViewport(new Rectangle2D(0, 444, get_Width() - 15, get_Height() - 1.3));
@@ -346,11 +346,53 @@ public class WindCharacter_1 extends Character{
 				else {
 					setStackFly(3);
 					setAttacked(false);
-					setLongDelay(150);
+					setLongDelay(170);
 					stand();
 					getAnimation().play();
 				}
 			}
+			return 1;
+		}
+		return 0;
+	}
+	@Override
+	public int dead() {
+		if(!isDead())
+			return 0;
+		if(getLongDelay() >= 150) {
+			getImageview().setViewport(new Rectangle2D(111, 444, get_Width() - 15, get_Height() - 1.3));
+			setLongDelay(getLongDelay()-1);
+			if(isRight())
+				setTranslateX(getTranslateX()-3);
+			else
+				setTranslateX(getTranslateX()+3);
+		}
+		else if(getLongDelay() >= 130) {
+			getImageview().setViewport(new Rectangle2D(222, 444, get_Width() - 15, get_Height() - 1.3));
+			setLongDelay(getLongDelay()-1);
+			if(isRight())
+				setTranslateX(getTranslateX()-3);
+			else
+				setTranslateX(getTranslateX()+3);
+		}
+		else if(getLongDelay() >= 100) {
+			getImageview().setViewport(new Rectangle2D(333, 444, get_Width() - 15, get_Height() - 1.3));
+			setLongDelay(getLongDelay()-1);
+			if(isRight())
+				setTranslateX(getTranslateX()-3);
+			else
+				setTranslateX(getTranslateX()+3);
+		}
+		else if(getLongDelay() >= 50) {
+			getImageview().setViewport(new Rectangle2D(777, 444, get_Width() - 15, get_Height() - 1.3));
+			setLongDelay(getLongDelay()-1);
+		}
+		else if(getLongDelay() >= 25) {
+			getImageview().setViewport(new Rectangle2D(888, 444, get_Width() - 15, get_Height() - 1.3));
+			setLongDelay(getLongDelay()-1);
+		}
+		else {
+			getAnimation().stop();
 		}
 		return 1;
 	}
