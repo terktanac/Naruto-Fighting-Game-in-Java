@@ -93,7 +93,7 @@ public class Controller implements Runnable{
 			@Override
 			public void handle(long now) {
 				scene.update();
-				if(scene == Main.getGamescreen() && now-inGameLastTime > 350000000) {Main.getGamescreen().updateArrays();inGameLastTime=now;}
+				if(scene == Main.getGamescreen() && now-inGameLastTime > 200000000) {Main.getGamescreen().updateArrays();inGameLastTime=now;}
 				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);
 					lastTime = now;
@@ -206,6 +206,7 @@ public class Controller implements Runnable{
 				if(type == "MOVE") {pressedListMoveP2.remove(0);}
 				else if(type == "SKILL") {pressedListSkillP2.remove(0);}
 			}
+			else if(type == "OTHER") {otherKeys.remove(0);}
 		}
 	}
 }

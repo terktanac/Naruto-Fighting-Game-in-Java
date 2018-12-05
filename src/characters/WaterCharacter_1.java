@@ -100,4 +100,5 @@ public class WaterCharacter_1 extends Character{
 		return 0;
 	}
 
+
 }

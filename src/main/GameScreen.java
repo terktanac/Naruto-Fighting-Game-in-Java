@@ -2,26 +2,21 @@ package main;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
-import org.omg.CosNaming.IstringHelper;
-
-import characters.CharacterAnimation;
+import GameObject.Shuriken;
+import Interface.Collidable;
+import characters.Character;
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -29,7 +24,6 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
@@ -72,11 +66,8 @@ public class GameScreen extends myScene{
 	}
 	
 	public void updateArrays() {
-		//เช็คคอมโบ กะให้วนทุกๆ0.2-0.5วิ 
-		//การทำงานคือตัดออกทีละตัว ถ้าเจอคอมโบก็ให้ทำคอมโบที่ว่า ถ้าไม่เจอให้ทำอันแรก(เฉพาะการโจมตี) --> จะทำให้ทุกการโจมตีมีเว้นชั่วเวลาหนึ่ง
 		updateskill(1);
 		updateskill(2);
-		//สำรหับการเปลี่ยนตัว *ไว้ทีหลัง* สนใจแค่ว่ามีมั้ยถ้าไม่มีเอาอันแรกออกส่วนปุ่มทำต่อเนื่องอยู่แล้ว
 		updatemove(1);
 		updatemove(2);
 
@@ -95,7 +86,6 @@ public class GameScreen extends myScene{
 		
 	}
 
-
 	private void updateskill(int player) {
 		ArrayList<KeyCode> pressed = (player== 1 ? Controller.getPressedListSkillP1() : Controller.getPressedListSkillP2());
 		ArrayList<KeyCode> key = (player == 1 ? Controller.getKeyP1() : Controller.getKeyP2());
@@ -107,15 +97,24 @@ public class GameScreen extends myScene{
 			}
 		}
 		if(pressed.size() >= 1) {
-			System.out.println();
-			Controller.removePressed(player, "SKILL", 1);}
+			if(pressed.get(0) == key.get(4)) {
+				if(player == 1) {meleePressed_1();}
+				else if(player == 2) {meleePressed_2();}
+			}
+			else if(pressed.get(0) == key.get(5)) {
+				if(player == 1) {rangePressed_1();}
+				else if(player == 2) {rangePressed_2();}
+			}
+			if(player == 1) {Controller.getPressedListSkillP1().clear();}
+			else if(player == 2) {Controller.getPressedListSkillP2().clear();}
+		}
 	}
-
 
 	@Override
 	public void update() {
 		update_1();
 		update_2();
+		otherKeyPressed();
 	}
 	
 	public void update_1() {
@@ -124,8 +123,7 @@ public class GameScreen extends myScene{
 		leftPressed_1();
 		rightPressed_1();
 		nonePressed_1();
-		meleePressed_1();
-		rangePressed_1();
+		doAnimation_1();
 	}
 	
 	public void update_2() {
@@ -134,8 +132,7 @@ public class GameScreen extends myScene{
 		leftPressed_2();
 		rightPressed_2();
 		nonePressed_2();
-		meleePressed_2();
-		rangePressed_2();
+		doAnimation_2();
 	}
 	
 	public void upPressed_1() {
@@ -146,7 +143,6 @@ public class GameScreen extends myScene{
 		player1.doJump();
 	}
 
-	
 	public void downPressed_1() {
 		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1))) {
 			player1.crouch();
@@ -178,40 +174,36 @@ public class GameScreen extends myScene{
 	}
 
 	public void meleePressed_1() {
-		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(4)))) {
-			player1.melee();
-		}
-		player1.doMelee();
+		player1.melee();
 	}
 	
 	public void rangePressed_1() {
-		//System.out.println(player1.getTranslateX());
-		if(Controller.getIsPressedMap1().get((Controller.getKeyP1().get(5)))) {
-			shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
-			root.getChildren().add(shurikens1.get(shurikens1.size()-1));
-			shurikens1.get(shurikens1.size()-1).animation.play();
-			//System.out.println(shurikens1.get(shurikens1.size()-1).getTranslateX()+"<<<<<<");
-			player1.range();
-		}
-		player1.doRange();
-		if(!shurikens1.isEmpty()) {
-			for(int i = 0; i < shurikens1.size(); i++) {
-				System.out.println(shurikens1.get(i).getTranslateX());
-				if(shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() <= 1280)
-					shurikens1.get(i).moveX(player1.getX_speed());
-				else if(!shurikens1.get(i).direction && shurikens1.get(i).getTranslateX() >= -50)
-					shurikens1.get(i).moveX(-player1.getX_speed());
-				else
-					shurikens1.remove(i);
-			}
-		}
+		shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
+		root.getChildren().add(shurikens1.get(shurikens1.size()-1));
+		shurikens1.get(shurikens1.size()-1).getAnimation().play();
+		player1.range();
+
 	}
 	
 	public void nonePressed_1() {
-		ArrayList<KeyCode> key = Controller.getKeyP1();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if(!pressed.containsValue(true)) {
 			player1.stand();
+		}
+	}
+	
+	public void doAnimation_1() {
+		player1.doRange();
+		player1.doMelee();
+		if(!shurikens1.isEmpty()) {
+			for(int i = 0; i < shurikens1.size(); i++) {
+				if(shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() <= 1280)
+					shurikens1.get(i).moveX(Character.getX_speed());
+				else if(!shurikens1.get(i).isDirection() && shurikens1.get(i).getTranslateX() >= -50)
+					shurikens1.get(i).moveX(-Character.getX_speed());
+				else
+					shurikens1.remove(i);
+			}
 		}
 	}
 	
@@ -254,40 +246,50 @@ public class GameScreen extends myScene{
 	}
 	
 	public void meleePressed_2() {
-		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(4)))) {
-			player2.melee();
-		}
-		player2.doMelee();
+		player2.melee();
 	}
 
 	public void rangePressed_2() {
-		//System.out.println(player2.getTranslateX());
-		if(Controller.getIsPressedMap2().get((Controller.getKeyP2().get(5)))) {
-			shurikens2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY()+150,player2.isRight()));
-			root.getChildren().add(shurikens2.get(shurikens2.size()-1));
-			shurikens2.get(shurikens2.size()-1).animation.play();
-			//System.out.println(shurikens2.get(shurikens2.size()-1).getTranslateX()+"<<<<<<");
-			player2.range();
-		}
-		player2.doRange();
-		if(!shurikens2.isEmpty()) {
-			for(int i = 0; i < shurikens2.size(); i++) {
-				System.out.println(shurikens2.get(i).getTranslateX());
-				if(shurikens2.get(i).direction && shurikens2.get(i).getTranslateX() <= 1280)
-					shurikens2.get(i).moveX(player2.getX_speed());
-				else if(!shurikens2.get(i).direction && shurikens2.get(i).getTranslateX() >= -50)
-					shurikens2.get(i).moveX(-player2.getX_speed());
-				else
-					shurikens2.remove(i);
-			}
-		}
+		shurikens2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY()+150,player2.isRight()));
+		root.getChildren().add(shurikens2.get(shurikens2.size()-1));
+		shurikens2.get(shurikens2.size()-1).getAnimation().play();
+		player2.range();
+
 	}
 	
 	public void nonePressed_2() {
-		ArrayList<KeyCode> key = Controller.getKeyP2();
 		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
 		if(!pressed.containsValue(true)) {
 			player2.stand();
+		}
+	}
+	public void otherKeyPressed() {
+		ArrayList<KeyCode> others = Controller.getOtherKeys();
+		if(others.size()>0) {
+			KeyCode key = others.get(0);
+			if(key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) {
+				//change to pause screen
+			}
+			Controller.removePressed(0, "OTHER", 1);
+		}
+	}
+	public void checkCollide(Collidable obj1,Collidable obj2) {
+		if(obj1.getBoundary().intersects(obj2.getBoundary())){
+			obj2.takeDamage();
+		}
+	}
+	public void doAnimation_2() {
+		player2.doRange();
+		player2.doMelee();
+		if(!shurikens2.isEmpty()) {
+			for(int i = 0; i < shurikens2.size(); i++) {
+				if(shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() <= 1280)
+					shurikens2.get(i).moveX(Character.getX_speed());
+				else if(!shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() >= -50)
+					shurikens2.get(i).moveX(-Character.getX_speed());
+				else
+					shurikens2.remove(i);
+			}
 		}
 	}
 
@@ -327,35 +329,5 @@ public class GameScreen extends myScene{
 
 	}
 	
-	public class Shuriken extends Pane {
-		
-		private int offSetX = 70;
-		private int offSetY = 50;
-		private int width = 70;
-		private int height = 50;
-		private int count = 2;
-		private boolean direction;
-		private ImageView imageview ;
-		private CharacterAnimation animation ;
-		
-		public Shuriken(double posx, double posy, boolean direction) {
-			super();
-			this.direction = direction;
-			imageview = new ImageView("sys/weapons.png");
-			this.setTranslateX(posx);
-			this.setTranslateY(posy);
-			animation = (new CharacterAnimation(imageview, Duration.millis(300), count, 0, offSetX, offSetY, width, height));
-			imageview.setFitHeight(70);
-			imageview.setFitWidth(50);
-			getChildren().addAll(imageview);
-		}
-
-		public void moveX(double d) {
-			for(int i=0;i<Math.abs(d);i++) {
-				if(direction)setTranslateX(getTranslateX()+2);
-				else setTranslateX(getTranslateX()-2);
-			}
-		}
-	}
 
 }

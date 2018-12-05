@@ -128,6 +128,7 @@ public class WindCharacter_1 extends Character{
 			else {
 				setMelee(false);
 				setDelay(100);
+				stand();
 			}
 		}
 		return 1;
@@ -170,6 +171,7 @@ public class WindCharacter_1 extends Character{
 			else {
 				setRange(false);
 				setDelay(100);
+				stand();
 			}
 		}
 		return 1;
