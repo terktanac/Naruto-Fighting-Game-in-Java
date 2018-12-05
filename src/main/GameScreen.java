@@ -267,7 +267,11 @@ public class GameScreen extends myScene{
 	}
 
 	public void rangePressed_2() {
+		shurikens2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY()+150,player2.isRight()));
+		root.getChildren().add(shurikens2.get(shurikens2.size()-1));
+		shurikens2.get(shurikens2.size()-1).getAnimation().play();
 		player2.range();
+
 	}
 	
 	public void nonePressed_2() {
@@ -292,6 +296,16 @@ public class GameScreen extends myScene{
 	public void doAnimation_2() {
 		player2.doRange();
 		player2.doMelee();
+		if(!shurikens2.isEmpty()) {
+			for(int i = 0; i < shurikens2.size(); i++) {
+				if(shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() <= 1280)
+					shurikens2.get(i).moveX(Character.getX_speed());
+				else if(!shurikens2.get(i).isDirection() && shurikens2.get(i).getTranslateX() >= -50)
+					shurikens2.get(i).moveX(-Character.getX_speed());
+				else
+					shurikens2.remove(i);
+			}
+		}
 	}
 
 	public class HealthBar extends StackPane {
