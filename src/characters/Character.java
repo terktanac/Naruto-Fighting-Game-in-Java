@@ -76,12 +76,10 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		boolean right = d>0 ? true:false;
 		for(int i=0;i<Math.abs(d);i++) {
 			if(right) {
-				if(this.getTranslateX() == 950)this.setTranslateX(950);
-				else this.setTranslateX(this.getTranslateX()+1);
+				this.setTranslateX(this.getTranslateX()+1);
 			}
 			else {
-				if(this.getTranslateX()== -30)this.setTranslateX(-30);
-				else this.setTranslateX(this.getTranslateX()-1);
+				this.setTranslateX(this.getTranslateX()-1);
 			}
 		}
 	}

@@ -3,7 +3,6 @@ package main;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -90,7 +89,7 @@ public class MainMenuScreen extends myScene {
 
 	private void back() {
 		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1) || Controller.getOtherKeys().contains(KeyCode.ESCAPE) || Controller.getOtherKeys().contains(KeyCode.BACK_SPACE)) {
-			Main.ChangeScene((Scene)Main.getLoadscreen());
+			Main.ChangeScene(Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getIntro());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
@@ -136,21 +135,21 @@ public class MainMenuScreen extends myScene {
 			Main.getPlayer().setScene(Main.getMainmenu());
 		}
 		else if(Oldchoice==1) {
-			Main.ChangeScene((Scene)Main.getLoadscreen());
+			Main.ChangeScene(Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
-			MultiPlayerScreen.player.setAutoPlay(true);
 			Main.getPlayer().setScene(Main.getMultiplayer());
 			Main.getPlayer().run();
+			MultiPlayerScreen.player.setAutoPlay(true);
 		}
 		else if(Oldchoice==2) {
-			Main.ChangeScene((Scene)Main.getLoadscreen());
+			Main.ChangeScene(Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getOptionscreen());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
-			load.play();
 			Main.getPlayer().setScene(Main.getOptionscreen());
 			Main.getPlayer().run();
+			load.play();
 		}
 		else if(Oldchoice==MenuBox.getChildren().size()-1) {
 //			Alert alert = new Alert(AlertType.CONFIRMATION);

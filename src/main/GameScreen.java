@@ -12,8 +12,8 @@ import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
-import javafx.animation.SequentialTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -38,8 +38,8 @@ public class GameScreen extends myScene{
 	private static Pane root = new Pane();
 	private static WindCharacter_1 player1 = new WindCharacter_1();
 	private static FireCharacter_1 player2 = new FireCharacter_1();
-	private HealthBar healthbarP1 = new HealthBar(300, 50, new ImageView());
-	private HealthBar healthbarP2 = new HealthBar(300, 50, new ImageView());
+	private HealthBar healthbarP1;
+	private HealthBar healthbarP2;
 	private static ArrayList<GameObject> gameObjects1 = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> gameObjects2 = new ArrayList<GameObject>();
 	private boolean isEnd = false ;
@@ -49,12 +49,20 @@ public class GameScreen extends myScene{
 	private AnimationTimer timer ;
 	private long lastTime = -1 ;
 	private Text time;
+
+
 	public GameScreen() {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		pause = new PauseMenuScreen();
 		pause.setVisible(false);
+		
+		healthbarP1 = new HealthBar(800,312.5, new ImageView(), -25, -50);
+		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
+		healthbarP2.setTranslateX(535);
+		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
+		healthbarP2.setRotate(180);
 		
 		time = new Text(""+currentTime);
 		time.setTranslateX(640);
@@ -73,9 +81,9 @@ public class GameScreen extends myScene{
 		};
 		timer.start();
 		
-		healthbarP1.setTranslateX(-50); healthbarP1.setTranslateY(-80);
-		
-		healthbarP2.setTranslateX(530); healthbarP2.setTranslateY(-80);
+		healthbarP1 = new HealthBar(800,312.5, new ImageView(), -25, -50);
+		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
+		healthbarP2.setTranslateX(535);
 		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
 		healthbarP2.setRotate(180);
 		
@@ -105,7 +113,6 @@ public class GameScreen extends myScene{
 		updateskill(2);
 		updatemove(1);
 		updatemove(2);
-
 	}
 	
 	private void updatemove(int player) {
@@ -146,10 +153,6 @@ public class GameScreen extends myScene{
 				}
 				else {pause.setVisible(false);isPause = false;}
 			}
-			else if(pressed.get(0) == key.get(6) && !isPause) {
-				if(player == 1) {blockPressed_1();}
-				else if(player == 2) {blockPressed_2();}
-			}
 			else if(pressed.get(0) == key.get(7) && !isPause) {
 				if(player == 1) {dodgePressed_1();}
 				else if(player == 2) {dodgePressed_2();}
@@ -173,8 +176,10 @@ public class GameScreen extends myScene{
 		downPressed_1();
 		leftPressed_1();
 		rightPressed_1();
+		blockPressed_1();
 		nonePressed_1();
 		doAnimation_1();
+		if(!player1.isDead())healthbarP1.setHealthBar((double)player1.getCurrenthealth()/(double)player1.getMaxHealth());
 	}
 	
 	public void update_2() {
@@ -182,8 +187,10 @@ public class GameScreen extends myScene{
 		downPressed_2();
 		leftPressed_2();
 		rightPressed_2();
+		blockPressed_2();
 		nonePressed_2();
 		doAnimation_2();
+		if(!player2.isDead())healthbarP2.setHealthBar((double)player2.getCurrenthealth()/(double)player2.getMaxHealth());
 	}
 	
 	public void upPressed_1() {
@@ -245,7 +252,12 @@ public class GameScreen extends myScene{
 	}
 	
 	public void blockPressed_1() {
-		player1.block();
+		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(6))) {
+			player1.block();
+		}
+		else if(player1.isBlock()) {
+			player1.setBlock(false);
+		}
 	}
 	
 	public void dodgePressed_1() {
@@ -269,6 +281,8 @@ public class GameScreen extends myScene{
 		player1.mid_skill(player2);
 		player1.High_skill(player2);
 		player1.dotakeDamage();
+		if(player1.getTranslateX() > 950) {player1.setTranslateX(950);}
+		else if(player1.getTranslateX() < -30) {player1.setTranslateX(-30);}
 		if(!gameObjects1.isEmpty()) {
 			for(int i = 0; i < gameObjects1.size(); i++) {
 				GameObject shu = gameObjects1.get(i);
@@ -372,7 +386,12 @@ public class GameScreen extends myScene{
 	}
 	
 	public void blockPressed_2() {
-		player2.block();
+		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(6))) {
+			player2.block();
+		}
+		else if(player2.isBlock()) {
+			player2.setBlock(false);
+		}
 	}
 	
 	public void dodgePressed_2() {
@@ -390,7 +409,7 @@ public class GameScreen extends myScene{
 		ArrayList<KeyCode> others = Controller.getOtherKeys();
 		if(others.size()>0) {
 			KeyCode key = others.get(0);
-			if(key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) {
+			if((key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) && !isEnd) {
 				if(!isPause) {
 					isPause = true ;
 					pause.setVisible(true);
@@ -408,12 +427,10 @@ public class GameScreen extends myScene{
 				choosen();
 			}
 			else if(isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
-				Main.setDefault();
-				Main.ChangeScene(Main.getIntro());
-				Main.getPlayer().setScene(Main.getIntro());
-				Main.getPlayer().run();
-			}
+				System.exit(1);
+
 			if(!Controller.getOtherKeys().isEmpty())Controller.removePressed(0, "OTHER", 1);
+			}
 		}
 	}
 	public boolean checkCollide(Collidable obj1,Collidable obj2) {
@@ -425,6 +442,8 @@ public class GameScreen extends myScene{
 		player2.doMelee();
 		player2.doDodge();
 		player2.dotakeDamage();
+		if(player2.getTranslateX() > 950) {player2.setTranslateX(950);}
+		else if(player2.getTranslateX() < -30) {player2.setTranslateX(-30);}
 		if(!gameObjects2.isEmpty()) {
 			for(int i = 0; i < gameObjects2.size(); i++) {
 				GameObject shu = gameObjects2.get(i);
@@ -498,8 +517,12 @@ public class GameScreen extends myScene{
 	public void EndGame() {
 		if(isEnd) {
 			Text Endtext = new Text("KO!");
-			Text Continue = new Text("Press Enter to restart");
+			Text Continue = new Text("Press Enter to quit");
 			Endtext.setFont(getNarutoFont());
+			Endtext.setTranslateX(600);
+			Endtext.setTranslateY(300);
+			Continue.setTranslateX(600);
+			Continue.setTranslateY(300);
 			if(player1.getCurrenthealth() == player1.getMaxHealth() || player2.getCurrenthealth() == player2.getMaxHealth()) {
 				Endtext.setText("Perfect!");
 			}
@@ -512,56 +535,71 @@ public class GameScreen extends myScene{
 			else if(player1.getCurrenthealth() > player2.getCurrenthealth()) {
 				Endtext.setText("Player 1 Win!");
 			}
-			FadeTransition end = new FadeTransition(Duration.seconds(3), Endtext);
-			end.setFromValue(0.3);
-			end.setToValue(1.0);
-			end.setAutoReverse(true);
-			end.setCycleCount(2);
+			Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> Continue.setVisible(true)),
+					new KeyFrame(Duration.seconds(0.7), evt -> Continue.setVisible(false)));
+			timeline.setCycleCount(Animation.INDEFINITE);
+			timeline.play();
 			
-			FadeTransition con = new FadeTransition(Duration.seconds(2),Continue);
-			con.setFromValue(0.3);
-			con.setToValue(1.0);
-			con.setAutoReverse(true);
-			con.setCycleCount(Animation.INDEFINITE);
-			
-			SequentialTransition play = new SequentialTransition(end,con);
-			play.play();
-			
-			root.getChildren().addAll(Endtext,Continue);
+			root.getChildren().addAll(Continue);
 		}
 	}
 
 	public class HealthBar extends StackPane {
-		private int width ;
-		private int height ;
-		private ImageView healthbarPlain = new ImageView("icon/healthbar.png");
-		private ImageView healthbarBorder = new ImageView("icon/healthbarborder.png");
+		private double width ;
+		private double height ;
+		private ImageView healthbarPlain ;
+		private ImageView healthbarBorder ;
+		private double widthD ;
+		private double xD ;
+		private double heightD ;
+		private double yD ;
+		private double[] xPoints ;
+		private double[] yPoints ;
+		private double[] xPointstemp ;
+		Canvas healthbar ;
 		GraphicsContext gc ;
-		public HealthBar(int width,int height ,ImageView characters) {
-			this.width = width;
+		int red = 0, green = 255;
+		public HealthBar(double width,double height ,ImageView characters,int xpos,int ypos) {
+			this.width = width ;
 			this.height = height ;
-			double[] xPoints = {0,height,height,height*0.42,height*0.42,0};
-			double[] yPoints = {0,0,width*0.562,width*0.579,width*0.99,width};
+			widthD = width-215 ;
+			xD = xpos+58 ;
+			heightD = height-265 ;
+			yD = ypos+140;
+			healthbarPlain = new ImageView(new Image("icon/healthbar.png", width, height, true, true));
+			healthbarBorder = new ImageView(new Image("icon/healthbarborder.png", width, height, true, true));
+			xPoints = new double[] {xD,xD+widthD,xD+(widthD*0.99),xD+(widthD*0.579),xD+(widthD*0.562),xD};
+			yPoints = new double[] {yD,yD,yD+(heightD*0.42),yD+(heightD*0.42),yD+heightD,yD+heightD};
+			xPointstemp = new double[] {xD,xD+widthD,xD+(widthD*0.99),xD+(widthD*0.579),xD+(widthD*0.562),xD};
 			setPrefSize(width, height);
-			Canvas healthbar = new Canvas(width, height);
+			setTranslateX(xpos);
+			setTranslateY(ypos);
+			healthbarPlain.setTranslateX(xpos);
+			healthbarPlain.setTranslateY(ypos);
+			healthbarBorder.setTranslateX(xpos);
+			healthbarBorder.setTranslateY(ypos);
+			healthbar = new Canvas(width, height);
 			gc = healthbar.getGraphicsContext2D();
 			setHealthBar(1);
-			gc.fillPolygon(xPoints, yPoints,6 );
-			gc.strokePolygon(xPoints, yPoints, 6);
-//			gc.fillRoundRect(0, 0, width, height-10, 20, 20);
-			
 			characters.setTranslateX(0);
 			characters.setTranslateY(0);
 			
 			getChildren().addAll(healthbarPlain,healthbar,healthbarBorder,characters);
 		}
 		public double setHealthBar(double curDIVmax) {
-			int firstcolor = 0, secondcolor = 255;
-			if(curDIVmax>0.5) {firstcolor = (int) (255*(1-curDIVmax));}
-			else {secondcolor = (int) (255*(1-curDIVmax));}
-			gc.setFill(new LinearGradient(0, 0, (double)height, (double)width*curDIVmax, true, CycleMethod.REFLECT
-					,new Stop(0.0, Color.rgb(firstcolor, secondcolor, 0))
-					,new Stop(1.0,Color.rgb(firstcolor, secondcolor, 100))));
+			if(curDIVmax>=0.5) {red = (int) (2*255*(1-curDIVmax));}
+			else {green = (int) (255*(curDIVmax*2));}
+			Stop[] stops = new Stop[] { new Stop(0, Color.rgb(red, green, 0)), new Stop(1, Color.rgb(red, green, 100))};
+			gc.setFill(new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops));
+			
+			if(curDIVmax < 0.579) {
+				xPoints[3] = xPointstemp[1]*curDIVmax ;
+				xPoints[4] = xPointstemp[2]*curDIVmax ;
+			}
+			xPoints[1] = xPointstemp[1]*curDIVmax ;
+			xPoints[2] = xPointstemp[2]*curDIVmax ;
+			gc.clearRect(0, 0, width, height);
+			gc.fillPolygon(xPoints, yPoints,6);
 			return curDIVmax *100;
 		}
 

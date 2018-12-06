@@ -1,7 +1,6 @@
 package main;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -9,7 +8,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private static Stage stage ;
-	private static int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
 	private static IntroScreen intro;
 	private static MainMenuScreen mainmenu;
 	private static MultiPlayerScreen multiplayer;
@@ -43,8 +41,9 @@ public class Main extends Application {
 		stage.show();
 
 	}
-	public static void ChangeScene(Scene nextScene) {
+	public static void ChangeScene(myScene nextScene) {
 		stage.setScene(nextScene);
+
 	}
 	public static void setDefault() {
 		intro.setDefault();
@@ -62,12 +61,6 @@ public class Main extends Application {
 	}
 	public Stage getStage() {
 		return stage;
-	}
-	public int getState() {
-		return state;
-	}
-	public static void setState(int state) {
-		Main.state = state;
 	}
 	public static IntroScreen getIntro() {
 		return intro;
