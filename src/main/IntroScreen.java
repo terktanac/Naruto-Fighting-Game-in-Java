@@ -84,8 +84,8 @@ public class IntroScreen extends myScene{
 			player.stop();
 			playChoose();
 			Main.setState(1);
-			Main.getPlayer().setScene(Main.getMainmenu());
-			Main.getPlayer().run();
+//			Main.getPlayer().setScene(Main.getMainmenu());
+//			Main.getPlayer().run();
 			
 		}
 	}

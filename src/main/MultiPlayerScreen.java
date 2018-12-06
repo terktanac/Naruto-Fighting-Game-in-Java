@@ -368,8 +368,6 @@ public class MultiPlayerScreen extends myScene{
 		rhschar.setImage(Characters.get(player2));
 		lhschar.setImage(Characters.get(player1));
 		Main.ChangeScene(Main.getMainmenu());
-		Main.getPlayer().setScene(Main.getMainmenu());
-		Main.getPlayer().run();
 	}
 	@Override
 	public void setDefault() {

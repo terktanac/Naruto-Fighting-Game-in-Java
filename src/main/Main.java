@@ -33,18 +33,17 @@ public class Main extends Application {
 		mapscreen = new MapChooseScreen();
 		gamescreen = new GameScreen();
 		
-		player.setScene(intro);
-		player.run();
-		
+		ChangeScene(gamescreen);
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
-		stage.setScene(intro);
 		stage.setResizable(false);
 		stage.show();
 
 	}
-	public static void ChangeScene(Scene nextScene) {
+	public static void ChangeScene(myScene nextScene) {
 		stage.setScene(nextScene);
+		player.setScene(nextScene);
+		player.run();
 	}
 	public static void setDefault() {
 		intro.setDefault();
