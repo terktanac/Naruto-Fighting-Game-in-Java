@@ -11,9 +11,7 @@ import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -382,7 +380,7 @@ public class GameScreen extends myScene{
 		ArrayList<KeyCode> others = Controller.getOtherKeys();
 		if(others.size()>0) {
 			KeyCode key = others.get(0);
-			if(key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) {
+			if((key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) && !isEnd) {
 				if(!isPause) {
 					isPause = true ;
 					pause.setVisible(true);
@@ -400,10 +398,9 @@ public class GameScreen extends myScene{
 				choosen();
 			}
 			else if(isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
-				Main.setDefault();
-				Main.ChangeScene(Main.getIntro());
-				Main.getPlayer().setScene(Main.getIntro());
-				Main.getPlayer().run();
+				System.exit(1);
+//				Main.setDefault();
+//				Main.ChangeScene(Main.getIntro());
 			}
 			if(!Controller.getOtherKeys().isEmpty())Controller.removePressed(0, "OTHER", 1);
 		}
@@ -490,7 +487,7 @@ public class GameScreen extends myScene{
 	public void EndGame() {
 		if(isEnd) {
 			Text Endtext = new Text("KO!");
-			Text Continue = new Text("Press Enter to restart");
+			Text Continue = new Text("Press Enter to quit");
 			Endtext.setFont(getNarutoFont());
 			Endtext.setTranslateX(600);
 			Endtext.setTranslateY(300);
@@ -566,8 +563,8 @@ public class GameScreen extends myScene{
 			gc.setFill(new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops));
 			
 			if(curDIVmax < 0.579) {
-				xPoints[3] = xPointstemp[3]*curDIVmax ;
-				xPoints[4] = xPointstemp[4]*curDIVmax ;
+				xPoints[3] = xPointstemp[1]*curDIVmax ;
+				xPoints[4] = xPointstemp[2]*curDIVmax ;
 			}
 			xPoints[1] = xPointstemp[1]*curDIVmax ;
 			xPoints[2] = xPointstemp[2]*curDIVmax ;
