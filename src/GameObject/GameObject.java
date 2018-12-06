@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public abstract class GameObject extends Pane implements Collidable{
+	private boolean hasEffect = false;
 	private int offSetX;
 	private int offSetY;
 	private int width;
@@ -14,7 +15,10 @@ public abstract class GameObject extends Pane implements Collidable{
 	private int count;
 	private int speed;
 	private int damage;
+	private int delay = 300;
 	private boolean direction;
+	private boolean isDone = false;
+	private boolean isDoing = false;
 	private ImageView imageview ;
 	private CharacterAnimation animation ;
 	
@@ -118,5 +122,37 @@ public abstract class GameObject extends Pane implements Collidable{
 	}
 
 	public abstract void doEffect();
+
+	public boolean isDone() {
+		return isDone;
+	}
+
+	public void setDone(boolean isDone) {
+		this.isDone = isDone;
+	}
+
+	public boolean isDoing() {
+		return isDoing;
+	}
+
+	public void setDoing(boolean isDoing) {
+		this.isDoing = isDoing;
+	}
+
+	public int getDelay() {
+		return delay;
+	}
+
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
+
+	public boolean isHasEffect() {
+		return hasEffect;
+	}
+
+	public void setHasEffect(boolean hasEffect) {
+		this.hasEffect = hasEffect;
+	}
 
 }

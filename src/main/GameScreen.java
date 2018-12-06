@@ -273,13 +273,29 @@ public class GameScreen extends myScene{
 			for(int i = 0; i < gameObjects1.size(); i++) {
 				GameObject shu = gameObjects1.get(i);
 				if(shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
-					if(shu.isDirection()) {gameObjects1.get(i).moveX();}
-					else{gameObjects1.get(i).moveX();}
-					if(checkCollide(shu, player2)) {
-						player2.takeDamage(gameObjects1.get(i).getDamage());
-						gameObjects1.get(i).doEffect();
-						root.getChildren().remove(root.getChildren().indexOf(shu));
-						gameObjects1.remove(i);
+					shu.moveX();
+					if(shu.isHasEffect()) {
+						if(shu.isDone()) {
+							root.getChildren().remove(root.getChildren().indexOf(shu));
+							gameObjects1.remove(i);
+						}
+						else if(checkCollide(shu, player2) && !shu.isDoing()) {
+							player2.takeDamage(shu.getDamage());
+							shu.setSpeed(0);
+							shu.setDoing(true);
+							shu.setTranslateX(player2.getTranslateX());
+							shu.setTranslateY(player2.getTranslateY());
+						}
+						else if(shu.isDoing()) {
+							shu.doEffect();
+						}
+					}
+					else {
+						if(checkCollide(shu, player2)) {
+							player2.takeDamage(shu.getDamage());
+							root.getChildren().remove(root.getChildren().indexOf(shu));
+							gameObjects1.remove(i);
+						}
 					}
 				}
 				else {
