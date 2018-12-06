@@ -313,6 +313,7 @@ public class GameScreen extends myScene{
 							gameObjects1.remove(i);
 						}
 						else if(checkCollide(shu, player2) && !shu.isDoing()) {
+							player2.setStackFly(1);
 							player2.takeDamage(shu.getDamage());
 							shu.setSpeed(0);
 							shu.setDoing(true);
@@ -490,7 +491,9 @@ public class GameScreen extends myScene{
 					}
 					else {
 						if(checkCollide(shu, player1)) {
+							player1.setStackFly(1);
 							player1.takeDamage(shu.getDamage());
+							shu.setSpeed(0);
 							root.getChildren().remove(root.getChildren().indexOf(shu));
 							gameObjects2.remove(i);
 						}
