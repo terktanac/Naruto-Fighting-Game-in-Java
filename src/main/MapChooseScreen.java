@@ -38,59 +38,7 @@ public class MapChooseScreen extends myScene {
 		
 		root.getChildren().addAll(listOfBackground);
 
-//		setOnKeyPressed(new EventHandler<KeyEvent>() {		
-//			@Override
-//			public void handle(KeyEvent event) {
-//				// TODO Auto-generated method stub
-//				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-//				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-//				KeyCode key = event.getCode();
-//				System.out.println("Multiplayer:Pressed " + key.toString());
-//				
-//				if (key == KeyCode.BACK_SPACE) {
-//					choose.play();
-//					Main.ChangeScene(Main.getMultiplayer());
-//				}
-//				else if (key == KeyCode.SPACE || key == KeyCode.ENTER) {
-//					Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
-//							,new KeyFrame(Duration.millis(100), ae->{choose.play();}));
-//					Main.ChangeScene(Main.getLoadscreen());
-//					choose.play();
-//					load.play();
-//					setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
-//					GameScreen.setBackground(chooseBackground);
-//				} 
-//				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getUp_2())) {
-//					listOfBackground.get(choice).setActive(false);
-//					column = (column - 1 + 2)%2;
-//					choice = (3*column + row)%listOfBackground.size();
-//					listOfBackground.get(choice).setActive(true);
-//					click.play();
-//				}
-//				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getDown_2())) {
-//					listOfBackground.get(choice).setActive(false);
-//					column = (column + 1)%2;
-//					choice = (3*column + row)%listOfBackground.size();
-//					listOfBackground.get(choice).setActive(true);
-//					click.play();
-//				}
-//				else if ((key == Main.getOptionscreen().getLeft_1() || key == Main.getOptionscreen().getLeft_2())) {
-//					listOfBackground.get(choice).setActive(false);
-//					row = (row - 1 + 3)%3;
-//					choice = (3*column + row)%listOfBackground.size();
-//					listOfBackground.get(choice).setActive(true);
-//					click.play();
-//				}
-//				else if ((key == Main.getOptionscreen().getRight_1() ||key == Main.getOptionscreen().getRight_2())) {
-//					listOfBackground.get(choice).setActive(false);
-//					row = (row + 1)%3;
-//					choice = (3*column + row)%listOfBackground.size();
-//					listOfBackground.get(choice).setActive(true);
-//					click.play();
-//				}
-//			}
-//			
-//		});
+
 		
 	}
 	public static Image getChooseBackground() {
@@ -171,6 +119,8 @@ public class MapChooseScreen extends myScene {
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			Main.ChangeScene(Main.getLoadscreen());
+			Main.getPlayer().setScene(Main.getGamescreen());
+			Main.getPlayer().run();
 			playChoose();
 			load.play();
 			setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));

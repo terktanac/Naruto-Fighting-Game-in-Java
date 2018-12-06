@@ -211,6 +211,8 @@ public class OptionScreen extends myScene{
 				if(key == KeyCode.BACK_SPACE || key == keyP1.get(5) || key == keyP2.get(5)) {
 					choose.play();
 					Main.ChangeScene(Main.getMainmenu());
+					Main.getPlayer().setScene(Main.getMainmenu());
+					Main.getPlayer().run();
 				}
 				else if(key == keyP1.get(4)) {
 					setState1 = true;

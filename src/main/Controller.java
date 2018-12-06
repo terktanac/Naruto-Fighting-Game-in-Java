@@ -91,8 +91,8 @@ public class Controller implements Runnable{
 			
 			@Override
 			public void handle(long now) {
-				if(now - gameTime > 1) {scene.update();gameTime = now;}
-//				scene.update();
+//				if(now - gameTime > 1) {scene.update();gameTime = now;}
+				scene.update();
 				if(scene == Main.getGamescreen() && now-inGameLastTime > 200000000) {Main.getGamescreen().updateArrays();inGameLastTime=now;}
 				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);

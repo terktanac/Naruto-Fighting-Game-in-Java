@@ -11,13 +11,7 @@ import characters.FireCharacter_1;
 import characters.WindCharacter_1;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
-<<<<<<< HEAD
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
-import javafx.animation.SequentialTransition;
-=======
-import javafx.animation.KeyFrame;
->>>>>>> c517bb9acecc8faeac28f1353d886afeafbd0894
 import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -410,13 +404,9 @@ public class GameScreen extends myScene{
 			}
 			else if(isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
 				System.exit(1);
-<<<<<<< HEAD
-=======
-//				Main.setDefault();
-//				Main.ChangeScene(Main.getIntro());
->>>>>>> c517bb9acecc8faeac28f1353d886afeafbd0894
-			}
+
 			if(!Controller.getOtherKeys().isEmpty())Controller.removePressed(0, "OTHER", 1);
+			}
 		}
 	}
 	public boolean checkCollide(Collidable obj1,Collidable obj2) {
