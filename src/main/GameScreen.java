@@ -276,6 +276,8 @@ public class GameScreen extends myScene{
 		player1.doMelee();
 		player1.doDodge();
 		player1.dotakeDamage();
+		if(player1.getTranslateX() > 950) {player1.setTranslateX(950);}
+		else if(player1.getTranslateX() < -30) {player1.setTranslateX(-30);}
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {
 				Shuriken shu = shurikens1.get(i);
@@ -418,6 +420,8 @@ public class GameScreen extends myScene{
 		player2.doMelee();
 		player2.doDodge();
 		player2.dotakeDamage();
+		if(player2.getTranslateX() > 950) {player2.setTranslateX(950);}
+		else if(player2.getTranslateX() < -30) {player2.setTranslateX(-30);}
 		if(!shurikens2.isEmpty()) {
 			for(int i = 0; i < shurikens2.size(); i++) {
 				Shuriken shu = shurikens2.get(i);
