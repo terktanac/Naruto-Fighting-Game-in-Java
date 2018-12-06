@@ -78,7 +78,7 @@ public class GameScreen extends myScene{
 		
 		healthbarP1 = new HealthBar(800,312.5, new ImageView(), -25, -50);
 		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
-		healthbarP2.setTranslateX(545);
+		healthbarP2.setTranslateX(535);
 		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
 		healthbarP2.setRotate(180);
 		
@@ -175,6 +175,7 @@ public class GameScreen extends myScene{
 		blockPressed_1();
 		nonePressed_1();
 		doAnimation_1();
+		if(!player1.isDead())healthbarP1.setHealthBar((double)player1.getCurrenthealth()/(double)player1.getMaxHealth());
 	}
 	
 	public void update_2() {
@@ -185,7 +186,7 @@ public class GameScreen extends myScene{
 		blockPressed_2();
 		nonePressed_2();
 		doAnimation_2();
-		//healthbarP2.setHealthBar(player2.getCurrenthealth()/player2.getMaxHealth());
+		if(!player2.isDead())healthbarP2.setHealthBar((double)player2.getCurrenthealth()/(double)player2.getMaxHealth());
 	}
 	
 	public void upPressed_1() {
@@ -521,14 +522,18 @@ public class GameScreen extends myScene{
 		private double height ;
 		private ImageView healthbarPlain ;
 		private ImageView healthbarBorder ;
-		double widthD ;
-		double xD ;
-		double heightD ;
-		double yD ;
+		private double widthD ;
+		private double xD ;
+		private double heightD ;
+		private double yD ;
+		private double[] xPoints ;
+		private double[] yPoints ;
+		private double[] xPointstemp ;
+		Canvas healthbar ;
 		GraphicsContext gc ;
 		int red = 0, green = 255;
 		public HealthBar(double width,double height ,ImageView characters,int xpos,int ypos) {
-			this.width = width;
+			this.width = width ;
 			this.height = height ;
 			widthD = width-215 ;
 			xD = xpos+58 ;
@@ -536,8 +541,9 @@ public class GameScreen extends myScene{
 			yD = ypos+140;
 			healthbarPlain = new ImageView(new Image("icon/healthbar.png", width, height, true, true));
 			healthbarBorder = new ImageView(new Image("icon/healthbarborder.png", width, height, true, true));
-			double[] xPoints = {xD,xD+widthD,xD+(widthD*0.99),xD+(widthD*0.579),xD+(widthD*0.562),xD};
-			double[] yPoints = {yD,yD,yD+(heightD*0.42),yD+(heightD*0.42),yD+heightD,yD+heightD};
+			xPoints = new double[] {xD,xD+widthD,xD+(widthD*0.99),xD+(widthD*0.579),xD+(widthD*0.562),xD};
+			yPoints = new double[] {yD,yD,yD+(heightD*0.42),yD+(heightD*0.42),yD+heightD,yD+heightD};
+			xPointstemp = new double[] {xD,xD+widthD,xD+(widthD*0.99),xD+(widthD*0.579),xD+(widthD*0.562),xD};
 			setPrefSize(width, height);
 			setTranslateX(xpos);
 			setTranslateY(ypos);
@@ -545,12 +551,9 @@ public class GameScreen extends myScene{
 			healthbarPlain.setTranslateY(ypos);
 			healthbarBorder.setTranslateX(xpos);
 			healthbarBorder.setTranslateY(ypos);
-			Canvas healthbar = new Canvas(width, height);
+			healthbar = new Canvas(width, height);
 			gc = healthbar.getGraphicsContext2D();
 			setHealthBar(1);
-			
-			gc.fillPolygon(xPoints, yPoints,6);
-			
 			characters.setTranslateX(0);
 			characters.setTranslateY(0);
 			
@@ -562,6 +565,14 @@ public class GameScreen extends myScene{
 			Stop[] stops = new Stop[] { new Stop(0, Color.rgb(red, green, 0)), new Stop(1, Color.rgb(red, green, 100))};
 			gc.setFill(new LinearGradient(0, 0, 1, 0, true, CycleMethod.NO_CYCLE, stops));
 			
+			if(curDIVmax < 0.579) {
+				xPoints[3] = xPointstemp[3]*curDIVmax ;
+				xPoints[4] = xPointstemp[4]*curDIVmax ;
+			}
+			xPoints[1] = xPointstemp[1]*curDIVmax ;
+			xPoints[2] = xPointstemp[2]*curDIVmax ;
+			gc.clearRect(0, 0, width, height);
+			gc.fillPolygon(xPoints, yPoints,6);
 			return curDIVmax *100;
 		}
 
