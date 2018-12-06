@@ -1,65 +1,33 @@
 package GameObject;
 
-import Interface.Collidable;
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class Shuriken extends Pane implements Collidable{
-	
-	private int offSetX = 70;
-	private int offSetY = 50;
-	private int width = 70;
-	private int height = 50;
-	private int count = 2;
-	private static int speed = 4 ;
-	private static int damage = 4 ;
-	private boolean direction;
-	private ImageView imageview ;
-	private CharacterAnimation animation ;
+public class Shuriken extends GameObject{
 	
 	public Shuriken(double posx, double posy, boolean direction) {
-		super();
-		this.direction = direction;
-		imageview = new ImageView("sys/weapons.png");
-		this.setTranslateX(posx);
-		this.setTranslateY(posy);
-		animation = (new CharacterAnimation(imageview, Duration.millis(300), count, 0, offSetX, offSetY, width, height));
-		imageview.setFitHeight(70);
-		imageview.setFitWidth(50);
-		getChildren().addAll(imageview);
-	}
-
-	public void moveX(double d) {
-		for(int i=0;i<Math.abs(d);i++) {
-			if(direction)setTranslateX(getTranslateX()+2);
-			else setTranslateX(getTranslateX()-2);
-		}
-	}
-
-	public CharacterAnimation getAnimation() {
-		return animation;
-	}
-
-	public boolean isDirection() {
-		return direction;
+		super(posx, posy, direction);
+		setOffSetX(70);
+		setOffSetY(50);
+		setWidth(70);
+		setHeight(50);
+		setCount(2);
+		setSpeed(4);
+		setImageview(new ImageView("sys/weapons.png"));
+		getImageview().setFitHeight(70);
+		getImageview().setFitWidth(50);
+		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(), getOffSetY(), get_Width(), get_Height())));
+		getChildren().addAll(getImageview());
 	}
 
 	@Override
-	public Rectangle2D getBoundary() {
-		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
+	public void doEffect() {
+		
 		
 	}
 
-	public static int getSpeed() {
-		return speed;
-	}
-
-	public static int getDamage() {
-		return damage;
-	}
 	
 	
 	

@@ -10,7 +10,6 @@ import javafx.util.Duration;
 public class CharacterAnimation extends Transition{
 	private ImageView image ;
 	private int count;
-	private int col;
 	private int offSetX;
 	private int offSetY;
 	private int width;
@@ -21,7 +20,6 @@ public class CharacterAnimation extends Transition{
 		super();
 		this.image = image;
 		this.count = count;
-		this.col = col;
 		this.offSetX = offSetX;
 		this.offSetY = offSetY;
 		this.width = width;

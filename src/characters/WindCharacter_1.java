@@ -1,5 +1,7 @@
 package characters;
 
+import GameObject.Rasenshuriken;
+import main.GameScreen;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -336,6 +338,7 @@ public class WindCharacter_1 extends Character{
 				target.setStackFly(1);
 				setSkillDelay(250);
 				setSkill1(false);
+				stand();
 			}
 			return 1;
 		}
@@ -417,6 +420,7 @@ public class WindCharacter_1 extends Character{
 				target.setStackFly(1);
 				setSkillDelay(250);
 				setSkill2(false);
+				stand();
 			}
 			return 1;
 		}
@@ -424,7 +428,105 @@ public class WindCharacter_1 extends Character{
 	}
 	@Override
 	public int High_skill(Character target) {
-		// TODO Auto-generated method stub
+		if(isSkill3()) {
+			if(getSkillDelay() >= 200) {
+				getImageview().setViewport(new Rectangle2D(0, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 180) {
+				getImageview().setViewport(new Rectangle2D(111, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 160) {
+				getImageview().setViewport(new Rectangle2D(222, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 140) {
+				getImageview().setViewport(new Rectangle2D(333, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 120) {
+				getImageview().setViewport(new Rectangle2D(111, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 100) {
+				getImageview().setViewport(new Rectangle2D(222, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 80) {
+				getImageview().setViewport(new Rectangle2D(333, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 60) {
+				getImageview().setViewport(new Rectangle2D(111, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 40) {
+				getImageview().setViewport(new Rectangle2D(222, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 20) {
+				getImageview().setViewport(new Rectangle2D(333, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 0) {
+				getImageview().setViewport(new Rectangle2D(444, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -20) {
+				getImageview().setViewport(new Rectangle2D(555, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -40) {
+				getImageview().setViewport(new Rectangle2D(666, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -60) {
+				getImageview().setViewport(new Rectangle2D(777, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -80) {
+				getImageview().setViewport(new Rectangle2D(888, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -100) {
+				getImageview().setViewport(new Rectangle2D(999, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -130) {
+				getImageview().setViewport(new Rectangle2D(0, 1998, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -160) {
+				getImageview().setViewport(new Rectangle2D(111, 1998, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() > -190) {
+				getImageview().setViewport(new Rectangle2D(222, 1998, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() == -190) {
+				getImageview().setViewport(new Rectangle2D(222, 1998, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+				GameScreen.getgameObjects1().add(new Rasenshuriken(GameScreen.getPlayer1().getTranslateX(), GameScreen.getPlayer1().getTranslateY()-100,GameScreen.getPlayer1().isRight()));
+				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size()-1));
+				GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size()-1).getAnimation().play();
+			}
+			else if(getSkillDelay() >= -210) {
+				getImageview().setViewport(new Rectangle2D(0, 1554, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -230) {
+				getImageview().setViewport(new Rectangle2D(111, 1554, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else {
+				target.getAnimation().stop();
+				setSkillDelay(250);
+				setSkill3(false);
+				return 1;
+			}
+		}
 		return 0;
 	}
 	@Override

@@ -359,7 +359,9 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public void setSkillDelay(int skillDelay) {
 		this.skillDelay = skillDelay;
 	}
-	
+	public boolean getSkill() {
+		return isSkill1 && isSkill2 && isSkill3;
+	}
 	
 	
 

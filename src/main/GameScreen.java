@@ -3,6 +3,8 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import GameObject.GameObject;
 import GameObject.Shuriken;
 import Interface.Collidable;
 import characters.Character;
@@ -34,12 +36,12 @@ import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
-	private WindCharacter_1 player1 = new WindCharacter_1();
-	private FireCharacter_1 player2 = new FireCharacter_1();
+	private static WindCharacter_1 player1 = new WindCharacter_1();
+	private static FireCharacter_1 player2 = new FireCharacter_1();
 	private HealthBar healthbarP1 = new HealthBar(300, 50, new ImageView());
 	private HealthBar healthbarP2 = new HealthBar(300, 50, new ImageView());
-	private ArrayList<Shuriken> shurikens1 = new ArrayList<Shuriken>();
-	private ArrayList<Shuriken> shurikens2 = new ArrayList<Shuriken>();
+	private static ArrayList<GameObject> gameObjects1 = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> gameObjects2 = new ArrayList<GameObject>();
 	private boolean isEnd = false ;
 	private PauseMenuScreen pause ;
 	private boolean isPause = false ;
@@ -85,7 +87,7 @@ public class GameScreen extends myScene{
 		player2.setRight(false);
 		
 		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2,time,pause);
-		root.getChildren().addAll(shurikens1);
+		root.getChildren().addAll(gameObjects1);
 		
 		player1.getAnimation().play();
 		player2.getAnimation().play();
@@ -196,7 +198,7 @@ public class GameScreen extends myScene{
 	public void downPressed_1() {
 		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
 			//player1.crouch();
-			player1.setSkill2(true);
+			player1.setSkill3(true);
 			System.out.println("DOWNPressed");
 		}
 		else if(player1.isCrouch() && !isPause) {
@@ -235,9 +237,9 @@ public class GameScreen extends myScene{
 	}
 	
 	public void rangePressed_1() {
-		shurikens1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
-		root.getChildren().add(shurikens1.get(shurikens1.size()-1));
-		shurikens1.get(shurikens1.size()-1).getAnimation().play();
+		gameObjects1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY()+150,player1.isRight()));
+		root.getChildren().add(gameObjects1.get(gameObjects1.size()-1));
+		gameObjects1.get(gameObjects1.size()-1).getAnimation().play();
 		player1.range();
 
 	}
@@ -265,22 +267,24 @@ public class GameScreen extends myScene{
 		player1.doDodge();
 		player1.basic_skill(player2);
 		player1.mid_skill(player2);
+		player1.High_skill(player2);
 		player1.dotakeDamage();
-		if(!shurikens1.isEmpty()) {
-			for(int i = 0; i < shurikens1.size(); i++) {
-				Shuriken shu = shurikens1.get(i);
+		if(!gameObjects1.isEmpty()) {
+			for(int i = 0; i < gameObjects1.size(); i++) {
+				GameObject shu = gameObjects1.get(i);
 				if(shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
-					if(shu.isDirection()) {shurikens1.get(i).moveX(Shuriken.getSpeed());}
-					else{shurikens1.get(i).moveX(-Shuriken.getSpeed());}
+					if(shu.isDirection()) {gameObjects1.get(i).moveX();}
+					else{gameObjects1.get(i).moveX();}
 					if(checkCollide(shu, player2)) {
-						player2.takeDamage(Shuriken.getDamage());
+						player2.takeDamage(gameObjects1.get(i).getDamage());
+						gameObjects1.get(i).doEffect();
 						root.getChildren().remove(root.getChildren().indexOf(shu));
-						shurikens1.remove(i);
+						gameObjects1.remove(i);
 					}
 				}
 				else {
 					root.getChildren().remove(root.getChildren().indexOf(shu));
-					shurikens1.remove(i);
+					gameObjects1.remove(i);
 				}
 			}
 		}
@@ -344,9 +348,9 @@ public class GameScreen extends myScene{
 	}
 
 	public void rangePressed_2() {
-		shurikens2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY()+150,player2.isRight()));
-		root.getChildren().add(shurikens2.get(shurikens2.size()-1));
-		shurikens2.get(shurikens2.size()-1).getAnimation().play();
+		gameObjects2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY()+150,player2.isRight()));
+		root.getChildren().add(gameObjects2.get(gameObjects2.size()-1));
+		gameObjects2.get(gameObjects2.size()-1).getAnimation().play();
 		player2.range();
 
 	}
@@ -405,21 +409,21 @@ public class GameScreen extends myScene{
 		player2.doMelee();
 		player2.doDodge();
 		player2.dotakeDamage();
-		if(!shurikens2.isEmpty()) {
-			for(int i = 0; i < shurikens2.size(); i++) {
-				Shuriken shu = shurikens2.get(i);
+		if(!gameObjects2.isEmpty()) {
+			for(int i = 0; i < gameObjects2.size(); i++) {
+				GameObject shu = gameObjects2.get(i);
 				if(shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
-					if(shu.isDirection()) {shurikens2.get(i).moveX(Shuriken.getSpeed());}
-					else{shurikens2.get(i).moveX(-Shuriken.getSpeed());}
+					if(shu.isDirection()) {gameObjects2.get(i).moveX();}
+					else{gameObjects2.get(i).moveX();}
 					if(checkCollide(shu, player1)) {
-						player1.takeDamage(Shuriken.getDamage());
+						player1.takeDamage(gameObjects2.get(i).getDamage());
 						root.getChildren().remove(root.getChildren().indexOf(shu));
-						shurikens2.remove(i);
+						gameObjects2.remove(i);
 					}
 				}
 				else {
 					root.getChildren().remove(root.getChildren().indexOf(shu));
-					shurikens2.remove(i);
+					gameObjects2.remove(i);
 				}
 			}
 		}
@@ -551,20 +555,24 @@ public class GameScreen extends myScene{
 		this.isEnd = isEnd;
 	}
 
-	public Character getPlayer1() {
+	public static Character getPlayer1() {
 		return player1;
 	}
 
-	public Character getPlayer2() {
+	public static Character getPlayer2() {
 		return player2;
 	}
 
-	public ArrayList<Shuriken> getShurikens1() {
-		return shurikens1;
+	public static Pane get_Root() {
+		return root;
 	}
 
-	public ArrayList<Shuriken> getShurikens2() {
-		return shurikens2;
+	public static ArrayList<GameObject> getgameObjects1() {
+		return gameObjects1;
+	}
+
+	public static ArrayList<GameObject> getgameObjects2() {
+		return gameObjects2;
 	}
 
 	public void setPause(boolean isPause) {
@@ -577,8 +585,8 @@ public class GameScreen extends myScene{
 		player2.setCurrenthealth(player2.getMaxHealth());
 		healthbarP1.setHealthBar(1);
 		healthbarP2.setHealthBar(1);
-		shurikens1.clear();
-		shurikens2.clear();
+		gameObjects1.clear();
+		gameObjects2.clear();
 		isEnd = false;
 		isPause = false;
 		pause.setCurChoice(0);
