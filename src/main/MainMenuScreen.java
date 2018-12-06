@@ -3,7 +3,6 @@ package main;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -140,12 +139,16 @@ public class MainMenuScreen extends myScene {
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getMultiplayer());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
+			Main.getPlayer().setScene(Main.getMultiplayer());
+			Main.getPlayer().run();
 			MultiPlayerScreen.player.setAutoPlay(true);
 		}
 		else if(Oldchoice==2) {
 			Main.ChangeScene(Main.getLoadscreen());
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getOptionscreen());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
+			Main.getPlayer().setScene(Main.getOptionscreen());
+			Main.getPlayer().run();
 			load.play();
 		}
 		else if(Oldchoice==MenuBox.getChildren().size()-1) {
