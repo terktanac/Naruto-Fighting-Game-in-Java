@@ -17,6 +17,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int def; // standard:5
 	private int delay = 100;
 	private int longDelay = 170;
+	private int skillDelay = 250;
 	private int melee_round = 0;
 	private int limitDodge = 5;
 	private int stackFly = 3;
@@ -328,6 +329,12 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public void setStackFly(int stackFly) {
 		this.stackFly = stackFly;
+	}
+	public int getSkillDelay() {
+		return skillDelay;
+	}
+	public void setSkillDelay(int skillDelay) {
+		this.skillDelay = skillDelay;
 	}
 	
 	
