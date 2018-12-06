@@ -1,9 +1,9 @@
 package characters;
 
-import Interface.Collidable;
-import Interface.Fightable;
-import Interface.Moveable;
-import Interface.Skillable;
+import allInterface.Collidable;
+import allInterface.Fightable;
+import allInterface.Moveable;
+import allInterface.Skillable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

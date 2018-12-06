@@ -1,4 +1,4 @@
-package GameObject;
+package gameObject;
 
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
@@ -15,6 +15,7 @@ public class Shuriken extends GameObject{
 		setHeight(50);
 		setCount(2);
 		setSpeed(4);
+		setDamage(5);
 		setImageview(new ImageView("sys/weapons.png"));
 		getImageview().setFitHeight(70);
 		getImageview().setFitWidth(50);

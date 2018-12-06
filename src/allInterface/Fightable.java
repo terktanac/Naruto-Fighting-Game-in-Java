@@ -1,4 +1,4 @@
-package Interface;
+package allInterface;
 
 public interface Fightable {
 	public int melee();

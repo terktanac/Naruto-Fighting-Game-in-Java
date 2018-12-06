@@ -1,4 +1,4 @@
-package Interface;
+package allInterface;
 
 public interface Moveable {
 	public int stand();

@@ -1,4 +1,4 @@
-package Interface;
+package allInterface;
 
 import characters.Character;
 

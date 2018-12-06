@@ -1,4 +1,4 @@
-package GameObject;
+package gameObject;
 
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;

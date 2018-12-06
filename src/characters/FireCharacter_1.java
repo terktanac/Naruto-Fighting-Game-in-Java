@@ -1,10 +1,13 @@
 package characters;
 
+import gameObject.Chidori;
+import gameObject.Fireball;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import main.GameScreen;
 
 public class FireCharacter_1 extends Character{
 
@@ -201,7 +204,7 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int dodge() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump() && !isDodge()) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump() && !isDodge() && getLimitDodge() > 0) {
 			setDodge(true);
 			setMove(true);
 			this.getAnimation().stop();
@@ -273,13 +276,96 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int basic_skill(Character target) {
-		// TODO Auto-generated method stub
+		if(isSkill1()) {
+			if(getSkillDelay() >= 230) {
+				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 160) {
+				getImageview().setViewport(new Rectangle2D(111, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() > 140) {
+				setTranslateX(target.getTranslateX());
+				setTranslateY(100);
+				getImageview().setViewport(new Rectangle2D(111, 1776, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() == 140) {
+				setTranslateX(target.getTranslateX());
+				setTranslateY(100);
+				getImageview().setViewport(new Rectangle2D(111, 1776, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+				target.setStackFly(1);
+				GameScreen.getgameObjects2().add(new Chidori(GameScreen.getPlayer1().getTranslateX(), GameScreen.getPlayer1().getTranslateY(),GameScreen.getPlayer2().isRight()));
+				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
+				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1).getAnimation().play();
+			}
+			else if(getSkillDelay() == 40) {
+				getImageview().setViewport(new Rectangle2D(222, 1776, get_Width(), get_Height()));
+				getAnimation().play();
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() > 40) {
+				getImageview().setViewport(new Rectangle2D(222, 1776, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else {
+				setSkillDelay(250);
+				setSkill1(false);
+				jump();
+				stand();
+			}
+			return 1;
+		}
 		return 0;
 	}
 
 	@Override
 	public int mid_skill(Character target) {
-		// TODO Auto-generated method stub
+		if(isSkill2()) {
+			if(getSkillDelay() >= 230) {
+				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 160) {
+				getImageview().setViewport(new Rectangle2D(111, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 130) {
+				getImageview().setViewport(new Rectangle2D(222, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 100) {
+				getImageview().setViewport(new Rectangle2D(333, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 70) {
+				getImageview().setViewport(new Rectangle2D(444, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+				GameScreen.getgameObjects2().add(new Fireball(GameScreen.getPlayer2().getTranslateX(), GameScreen.getPlayer2().getTranslateY(),GameScreen.getPlayer2().isRight()));
+				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
+				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1).getAnimation().play();
+			}
+			else if(getSkillDelay() >= 50) {
+				getImageview().setViewport(new Rectangle2D(555, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 30) {
+				getImageview().setViewport(new Rectangle2D(666, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 10) {
+				getImageview().setViewport(new Rectangle2D(777, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else {
+				setSkillDelay(250);
+				setSkill2(false);
+				stand();
+			}
+			return 1;
+		}
 		return 0;
 	}
 

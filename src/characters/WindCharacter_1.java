@@ -1,7 +1,7 @@
 package characters;
 
-import GameObject.Rasenshuriken;
 import main.GameScreen;
+import gameObject.Rasenshuriken;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -202,7 +202,6 @@ public class WindCharacter_1 extends Character{
 	@Override
 	public int doDodge() {
 		if(isDodge()) {
-			setLimitDodge(getLimitDodge()-1);
 			System.out.println("dodge");
 			if(getDelay() >= 80) {
 				getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));

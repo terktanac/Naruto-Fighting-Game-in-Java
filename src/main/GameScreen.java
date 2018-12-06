@@ -4,12 +4,12 @@ package main;
 import java.util.ArrayList;
 import java.util.Map;
 
-import GameObject.GameObject;
-import GameObject.Shuriken;
-import Interface.Collidable;
+import allInterface.Collidable;
 import characters.Character;
 import characters.FireCharacter_1;
 import characters.WindCharacter_1;
+import gameObject.GameObject;
+import gameObject.Shuriken;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -332,7 +332,8 @@ public class GameScreen extends myScene{
 	
 	public void downPressed_2() {
 		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
-			player2.crouch();
+			//player2.crouch();
+			player2.setSkill2(true);
 			System.out.println("DOWNPressed");
 		}
 		else if(player2.isCrouch() && !isPause) {
@@ -440,6 +441,9 @@ public class GameScreen extends myScene{
 		player2.doRange();
 		player2.doMelee();
 		player2.doDodge();
+		player2.basic_skill(player1);
+		player2.mid_skill(player1);
+		player2.High_skill(player1);
 		player2.dotakeDamage();
 		if(player2.getTranslateX() > 950) {player2.setTranslateX(950);}
 		else if(player2.getTranslateX() < -30) {player2.setTranslateX(-30);}
@@ -447,12 +451,29 @@ public class GameScreen extends myScene{
 			for(int i = 0; i < gameObjects2.size(); i++) {
 				GameObject shu = gameObjects2.get(i);
 				if(shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
-					if(shu.isDirection()) {gameObjects2.get(i).moveX();}
-					else{gameObjects2.get(i).moveX();}
-					if(checkCollide(shu, player1)) {
-						player1.takeDamage(gameObjects2.get(i).getDamage());
-						root.getChildren().remove(root.getChildren().indexOf(shu));
-						gameObjects2.remove(i);
+					shu.moveX();
+					if(shu.isHasEffect()) {
+						if(shu.isDone()) {
+							root.getChildren().remove(root.getChildren().indexOf(shu));
+							gameObjects2.remove(i);
+						}
+						else if(checkCollide(shu, player1) && !shu.isDoing()) {
+							player1.takeDamage(shu.getDamage());
+							shu.setSpeed(0);
+							shu.setDoing(true);
+							shu.setTranslateX(player1.getTranslateX());
+							shu.setTranslateY(player1.getTranslateY());
+						}
+						else if(shu.isDoing()) {
+							shu.doEffect();
+						}
+					}
+					else {
+						if(checkCollide(shu, player1)) {
+							player1.takeDamage(shu.getDamage());
+							root.getChildren().remove(root.getChildren().indexOf(shu));
+							gameObjects2.remove(i);
+						}
 					}
 				}
 				else {

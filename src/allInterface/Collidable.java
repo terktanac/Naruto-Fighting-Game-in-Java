@@ -1,4 +1,4 @@
-package Interface;
+package allInterface;
 
 import javafx.geometry.Rectangle2D;
 
