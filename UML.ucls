@@ -1,276 +1,360 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="main.IntroScreen" project="NarutoUltimate" 
+  <package id="1" language="java" name="GameObject" project="NarutoUltimate" file="/NarutoUltimate/src/GameObject" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="122" x="1779" y="994"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="2" language="java" name="main.IntroScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/IntroScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3283" y="1762"/>    
+    <position height="160" width="141" x="6454" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="main.MainMenuScreen" project="NarutoUltimate" 
+  <class id="3" language="java" name="main.MainMenuScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MainMenuScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1902" y="1834"/>    
+    <position height="322" width="160" x="4830" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="main.MultiPlayerScreen.Check" project="NarutoUltimate" 
+  <package id="4" language="java" name="main" project="NarutoUltimate" file="/NarutoUltimate/src/main" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="122" x="2140" y="994"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="5" language="java" name="main.MultiPlayerScreen.Check" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MultiPlayerScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2590" y="2619"/>    
+    <position height="142" width="160" x="5541" y="4471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="main.PauseMenuScreen" project="NarutoUltimate" 
+  <class id="6" language="java" name="main.PauseMenuScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/PauseMenuScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2095" y="1318"/>    
+    <position height="232" width="159" x="1941" y="994"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="characters.Character" project="NarutoUltimate" 
+  <class id="7" language="java" name="characters.Character" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="4427" y="1592"/>    
+    <position height="2319" width="305" x="4203" y="994"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="main.MultiPlayerScreen.ListCharacter" project="NarutoUltimate" 
+  <class id="8" language="java" name="main.MultiPlayerScreen.ListCharacter" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MultiPlayerScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2819" y="2646"/>    
+    <position height="196" width="219" x="5741" y="4471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="main.PauseMenuScreen.ListMenu" project="NarutoUltimate" 
+  <class id="9" language="java" name="main.PauseMenuScreen.ListMenu" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/PauseMenuScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2100" y="1567"/>    
+    <position height="124" width="158" x="1941" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="main.GameScreen" project="NarutoUltimate" 
+  <class id="10" language="java" name="main.GameScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/GameScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2158" y="2095"/>    
+    <position height="1078" width="281" x="5030" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="characters.WaterCharacter_1" project="NarutoUltimate" 
+  <class id="11" language="java" name="characters.WaterCharacter_1" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/WaterCharacter_1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3890" y="658"/>    
+    <position height="430" width="169" x="3237" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="main.LoadingScreen" project="NarutoUltimate" 
+  <class id="12" language="java" name="main.LoadingScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/LoadingScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3462" y="1753"/>    
+    <position height="160" width="136" x="6635" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
   <interface id="11" language="java" name="allInterface.Moveable" project="NarutoUltimate" 
     file="/NarutoUltimate/src/allInterface/Moveable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4159" y="228"/>    
+||||||| merged common ancestors
+  <interface id="11" language="java" name="Interface.Moveable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Moveable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4159" y="228"/>    
+=======
+  <interface id="13" language="java" name="Interface.Moveable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Moveable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="178" width="120" x="3446" y="3353"/>    
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="12" language="java" name="main.MapChooseScreen" project="NarutoUltimate" 
+  <class id="14" language="java" name="main.MapChooseScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MapChooseScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2456" y="1870"/>    
+    <position height="394" width="242" x="5351" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="main.MultiPlayerScreen" project="NarutoUltimate" 
+  <class id="15" language="java" name="main.MultiPlayerScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MultiPlayerScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2753" y="2032"/>    
+    <position height="718" width="272" x="5633" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="characters.WindCharacter_1" project="NarutoUltimate" 
+  <class id="16" language="java" name="characters.WindCharacter_1" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/WindCharacter_1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3897" y="1178"/>    
+    <position height="430" width="169" x="3606" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="main.GameScreen.HealthBar" project="NarutoUltimate" 
+  <class id="17" language="java" name="main.GameScreen.HealthBar" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/GameScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2117" y="2646"/>    
+    <position height="376" width="273" x="5030" y="4471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="main.OptionScreen.ListOption" project="NarutoUltimate" 
+  <class id="18" language="java" name="main.OptionScreen.ListOption" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/OptionScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3048" y="2637"/>    
+    <position height="178" width="158" x="6000" y="4471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
   <interface id="17" language="java" name="allInterface.Collidable" project="NarutoUltimate" 
     file="/NarutoUltimate/src/allInterface/Collidable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4703" y="195"/>    
+||||||| merged common ancestors
+  <interface id="17" language="java" name="Interface.Collidable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Collidable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4703" y="195"/>    
+=======
+  <interface id="19" language="java" name="Interface.Collidable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Collidable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="185" x="6229" y="3353"/>    
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
+<<<<<<< HEAD
   <interface id="18" language="java" name="allInterface.Fightable" project="NarutoUltimate" 
     file="/NarutoUltimate/src/allInterface/Fightable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4325" y="276"/>    
+||||||| merged common ancestors
+  <interface id="18" language="java" name="Interface.Fightable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Fightable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4325" y="276"/>    
+=======
+  <interface id="20" language="java" name="Interface.Fightable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Fightable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="250" width="139" x="3815" y="3353"/>    
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="19" language="java" name="main.myScene" project="NarutoUltimate" 
+  <class id="21" language="java" name="main.myScene" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/myScene.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2530" y="1446"/>    
+    <position height="195" width="146" x="5633" y="994"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
   <interface id="20" language="java" name="allInterface.Skillable" project="NarutoUltimate" 
     file="/NarutoUltimate/src/allInterface/Skillable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4495" y="213"/>    
+||||||| merged common ancestors
+  <interface id="20" language="java" name="Interface.Skillable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Skillable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4495" y="213"/>    
+=======
+  <interface id="22" language="java" name="Interface.Skillable" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/Interface/Skillable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="169" x="3994" y="3353"/>    
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="21" language="java" name="main.MapChooseScreen.listMap" project="NarutoUltimate" 
+  <class id="23" language="java" name="GameObject.Rasenshuriken" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/GameObject/Rasenshuriken.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="124" width="249" x="6811" y="3353"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="main.MapChooseScreen.listMap" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MapChooseScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2391" y="2646"/>    
+    <position height="196" width="158" x="5343" y="4471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="characters.CharacterAnimation" project="NarutoUltimate" 
+  <class id="25" language="java" name="GameObject.GameObject" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/GameObject/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="897" width="250" x="6811" y="994"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="characters.CharacterAnimation" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/CharacterAnimation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2505" y="712"/>    
+    <position height="250" width="370" x="2302" y="994"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="characters.FireCharacter_1" project="NarutoUltimate" 
+  <class id="27" language="java" name="characters.FireCharacter_1" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/FireCharacter_1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3898" y="1690"/>    
+    <position height="430" width="169" x="4203" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="main.MainMenuScreen.ListMenu" project="NarutoUltimate" 
+  <package id="28" language="java" name="Interface" project="NarutoUltimate" file="/NarutoUltimate/src/Interface" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="122" x="2712" y="994"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="29" language="java" name="main.MainMenuScreen.ListMenu" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/MainMenuScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1901" y="2619"/>    
+    <position height="142" width="158" x="4830" y="4471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="main.Controller" project="NarutoUltimate" 
+  <class id="30" language="java" name="main.Controller" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="646" width="376" x="2730" y="578"/>    
-    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="664" width="997" x="2874" y="994"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
   <class id="26" language="java" name="gameObject.Shuriken" project="NarutoUltimate" 
     file="/NarutoUltimate/src/gameObject/Shuriken.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="4885" y="742"/>    
+||||||| merged common ancestors
+  <class id="26" language="java" name="GameObject.Shuriken" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/GameObject/Shuriken.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4885" y="742"/>    
+=======
+  <class id="31" language="java" name="GameObject.Shuriken" project="NarutoUltimate" 
+    file="/NarutoUltimate/src/GameObject/Shuriken.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="214" x="7100" y="3353"/>    
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="characters.EarthCharacter_1" project="NarutoUltimate" 
+  <class id="32" language="java" name="characters.EarthCharacter_1" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/EarthCharacter_1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3906" y="2186"/>    
+    <position height="430" width="169" x="4412" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="characters.PlainCharacter_1" project="NarutoUltimate" 
+  <class id="33" language="java" name="characters.PlainCharacter_1" project="NarutoUltimate" 
     file="/NarutoUltimate/src/characters/PlainCharacter_1.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3912" y="2710"/>    
+    <position height="430" width="169" x="4621" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="main.OptionScreen" project="NarutoUltimate" 
+  <class id="34" language="java" name="main.OptionScreen" project="NarutoUltimate" 
     file="/NarutoUltimate/src/main/OptionScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3051" y="1906"/>    
+    <position height="466" width="244" x="5945" y="3353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="30" language="java" name="main.Main" project="NarutoUltimate" file="/NarutoUltimate/src/main/Main.java" 
+  <class id="35" language="java" name="main.Main" project="NarutoUltimate" file="/NarutoUltimate/src/main/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3301" y="909"/>    
+    <position height="610" width="252" x="3911" y="994"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+<<<<<<< HEAD
   <nesting id="31">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="21"/>  
@@ -297,20 +381,88 @@
   </realization>  
   <generalization id="37">    
     <end type="SOURCE" refId="2"/>    
+||||||| merged common ancestors
+  <nesting id="31">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="15"/>  
+  </nesting>  
+  <realization id="32">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="8"/>    
+=======
+  <generalization id="36">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <realization id="37">    
+    <end type="SOURCE" refId="25"/>    
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
+    <end type="TARGET" refId="19"/>  
+<<<<<<< HEAD
   </generalization>  
   <realization id="38">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="17"/>  
+||||||| merged common ancestors
+  </generalization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="20"/>  
+=======
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
   </realization>  
+<<<<<<< HEAD
   <generalization id="39">    
     <end type="SOURCE" refId="23"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
+||||||| merged common ancestors
+  <nesting id="39">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="24"/>  
+  </nesting>  
+=======
+  <generalization id="38">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
   <generalization id="40">    
+<<<<<<< HEAD
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="19"/>  
+||||||| merged common ancestors
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="19"/>  
+=======
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="7"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
   </generalization>  
+<<<<<<< HEAD
   <nesting id="41">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="7"/>  
@@ -318,19 +470,83 @@
   <nesting id="42">    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="6"/>  
-  </nesting>  
-  <nesting id="43">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="24"/>  
-  </nesting>  
-  <nesting id="44">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="15"/>  
-  </nesting>  
-  <generalization id="45">    
+||||||| merged common ancestors
+  <generalization id="41">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
+  <nesting id="42">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="21"/>  
+=======
+  <nesting id="41">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="18"/>  
+  </nesting>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <nesting id="44">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="5"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
+  </nesting>  
+<<<<<<< HEAD
+  <nesting id="43">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="24"/>  
+||||||| merged common ancestors
+  <nesting id="43">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="16"/>  
+=======
+  <realization id="45">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <nesting id="46">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
+  </nesting>  
+<<<<<<< HEAD
+  <nesting id="44">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="15"/>  
+||||||| merged common ancestors
+  <nesting id="44">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="3"/>  
+=======
+  <nesting id="47">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="24"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
+  </nesting>  
+<<<<<<< HEAD
+  <generalization id="45">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="5"/>  
+||||||| merged common ancestors
+  <generalization id="45">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+=======
+  <nesting id="48">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="21"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
+  </generalization>  
+<<<<<<< HEAD
   <nesting id="46">    
     <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="16"/>  
@@ -342,11 +558,55 @@
   <generalization id="48">    
     <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="19"/>  
+||||||| merged common ancestors
+  <realization id="46">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <realization id="47">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="19"/>  
+=======
+  <generalization id="50">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
   </generalization>  
+  <realization id="51">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="52">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="25"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
+  </generalization>  
+<<<<<<< HEAD
   <generalization id="49">    
     <end type="SOURCE" refId="27"/>    
     <end type="TARGET" refId="5"/>  
+||||||| merged common ancestors
+  <nesting id="49">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="5"/>  
+=======
+  <generalization id="54">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="25"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
   </generalization>  
+<<<<<<< HEAD
   <generalization id="50">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="19"/>  
@@ -354,10 +614,57 @@
   <realization id="51">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="11"/>  
+||||||| merged common ancestors
+  <realization id="51">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="18"/>  
+=======
+  <realization id="55">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="19"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
   </realization>  
+<<<<<<< HEAD
   <generalization id="52">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="19"/>  
+||||||| merged common ancestors
+  <generalization id="52">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <nesting id="53">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="19"/>  
+=======
+  <nesting id="56">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="17"/>  
+  </nesting>  
+  <generalization id="57">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="59">    
+    <end type="SOURCE" refId="34"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <nesting id="60">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="29"/>  
+  </nesting>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="21"/>  
+>>>>>>> 2e8f08b0883a1e9d86748593bddeb47dda02cf41
   </generalization>  
   <generalization id="53">    
     <end type="SOURCE" refId="28"/>    
