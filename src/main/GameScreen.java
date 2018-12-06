@@ -106,7 +106,6 @@ public class GameScreen extends myScene{
 		updateskill(2);
 		updatemove(1);
 		updatemove(2);
-
 	}
 	
 	private void updatemove(int player) {

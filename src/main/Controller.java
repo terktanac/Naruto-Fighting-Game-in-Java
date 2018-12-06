@@ -24,7 +24,7 @@ public class Controller implements Runnable{
 	private AnimationTimer gameLoop ;
 	private long lastTime = -1;
 	private long inGameLastTime = -1 ;
-	
+	private long gameTime = -1 ;
 
 	public Controller(KeyCode upKey_1, KeyCode downKey_1, KeyCode leftKey_1, KeyCode rightKey_1
 					, KeyCode meleeKey_1,KeyCode rangeKey_1, KeyCode blockKey_1, KeyCode dodgeKey_1
@@ -91,7 +91,8 @@ public class Controller implements Runnable{
 			
 			@Override
 			public void handle(long now) {
-				scene.update();
+				if(now - gameTime > 1) {scene.update();gameTime = now;}
+//				scene.update();
 				if(scene == Main.getGamescreen() && now-inGameLastTime > 200000000) {Main.getGamescreen().updateArrays();inGameLastTime=now;}
 				if(now - lastTime > 2000000000) {
 					System.out.println("In Thread "+scene);
