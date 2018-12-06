@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	private static Stage stage ;
-	private static int state = 0 ; //0=start(intro) 1=menu 2=play 3=pause
 	private static IntroScreen intro;
 	private static MainMenuScreen mainmenu;
 	private static MultiPlayerScreen multiplayer;
@@ -33,18 +32,17 @@ public class Main extends Application {
 		mapscreen = new MapChooseScreen();
 		gamescreen = new GameScreen();
 		
-		player.setScene(intro);
-		player.run();
-		
+		ChangeScene(intro);
 		stage.getIcons().add(new Image(ClassLoader.getSystemResource("icon/icon.png").toString()));
 		stage.setTitle("Naruto Ultimate Ninja Storm Java Edition by C&T");
-		stage.setScene(intro);
 		stage.setResizable(false);
 		stage.show();
 
 	}
-	public static void ChangeScene(Scene nextScene) {
+	public static void ChangeScene(myScene nextScene) {
 		stage.setScene(nextScene);
+		player.setScene(nextScene);
+		player.run();
 	}
 	public static void setDefault() {
 		intro.setDefault();
@@ -62,12 +60,6 @@ public class Main extends Application {
 	}
 	public Stage getStage() {
 		return stage;
-	}
-	public int getState() {
-		return state;
-	}
-	public static void setState(int state) {
-		Main.state = state;
 	}
 	public static IntroScreen getIntro() {
 		return intro;
