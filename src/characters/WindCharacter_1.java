@@ -261,17 +261,169 @@ public class WindCharacter_1 extends Character{
 		return 1;
 	}
 	@Override
-	public int basic_skill() {
-		// TODO Auto-generated method stub
+	public int basic_skill(Character target) {
+		if(isSkill1()) {
+			if(getSkillDelay() >= 200) {
+				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 180) {
+				getImageview().setViewport(new Rectangle2D(111, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 160) {
+				getImageview().setViewport(new Rectangle2D(222, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 140) {
+				getImageview().setViewport(new Rectangle2D(333, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 120) {
+				getImageview().setViewport(new Rectangle2D(111, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 100) {
+				getImageview().setViewport(new Rectangle2D(222, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 80) {
+				getImageview().setViewport(new Rectangle2D(333, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 60) {
+				getImageview().setViewport(new Rectangle2D(111, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 40) {
+				getImageview().setViewport(new Rectangle2D(222, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 20) {
+				getImageview().setViewport(new Rectangle2D(333, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 0) {
+				if(isRight())
+					setTranslateX(target.getTranslateX()-50);
+				else
+					setTranslateX(target.getTranslateX()+200);
+				getImageview().setViewport(new Rectangle2D(444, 1441, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -20) {
+				getImageview().setViewport(new Rectangle2D(555, 1441, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -40) {
+				getImageview().setViewport(new Rectangle2D(666, 1441, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -60) {
+				getImageview().setViewport(new Rectangle2D(777, 1441, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -80) {
+				getImageview().setViewport(new Rectangle2D(888, 1441, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -100) {
+				getImageview().setViewport(new Rectangle2D(999, 1441, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else {
+				target.takeDamage(25);
+				target.setStackFly(1);
+				setSkillDelay(250);
+				setSkill1(false);
+			}
+			return 1;
+		}
 		return 0;
 	}
 	@Override
-	public int mid_skill() {
-		// TODO Auto-generated method stub
+	public int mid_skill(Character target) {
+		if(isSkill2()) {
+			if(getSkillDelay() >= 200) {
+				getImageview().setViewport(new Rectangle2D(0, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 180) {
+				getImageview().setViewport(new Rectangle2D(111, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 160) {
+				getImageview().setViewport(new Rectangle2D(222, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 140) {
+				getImageview().setViewport(new Rectangle2D(333, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 120) {
+				getImageview().setViewport(new Rectangle2D(111, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 100) {
+				getImageview().setViewport(new Rectangle2D(222, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 80) {
+				getImageview().setViewport(new Rectangle2D(333, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 60) {
+				getImageview().setViewport(new Rectangle2D(111, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 40) {
+				getImageview().setViewport(new Rectangle2D(222, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 20) {
+				getImageview().setViewport(new Rectangle2D(333, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 0) {
+				if(isRight())
+					setTranslateX(target.getTranslateX()-50);
+				else
+					setTranslateX(target.getTranslateX()+200);
+				getImageview().setViewport(new Rectangle2D(444, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -20) {
+				getImageview().setViewport(new Rectangle2D(555, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -40) {
+				getImageview().setViewport(new Rectangle2D(666, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -60) {
+				getImageview().setViewport(new Rectangle2D(777, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -80) {
+				getImageview().setViewport(new Rectangle2D(888, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -100) {
+				getImageview().setViewport(new Rectangle2D(999, 1665, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else {
+				target.takeDamage(50);
+				target.setStackFly(1);
+				setSkillDelay(250);
+				setSkill2(false);
+			}
+			return 1;
+		}
 		return 0;
 	}
 	@Override
-	public int High_skill() {
+	public int High_skill(Character target) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

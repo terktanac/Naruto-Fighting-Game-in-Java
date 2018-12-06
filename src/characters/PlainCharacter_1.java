@@ -51,19 +51,19 @@ public class PlainCharacter_1 extends Character{
 
 
 	@Override
-	public int basic_skill() {
+	public int basic_skill(Character target) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int mid_skill() {
+	public int mid_skill(Character target) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int High_skill() {
+	public int High_skill(Character target) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

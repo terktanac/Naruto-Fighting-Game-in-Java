@@ -3,7 +3,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 import GameObject.Shuriken;
 import Interface.Collidable;
 import characters.Character;
@@ -196,7 +195,8 @@ public class GameScreen extends myScene{
 
 	public void downPressed_1() {
 		if(Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
-			player1.crouch();
+			//player1.crouch();
+			player1.setSkill2(true);
 			System.out.println("DOWNPressed");
 		}
 		else if(player1.isCrouch() && !isPause) {
@@ -263,6 +263,8 @@ public class GameScreen extends myScene{
 		player1.doRange();
 		player1.doMelee();
 		player1.doDodge();
+		player1.basic_skill(player2);
+		player1.mid_skill(player2);
 		player1.dotakeDamage();
 		if(!shurikens1.isEmpty()) {
 			for(int i = 0; i < shurikens1.size(); i++) {

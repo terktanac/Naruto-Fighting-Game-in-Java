@@ -21,6 +21,9 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int melee_round = 0;
 	private int limitDodge = 5;
 	private int stackFly = 3;
+	private boolean isSkill1 = false;
+	private boolean isSkill2 = false;
+	private boolean isSkill3 = false;
 	private boolean isDead = false;//true = Dead = EndGame
 	private boolean isAir = false; //knock up or jump
 	private boolean isJump = false;
@@ -104,12 +107,14 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 			}
 			else {
 				setCurrenthealth(getCurrenthealth()-dmg);
-				setAttacked(true);
-				this.animation.stop();
-			}
-			if(getCurrenthealth() <= 0) {
-				setDead(true);
-				setLongDelay(170);
+				if(getCurrenthealth() <= 0) {
+					setDead(true);
+					setLongDelay(170);
+				}
+				else {
+					setAttacked(true);
+					this.animation.stop();
+				}
 			}
 		}
 		System.out.println("Current Health: "+getCurrenthealth());
@@ -311,6 +316,24 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public void setDodge(boolean isDodge) {
 		this.isDodge = isDodge;
+	}
+	public boolean isSkill1() {
+		return isSkill1;
+	}
+	public void setSkill1(boolean isSkill1) {
+		this.isSkill1 = isSkill1;
+	}
+	public boolean isSkill2() {
+		return isSkill2;
+	}
+	public void setSkill2(boolean isSkill2) {
+		this.isSkill2 = isSkill2;
+	}
+	public boolean isSkill3() {
+		return isSkill3;
+	}
+	public void setSkill3(boolean isSkill3) {
+		this.isSkill3 = isSkill3;
 	}
 	public int getLimitDodge() {
 		return limitDodge;
