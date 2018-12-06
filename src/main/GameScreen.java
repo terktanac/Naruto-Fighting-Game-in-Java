@@ -131,9 +131,29 @@ public class GameScreen extends myScene{
 	private void updateskill(int player) {
 		ArrayList<KeyCode> pressed = (player== 1 ? Controller.getPressedListSkillP1() : Controller.getPressedListSkillP2());
 		ArrayList<KeyCode> key = (player == 1 ? Controller.getKeyP1() : Controller.getKeyP2());
+		if(pressed.size() >= 4) {
+			if(pressed.get(0) == key.get(5) && pressed.get(1) == key.get(7) && pressed.get(2) == key.get(6) && pressed.get(3) == key.get(4)) {
+				System.out.println("Tier 3 skill");
+				if(player == 1) {player1.setSkill3(true);}
+				else {player2.setSkill3(true);}
+				Controller.removePressed(player, "SKILL", 4);
+				return;
+			}
+		}
+		if(pressed.size() >= 3) {
+			if(pressed.get(0) == key.get(6) && pressed.get(1) == key.get(4) && pressed.get(2) == key.get(5)) {
+				System.out.println("Tier 2 skill");
+				if(player == 1) {player1.setSkill2(true);}
+				else {player2.setSkill2(true);}
+				Controller.removePressed(player, "SKILL", 3);
+				return;
+			}
+		}
 		if(pressed.size() >= 2) {
 			if(pressed.get(0)==key.get(5) && pressed.get(1)==key.get(4)) {
 				System.out.println("Tier 1 skill");
+				if(player==1) {player1.setSkill1(true);}
+				else {player2.setSkill1(true);}
 				Controller.removePressed(player, "SKILL", 2);
 				return;
 			}
