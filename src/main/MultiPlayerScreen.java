@@ -9,6 +9,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
@@ -368,6 +369,38 @@ public class MultiPlayerScreen extends myScene{
 		rhschar.setImage(Characters.get(player2));
 		lhschar.setImage(Characters.get(player1));
 		Main.ChangeScene(Main.getMainmenu());
+	}
+	private void otherKeysPressed() {
+		if(Controller.getOtherKeys().contains(KeyCode.ENTER) || Controller.getOtherKeys().contains(KeyCode.SPACE)) {
+			if(!chosen1.getCheck()) {
+				haveChose();
+				lhschar.setImage(CharactersReady.get(player1));
+				playChoose();
+				chosen1.check = true;
+			}
+			else if(!chosen2.getCheck()) {
+				haveChose();
+				rhschar.setImage(CharactersReady.get(player2));
+				playChoose();
+				chosen2.check = true;
+			}
+			else {
+				haveChose();
+			}
+		}
+		else if(Controller.getOtherKeys().contains(KeyCode.BACK_SPACE) || Controller.getOtherKeys().contains(KeyCode.ESCAPE)) {
+			if(chosen1.getCheck()) {
+				lhschar.setImage(Characters.get(player1));
+				chosen1.check = false;
+			}
+			else if(chosen2.getCheck()) {
+				chosen2.check = false ;
+				rhschar.setImage(Characters.get(player2));
+			}
+			else {
+				goBacktoMainmenu();
+			}
+		}
 	}
 	@Override
 	public void setDefault() {

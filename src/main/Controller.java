@@ -53,7 +53,7 @@ public class Controller implements Runnable{
 
 	@Override
 	public void run() {
-		System.out.println("start");
+		System.out.println("start in Scene: " + scene);
 		scene.setOnKeyPressed((KeyEvent event)->{
 			KeyCode key = event.getCode();
 			System.out.println("Pressed:"+key);

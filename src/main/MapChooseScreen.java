@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.TilePane;
@@ -115,7 +116,7 @@ public class MapChooseScreen extends myScene {
 		}
 	}
 	public void choose() {
-		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0) ) {
+		if(Controller.getKeySkill_P1(0) || Controller.getKeySkill_P2(0) || Controller.getOtherKeys().contains(KeyCode.ENTER) || Controller.getOtherKeys().contains(KeyCode.SPACE)) {
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3500), ae ->{Main.ChangeScene(Main.getGamescreen());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			Main.ChangeScene(Main.getLoadscreen());
@@ -128,9 +129,11 @@ public class MapChooseScreen extends myScene {
 		}
 	}
 	public void back() {
-		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1)) {
+		if(Controller.getKeySkill_P1(1) || Controller.getKeySkill_P2(1) || Controller.getOtherKeys().contains(KeyCode.BACK_SPACE) || Controller.getOtherKeys().contains(KeyCode.ESCAPE)) {
 			playChoose();
 			Main.ChangeScene(Main.getMultiplayer());
+			Main.getPlayer().setScene(Main.getMultiplayer());
+			Main.getPlayer().run();
 		}
 	}
 	@Override
