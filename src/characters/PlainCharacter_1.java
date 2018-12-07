@@ -2,8 +2,8 @@ package characters;
 
 public class PlainCharacter_1 extends Character{
 
-	public PlainCharacter_1() {
-		super("Sakura", 0, 100, 15, 5, 1, null);
+	public PlainCharacter_1(double currentHealth) {
+		super("Sakura", 0, currentHealth, 15, 5, 1, null);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -106,7 +106,7 @@ public class PlainCharacter_1 extends Character{
 
 
 	@Override
-	public int takeDamage(int dmg) {
+	public double takeDamage(double dmg) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -122,6 +122,7 @@ public class PlainCharacter_1 extends Character{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 
 	

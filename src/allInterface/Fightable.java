@@ -8,7 +8,7 @@ public interface Fightable {
 	public int dodge();
 	public int doDodge();
 	public int block();
-	public int takeDamage(int dmg);
+	public double takeDamage(double dmg);
 	public int dotakeDamage();
 	public int dead();
 }

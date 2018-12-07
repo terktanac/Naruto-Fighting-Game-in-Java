@@ -11,8 +11,8 @@ import javafx.scene.layout.Pane;
 public abstract class Character extends Pane implements Fightable, Moveable, Skillable,Collidable{
 	private String name;
 	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
-	private int maxHealth;
-	private int currenthealth; // standard:1000
+	private static final double MAXHEALTH = 100;
+	private double currenthealth; // standard:1000
 	private int atk; // standard:10
 	private int def; // standard:5
 	private int delay = 100;
@@ -49,12 +49,11 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int state;
 	private boolean isRight = true;
 	private CharacterAnimation animation ;
-	public Character(String name, int element, int health, int atk, int def,double standTme,ImageView imageview) {
+	public Character(String name, int element, double currentHealth, int atk, int def,double standTme,ImageView imageview) {
 		super();
 		this.name = name;
 		this.element = element;
-		this.currenthealth = health;
-		this.maxHealth = health;
+		this.currenthealth = currentHealth;
 		this.atk = atk;
 		this.def = def;
 		this.standTime = standTme;
@@ -98,7 +97,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 
 	@Override
-	public int takeDamage(int dmg) {
+	public double takeDamage(double dmg) {
 		if(!isDodge() && !isAttacked) {
 			if(isBlock()) {
 				setCurrenthealth(getCurrenthealth()- (dmg-getDef()));
@@ -132,14 +131,14 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.element = element;
 	}
 
-	public int getCurrenthealth() {
+	public double getCurrenthealth() {
 		return currenthealth;
 	}
-	public void setCurrenthealth(int currenthealth) {
-		this.currenthealth = currenthealth;
+	public void setCurrenthealth(double d) {
+		this.currenthealth = d;
 	}
-	public int getMaxHealth() {
-		return maxHealth;
+	public static double getMaxHealth() {
+		return MAXHEALTH;
 	}
 	public int getAtk() {
 		return atk;

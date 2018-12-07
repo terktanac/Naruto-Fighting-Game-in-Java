@@ -22,7 +22,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class MultiPlayerScreen extends myScene{
-	private int player1 = 1,player2 = 0; //default character =0 : naruto
+	private static int player1 = 0; //default character =0 : naruto
+	private static int player2 = 1;
 	private static Pane root = new Pane();
 	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
 	ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
@@ -110,70 +111,7 @@ public class MultiPlayerScreen extends myScene{
 				new KeyFrame(Duration.seconds(0.7), evt -> pressKey.setVisible(false)));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		
-//		setOnKeyPressed(new EventHandler<KeyEvent>() {
-//			@Override
-//			public void handle(KeyEvent event) {
-//				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-//				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-//				KeyCode key = event.getCode();
-//				System.out.println("Multiplayer:Pressed " + key.toString());
-//				
-//				if(chosen1.check == true && chosen2.check == true) {
-//					choose.play();
-//					Main.ChangeScene(Main.getMapscreen());
-//				}
-//				else if (key == KeyCode.BACK_SPACE) {
-//					player.stop();
-//					choose.play();
-//					Main.ChangeScene(Main.getMainmenu());
-//				}
-//				else if (key == KeyCode.SPACE) {
-//					lhschar.setImage(CharactersReady.get(player1));
-//					choose.play();
-//					chosen1.check = true;
-//					if(chosen1.check == true && chosen2.check == true) {
-//						timeline.play();
-//					}
-//				} 
-//				else if (key == KeyCode.ENTER) {
-//					rhschar.setImage(CharactersReady.get(player2));
-//					choose.play();
-//					chosen2.check = true;
-//					if(chosen1.check == true && chosen2.check == true) {
-//						timeline.play();
-//					}
-//				} 
-//				else if ((key == Main.getOptionscreen().getUp_1() || key == Main.getOptionscreen().getLeft_1()) && !chosen1.check) {
-//					listCharacterpy1.get(player1).setActive(false);
-//					click.play();
-//					player1 = (player1+1)%Characters.size();
-//					lhschar.setImage(Characters.get(player1));
-//					listCharacterpy1.get(player1).setActive(true);
-//				}
-//				else if ((key == Main.getOptionscreen().getUp_2() || key == Main.getOptionscreen().getLeft_2()) && !chosen2.check) {
-//					click.play();
-//					listCharacterpy2.get(player2).setActive(false);
-//					player2 = (player2+1+Characters.size())%Characters.size();
-//					rhschar.setImage(Characters.get(player2));
-//					listCharacterpy2.get(player2).setActive(true);
-//				}
-//				else if ((key == Main.getOptionscreen().getDown_1() || key == Main.getOptionscreen().getRight_1()) && !chosen1.check) {
-//					listCharacterpy1.get(player1).setActive(false);
-//					click.play();
-//					player1 = (player1-1+Characters.size())%Characters.size();
-//					lhschar.setImage(Characters.get(player1));
-//					listCharacterpy1.get(player1).setActive(true);
-//				}
-//				else if ((key == Main.getOptionscreen().getDown_2() ||key == Main.getOptionscreen().getRight_2()) && !chosen2.check) {
-//					click.play();
-//					listCharacterpy2.get(player2).setActive(false);
-//					player2 = (player2-1+Characters.size())%Characters.size();
-//					rhschar.setImage(Characters.get(player2));
-//					listCharacterpy2.get(player2).setActive(true);
-//				}
-//			}
-//		});
-		
+
 
 	}
 	public class ListCharacter extends HBox{
@@ -219,6 +157,7 @@ public class MultiPlayerScreen extends myScene{
 	public void update() {
 		update_P1();
 		update_P2();
+		otherKeysPressed();
 
 	}
 	private void update_P1() {
@@ -283,6 +222,7 @@ public class MultiPlayerScreen extends myScene{
 			lhschar.setImage(CharactersReady.get(player1));
 			playChoose();
 			chosen1.check = true;
+			System.out.println("player1: "+ player1);
 		}
 	}
 
@@ -340,6 +280,8 @@ public class MultiPlayerScreen extends myScene{
 			rhschar.setImage(CharactersReady.get(player2));
 			playChoose();
 			chosen2.check = true;
+			System.out.println("Player2: " + player2);
+			
 		}
 	}
 
@@ -356,6 +298,7 @@ public class MultiPlayerScreen extends myScene{
 		if(chosen1.check == true && chosen2.check == true) {
 			playChoose();
 			Main.ChangeScene(Main.getMapscreen());
+			Main.getGamescreen().setCharacter(player1,player2);
 			Main.getPlayer().setScene(Main.getMapscreen());
 			Main.getPlayer().run();
 			timeline.play();
@@ -410,6 +353,13 @@ public class MultiPlayerScreen extends myScene{
 		chosen2.setCheck(false);
 		player.stop();
 	}
+	public static int getPlayer1() {
+		return player1;
+	}
+	public static int getPlayer2() {
+		return player2;
+	}
+	
 }
 
 	

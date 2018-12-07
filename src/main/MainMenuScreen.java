@@ -93,6 +93,7 @@ public class MainMenuScreen extends myScene {
 			Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae ->{Main.ChangeScene(Main.getIntro());})
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			load.play();
+			Controller.getOtherKeys().clear();
 		}
 	}
 

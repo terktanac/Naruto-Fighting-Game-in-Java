@@ -1,3 +1,4 @@
+
 package characters;
 
 import gameObject.Amaterasu;
@@ -13,8 +14,8 @@ import main.GameScreen;
 public class FireCharacter_1 extends Character{
 
 	private static Image image = new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka.png").toString(),1110, 2220, false, false);
-	public FireCharacter_1() {
-		super("Sasuke", 1, 100, 10, 4,1.2, new ImageView(image));
+	public FireCharacter_1(double currentHealth) {
+		super("Sasuke", 1, currentHealth, 10, 4,1.2, new ImageView(image));
 		setCount(4);
 		setOffSetY(111);
 		setAnimation(new CharacterAnimation(this.getImageview(), Duration.millis(300), getCount(), getCol(), getOffSetX(), getOffSetY(), get_Width(), get_Height()));
