@@ -1,7 +1,9 @@
 package allInterface;
 
+import characters.Character;
+
 public interface Fightable {
-	public int melee();
+	public int melee(Character target);
 	public int doMelee();
 	public int range();
 	public int doRange();

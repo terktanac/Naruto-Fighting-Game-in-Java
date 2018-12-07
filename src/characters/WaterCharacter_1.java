@@ -8,64 +8,37 @@ public class WaterCharacter_1 extends Character{
 	}
 
 	@Override
-	public int melee() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int range() {
+	public int doMelee() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int doRange() {
-		return 0;
-	}
-	
-	@Override
-	public int dodge() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int doDodge() {
+		// TODO Auto-generated method stub
 		return 0;
-		
 	}
-	
+
 	@Override
 	public int block() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-
-
 	@Override
-	public int crouch() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public int basic_skill(Character target) {
+	public int dotakeDamage() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int mid_skill(Character target) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int High_skill(Character target) {
+	public int dead() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -89,7 +62,7 @@ public class WaterCharacter_1 extends Character{
 	}
 
 	@Override
-	public int jump() {
+	public int crouch() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -101,23 +74,23 @@ public class WaterCharacter_1 extends Character{
 	}
 
 	@Override
-	public int doMelee() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int dotakeDamage() {
+	public int basic_skill(Character target) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int dead() {
+	public int mid_skill(Character target) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int High_skill(Character target) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 }

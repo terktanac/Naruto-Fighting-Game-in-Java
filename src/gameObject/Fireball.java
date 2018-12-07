@@ -3,11 +3,14 @@ package gameObject;
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class Fireball extends GameObject{
 
+	private static AudioClip boom = new AudioClip("file:soundfx/explosion.wav");
+	
 	public Fireball(double posx, double posy, boolean direction) {
 		super(posx, posy, direction);
 		setHasEffect(true);
@@ -33,8 +36,13 @@ public class Fireball extends GameObject{
 	public void doEffect() {
 		setOffSetX(0);
 		setOffSetY(166);
-		getAnimation().stop();		
-		if(getDelay() >= 280) {
+		getAnimation().stop();	
+		if(getDelay() == 300) {
+			getImageview().setViewport(new Rectangle2D(0, 166, get_Width(), get_Height()));
+			setDelay(getDelay()-1);
+			boom.play();
+		}
+		else if(getDelay() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 166, get_Width(), get_Height()));
 			setDelay(getDelay()-1);
 		}

@@ -7,6 +7,7 @@ import gameObject.Fireball;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import main.GameScreen;
@@ -14,6 +15,13 @@ import main.GameScreen;
 public class FireCharacter_1 extends Character{
 
 	private static Image image = new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka.png").toString(),1110, 2220, false, false);
+	private static AudioClip hit1 = new AudioClip("file:image/characters/sasuke_aka/sfx_hit.wav");
+	private static AudioClip chidori = new AudioClip("file:image/characters/sasuke_aka/sfx_chidori.wav");
+	private static AudioClip chidori_ready = new AudioClip("file:soundfx/chidori_loop.wav");
+	private static AudioClip katon = new AudioClip("file:image/characters/sasuke_aka/sfx_katon.wav");
+	private static AudioClip amaterasu = new AudioClip("file:image/characters/sasuke_aka/sfx_ult.wav");
+	private static AudioClip injured1 = new AudioClip("file:image/characters/sasuke_aka/sfx_injured.wav");
+	private static AudioClip injured2 = new AudioClip("file:image/characters/sasuke_aka/sfx_injured2.wav");
 	public FireCharacter_1(double currentHealth) {
 		super("Sasuke", 1, currentHealth, 10, 4,1.2, new ImageView(image));
 		setCount(4);
@@ -35,7 +43,10 @@ public class FireCharacter_1 extends Character{
 			this.setCount(6);
 			this.getAnimation().play();
 			this.moveX(characters.Character.getX_speed());
-			
+			if(getCountFoot() == 0 && !isAir()) {
+				foot1.play();
+			}
+			setCountFoot((getCountFoot()+1)%40);
 			return 1;
 		}
 		else {
@@ -57,6 +68,10 @@ public class FireCharacter_1 extends Character{
 			this.setCount(6);
 			this.getAnimation().play();
 			this.moveX(-characters.Character.getX_speed());
+			if(getCountFoot() == 0 && !isAir()) {
+				foot1.play();
+			}
+			setCountFoot((getCountFoot()+1)%40);
 			return 1;
 		}
 		else {
@@ -72,18 +87,6 @@ public class FireCharacter_1 extends Character{
 			return 1;
 		}
 		else 
-			return 0;
-	}
-	@Override
-	public int jump() {
-		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch() && !isBlock()) {
-			
-			setJump(true);
-			setAir(true);
-			this.getAnimation().stop();
-			return 1;
-		}
-		else
 			return 0;
 	}
 	
@@ -112,26 +115,20 @@ public class FireCharacter_1 extends Character{
 	}
 	
 	@Override
-	public int melee() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isRange() && !isBlock()) {
-			setMelee(true);
-			setMove(true);
-			this.getAnimation().stop();
-			return 1;
-		}
-		return 0;
-	}
-	
-	@Override
 	public int doMelee() {
 		if(isMelee()) {
 			if(getDelay() >= 80) {
 				getImageview().setViewport(new Rectangle2D(555, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
-			else if(getDelay() >= 60) {
+			else if(getDelay() > 60) {
 				getImageview().setViewport(new Rectangle2D(666, 555, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
+			}
+			else if(getDelay() == 60) {
+				getImageview().setViewport(new Rectangle2D(666, 555, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+				hit1.play();
 			}
 			else if(getDelay() >= 40) {
 				getImageview().setViewport(new Rectangle2D(777, 555, get_Width() - 15, get_Height() - 1.3));
@@ -155,26 +152,20 @@ public class FireCharacter_1 extends Character{
 	}
 
 	@Override
-	public int range() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isBlock()) {
-			setRange(true);
-			setMove(true);
-			this.getAnimation().stop();
-			return 1;
-		}
-		return 1;
-	}
-
-	@Override
 	public int doRange() {
 		if(isRange()) {
 			if(getDelay() >= 80) {
 				getImageview().setViewport(new Rectangle2D(777, 999, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
 			}
-			else if(getDelay() >= 60) {
+			else if(getDelay() > 60) {
 				getImageview().setViewport(new Rectangle2D(888, 999, get_Width() - 15, get_Height() - 1.3));
 				setDelay(getDelay()-1);
+			}
+			else if(getDelay() == 60) {
+				getImageview().setViewport(new Rectangle2D(888, 999, get_Width() - 15, get_Height() - 1.3));
+				setDelay(getDelay()-1);
+				hit1.play();
 			}
 			else if(getDelay() >= 40) {
 				getImageview().setViewport(new Rectangle2D(999, 999, get_Width() - 15, get_Height() - 1.3));
@@ -204,24 +195,6 @@ public class FireCharacter_1 extends Character{
 			return 0;
 	}
 
-	@Override
-	public int dodge() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump() && !isDodge() && getLimitDodge() > 0) {
-			setDodge(true);
-			setMove(true);
-			this.getAnimation().stop();
-			getImageview().setImage(getSmoke().getImage());
-			setWidth(440);
-			setHeight(199);
-			getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));
-			getImageview().setFitWidth(440.0*(350.0/199.0));
-			getImageview().setFitHeight(350);
-			setTranslateX(getTranslateX()-250);
-			return 1;
-		}
-		return 0;
-	}
-	
 	@Override
 	public int doDodge() {
 		if(isDodge()) {
@@ -279,7 +252,14 @@ public class FireCharacter_1 extends Character{
 	@Override
 	public int basic_skill(Character target) {
 		if(isSkill1()) {
-			if(getSkillDelay() >= 230) {
+			if(getSkillDelay() == 250) {
+				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+				chidori.play();
+				chidori_ready.setCycleCount(AudioClip.INDEFINITE);
+				chidori_ready.play();
+			}
+			else if(getSkillDelay() >= 230) {
 				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
 			}
@@ -299,6 +279,7 @@ public class FireCharacter_1 extends Character{
 				getImageview().setViewport(new Rectangle2D(111, 1776, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
 				target.setStackFly(1);
+				chidori_ready.stop();
 				GameScreen.getgameObjects2().add(new Chidori(target.getTranslateX(), target.getTranslateY(),isRight()));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
 				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1).getAnimation().play();
@@ -326,7 +307,12 @@ public class FireCharacter_1 extends Character{
 	@Override
 	public int mid_skill(Character target) {
 		if(isSkill2()) {
-			if(getSkillDelay() >= 230) {
+			if(getSkillDelay() == 250) {
+				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+				katon.play();
+			}
+			else if(getSkillDelay() >= 230) {
 				getImageview().setViewport(new Rectangle2D(0, 1221, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
 			}
@@ -379,6 +365,7 @@ public class FireCharacter_1 extends Character{
 					setTranslateX(getTranslateX()+30);
 				else
 					setTranslateX(getTranslateX()-30);
+				amaterasu.play();
 				getImageview().setViewport(new Rectangle2D(0, 1887, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
 			}
@@ -452,7 +439,12 @@ public class FireCharacter_1 extends Character{
 	public int dotakeDamage() {
 		if(isAttacked() && !isDead()) {
 			if(getStackFly() == 3) {
-				if(getDelay() >= 0) {
+				if(getDelay() == 100) {
+					this.getImageview().setViewport(new Rectangle2D(0, 444, get_Width() - 15, get_Height() - 1.3));
+					setDelay(getDelay()-1);
+					injured1.play();
+				}
+				else if(getDelay() >= 0) {
 					this.getImageview().setViewport(new Rectangle2D(0, 444, get_Width() - 15, get_Height() - 1.3));
 					setDelay(getDelay()-1);
 				}
@@ -466,7 +458,12 @@ public class FireCharacter_1 extends Character{
 				}
 			}
 			else if(getStackFly() == 2) {
-				if(getDelay() >= 0) {
+				if(getDelay() == 100) {
+					this.getImageview().setViewport(new Rectangle2D(111, 444, get_Width() - 15, get_Height() - 1.3));
+					setDelay(getDelay()-1);
+					injured1.play();
+				}
+				else if(getDelay() >= 0) {
 					this.getImageview().setViewport(new Rectangle2D(111, 444, get_Width() - 15, get_Height() - 1.3));
 					setDelay(getDelay()-1);
 				}
@@ -480,6 +477,15 @@ public class FireCharacter_1 extends Character{
 				}
 			}
 			else {
+				if(getLongDelay() == 170) {
+					injured2.play();
+					getImageview().setViewport(new Rectangle2D(111, 444, get_Width() - 15, get_Height() - 1.3));
+					setLongDelay(getLongDelay()-1);
+					if(isRight())
+						setTranslateX(getTranslateX()-3);
+					else
+						setTranslateX(getTranslateX()+3);
+				}
 				if(getLongDelay() >= 150) {
 					getImageview().setViewport(new Rectangle2D(111, 444, get_Width() - 15, get_Height() - 1.3));
 					setLongDelay(getLongDelay()-1);
@@ -581,6 +587,7 @@ public class FireCharacter_1 extends Character{
 			setLongDelay(getLongDelay()-1);
 		}
 		else {
+			injured2.play();
 			getAnimation().stop();
 		}
 		return 1;

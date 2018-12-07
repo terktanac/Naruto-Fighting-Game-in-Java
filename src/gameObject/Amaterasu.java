@@ -4,11 +4,14 @@ import characters.Character;
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 public class Amaterasu extends GameObject{
 
-	Character target;
+	private Character target;
+	private static AudioClip sharingan = new AudioClip("file:soundfx/sharingan.wav");
+	
 	public Amaterasu(double posx, double posy, boolean direction, Character target) {
 		super(posx, posy, direction);
 		this.target = target;
@@ -31,7 +34,12 @@ public class Amaterasu extends GameObject{
 	public void doEffect() {
 		setTranslateX(target.getTranslateX());
 		setTranslateY(target.getTranslateY());
-		if(getDelay() >= 280) {
+		if(getDelay() == 300) {
+			getImageview().setViewport(new Rectangle2D(0, 0, get_Width(), get_Height()));
+			setDelay(getDelay()-1);
+			sharingan.play();
+		}
+		else if(getDelay() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 0, get_Width(), get_Height()));
 			setDelay(getDelay()-1);
 		}

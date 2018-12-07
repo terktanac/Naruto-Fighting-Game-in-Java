@@ -7,6 +7,8 @@ import allInterface.Skillable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import main.GameScreen;
 
 public abstract class Character extends Pane implements Fightable, Moveable, Skillable,Collidable{
 	private String name;
@@ -21,6 +23,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int melee_round = 0;
 	private int limitDodge = 5;
 	private int stackFly = 3;
+	private int countFoot = 0;
 	private boolean isSkill1 = false;
 	private boolean isSkill2 = false;
 	private boolean isSkill3 = false;
@@ -49,6 +52,14 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int state;
 	private boolean isRight = true;
 	private CharacterAnimation animation ;
+	protected static AudioClip foot1 = new AudioClip("file:soundfx/footstep1.wav");
+	protected static AudioClip jump = new AudioClip("file:soundfx/jump.wav");
+	protected static AudioClip land = new AudioClip("file:soundfx/jump_land.wav");
+	protected static AudioClip hit = new AudioClip("file:soundfx/hit1.wav");
+	protected static AudioClip hitSuccess = new AudioClip("file:soundfx/hit1_sucess.wav");
+	protected static AudioClip shuriken = new AudioClip("file:soundfx/sword_miss1.wav");
+	protected static AudioClip dodge = new AudioClip("file:soundfx/smokebomb_setoff.wav");
+	protected static AudioClip block = new AudioClip("file:soundfx/Block.wav");
 	public Character(String name, int element, double currentHealth, int atk, int def,double standTme,ImageView imageview) {
 		super();
 		this.name = name;
@@ -95,12 +106,75 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	public Rectangle2D getBoundary() {
 		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
 	}
-
+	
+	@Override
+	public int jump() {
+		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch() && !isBlock()) {
+			jump.play();
+			setMove(true);
+			setJump(true);
+			setAir(true);
+			this.getAnimation().stop();
+			return 1;
+		}
+		else
+			return 0;
+	}
+	
+	@Override
+	public int melee(Character target) {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isRange() && !isBlock()) {
+			setMelee(true);
+			setMove(true);
+			this.getAnimation().stop();
+			if(GameScreen.checkCollide(this, target)) {
+				hitSuccess.play();
+				target.takeDamage(getAtk());
+			}
+			else
+				hit.play();
+			return 1;
+		}
+		return 0;
+	}
+	
+	@Override
+	public int range() {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isBlock()) {
+			setRange(true);
+			setMove(true);
+			this.getAnimation().stop();
+			shuriken.play();
+			return 1;
+		}
+		return 0;
+	}
+	
+	@Override
+	public int dodge() {
+		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump() && !isDodge() && getLimitDodge() > 0) {
+			setDodge(true);
+			setMove(true);
+			this.getAnimation().stop();
+			getImageview().setImage(getSmoke().getImage());
+			setWidth(440);
+			setHeight(199);
+			getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));
+			getImageview().setFitWidth(440.0*(350.0/199.0));
+			getImageview().setFitHeight(350);
+			setTranslateX(getTranslateX()-250);
+			dodge.play();
+			return 1;
+		}
+		return 0;
+	}
+	
 	@Override
 	public double takeDamage(double dmg) {
 		if(!isDodge() && !isAttacked) {
 			if(isBlock()) {
 				setCurrenthealth(getCurrenthealth()- (dmg-getDef()));
+				block.play();
 			}
 			else {
 				setCurrenthealth(getCurrenthealth()-dmg);
@@ -117,7 +191,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		System.out.println("Current Health: "+getCurrenthealth());
 		return getCurrenthealth();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -358,6 +432,12 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	}
 	public boolean getSkill() {
 		return isSkill1 && isSkill2 && isSkill3;
+	}
+	public int getCountFoot() {
+		return countFoot;
+	}
+	public void setCountFoot(int countFoot) {
+		this.countFoot = countFoot;
 	}
 	
 	

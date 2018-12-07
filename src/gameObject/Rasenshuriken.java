@@ -4,11 +4,14 @@ import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 public class Rasenshuriken extends GameObject{
 
 	private Image shock = new Image("sys/rasenshock.png");
+	private static AudioClip rasenshuriken_hit1 = new AudioClip("file:soundfx/rasenshuriken.wav");
+	private static AudioClip rasenshuriken_hit2 = new AudioClip("file:soundfx/rasenshuriken4.wav");
 	
 	public Rasenshuriken(double posx, double posy, boolean direction) {
 		super(posx, posy, direction);
@@ -41,9 +44,15 @@ public class Rasenshuriken extends GameObject{
 			getImageview().setViewport(new Rectangle2D(0, 0, get_Width(), get_Height()));
 			setDelay(getDelay()-1);
 		}
-		else if(getDelay() >= 260) {
+		else if(getDelay() > 260) {
 			getImageview().setViewport(new Rectangle2D(630, 0, get_Width(), get_Height()));
 			setDelay(getDelay()-1);
+		}
+		else if(getDelay() == 260) {
+			getImageview().setViewport(new Rectangle2D(630, 0, get_Width(), get_Height()));
+			setDelay(getDelay()-1);
+			rasenshuriken_hit1.play();
+			rasenshuriken_hit2.play();
 		}
 		else if(getDelay() >= 230) {
 			getImageview().setViewport(new Rectangle2D(1260, 0, get_Width(), get_Height()));
