@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -19,7 +20,7 @@ import javafx.util.Duration;
 
 public class IntroScreen extends myScene{
 	private static Pane root = new Pane();
-	private MediaPlayer player;
+	private AudioClip player;
 	public IntroScreen(){
 		super(root);
 //		this.main = main ;
@@ -57,7 +58,7 @@ public class IntroScreen extends myScene{
 		timeline.play();
 		
 		// Music
-		player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Blood Circulator.mp3").toString()));
+		player = new AudioClip("file:music/menu/Blood Circulator.mp3");
 		//player.setAutoPlay(true);
 		Timeline timeline2 = new Timeline(new KeyFrame(
 		        Duration.millis(3100),

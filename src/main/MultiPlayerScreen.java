@@ -14,6 +14,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -25,7 +26,7 @@ public class MultiPlayerScreen extends myScene{
 	private static int player1 = 0; //default character =0 : naruto
 	private static int player2 = 1;
 	private static Pane root = new Pane();
-	protected static MediaPlayer player = new MediaPlayer(new Media(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString()));
+	protected static AudioClip player = new AudioClip("file:music/menu/Gekiha.mp3");
 	ImageView lhschar,rhschar,vs,scrollpy1,scrollpy2;
 	ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
 	ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();

@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.TilePane;
+import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
 
 public class MapChooseScreen extends myScene {
@@ -126,6 +127,9 @@ public class MapChooseScreen extends myScene {
 			load.play();
 			setChooseBackground(new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(),1300,740,false,false));
 			GameScreen.setBackground(chooseBackground);
+			MultiPlayerScreen.player.stop();
+			GameScreen.player.setCycleCount(AudioClip.INDEFINITE);
+			GameScreen.player.play();
 		}
 	}
 	public void back() {

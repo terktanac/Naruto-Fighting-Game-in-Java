@@ -26,6 +26,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -40,6 +41,7 @@ public class GameScreen extends myScene{
 //	private static Character[] play2 = {new WindCharacter_1(Character.getMaxHealth()),new FireCharacter_1(Character.getMaxHealth())};
 //	private static Character player1 = play1[0];
 //	private static Character player2 = play2[0];
+	protected static AudioClip player = new AudioClip("file:music/game/Nankou Furaku.mp3");
 	private static Character player1 ;
 	private static Character player2 ;
 	private HealthBar healthbarP1;

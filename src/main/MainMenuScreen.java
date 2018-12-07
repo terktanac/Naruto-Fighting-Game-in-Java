@@ -13,6 +13,7 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -142,7 +143,8 @@ public class MainMenuScreen extends myScene {
 			load.play();
 			Main.getPlayer().setScene(Main.getMultiplayer());
 			Main.getPlayer().run();
-			MultiPlayerScreen.player.setAutoPlay(true);
+			MultiPlayerScreen.player.setCycleCount(AudioClip.INDEFINITE);
+			MultiPlayerScreen.player.play();
 		}
 		else if(Oldchoice==2) {
 			Main.ChangeScene(Main.getLoadscreen());
