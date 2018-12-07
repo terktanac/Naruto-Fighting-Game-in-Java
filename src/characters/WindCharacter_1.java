@@ -12,8 +12,8 @@ public class WindCharacter_1 extends Character{
 
 	private static Image image = new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage.png").toString(),1110, 2220, false, false);
 	
-	public WindCharacter_1() {
-		super("Naruto", 4, 100, 8, 2,0.6, new ImageView(image));
+	public WindCharacter_1(double currentHealth) {
+		super("Naruto", 4,currentHealth, 8, 2,0.6, new ImageView(image));
 		setOffSetY(0);
 		setAnimation(new CharacterAnimation(this.getImageview(), Duration.millis(300), getCount(), getCol(), getOffSetX(), getOffSetY(), get_Width(), get_Height()));
 	}

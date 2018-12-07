@@ -36,8 +36,12 @@ import javafx.util.Duration;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();
-	private static WindCharacter_1 player1 = new WindCharacter_1();
-	private static FireCharacter_1 player2 = new FireCharacter_1();
+//	private static Character[] play1 = {new WindCharacter_1(Character.getMaxHealth()),new FireCharacter_1(Character.getMaxHealth())};
+//	private static Character[] play2 = {new WindCharacter_1(Character.getMaxHealth()),new FireCharacter_1(Character.getMaxHealth())};
+//	private static Character player1 = play1[0];
+//	private static Character player2 = play2[0];
+	private static Character player1 ;
+	private static Character player2 ;
 	private HealthBar healthbarP1;
 	private HealthBar healthbarP2;
 	private static ArrayList<GameObject> gameObjects1 = new ArrayList<GameObject>();
@@ -47,7 +51,7 @@ public class GameScreen extends myScene{
 	private boolean isPause = false ;
 	private int currentTime = 300 ;
 	private AnimationTimer timer ;
-	private long lastTime = -1 ;
+	private long lastTime = -1 ; 
 	private Text time;
 
 
@@ -87,21 +91,22 @@ public class GameScreen extends myScene{
 		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
 		healthbarP2.setRotate(180);
 		
-		player1.setTranslateX(300);player1.setTranslateY(300);
-		player2.setTranslateX(500);player2.setTranslateY(300);
+//		player1.setTranslateX(300);player1.setTranslateY(300);
+//		player2.setTranslateX(500);player2.setTranslateY(300);
+//		
+//		player2.getImageview().setRotationAxis(Rotate.Y_AXIS);
+//		player2.getImageview().setRotate(180);
+//		player2.setRight(false);
 		
-		player2.getImageview().setRotationAxis(Rotate.Y_AXIS);
-		player2.getImageview().setRotate(180);
-		player2.setRight(false);
-		
-		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2,time,pause);
+//		root.getChildren().addAll(player1,player2,healthbarP1,healthbarP2,time,pause);
+		root.getChildren().addAll(healthbarP1,healthbarP2,time,pause);
 		root.getChildren().addAll(gameObjects1);
 		
-		player1.getAnimation().play();
-		player2.getAnimation().play();
-		
-		player1.stand();
-		player2.stand();
+//		player1.getAnimation().play();
+//		player2.getAnimation().play();
+//		
+//		player1.stand();
+//		player2.stand();
 	}
 
 	public static void setBackground(Image background) {
@@ -199,7 +204,7 @@ public class GameScreen extends myScene{
 		blockPressed_1();
 		nonePressed_1();
 		doAnimation_1();
-		if(!player1.isDead())healthbarP1.setHealthBar((double)player1.getCurrenthealth()/(double)player1.getMaxHealth());
+		healthbarP1.setHealthBar(player1.getCurrenthealth()/Character.getMaxHealth());
 	}
 	
 	public void update_2() {
@@ -210,7 +215,7 @@ public class GameScreen extends myScene{
 		blockPressed_2();
 		nonePressed_2();
 		doAnimation_2();
-		if(!player2.isDead())healthbarP2.setHealthBar((double)player2.getCurrenthealth()/(double)player2.getMaxHealth());
+		healthbarP2.setHealthBar(player2.getCurrenthealth()/Character.getMaxHealth());
 	}
 	
 	public void upPressed_1() {
@@ -566,7 +571,7 @@ public class GameScreen extends myScene{
 			Endtext.setTranslateY(300);
 			Continue.setTranslateX(600);
 			Continue.setTranslateY(300);
-			if(player1.getCurrenthealth() == player1.getMaxHealth() || player2.getCurrenthealth() == player2.getMaxHealth()) {
+			if(player1.getCurrenthealth() == Character.getMaxHealth() || player2.getCurrenthealth() == Character.getMaxHealth()) {
 				Endtext.setText("Perfect!");
 			}
 			else if(player1.getCurrenthealth() == player2.getCurrenthealth()) {
@@ -630,6 +635,7 @@ public class GameScreen extends myScene{
 			getChildren().addAll(healthbarPlain,healthbar,healthbarBorder,characters);
 		}
 		public double setHealthBar(double curDIVmax) {
+			if(curDIVmax < 0) {curDIVmax = 0;}
 			if(curDIVmax>=0.5) {red = (int) (2*255*(1-curDIVmax));}
 			else {green = (int) (255*(curDIVmax*2));}
 			Stop[] stops = new Stop[] { new Stop(0, Color.rgb(red, green, 0)), new Stop(1, Color.rgb(red, green, 100))};
@@ -646,6 +652,36 @@ public class GameScreen extends myScene{
 			return curDIVmax *100;
 		}
 
+	}
+	public void setCharacter(int choose1,int choose2) {
+//		if(player == 1) {
+//			player1 = play1[choose];
+//		}
+//		else {
+//			player2 = play2[choose];
+//		}
+//		if(player == 1) {player1 = new FireCharacter_1(Character.getMaxHealth());}
+//		else {player2 = new WindCharacter_1(Character.getMaxHealth());}
+//		root.getChildren().removeAll(player1,player2);
+//		System.out.println(root.getChildren());
+		if(choose1 == 0) {player1 = new WindCharacter_1(Character.getMaxHealth());}
+		else {player1 = new FireCharacter_1(Character.getMaxHealth());}
+		if(choose2 == 0) {player2 = new WindCharacter_1(Character.getMaxHealth());}
+		else {player2 = new FireCharacter_1(Character.getMaxHealth());}
+		root.getChildren().add(0, player1);
+		root.getChildren().add(0,player2);
+		player1.setTranslateX(300);player1.setTranslateY(300);
+		player2.setTranslateX(500);player2.setTranslateY(300);
+		
+		player2.getImageview().setRotationAxis(Rotate.Y_AXIS);
+		player2.getImageview().setRotate(180);
+		player2.setRight(false);
+		
+		player1.getAnimation().play();
+		player2.getAnimation().play();
+		
+		player1.stand();
+		player2.stand();
 	}
 
 	public void setEnd(boolean isEnd) {
@@ -678,8 +714,8 @@ public class GameScreen extends myScene{
 
 	@Override
 	public void setDefault() {
-		player1.setCurrenthealth(player1.getMaxHealth());
-		player2.setCurrenthealth(player2.getMaxHealth());
+		player1.setCurrenthealth(Character.getMaxHealth());
+		player2.setCurrenthealth(Character.getMaxHealth());
 		healthbarP1.setHealthBar(1);
 		healthbarP2.setHealthBar(1);
 		gameObjects1.clear();

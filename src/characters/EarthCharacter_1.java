@@ -2,8 +2,8 @@ package characters;
 
 public class EarthCharacter_1 extends Character {
 
-	public EarthCharacter_1() {
-		super("Gaara", 2, 100, 5, 10,2, null);
+	public EarthCharacter_1(double currentHealth ) {
+		super("Gaara", 2, currentHealth, 5, 10,2, null);
 	}
 
 	@Override
@@ -103,11 +103,6 @@ public class EarthCharacter_1 extends Character {
 	}
 
 
-	@Override
-	public int takeDamage(int dmg) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int dotakeDamage() {

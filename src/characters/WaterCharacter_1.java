@@ -2,8 +2,8 @@ package characters;
 
 public class WaterCharacter_1 extends Character{
 
-	public WaterCharacter_1() {
-		super("Suigetsu", 3, 100,10, 6,0.8, null);
+	public WaterCharacter_1(double currentHealth) {
+		super("Suigetsu", 3,currentHealth,10, 6,0.8, null);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -106,12 +106,6 @@ public class WaterCharacter_1 extends Character{
 		return 0;
 	}
 
-
-	@Override
-	public int takeDamage(int dmg) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int dotakeDamage() {
