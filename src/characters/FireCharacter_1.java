@@ -1,5 +1,6 @@
 package characters;
 
+import gameObject.Amaterasu;
 import gameObject.Chidori;
 import gameObject.Fireball;
 import javafx.geometry.Rectangle2D;
@@ -371,7 +372,76 @@ public class FireCharacter_1 extends Character{
 
 	@Override
 	public int High_skill(Character target) {
-		// TODO Auto-generated method stub
+		if(isSkill3()) {
+			if(getSkillDelay() == 250) {
+				if(!isRight())
+					setTranslateX(getTranslateX()+30);
+				else
+					setTranslateX(getTranslateX()-30);
+				getImageview().setViewport(new Rectangle2D(0, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 230) {
+				getImageview().setViewport(new Rectangle2D(0, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() == 160) {
+				getImageview().setViewport(new Rectangle2D(111, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+				GameScreen.getgameObjects2().add(new Amaterasu(GameScreen.getPlayer1().getTranslateX(), GameScreen.getPlayer1().getTranslateY(),GameScreen.getPlayer2().isRight(),target));
+				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
+			}
+			else if(getSkillDelay() > 160) {
+				getImageview().setViewport(new Rectangle2D(111, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 130) {
+				getImageview().setViewport(new Rectangle2D(222, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 100) {
+				getImageview().setViewport(new Rectangle2D(333, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 70) {
+				getImageview().setViewport(new Rectangle2D(444, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 40) {
+				getImageview().setViewport(new Rectangle2D(555, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= 10) {
+				getImageview().setViewport(new Rectangle2D(666, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -20) {
+				getImageview().setViewport(new Rectangle2D(777, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -50) {
+				getImageview().setViewport(new Rectangle2D(888, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -80) {
+				getImageview().setViewport(new Rectangle2D(999, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else if(getSkillDelay() >= -110) {
+				getImageview().setViewport(new Rectangle2D(777, 1887, get_Width(), get_Height()));
+				setSkillDelay(getSkillDelay()-1);
+			}
+			else {
+				if(isRight())
+					setTranslateX(getTranslateX()+30);
+				else
+					setTranslateX(getTranslateX()-30);
+				setSkillDelay(250);
+				setSkill3(false);
+				stand();
+			}
+			return 1;
+		}
 		return 0;
 	}
 

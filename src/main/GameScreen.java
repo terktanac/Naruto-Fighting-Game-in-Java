@@ -354,7 +354,7 @@ public class GameScreen extends myScene{
 	public void downPressed_2() {
 		if(Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
 			//player2.crouch();
-			player2.setSkill2(true);
+			player2.setSkill3(true);
 			System.out.println("DOWNPressed");
 		}
 		else if(player2.isCrouch() && !isPause) {
