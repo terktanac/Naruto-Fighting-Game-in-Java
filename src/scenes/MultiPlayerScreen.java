@@ -38,6 +38,7 @@ public class MultiPlayerScreen extends MyScene {
 	private Check chosen1 = new Check(false);
 	private Check chosen2 = new Check(false);
 	private Timeline timeline;
+	private Text pressKey;
 
 	public MultiPlayerScreen() {
 		super(root);
@@ -70,7 +71,7 @@ public class MultiPlayerScreen extends MyScene {
 		listCharacterpy2.add(
 				new ListCharacter("characters/sasukeaka/face.jpg", "characters/sasukeaka/faceactive.jpg", 1085, 130));
 
-		final Text pressKey = new Text("Press any key to Continue");
+		pressKey = new Text("Press any key to Continue");
 		pressKey.setFont(getNarutoFont());
 		pressKey.setFill(Color.WHITE);
 		pressKey.setStroke(Color.BLACK);
@@ -108,7 +109,7 @@ public class MultiPlayerScreen extends MyScene {
 		scrollpy2.setTranslateX(900);
 		scrollpy2.setTranslateY(50);
 
-		root.getChildren().addAll(lhschar, rhschar, scrollpy1, scrollpy2, vs, pressKey);
+		root.getChildren().addAll(lhschar, rhschar, scrollpy1, scrollpy2, vs);
 
 		for (int i = 0; i < listCharacterpy1.size(); i++) {
 			root.getChildren().add(listCharacterpy1.get(i));
@@ -278,6 +279,7 @@ public class MultiPlayerScreen extends MyScene {
 
 	private void haveChose() {
 		if (chosen1.check && chosen2.check) {
+			root.getChildren().add(pressKey);
 			timeline.play();
 			playChoose();
 			Main.ChangeScene(Main.getMapscreen());
