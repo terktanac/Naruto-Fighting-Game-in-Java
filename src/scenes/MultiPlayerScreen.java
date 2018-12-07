@@ -1,4 +1,4 @@
-package Scenes;
+package scenes;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ import javafx.util.Duration;
 import main.Controller;
 import main.Main;
 
-public class MultiPlayerScreen extends myScene {
+public class MultiPlayerScreen extends MyScene {
 	private static int player1; // default character =0 : naruto
 	private static int player2;
 	private static Pane root = new Pane();
@@ -45,32 +45,30 @@ public class MultiPlayerScreen extends myScene {
 		player2 = 1;
 		player.setVolume(0.3);
 
-		Characters.add(
-				new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),
-						230, 500, false, true));
-		Characters
-				.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),
-						230, 500, false, true));
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/narutosage/narutosagemugs2.png").toString(),
+				230, 500, false, true));
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasukeaka/sasukeakamugs2.png").toString(),
+				230, 500, false, true));
 
-		CharactersReady.add(
-				new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),
+		CharactersReady
+				.add(new Image(ClassLoader.getSystemResource("characters/narutosage/narutosagemugs3.png").toString(),
 						310, 480, false, true));
 		CharactersReady
-				.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(),
-						230, 500, false, true));
+				.add(new Image(ClassLoader.getSystemResource("characters/sasukeaka/sasukeakamugs3.png").toString(), 230,
+						500, false, true));
 
 		CharactersName.add("Naruto");
 		CharactersName.add("Sasuke");
 
-		listCharacterpy1.add(new ListCharacter("characters/naruto_sage/face.jpg",
-				"characters/naruto_sage/face_active.jpg", 100, 130));
 		listCharacterpy1.add(
-				new ListCharacter("characters/sasuke_aka/face.jpg", "characters/sasuke_aka/face_active.jpg", 205, 130));
+				new ListCharacter("characters/narutosage/face.jpg", "characters/narutosage/faceactive.jpg", 100, 130));
+		listCharacterpy1.add(
+				new ListCharacter("characters/sasukeaka/face.jpg", "characters/sasukeaka/faceactive.jpg", 205, 130));
 
-		listCharacterpy2.add(new ListCharacter("characters/naruto_sage/face.jpg",
-				"characters/naruto_sage/face_active.jpg", 980, 130));
-		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.jpg",
-				"characters/sasuke_aka/face_active.jpg", 1085, 130));
+		listCharacterpy2.add(
+				new ListCharacter("characters/narutosage/face.jpg", "characters/narutosage/faceactive.jpg", 980, 130));
+		listCharacterpy2.add(
+				new ListCharacter("characters/sasukeaka/face.jpg", "characters/sasukeaka/faceactive.jpg", 1085, 130));
 
 		final Text pressKey = new Text("Press any key to Continue");
 		pressKey.setFont(getNarutoFont());
@@ -81,8 +79,8 @@ public class MultiPlayerScreen extends myScene {
 		pressKey.setVisible(false);
 
 		root.setPrefSize(1280, 720);
-		final Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(), 1300, 740,
-				false, false);
+		final Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(), 1300,
+				740, false, false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
 
 		// vs. logo
@@ -128,34 +126,35 @@ public class MultiPlayerScreen extends myScene {
 		timeline.setCycleCount(Animation.INDEFINITE);
 
 	}
+
 	@Override
-	public void update() {
-		update_P1();
-		update_P2();
+	public final void update() {
+		updateP1();
+		updateP2();
 		otherKeysPressed();
 
 	}
 
-	private void update_P1() {
-		upPressed_1();
-		downPressed_1();
-		leftPressed_1();
-		rightPressed_1();
-		choose_1();
-		back_1();
+	private void updateP1() {
+		upPressed1();
+		downPressed1();
+		leftPressed1();
+		rightPressed1();
+		choose1();
+		back1();
 	}
 
-	private void update_P2() {
-		upPressed_2();
-		downPressed_2();
-		leftPressed_2();
-		rightPressed_2();
-		choose_2();
-		back_2();
+	private void updateP2() {
+		upPressed2();
+		downPressed2();
+		leftPressed2();
+		rightPressed2();
+		choose2();
+		back2();
 	}
 
-	private void upPressed_1() {
-		if (Controller.getKeyMove_P1(0) && !chosen1.check) {
+	private void upPressed1() {
+		if (Controller.getKeyMoveP1(0) && !chosen1.check) {
 			listCharacterpy1.get(player1).setActive(false);
 			playClick();
 			player1 = (player1 + 1) % Characters.size();
@@ -164,8 +163,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void downPressed_1() {
-		if (Controller.getKeyMove_P1(1) && !chosen1.check) {
+	private void downPressed1() {
+		if (Controller.getKeyMoveP1(1) && !chosen1.check) {
 			listCharacterpy1.get(player1).setActive(false);
 			playClick();
 			player1 = (player1 - 1 + Characters.size()) % Characters.size();
@@ -174,8 +173,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void leftPressed_1() {
-		if (Controller.getKeyMove_P1(2) && !chosen1.check) {
+	private void leftPressed1() {
+		if (Controller.getKeyMoveP1(2) && !chosen1.check) {
 			listCharacterpy1.get(player1).setActive(false);
 			playClick();
 			player1 = (player1 + 1) % Characters.size();
@@ -184,8 +183,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void rightPressed_1() {
-		if (Controller.getKeyMove_P1(3) && !chosen1.check) {
+	private void rightPressed1() {
+		if (Controller.getKeyMoveP1(3) && !chosen1.check) {
 			listCharacterpy1.get(player1).setActive(false);
 			playClick();
 			player1 = (player1 - 1 + Characters.size()) % Characters.size();
@@ -194,8 +193,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void choose_1() {
-		if (Controller.getKeySkill_P1(0)) {
+	private void choose1() {
+		if (Controller.getKeySkillP1(0)) {
 			haveChose();
 			lhschar.setImage(CharactersReady.get(player1));
 			playReady();
@@ -204,8 +203,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void back_1() {
-		if (Controller.getKeySkill_P1(1)) {
+	private void back1() {
+		if (Controller.getKeySkillP1(1)) {
 			if (chosen1.check) {
 				lhschar.setImage(Characters.get(player1));
 				chosen1.check = false;
@@ -215,8 +214,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void upPressed_2() {
-		if (Controller.getKeyMove_P2(0) && !chosen2.check) {
+	private void upPressed2() {
+		if (Controller.getKeyMoveP2(0) && !chosen2.check) {
 			playClick();
 			listCharacterpy2.get(player2).setActive(false);
 			player2 = (player2 + 1 + Characters.size()) % Characters.size();
@@ -225,8 +224,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void downPressed_2() {
-		if (Controller.getKeyMove_P2(1) && !chosen2.check) {
+	private void downPressed2() {
+		if (Controller.getKeyMoveP2(1) && !chosen2.check) {
 			playClick();
 			listCharacterpy2.get(player2).setActive(false);
 			player2 = (player2 - 1 + Characters.size()) % Characters.size();
@@ -235,8 +234,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void leftPressed_2() {
-		if (Controller.getKeyMove_P2(2) && !chosen2.check) {
+	private void leftPressed2() {
+		if (Controller.getKeyMoveP2(2) && !chosen2.check) {
 			playClick();
 			listCharacterpy2.get(player2).setActive(false);
 			player2 = (player2 + 1 + Characters.size()) % Characters.size();
@@ -245,8 +244,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void rightPressed_2() {
-		if (Controller.getKeyMove_P2(3) && !chosen2.check) {
+	private void rightPressed2() {
+		if (Controller.getKeyMoveP2(3) && !chosen2.check) {
 			playClick();
 			listCharacterpy2.get(player2).setActive(false);
 			player2 = (player2 - 1 + Characters.size()) % Characters.size();
@@ -255,8 +254,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void choose_2() {
-		if (Controller.getKeySkill_P2(0)) {
+	private void choose2() {
+		if (Controller.getKeySkillP2(0)) {
 			haveChose();
 			rhschar.setImage(CharactersReady.get(player2));
 			playReady();
@@ -266,8 +265,8 @@ public class MultiPlayerScreen extends myScene {
 		}
 	}
 
-	private void back_2() {
-		if (Controller.getKeySkill_P2(1)) {
+	private void back2() {
+		if (Controller.getKeySkillP2(1)) {
 			if (chosen2.check) {
 				chosen2.check = false;
 				rhschar.setImage(Characters.get(player2));
@@ -278,13 +277,13 @@ public class MultiPlayerScreen extends myScene {
 	}
 
 	private void haveChose() {
-		if(chosen1.check == true && chosen2.check == true) {
+		if (chosen1.check && chosen2.check) {
 			timeline.play();
 			playChoose();
 			Main.ChangeScene(Main.getMapscreen());
 			Main.getGamescreen().setCharacter(player1, player2);
 			Main.getPlayer().setScene(Main.getMapscreen());
-			Main.getPlayer().run();	
+			Main.getPlayer().run();
 		}
 	}
 
@@ -328,7 +327,7 @@ public class MultiPlayerScreen extends myScene {
 	}
 
 	@Override
-	public void setDefault() {
+	public final void setDefault() {
 		player1 = 0;
 		player2 = 1;
 		chosen1.setCheck(false);
@@ -343,7 +342,6 @@ public class MultiPlayerScreen extends myScene {
 	public static int getPlayer2() {
 		return player2;
 	}
-
 
 	public class ListCharacter extends HBox {
 		private ImageView img;
@@ -364,7 +362,7 @@ public class MultiPlayerScreen extends myScene {
 			setActive(false);
 		}
 
-		public void setActive(boolean check) {
+		public final void setActive(boolean check) {
 			if (check) {
 				img.setImage(new Image(ClassLoader.getSystemResource(this.active).toString(), 100, 100, false, true));
 			} else {
@@ -380,14 +378,13 @@ public class MultiPlayerScreen extends myScene {
 			check = c;
 		}
 
-		public boolean getCheck() {
+		public final boolean getCheck() {
 			return check;
 		}
 
-		public void setCheck(boolean check) {
+		public final void setCheck(boolean check) {
 			this.check = check;
 		}
 	}
 
-	
 }

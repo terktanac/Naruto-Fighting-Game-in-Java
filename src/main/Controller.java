@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import Scenes.myScene;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import scenes.MyScene;
 
 public class Controller implements Runnable {
 
-	private myScene scene;
+	private MyScene scene;
 	private static Map<KeyCode, Boolean> isPressedMap1 = new HashMap<KeyCode, Boolean>();
 	private static Map<KeyCode, Boolean> isPressedMap2 = new HashMap<KeyCode, Boolean>();
 	private static ArrayList<KeyCode> pressedListMoveP1 = new ArrayList<KeyCode>();
@@ -71,7 +71,7 @@ public class Controller implements Runnable {
 	public final void run() {
 		System.out.println("start in Scene: " + scene);
 		scene.setOnKeyPressed((KeyEvent event) -> {
-			KeyCode key = event.getCode();
+			final KeyCode key = event.getCode();
 			System.out.println("Pressed:" + key);
 			if (isPressedMap1.containsKey(key) && !isPressedMap1.get(key)) {
 				isPressedMap1.put(key, true);
@@ -95,7 +95,7 @@ public class Controller implements Runnable {
 		});
 
 		scene.setOnKeyReleased((KeyEvent event) -> {
-			KeyCode key = event.getCode();
+			final KeyCode key = event.getCode();
 			System.out.println("Release:" + key);
 			if (isPressedMap1.containsKey(key)) {
 				isPressedMap1.put(key, false);
@@ -131,7 +131,7 @@ public class Controller implements Runnable {
 		gameLoop.start();
 	}
 
-	public final void setScene(myScene scene) {
+	public final void setScene(MyScene scene) {
 		this.scene = scene;
 		if (!otherKeys.isEmpty()) {
 			otherKeys.clear();
@@ -164,7 +164,7 @@ public class Controller implements Runnable {
 		return isPressedMap2;
 	}
 
-	public final myScene getScene() {
+	public final MyScene getScene() {
 		return scene;
 	}
 
@@ -200,7 +200,7 @@ public class Controller implements Runnable {
 		return otherKeys;
 	}
 
-	public static boolean getKeyMove_P1(int index) {
+	public static boolean getKeyMoveP1(int index) {
 		final boolean result = getPressedListMoveP1().contains(Controller.getKeyP1().get(index));
 		if (result) {
 			getPressedListMoveP1().remove(0);
@@ -208,7 +208,7 @@ public class Controller implements Runnable {
 		return result;
 	}
 
-	public static boolean getKeyMove_P2(int index) {
+	public static boolean getKeyMoveP2(int index) {
 		final boolean result = getPressedListMoveP2().contains(Controller.getKeyP2().get(index));
 		if (result) {
 			getPressedListMoveP2().remove(0);
@@ -216,7 +216,7 @@ public class Controller implements Runnable {
 		return result;
 	}
 
-	public static boolean getKeySkill_P1(int index) {
+	public static boolean getKeySkillP1(int index) {
 		final boolean result = getPressedListSkillP1().contains(Controller.getKeyP1().get(index + 4));
 		if (result) {
 			getPressedListSkillP1().remove(0);
@@ -224,7 +224,7 @@ public class Controller implements Runnable {
 		return result;
 	}
 
-	public static boolean getKeySkill_P2(int index) {
+	public static boolean getKeySkillP2(int index) {
 		final boolean result = getPressedListSkillP2().contains(Controller.getKeyP2().get(index + 4));
 		if (result) {
 			getPressedListSkillP2().remove(0);

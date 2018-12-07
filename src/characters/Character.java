@@ -1,6 +1,5 @@
 package characters;
 
-import Scenes.GameScreen;
 import allInterface.Collidable;
 import allInterface.Fightable;
 import allInterface.Moveable;
@@ -9,10 +8,11 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import scenes.GameScreen;
 
-public abstract class Character extends Pane implements Fightable, Moveable, Skillable,Collidable{
+public abstract class Character extends Pane implements Fightable, Moveable, Skillable, Collidable {
 	private String name;
-	private int element; //Plain:0 Fire:1 Earth:2 Water:3 Wind:4
+	private int element; // Plain:0 Fire:1 Earth:2 Water:3 Wind:4
 	private static final double MAXHEALTH = 100;
 	private double currenthealth; // standard:1000
 	private int atk; // standard:10
@@ -20,28 +20,28 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int delay = 100;
 	private int longDelay = 170;
 	private int skillDelay = 250;
-	private int melee_round = 0;
+	private int meleeRound = 0;
 	private int limitDodge = 5;
 	private int stackFly = 3;
 	private int countFoot = 0;
 	private boolean isSkill1 = false;
 	private boolean isSkill2 = false;
 	private boolean isSkill3 = false;
-	private boolean isDead = false;//true = Dead = EndGame
-	private boolean isAir = false; //knock up or jump
+	private boolean isDead = false;// true = Dead = EndGame
+	private boolean isAir = false; // knock up or jump
 	private boolean isJump = false;
 	private boolean isCrouch = false;
 	private boolean isBlock = false;
 	private boolean isDodge = false;
 	private boolean isMove = false;
-	private double isFall = 0; //if > 0.00 user can't do anything and need to wait for stand
-	private boolean isAttacked = false; //if true user can't move for 0.1 s(or less)
+	private double isFall = 0; // if > 0.00 user can't do anything and need to wait for stand
+	private boolean isAttacked = false; // if true user can't move for 0.1 s(or less)
 	private boolean isMelee = false;
 	private boolean isRange = false;
-	private double standTime ;//Time period that a character need for stand avg=1 s
-	private static double x_speed = 2;
-	private static double y_speed = 2;
-	private ImageView imageview ;
+	private double standTime;// Time period that a character need for stand avg=1 s
+	private static double xSpeed = 2;
+	private static double ySpeed = 2;
+	private ImageView imageview;
 	private ImageView smoke;
 	private int count;
 	private int col;
@@ -51,7 +51,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int height;
 	private int state;
 	private boolean isRight = true;
-	private CharacterAnimation animation ;
+	private CharacterAnimation animation;
 	protected static AudioClip foot1 = new AudioClip("file:soundfx/footstep1.wav");
 	protected static AudioClip jump = new AudioClip("file:soundfx/jump.wav");
 	protected static AudioClip land = new AudioClip("file:soundfx/jump_land.wav");
@@ -60,7 +60,9 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	protected static AudioClip shuriken = new AudioClip("file:soundfx/sword_miss1.wav");
 	protected static AudioClip dodge = new AudioClip("file:soundfx/smokebomb_setoff.wav");
 	protected static AudioClip block = new AudioClip("file:soundfx/Block.wav");
-	public Character(String name, int element, double currentHealth, int atk, int def,double standTme,ImageView imageview) {
+
+	public Character(String name, int element, double currentHealth, int atk, int def, double standTme,
+			ImageView imageview) {
 		super();
 		this.name = name;
 		this.element = element;
@@ -73,74 +75,82 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.col = 0;
 		this.offSetX = 0;
 		this.offSetY = 0;
-		this.width = 111 ;
-		this.height = 111 ;
+		this.width = 111;
+		this.height = 111;
 		this.smoke = new ImageView("sys/big_smoke_log.png");
 		this.setImageview(imageview);
 		this.getImageview().setViewport(new Rectangle2D(offSetX, offSetY, width - 15, height - 1.3));
 		this.getImageview().setFitHeight(350);
-		this.getImageview().setFitWidth(350);	
+		this.getImageview().setFitWidth(350);
 		getChildren().addAll(imageview);
 	}
-	public void moveX(double d) {
-		boolean right = d>0 ? true:false;
-		for(int i=0;i<Math.abs(d);i++) {
-			if(right) {
-				this.setTranslateX(this.getTranslateX()+1);
-			}
-			else {
-				this.setTranslateX(this.getTranslateX()-1);
+
+	public final void moveX(double d) {
+		boolean right = d > 0 ? true : false;
+		for (int i = 0; i < Math.abs(d); i++) {
+			if (right) {
+				this.setTranslateX(this.getTranslateX() + 1);
+			} else {
+				this.setTranslateX(this.getTranslateX() - 1);
 			}
 		}
 	}
-	
-	
-	public void moveY(double d) {
-		boolean right = d>0 ? true:false;
-		for(int i=0;i<Math.abs(d);i++) {
-			if(right)this.setTranslateY(this.getTranslateY()+1);
-			else this.setTranslateY(this.getTranslateY()-1);
+
+	public final void moveY(double d) {
+		final boolean right;
+		if (d > 0) {
+			right = true;
+		} else {
+			right = false;
+		}
+		for (int i = 0; i < Math.abs(d); i++) {
+			if (right) {
+				this.setTranslateY(this.getTranslateY() + 1);
+			} else {
+				this.setTranslateY(this.getTranslateY() - 1);
+			}
 		}
 	}
+
 	@Override
-	public Rectangle2D getBoundary() {
+	public final Rectangle2D getBoundary() {
 		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
 	}
-	
+
 	@Override
-	public int jump() {
-		if(!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch() && !isBlock()) {
+	public final int jump() {
+		if (!isAir() && !isAttacked() && !isJump() && !isDead() && !isCrouch() && !isBlock()) {
 			jump.play();
 			setMove(true);
 			setJump(true);
 			setAir(true);
 			this.getAnimation().stop();
 			return 1;
-		}
-		else
+		} else {
 			return 0;
+		}
 	}
-	
+
 	@Override
-	public int melee(Character target) {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isRange() && !isBlock()) {
+	public final int melee(Character target) {
+		if (!isAttacked() && !isDead() && !isCrouch() && !isRange() && !isBlock()) {
 			setMelee(true);
 			setMove(true);
 			this.getAnimation().stop();
-			if(GameScreen.checkCollide(this, target)) {
+			if (GameScreen.checkCollide(this, target)) {
 				hitSuccess.play();
 				target.takeDamage(getAtk());
-			}
-			else
+			} else {
 				hit.play();
+			}
 			return 1;
 		}
 		return 0;
 	}
-	
+
 	@Override
-	public int range() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isBlock()) {
+	public final int range() {
+		if (!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isBlock()) {
 			setRange(true);
 			setMove(true);
 			this.getAnimation().stop();
@@ -149,297 +159,374 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		}
 		return 0;
 	}
-	
+
 	@Override
-	public int dodge() {
-		if(!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump() && !isDodge() && getLimitDodge() > 0) {
+	public final int dodge() {
+		if (!isAttacked() && !isDead() && !isCrouch() && !isMelee() && !isRange() && !isBlock() && !isJump()
+				&& !isDodge() && getLimitDodge() > 0) {
 			setDodge(true);
 			setMove(true);
 			this.getAnimation().stop();
 			getImageview().setImage(getSmoke().getImage());
 			setWidth(440);
 			setHeight(199);
-			getImageview().setViewport(new Rectangle2D(440, 0, get_Width(), get_Height()));
-			getImageview().setFitWidth(440.0*(350.0/199.0));
+			getImageview().setViewport(new Rectangle2D(440, 0, getCharacterWidth(), getCharacterHeight()));
+			getImageview().setFitWidth(440.0 * (350.0 / 199.0));
 			getImageview().setFitHeight(350);
-			setTranslateX(getTranslateX()-250);
+			setTranslateX(getTranslateX() - 250);
 			dodge.play();
 			return 1;
 		}
 		return 0;
 	}
-	
+
 	@Override
-	public double takeDamage(double dmg) {
-		if(!isDodge() && !isAttacked) {
-			if(isBlock()) {
-				setCurrenthealth(getCurrenthealth()- (dmg-getDef()));
+	public final double takeDamage(double dmg) {
+		if (!isDodge() && !isAttacked) {
+			if (isBlock()) {
+				setCurrenthealth(getCurrenthealth() - (dmg - getDef()));
 				block.play();
-			}
-			else {
-				setCurrenthealth(getCurrenthealth()-dmg);
-				if(getCurrenthealth() <= 0) {
+			} else {
+				setCurrenthealth(getCurrenthealth() - dmg);
+				if (getCurrenthealth() <= 0) {
 					setDead(true);
 					setLongDelay(170);
-				}
-				else {
+				} else {
 					setAttacked(true);
 					this.animation.stop();
 				}
 			}
 		}
-		System.out.println("Current Health: "+getCurrenthealth());
+		System.out.println("Current Health: " + getCurrenthealth());
 		return getCurrenthealth();
 	}
 
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
-	public void setName(String name) {
+
+	public final void setName(String name) {
 		this.name = name;
 	}
-	public int getElement() {
+
+	public final int getElement() {
 		return element;
 	}
-	public void setElement(int element) {
+
+	public final void setElement(int element) {
 		this.element = element;
 	}
 
-	public double getCurrenthealth() {
+	public final double getCurrenthealth() {
 		return currenthealth;
 	}
-	public void setCurrenthealth(double d) {
+
+	public final void setCurrenthealth(double d) {
 		this.currenthealth = d;
 	}
+
 	public static double getMaxHealth() {
 		return MAXHEALTH;
 	}
-	public int getAtk() {
+
+	public final int getAtk() {
 		return atk;
 	}
-	public void setAtk(int atk) {
+
+	public final void setAtk(int atk) {
 		this.atk = atk;
 	}
-	public int getDef() {
+
+	public final int getDef() {
 		return def;
 	}
-	public void setDef(int def) {
+
+	public final void setDef(int def) {
 		this.def = def;
 	}
-	public int getDelay() {
+
+	public final int getDelay() {
 		return delay;
 	}
-	public void setDelay(int delay) {
+
+	public final void setDelay(int delay) {
 		this.delay = delay;
 	}
-	public int getLongDelay() {
+
+	public final int getLongDelay() {
 		return longDelay;
 	}
-	public void setLongDelay(int longDelay) {
+
+	public final void setLongDelay(int longDelay) {
 		this.longDelay = longDelay;
 	}
-	public int getMelee_round() {
-		return melee_round;
+
+	public final int getMeleeRound() {
+		return meleeRound;
 	}
-	public void setMelee_round(int melee_round) {
-		this.melee_round = melee_round;
+
+	public final void setMeleeRound(int meleeRound) {
+		this.meleeRound = meleeRound;
 	}
-	public boolean isDead() {
+
+	public final boolean isDead() {
 		return isDead;
 	}
-	public void setDead(boolean isDead) {
+
+	public final void setDead(boolean isDead) {
 		this.isDead = isDead;
 	}
-	public boolean isAir() {
+
+	public final boolean isAir() {
 		return isAir;
 	}
-	public void setAir(boolean isAir) {
+
+	public final void setAir(boolean isAir) {
 		this.isAir = isAir;
 	}
-	public boolean isJump() {
+
+	public final boolean isJump() {
 		return isJump;
 	}
-	public void setJump(boolean isJump) {
+
+	public final void setJump(boolean isJump) {
 		this.isJump = isJump;
 	}
-	public boolean isCrouch() {
+
+	public final boolean isCrouch() {
 		return isCrouch;
 	}
-	public void setCrouch(boolean isCrouch) {
+
+	public final void setCrouch(boolean isCrouch) {
 		this.isCrouch = isCrouch;
 	}
-	public double getIsFall() {
+
+	public final double getIsFall() {
 		return isFall;
 	}
-	public void setIsFall(double isFall) {
+
+	public final void setIsFall(double isFall) {
 		this.isFall = isFall;
 	}
-	public boolean isAttacked() {
+
+	public final boolean isAttacked() {
 		return isAttacked;
 	}
-	public void setAttacked(boolean isAttacked) {
+
+	public final void setAttacked(boolean isAttacked) {
 		this.isAttacked = isAttacked;
 	}
-	public boolean isMelee() {
+
+	public final boolean isMelee() {
 		return isMelee;
 	}
-	public void setMelee(boolean isMelee) {
+
+	public final void setMelee(boolean isMelee) {
 		this.isMelee = isMelee;
 	}
-	public boolean isRange() {
+
+	public final boolean isRange() {
 		return isRange;
 	}
-	public void setRange(boolean isRange) {
+
+	public final void setRange(boolean isRange) {
 		this.isRange = isRange;
 	}
-	public boolean isMove() {
+
+	public final boolean isMove() {
 		return isMove;
 	}
-	public void setMove(boolean isMove) {
+
+	public final void setMove(boolean isMove) {
 		this.isMove = isMove;
 	}
-	public double getStandTime() {
+
+	public final double getStandTime() {
 		return standTime;
 	}
-	public void setStandTime(double standTime) {
+
+	public final void setStandTime(double standTime) {
 		this.standTime = standTime;
 	}
-	public static double getX_speed() {
-		return x_speed;
+
+	public static final double getXspeed() {
+		return xSpeed;
 	}
-	public static void setX_speed(double x_speed) {
-		Character.x_speed = x_speed;
+
+	public static final void setXspeed(double xSpeed) {
+		Character.xSpeed = xSpeed;
 	}
-	public static double getY_speed() {
-		return y_speed;
+
+	public static final double getYspeed() {
+		return ySpeed;
 	}
-	public static void setY_speed(double y_speed) {
-		Character.y_speed = y_speed;
+
+	public static final void setYspeed(double ySpeed) {
+		Character.ySpeed = ySpeed;
 	}
-	public ImageView getImageview() {
+
+	public final ImageView getImageview() {
 		return imageview;
 	}
-	public void setImageview(ImageView imageview) {
+
+	public final void setImageview(ImageView imageview) {
 		this.imageview = imageview;
 	}
-	public int getCount() {
+
+	public final int getCount() {
 		return count;
 	}
-	public void setCount(int count) {
+
+	public final void setCount(int count) {
 		this.count = count;
 	}
-	public int getCol() {
+
+	public final int getCol() {
 		return col;
 	}
-	public void setCol(int col) {
+
+	public final void setCol(int col) {
 		this.col = col;
 	}
-	public int getOffSetX() {
+
+	public final int getOffSetX() {
 		return offSetX;
 	}
-	public void setOffSetX(int offSetX) {
+
+	public final void setOffSetX(int offSetX) {
 		this.offSetX = offSetX;
 	}
-	public int getOffSetY() {
+
+	public final int getOffSetY() {
 		return offSetY;
 	}
-	public void setOffSetY(int offSetY) {
+
+	public final void setOffSetY(int offSetY) {
 		this.offSetY = offSetY;
 	}
-	public int get_Width() {
+
+	public final int getCharacterWidth() {
 		return width;
 	}
-	public void setWidth(int width) {
+
+	public final void setWidth(int width) {
 		this.width = width;
 	}
-	public int get_Height() {
+
+	public final int getCharacterHeight() {
 		return height;
 	}
-	public void setHeight(int height) {
+
+	public final void setHeight(int height) {
 		this.height = height;
 	}
-	public int getState() {
+
+	public final int getState() {
 		return state;
 	}
-	public void setState(int state) {
+
+	public final void setState(int state) {
 		this.state = state;
 	}
-	public boolean isRight() {
+
+	public final boolean isRight() {
 		return isRight;
 	}
-	public void setRight(boolean isRight) {
+
+	public final void setRight(boolean isRight) {
 		this.isRight = isRight;
 	}
-	public CharacterAnimation getAnimation() {
+
+	public final CharacterAnimation getAnimation() {
 		return animation;
 	}
-	public void setAnimation(CharacterAnimation animation) {
+
+	public final void setAnimation(CharacterAnimation animation) {
 		this.animation = animation;
 	}
-	public boolean isBlock() {
+
+	public final boolean isBlock() {
 		return isBlock;
 	}
-	public void setBlock(boolean isBlock) {
+
+	public final void setBlock(boolean isBlock) {
 		this.isBlock = isBlock;
 	}
-	public boolean isDodge() {
+
+	public final boolean isDodge() {
 		return isDodge;
 	}
-	public void setDodge(boolean isDodge) {
+
+	public final void setDodge(boolean isDodge) {
 		this.isDodge = isDodge;
 	}
-	public boolean isSkill1() {
+
+	public final boolean isSkill1() {
 		return isSkill1;
 	}
-	public void setSkill1(boolean isSkill1) {
+
+	public final void setSkill1(boolean isSkill1) {
 		this.isSkill1 = isSkill1;
 	}
-	public boolean isSkill2() {
+
+	public final boolean isSkill2() {
 		return isSkill2;
 	}
-	public void setSkill2(boolean isSkill2) {
+
+	public final void setSkill2(boolean isSkill2) {
 		this.isSkill2 = isSkill2;
 	}
-	public boolean isSkill3() {
+
+	public final boolean isSkill3() {
 		return isSkill3;
 	}
-	public void setSkill3(boolean isSkill3) {
+
+	public final void setSkill3(boolean isSkill3) {
 		this.isSkill3 = isSkill3;
 	}
-	public int getLimitDodge() {
+
+	public final int getLimitDodge() {
 		return limitDodge;
 	}
-	public void setLimitDodge(int limitDodge) {
+
+	public final void setLimitDodge(int limitDodge) {
 		this.limitDodge = limitDodge;
 	}
-	public ImageView getSmoke() {
+
+	public final ImageView getSmoke() {
 		return smoke;
 	}
-	public void setSmoke(ImageView smoke) {
+
+	public final void setSmoke(ImageView smoke) {
 		this.smoke = smoke;
 	}
-	public int getStackFly() {
+
+	public final int getStackFly() {
 		return stackFly;
 	}
-	public void setStackFly(int stackFly) {
+
+	public final void setStackFly(int stackFly) {
 		this.stackFly = stackFly;
 	}
-	public int getSkillDelay() {
+
+	public final int getSkillDelay() {
 		return skillDelay;
 	}
-	public void setSkillDelay(int skillDelay) {
+
+	public final void setSkillDelay(int skillDelay) {
 		this.skillDelay = skillDelay;
 	}
-	public boolean getSkill() {
+
+	public final boolean getSkill() {
 		return isSkill1 && isSkill2 && isSkill3;
 	}
-	public int getCountFoot() {
+
+	public final int getCountFoot() {
 		return countFoot;
 	}
-	public void setCountFoot(int countFoot) {
+
+	public final void setCountFoot(int countFoot) {
 		this.countFoot = countFoot;
 	}
-	
-	
 
 }

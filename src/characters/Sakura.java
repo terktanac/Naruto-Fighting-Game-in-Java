@@ -1,9 +1,9 @@
 package characters;
 
-public class WaterCharacter_1 extends Character{
+public class Sakura extends Character{
 
-	public WaterCharacter_1(double currentHealth) {
-		super("Suigetsu", 3,currentHealth,10, 6,0.8, null);
+	public Sakura(double currentHealth) {
+		super("Sakura", 0, currentHealth, 15, 5, 1, null);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,13 +50,13 @@ public class WaterCharacter_1 extends Character{
 	}
 
 	@Override
-	public int walk_right() {
+	public int walkRight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int walk_left() {
+	public int walkLeft() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -91,6 +91,10 @@ public class WaterCharacter_1 extends Character{
 		return 0;
 	}
 
+	
 
+
+
+	
 
 }

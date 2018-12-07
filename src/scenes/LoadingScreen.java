@@ -1,11 +1,11 @@
-package Scenes;
+package scenes;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 
-public class LoadingScreen extends myScene {
+public class LoadingScreen extends MyScene {
 	private static Pane root = new Pane();
 	private Image background = new Image(ClassLoader.getSystemResource("background/four_seal.gif").toString(), 1280,
 			740, false, false);

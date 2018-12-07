@@ -1,7 +1,6 @@
-package gameObject;
+package gameobject;
 
 import characters.CharacterAnimation;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
@@ -20,7 +19,7 @@ public class Shuriken extends GameObject {
 		getImageview().setFitHeight(70);
 		getImageview().setFitWidth(50);
 		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),
-				getOffSetY(), get_Width(), get_Height())));
+				getOffSetY(), getObjectWidth(), getObjectHeight())));
 		getChildren().addAll(getImageview());
 	}
 

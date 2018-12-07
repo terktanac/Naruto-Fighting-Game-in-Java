@@ -1,9 +1,9 @@
 package characters;
 
-public class EarthCharacter_1 extends Character {
+public class Gaara extends Character {
 
-	public EarthCharacter_1(double currentHealth ) {
-		super("Gaara", 2, currentHealth, 5, 10,2, null);
+	public Gaara(double currentHealth) {
+		super("Gaara", 2, currentHealth, 5, 10, 2, null);
 	}
 
 	@Override
@@ -49,13 +49,13 @@ public class EarthCharacter_1 extends Character {
 	}
 
 	@Override
-	public int walk_right() {
+	public int walkRight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int walk_left() {
+	public int walkLeft() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -89,7 +89,5 @@ public class EarthCharacter_1 extends Character {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
 
 }

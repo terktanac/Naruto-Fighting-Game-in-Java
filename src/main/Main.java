@@ -1,17 +1,17 @@
 package main;
 
-import Scenes.GameScreen;
-import Scenes.IntroScreen;
-import Scenes.LoadingScreen;
-import Scenes.MainMenuScreen;
-import Scenes.MapChooseScreen;
-import Scenes.MultiPlayerScreen;
-import Scenes.OptionScreen;
-import Scenes.myScene;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import scenes.GameScreen;
+import scenes.IntroScreen;
+import scenes.LoadingScreen;
+import scenes.MainMenuScreen;
+import scenes.MapChooseScreen;
+import scenes.MultiPlayerScreen;
+import scenes.MyScene;
+import scenes.OptionScreen;
 
 public class Main extends Application {
 	private static Stage stage;
@@ -51,7 +51,7 @@ public class Main extends Application {
 
 	}
 
-	public static void ChangeScene(myScene nextScene) {
+	public static void ChangeScene(MyScene nextScene) {
 		stage.setScene(nextScene);
 
 	}

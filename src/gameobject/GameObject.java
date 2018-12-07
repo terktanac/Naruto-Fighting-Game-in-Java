@@ -1,11 +1,10 @@
-package gameObject;
+package gameobject;
 
 import allInterface.Collidable;
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
 
 public abstract class GameObject extends Pane implements Collidable {
 	private boolean hasEffect = false;
@@ -18,8 +17,8 @@ public abstract class GameObject extends Pane implements Collidable {
 	private int damage;
 	private int delay = 300;
 	private boolean direction;
-	private boolean isDone = false;
-	private boolean isDoing = false;
+	private boolean isDone;
+	private boolean isDoing;
 	private ImageView imageview;
 	private CharacterAnimation animation;
 
@@ -29,7 +28,7 @@ public abstract class GameObject extends Pane implements Collidable {
 		this.setTranslateY(posy);
 	}
 
-	public void moveX() {
+	public final void moveX() {
 		for (int i = 0; i < speed; i++) {
 			if (direction) {
 				setTranslateX(getTranslateX() + 1);
@@ -39,123 +38,123 @@ public abstract class GameObject extends Pane implements Collidable {
 		}
 	}
 
-	public int getOffSetX() {
+	public final int getOffSetX() {
 		return offSetX;
 	}
 
-	public void setOffSetX(int offSetX) {
+	public final void setOffSetX(int offSetX) {
 		this.offSetX = offSetX;
 	}
 
-	public int getOffSetY() {
+	public final int getOffSetY() {
 		return offSetY;
 	}
 
-	public void setOffSetY(int offSetY) {
+	public final void setOffSetY(int offSetY) {
 		this.offSetY = offSetY;
 	}
 
-	public int get_Width() {
+	public final int getObjectWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public final void setWidth(int width) {
 		this.width = width;
 	}
 
-	public int get_Height() {
+	public final int getObjectHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public final void setHeight(int height) {
 		this.height = height;
 	}
 
-	public int getCount() {
+	public final int getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public final void setCount(int count) {
 		this.count = count;
 	}
 
-	public ImageView getImageview() {
+	public final ImageView getImageview() {
 		return imageview;
 	}
 
-	public void setImageview(ImageView imageview) {
+	public final void setImageview(ImageView imageview) {
 		this.imageview = imageview;
 	}
 
-	public void setSpeed(int speed) {
+	public final void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
-	public int getDamage() {
+	public final int getDamage() {
 		return damage;
 	}
 
-	public void setDamage(int damage) {
+	public final void setDamage(int damage) {
 		this.damage = damage;
 	}
 
-	public void setDirection(boolean direction) {
+	public final void setDirection(boolean direction) {
 		this.direction = direction;
 	}
 
-	public void setAnimation(CharacterAnimation animation) {
+	public final void setAnimation(CharacterAnimation animation) {
 		this.animation = animation;
 	}
 
-	public CharacterAnimation getAnimation() {
+	public final CharacterAnimation getAnimation() {
 		return animation;
 	}
 
-	public boolean isDirection() {
+	public final boolean isDirection() {
 		return direction;
 	}
 
 	@Override
-	public Rectangle2D getBoundary() {
+	public final Rectangle2D getBoundary() {
 		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
 
 	}
 
-	public int getSpeed() {
+	public final int getSpeed() {
 		return speed;
 	}
 
 	public abstract void doEffect();
 
-	public boolean isDone() {
+	public final boolean isDone() {
 		return isDone;
 	}
 
-	public void setDone(boolean isDone) {
+	public final void setDone(boolean isDone) {
 		this.isDone = isDone;
 	}
 
-	public boolean isDoing() {
+	public final boolean isDoing() {
 		return isDoing;
 	}
 
-	public void setDoing(boolean isDoing) {
+	public final void setDoing(boolean isDoing) {
 		this.isDoing = isDoing;
 	}
 
-	public int getDelay() {
+	public final int getDelay() {
 		return delay;
 	}
 
-	public void setDelay(int delay) {
+	public final void setDelay(int delay) {
 		this.delay = delay;
 	}
 
-	public boolean isHasEffect() {
+	public final boolean isHasEffect() {
 		return hasEffect;
 	}
 
-	public void setHasEffect(boolean hasEffect) {
+	public final void setHasEffect(boolean hasEffect) {
 		this.hasEffect = hasEffect;
 	}
 

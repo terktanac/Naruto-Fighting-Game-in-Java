@@ -1,4 +1,4 @@
-package gameObject;
+package gameobject;
 
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
@@ -29,7 +29,7 @@ public class Fireball extends GameObject {
 		getImageview().setFitHeight(350);
 		getImageview().setFitWidth(350);
 		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(100), getCount(), 0, getOffSetX(),
-				getOffSetY(), get_Width(), get_Height())));
+				getOffSetY(), getObjectWidth(), getObjectHeight())));
 		getChildren().addAll(getImageview());
 	}
 
@@ -39,20 +39,20 @@ public class Fireball extends GameObject {
 		setOffSetY(166);
 		getAnimation().stop();
 		if (getDelay() == 300) {
-			getImageview().setViewport(new Rectangle2D(0, 166, get_Width(), get_Height()));
+			getImageview().setViewport(new Rectangle2D(0, 166, getObjectWidth(), getObjectHeight()));
 			setDelay(getDelay() - 1);
 			boom.play();
 		} else if (getDelay() >= 280) {
-			getImageview().setViewport(new Rectangle2D(0, 166, get_Width(), get_Height()));
+			getImageview().setViewport(new Rectangle2D(0, 166, getObjectWidth(), getObjectHeight()));
 			setDelay(getDelay() - 1);
 		} else if (getDelay() >= 260) {
-			getImageview().setViewport(new Rectangle2D(82, 166, get_Width(), get_Height()));
+			getImageview().setViewport(new Rectangle2D(82, 166, getObjectWidth(), getObjectHeight()));
 			setDelay(getDelay() - 1);
 		} else if (getDelay() >= 230) {
-			getImageview().setViewport(new Rectangle2D(164, 166, get_Width(), get_Height()));
+			getImageview().setViewport(new Rectangle2D(164, 166, getObjectWidth(), getObjectHeight()));
 			setDelay(getDelay() - 1);
 		} else if (getDelay() >= 200) {
-			getImageview().setViewport(new Rectangle2D(246, 166, get_Width(), get_Height()));
+			getImageview().setViewport(new Rectangle2D(246, 166, getObjectWidth(), getObjectHeight()));
 			setDelay(getDelay() - 1);
 		} else {
 			setDoing(false);

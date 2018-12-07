@@ -1,4 +1,4 @@
-package gameObject;
+package gameobject;
 
 import characters.CharacterAnimation;
 import javafx.scene.image.ImageView;
@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 public class Chidori extends GameObject {
 
-	private static AudioClip chidori_hit = new AudioClip("file:soundfx/chidori_hit.wav");
+	private static AudioClip chidoriObjecthit = new AudioClip("file:soundfx/chidoriObjecthit.wav");
 
 	public Chidori(double posx, double posy, boolean direction) {
 		super(posx, posy, direction);
@@ -23,7 +23,7 @@ public class Chidori extends GameObject {
 		getImageview().setFitHeight(241.0 * 350.0 / 321.0);
 		getImageview().setFitWidth(321.0 * 350.0 / 321.0);
 		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(100), getCount(), 0, getOffSetX(),
-				getOffSetY(), get_Width(), get_Height())));
+				getOffSetY(), getObjectWidth(), getObjectHeight())));
 		getChildren().addAll(getImageview());
 	}
 
@@ -32,7 +32,7 @@ public class Chidori extends GameObject {
 		if (getDelay() == 200) {
 			getAnimation().play();
 			setDelay(getDelay() - 1);
-			chidori_hit.play();
+			chidoriObjecthit.play();
 		} else if (getDelay() >= 200) {
 			getAnimation().play();
 			setDelay(getDelay() - 1);

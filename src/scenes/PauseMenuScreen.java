@@ -1,4 +1,4 @@
-package Scenes;
+package scenes;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,8 +12,8 @@ import javafx.scene.text.Text;
 
 public class PauseMenuScreen extends Pane {
 	private VBox menu;
-	private int CurChoice = 0;
-	private int NewChoice = 0;
+	private int CurChoice;
+	private int NewChoice;
 
 	public PauseMenuScreen() {
 		super();
@@ -34,23 +34,23 @@ public class PauseMenuScreen extends Pane {
 		getChildren().addAll(menu);
 	}
 
-	public VBox getMenu() {
+	public final VBox getMenu() {
 		return menu;
 	}
 
-	public int getCurChoice() {
+	public final int getCurChoice() {
 		return CurChoice;
 	}
 
-	public void setCurChoice(int curChoice) {
+	public final void setCurChoice(int curChoice) {
 		CurChoice = curChoice;
 	}
 
-	public int getNewChoice() {
+	public final int getNewChoice() {
 		return NewChoice;
 	}
 
-	public void setNewChoice(int newChoice) {
+	public final void setNewChoice(int newChoice) {
 		NewChoice = newChoice;
 	}
 
@@ -62,13 +62,13 @@ public class PauseMenuScreen extends Pane {
 			this.setAlignment(Pos.CENTER);
 			this.setPrefSize(180, 60);
 			this.text = new Text(text);
-			this.text.setFont(myScene.getNarutoFont());
+			this.text.setFont(MyScene.getNarutoFont());
 			this.text.setStrokeWidth(2);
 			getChildren().addAll(this.text);
 			setActive(false);
 		}
 
-		public void setActive(boolean check) {
+		public final void setActive(boolean check) {
 			if (check) {
 				text.setStroke(Color.ALICEBLUE);
 				text.setFill(Color.BLACK);

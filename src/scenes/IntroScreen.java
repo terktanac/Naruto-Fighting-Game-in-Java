@@ -1,4 +1,4 @@
-package Scenes;
+package scenes;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -20,7 +20,7 @@ import javafx.util.Duration;
 import main.Controller;
 import main.Main;
 
-public class IntroScreen extends myScene {
+public class IntroScreen extends MyScene {
 	private static Pane root = new Pane();
 	private AudioClip player = new AudioClip("file:music/menu/Blood_Circulator.mp3");;
 
