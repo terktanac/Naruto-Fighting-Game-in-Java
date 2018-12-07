@@ -75,6 +75,7 @@ public class GameScreen extends MyScene {
 		time = new Text("" + currentTime);
 		time.setTranslateX(640);
 		time.setTranslateY(100);
+		time.setFont(getNarutoFontsmall());
 		timer = new AnimationTimer() {
 
 			@Override
@@ -130,9 +131,9 @@ public class GameScreen extends MyScene {
 	}
 
 	private void updateskill(int player) {
-		ArrayList<KeyCode> pressed = (player == 1 ? Controller.getPressedListSkillP1()
+		final ArrayList<KeyCode> pressed = (player == 1 ? Controller.getPressedListSkillP1()
 				: Controller.getPressedListSkillP2());
-		ArrayList<KeyCode> key = (player == 1 ? Controller.getKeyP1() : Controller.getKeyP2());
+		final ArrayList<KeyCode> key = (player == 1 ? Controller.getKeyP1() : Controller.getKeyP2());
 		if (pressed.size() >= 4) {
 			if (pressed.get(0) == key.get(5) && pressed.get(1) == key.get(7) && pressed.get(2) == key.get(6)
 					&& pressed.get(3) == key.get(4)) {
@@ -312,7 +313,7 @@ public class GameScreen extends MyScene {
 	}
 
 	public final void nonePressed1() {
-		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
+		final Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if (!pressed.containsValue(true)) {
 			player1.stand();
 		}
@@ -334,7 +335,7 @@ public class GameScreen extends MyScene {
 		}
 		if (!gameObjects1.isEmpty()) {
 			for (int i = 0; i < gameObjects1.size(); i++) {
-				GameObject shu = gameObjects1.get(i);
+				final GameObject shu = gameObjects1.get(i);
 				if (shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
 					shu.moveX();
 					if (shu.isHasEffect()) {
@@ -438,16 +439,16 @@ public class GameScreen extends MyScene {
 	}
 
 	public final void nonePressed2() {
-		Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
+		final Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
 		if (!pressed.containsValue(true)) {
 			player2.stand();
 		}
 	}
 
 	public final void otherKeyPressed() {
-		ArrayList<KeyCode> others = Controller.getOtherKeys();
+		final ArrayList<KeyCode> others = Controller.getOtherKeys();
 		if (others.size() > 0) {
-			KeyCode key = others.get(0);
+			final KeyCode key = others.get(0);
 			if ((key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) && !isEnd) {
 				if (!isPause) {
 					isPause = true;
@@ -465,13 +466,14 @@ public class GameScreen extends MyScene {
 			} else if (isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
 				System.exit(1);
 
-				if (!Controller.getOtherKeys().isEmpty())
+				if (!Controller.getOtherKeys().isEmpty()) {
 					Controller.removePressed(0, "OTHER", 1);
+				}
 			}
 		}
 	}
 
-	public final static boolean checkCollide(Collidable obj1, Collidable obj2) {
+	public static final boolean checkCollide(Collidable obj1, Collidable obj2) {
 		return obj1.getBoundary().intersects(obj2.getBoundary());
 	}
 
@@ -491,7 +493,7 @@ public class GameScreen extends MyScene {
 		}
 		if (!gameObjects2.isEmpty()) {
 			for (int i = 0; i < gameObjects2.size(); i++) {
-				GameObject shu = gameObjects2.get(i);
+				final GameObject shu = gameObjects2.get(i);
 				if (shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
 					shu.moveX();
 					if (shu.isHasEffect()) {
@@ -561,7 +563,7 @@ public class GameScreen extends MyScene {
 			// to howto
 			isPause = false;
 			pause.setVisible(false);
-			Alert alert = new Alert(AlertType.INFORMATION);
+			final Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
 			alert.setContentText("Coming Soon.");
@@ -581,29 +583,33 @@ public class GameScreen extends MyScene {
 
 	public final void EndGame() {
 		if (isEnd) {
-			Text Endtext = new Text("KO!");
-			Text Continue = new Text("Press Enter to quit");
-			Endtext.setFont(getNarutoFont());
-			Endtext.setTranslateX(600);
-			Endtext.setTranslateY(300);
-			Continue.setTranslateX(600);
-			Continue.setTranslateY(300);
+			final Text endtext = new Text("KO!");
+			endtext.setFont(getNarutoFont());
+			endtext.setStroke(Color.WHITE);
+			endtext.setTranslateX(600);
+			endtext.setTranslateY(300);
+			
+			final Text next = new Text("Press Enter to quit");
+			next.setFont(getNarutoFontsmall());
+			next.setTranslateX(600);
+			next.setTranslateY(400);
+			next.setStroke(Color.WHITE);
 			if (player1.getCurrenthealth() == Character.getMaxHealth()
 					|| player2.getCurrenthealth() == Character.getMaxHealth()) {
-				Endtext.setText("Perfect!");
+				endtext.setText("Perfect!");
 			} else if (player1.getCurrenthealth() == player2.getCurrenthealth()) {
-				Endtext.setText("Tie!");
+				endtext.setText("Tie!");
 			} else if (player1.getCurrenthealth() < player2.getCurrenthealth()) {
-				Endtext.setText("Player 2 Win!");
+				endtext.setText("Player 2 Win!");
 			} else if (player1.getCurrenthealth() > player2.getCurrenthealth()) {
-				Endtext.setText("Player 1 Win!");
+				endtext.setText("Player 1 Win!");
 			}
-			Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> Continue.setVisible(true)),
-					new KeyFrame(Duration.seconds(0.7), evt -> Continue.setVisible(false)));
+			final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> next.setVisible(true)),
+					new KeyFrame(Duration.seconds(0.7), evt -> next.setVisible(false)));
 			timeline.setCycleCount(Animation.INDEFINITE);
 			timeline.play();
 
-			root.getChildren().addAll(Continue);
+			root.getChildren().addAll(endtext, next);
 		}
 	}
 
@@ -675,7 +681,7 @@ public class GameScreen extends MyScene {
 	}
 
 	@Override
-	public void setDefault() {
+	public final void setDefault() {
 		player1.setCurrenthealth(Character.getMaxHealth());
 		player2.setCurrenthealth(Character.getMaxHealth());
 		healthbarP1.setHealthBar(1);

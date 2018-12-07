@@ -46,30 +46,30 @@ public class MultiPlayerScreen extends MyScene {
 		player2 = 1;
 		player.setVolume(0.3);
 
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/narutosage/narutosagemugs2.png").toString(),
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),
 				230, 500, false, true));
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasukeaka/sasukeakamugs2.png").toString(),
+		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),
 				230, 500, false, true));
 
 		CharactersReady
-				.add(new Image(ClassLoader.getSystemResource("characters/narutosage/narutosagemugs3.png").toString(),
+				.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),
 						310, 480, false, true));
 		CharactersReady
-				.add(new Image(ClassLoader.getSystemResource("characters/sasukeaka/sasukeakamugs3.png").toString(), 230,
+				.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(), 230,
 						500, false, true));
 
 		CharactersName.add("Naruto");
 		CharactersName.add("Sasuke");
 
 		listCharacterpy1.add(
-				new ListCharacter("characters/narutosage/face.jpg", "characters/narutosage/faceactive.jpg", 100, 130));
+				new ListCharacter("characters/naruto_sage/face.jpg", "characters/naruto_sage/face_active.jpg", 100, 130));
 		listCharacterpy1.add(
-				new ListCharacter("characters/sasukeaka/face.jpg", "characters/sasukeaka/faceactive.jpg", 205, 130));
+				new ListCharacter("characters/sasuke_aka/face.jpg", "characters/sasuke_aka/face_active.jpg", 205, 130));
 
 		listCharacterpy2.add(
-				new ListCharacter("characters/narutosage/face.jpg", "characters/narutosage/faceactive.jpg", 980, 130));
+				new ListCharacter("characters/naruto_sage/face.jpg", "characters/naruto_sage/face_active.jpg", 980, 130));
 		listCharacterpy2.add(
-				new ListCharacter("characters/sasukeaka/face.jpg", "characters/sasukeaka/faceactive.jpg", 1085, 130));
+				new ListCharacter("characters/sasuke_aka/face.jpg", "characters/sasuke_aka/face_active.jpg", 1085, 130));
 
 		pressKey = new Text("Press any key to Continue");
 		pressKey.setFont(getNarutoFont());

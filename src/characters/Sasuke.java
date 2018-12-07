@@ -36,7 +36,7 @@ public class Sasuke extends Character {
 	public final int walkRight() {
 		this.setMove(true);
 		if (!isAttacked() && !isDead() && !isCrouch() && !isBlock()) {
-			if (this.isRight()) {
+			if (!this.isRight()) {
 				this.getImageview().setRotationAxis(Rotate.Y_AXIS);
 				this.getImageview().setRotate(0);
 				this.setRight(true);

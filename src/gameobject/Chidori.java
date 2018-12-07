@@ -7,7 +7,7 @@ import javafx.util.Duration;
 
 public class Chidori extends GameObject {
 
-	private static AudioClip chidoriObjecthit = new AudioClip("file:soundfx/chidoriObjecthit.wav");
+	private static AudioClip chidoriObjecthit = new AudioClip("file:soundfx/chidori_hit.wav");
 
 	public Chidori(double posx, double posy, boolean direction) {
 		super(posx, posy, direction);
