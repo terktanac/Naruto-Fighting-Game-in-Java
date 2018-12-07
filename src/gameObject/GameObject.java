@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 
-public abstract class GameObject extends Pane implements Collidable{
+public abstract class GameObject extends Pane implements Collidable {
 	private boolean hasEffect = false;
 	private int offSetX;
 	private int offSetY;
@@ -20,9 +20,9 @@ public abstract class GameObject extends Pane implements Collidable{
 	private boolean direction;
 	private boolean isDone = false;
 	private boolean isDoing = false;
-	private ImageView imageview ;
-	private CharacterAnimation animation ;
-	
+	private ImageView imageview;
+	private CharacterAnimation animation;
+
 	public GameObject(double posx, double posy, boolean direction) {
 		this.direction = direction;
 		this.setTranslateX(posx);
@@ -30,9 +30,12 @@ public abstract class GameObject extends Pane implements Collidable{
 	}
 
 	public void moveX() {
-		for(int i=0;i<speed;i++) {
-			if(direction)setTranslateX(getTranslateX()+1);
-			else setTranslateX(getTranslateX()-1);
+		for (int i = 0; i < speed; i++) {
+			if (direction) {
+				setTranslateX(getTranslateX() + 1);
+			} else {
+				setTranslateX(getTranslateX() - 1);
+			}
 		}
 	}
 
@@ -91,7 +94,7 @@ public abstract class GameObject extends Pane implements Collidable{
 	public int getDamage() {
 		return damage;
 	}
-	
+
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
@@ -115,7 +118,7 @@ public abstract class GameObject extends Pane implements Collidable{
 	@Override
 	public Rectangle2D getBoundary() {
 		return new Rectangle2D(getTranslateX(), getTranslateY(), width, height);
-		
+
 	}
 
 	public int getSpeed() {

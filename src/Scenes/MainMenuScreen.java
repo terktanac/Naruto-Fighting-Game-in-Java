@@ -1,4 +1,4 @@
-package main;
+package Scenes;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,9 +17,11 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class MainMenuScreen extends myScene {
-	static Pane root = new Pane();
+	private static Pane root = new Pane();
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
 	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 400, 250, true, true));
 	private VBox MenuBox = new VBox(5);
@@ -49,6 +51,7 @@ public class MainMenuScreen extends myScene {
 	
 	}
 
+
 	public class ListMenu extends HBox {
 		private Text name;
 		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),130,40,true,true));
@@ -73,7 +76,7 @@ public class MainMenuScreen extends myScene {
 	}
 
 	@Override
-	public void update() {
+	public final void update() {
 		moveUp();
 		moveDown();
 		select();
@@ -152,8 +155,9 @@ public class MainMenuScreen extends myScene {
 	}
 
 	@Override
-	public void setDefault() {
+	public final void setDefault() {
 		Oldchoice = 0;
 		NewChoice = 0;
 	}
+
 }

@@ -1,6 +1,6 @@
 package characters;
 
-import main.GameScreen;
+import Scenes.GameScreen;
 import gameObject.Rasenshuriken;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
