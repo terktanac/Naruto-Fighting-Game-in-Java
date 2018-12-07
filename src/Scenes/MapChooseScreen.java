@@ -1,4 +1,4 @@
-package main;
+package Scenes;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.TilePane;
 import javafx.scene.media.AudioClip;
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class MapChooseScreen extends myScene {
 

@@ -1,4 +1,4 @@
- package main;
+ package Scenes;
 
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -17,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class IntroScreen extends myScene{
 	private static Pane root = new Pane();

@@ -1,5 +1,6 @@
 package characters;
 
+import Scenes.GameScreen;
 import allInterface.Collidable;
 import allInterface.Fightable;
 import allInterface.Moveable;
@@ -8,7 +9,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import main.GameScreen;
 
 public abstract class Character extends Pane implements Fightable, Moveable, Skillable,Collidable{
 	private String name;

@@ -1,6 +1,7 @@
 
 package characters;
 
+import Scenes.GameScreen;
 import gameObject.Amaterasu;
 import gameObject.Chidori;
 import gameObject.Fireball;
@@ -10,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.media.AudioClip;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import main.GameScreen;
 
 public class FireCharacter_1 extends Character{
 

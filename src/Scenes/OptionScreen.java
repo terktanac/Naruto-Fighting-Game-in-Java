@@ -1,4 +1,4 @@
-package main;
+package Scenes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +22,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class OptionScreen extends myScene{
 	

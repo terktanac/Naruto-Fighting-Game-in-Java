@@ -1,4 +1,4 @@
-package main;
+package Scenes;
 
 
 import java.util.ArrayList;
@@ -34,6 +34,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class GameScreen extends myScene{
 	private static Pane root = new Pane();

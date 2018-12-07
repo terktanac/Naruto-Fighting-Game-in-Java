@@ -1,5 +1,13 @@
 package main;
 
+import Scenes.GameScreen;
+import Scenes.IntroScreen;
+import Scenes.LoadingScreen;
+import Scenes.MainMenuScreen;
+import Scenes.MapChooseScreen;
+import Scenes.MultiPlayerScreen;
+import Scenes.OptionScreen;
+import Scenes.myScene;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;

@@ -1,4 +1,4 @@
-package main;
+package Scenes;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +17,8 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class MainMenuScreen extends myScene {
 	static Pane root = new Pane();

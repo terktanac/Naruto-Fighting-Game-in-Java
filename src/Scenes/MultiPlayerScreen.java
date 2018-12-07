@@ -1,4 +1,4 @@
-package main;
+package Scenes;
 
 
 
@@ -21,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import main.Controller;
+import main.Main;
 
 public class MultiPlayerScreen extends myScene{
 	private static int player1 = 0; //default character =0 : naruto
