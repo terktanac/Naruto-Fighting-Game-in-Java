@@ -5,7 +5,6 @@ import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
 
 public abstract class GameObject extends Pane implements Collidable {
 	private boolean hasEffect = false;
