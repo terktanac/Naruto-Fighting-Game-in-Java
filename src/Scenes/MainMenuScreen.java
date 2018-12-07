@@ -21,7 +21,7 @@ import main.Controller;
 import main.Main;
 
 public class MainMenuScreen extends myScene {
-	static Pane root = new Pane();
+	private static Pane root = new Pane();
 	private Image background = new Image(ClassLoader.getSystemResource("background/final_valley_bg.jpg").toString(),1280,740,false,false);
 	private ImageView imageView = new ImageView(new Image(ClassLoader.getSystemResource("icon/logo_new.png").toString(), 400, 250, true, true));
 	private VBox MenuBox = new VBox(5);
@@ -50,40 +50,8 @@ public class MainMenuScreen extends myScene {
 		
 	
 	}
-
-	public class ListMenu extends HBox {
-		private Text name;
-		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),130,40,true,true));
-//		private Runnable script;
-
-		ListMenu(String text) {
-//			this.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-			this.setSpacing(10);
-			this.setAlignment(Pos.CENTER);
-			name = new Text(text);
-			name.setFont(getNarutoFont());
-			name.setStrokeWidth(2);
-			getChildren().addAll(kunai, name);
-			setActive(false);
-		}
-
-		void setActive(boolean check) {
-			kunai.setVisible(check);
-			name.setStroke(check ? Color.WHITE : Color.GRAY);
-		}
-		//dont know why use Thread here
-//		public void setOnActivate(Runnable r) {
-//            script = r;
-//        }
-//		public void activate() {
-//	            if (script != null)
-//	                script.run();
-//	     }
-		
-	}
-
 	@Override
-	public void update() {
+	public final void update() {
 		moveUp();
 		moveDown();
 		select();
@@ -157,23 +125,38 @@ public class MainMenuScreen extends myScene {
 			load.play();
 		}
 		else if(Oldchoice==MenuBox.getChildren().size()-1) {
-//			Alert alert = new Alert(AlertType.CONFIRMATION);
-//			alert.setTitle("Confirmation Dialog");
-//			alert.setHeaderText(null);
-//			alert.setContentText("Do you want to exit?");
-//			Optional<ButtonType> result = alert.showAndWait();
-//			if (result.get() == ButtonType.OK){
-//			    System.exit(1);
-//			}
-			// didn't work but if you want we will make it from scratch
 			System.exit(1);
 		}
 		playChoose();
 	}
 
 	@Override
-	public void setDefault() {
+	public final void setDefault() {
 		Oldchoice = 0;
 		NewChoice = 0;
 	}
+
+	public class ListMenu extends HBox {
+		private Text name;
+		private ImageView kunai = new ImageView(new Image(ClassLoader.getSystemResource("icon/kunai.png").toString(),130,40,true,true));
+//		private Runnable script;
+
+		ListMenu(String text) {
+//			this.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+			this.setSpacing(10);
+			this.setAlignment(Pos.CENTER);
+			name = new Text(text);
+			name.setFont(getNarutoFont());
+			name.setStrokeWidth(2);
+			getChildren().addAll(kunai, name);
+			setActive(false);
+		}
+
+		void setActive(boolean check) {
+			kunai.setVisible(check);
+			name.setStroke(check ? Color.WHITE : Color.GRAY);
+		}
+		
+	}
+
 }
