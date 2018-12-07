@@ -221,7 +221,7 @@ public class MultiPlayerScreen extends myScene{
 		if(Controller.getKeySkill_P1(0)) {
 			haveChose();
 			lhschar.setImage(CharactersReady.get(player1));
-			playChoose();
+			playReady();
 			chosen1.check = true;
 			System.out.println("player1: "+ player1);
 		}
@@ -279,7 +279,7 @@ public class MultiPlayerScreen extends myScene{
 		if(Controller.getKeySkill_P2(0)) {
 			haveChose();
 			rhschar.setImage(CharactersReady.get(player2));
-			playChoose();
+			playReady();
 			chosen2.check = true;
 			System.out.println("Player2: " + player2);
 			
@@ -297,12 +297,12 @@ public class MultiPlayerScreen extends myScene{
 	}
 	private void haveChose() {
 		if(chosen1.check == true && chosen2.check == true) {
+			timeline.play();
 			playChoose();
 			Main.ChangeScene(Main.getMapscreen());
 			Main.getGamescreen().setCharacter(player1,player2);
 			Main.getPlayer().setScene(Main.getMapscreen());
-			Main.getPlayer().run();
-			timeline.play();
+			Main.getPlayer().run();	
 		}
 	}
 	private void goBacktoMainmenu() {
@@ -319,13 +319,13 @@ public class MultiPlayerScreen extends myScene{
 			if(!chosen1.getCheck()) {
 				haveChose();
 				lhschar.setImage(CharactersReady.get(player1));
-				playChoose();
+				playReady();
 				chosen1.check = true;
 			}
 			else if(!chosen2.getCheck()) {
 				haveChose();
 				rhschar.setImage(CharactersReady.get(player2));
-				playChoose();
+				playReady();
 				chosen2.check = true;
 			}
 			else {

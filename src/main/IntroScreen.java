@@ -57,7 +57,6 @@ public class IntroScreen extends myScene{
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 		
-		//player.setAutoPlay(true);
 		Timeline timeline2 = new Timeline(new KeyFrame(
 		        Duration.millis(3100),
 		        ae -> {player.play();}));
@@ -79,9 +78,8 @@ public class IntroScreen extends myScene{
 					,new KeyFrame(Duration.millis(100), ae->{playChoose();}));
 			Main.ChangeScene(Main.getLoadscreen());
 			System.out.println("Skipped Intro");
-			load.play();
 			player.stop();
-			playChoose();
+			load.play();
 			Main.getPlayer().setScene(Main.getMainmenu());
 			Main.getPlayer().run();
 		

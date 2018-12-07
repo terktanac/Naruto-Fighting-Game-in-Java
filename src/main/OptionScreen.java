@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -73,7 +74,7 @@ public class OptionScreen extends myScene{
 		root.getChildren().addAll(optionmenu_1,optionmenu_2);
 		
 		pressKey1 = new Text("Press "+Controller.getKeyP1().get(4).toString()+" key for player 1 or "+Controller.getKeyP2().get(4).toString()+" key for player 2 to change the key.");
-		pressKey1.setFont(getNarutoFont());
+		pressKey1.setFont(getNarutoFont_small());
 		pressKey1.setFill(Color.WHITE);
 		pressKey1.setStroke(Color.BLACK);
 		pressKey1.setTranslateX(230);
@@ -81,22 +82,13 @@ public class OptionScreen extends myScene{
 		pressKey1.setVisible(false);
 		
 		pressKey2 = new Text("Press the new key.");
-		pressKey2.setFont(getNarutoFont());
+		pressKey2.setFont(getNarutoFont_small());
 		pressKey2.setFill(Color.WHITE);
 		pressKey2.setStroke(Color.BLACK);
 		pressKey2.setTranslateX(530);
 		pressKey2.setTranslateY(100);
 		pressKey2.setVisible(false);
 		
-//		pressKey3 = new Text("Press Enter or Space to confirm your change.");
-//		pressKey3.setFont(getNarutoFont());
-//		pressKey3.setFill(Color.WHITE);
-//		pressKey3.setStroke(Color.BLACK);
-//		pressKey3.setTranslateX(400);
-//		pressKey3.setTranslateY(100);
-//		pressKey3.setVisible(false);
-		
-//		root.getChildren().addAll(pressKey1,pressKey2,pressKey3);
 		root.getChildren().addAll(pressKey1,pressKey2);
 		
 		timeline1 = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey1.setVisible(true)),
@@ -106,88 +98,13 @@ public class OptionScreen extends myScene{
 		timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey2.setVisible(true)),
 				new KeyFrame(Duration.seconds(0.7), evt -> pressKey2.setVisible(false)));
 		timeline2.setCycleCount(Animation.INDEFINITE);
-		
-//		timeline3 = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> pressKey3.setVisible(true)),
-//				new KeyFrame(Duration.seconds(0.7), evt -> pressKey3.setVisible(false)));
-//		timeline3.setCycleCount(Animation.INDEFINITE);
-		
+	
 		timeline1.play();
-//		setOnKeyPressed(new EventHandler<KeyEvent>() {
-//			@Override
-//			public void handle(KeyEvent event) {
-//				MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-//				MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
-//				KeyCode key = event.getCode();
-//				System.out.println("OptionMenu:Pressed " + key.toString());
-//				if(setState1 == true) {
-//					System.out.println(OldChoice_1+key.toString());
-//					keySetting.set(OldChoice_1, key);
-//					setState1 = false;
-//					timeline2.stop();
-//					pressKey2.setVisible(false);
-//					timeline3.play();
-//				}
-//				else if(setState2 == true) {
-//					keySetting.set(OldChoice_2+8, key);
-//					setState2 = false;
-//					timeline2.stop();
-//					pressKey2.setVisible(false);
-//					timeline3.play();
-//				}
-//				else {
-//					if(key == KeyCode.BACK_SPACE) {
-//						choose.play();
-//						Main.ChangeScene(Main.getMainmenu());
-//					}
-//					if(key == KeyCode.ENTER || key == KeyCode.SPACE) {
-//						timeline3.stop();
-//						pressKey3.setVisible(false);
-//						timeline1.play();
-//						choose.play();
-//						setRealKey();
-//						setListOption1();
-//						setListOption2();
-//						for(int i = 0; i < keySetting.size(); i++) {
-//							System.out.println(keySetting.get(i));
-//						}
-//					}
-//					else if(key == getMelee_1()) {
-//						setState1 = true;
-//						choose.play();
-//						timeline1.stop();
-//						pressKey1.setVisible(false);
-//						timeline2.play();
-//					}
-//					else if(key == getUp_1() || key == getLeft_1()) {NewChoice_1 = (OldChoice_1-1+8)%8;click.play();}
-//					else if(key == getDown_1() || key == getRight_1()) {NewChoice_1 = (OldChoice_1+1+8)%8;click.play();}
-//					else if(key == getMelee_2()) {
-//						setState2 = true;
-//						choose.play();
-//						timeline1.stop();
-//						pressKey1.setVisible(false);
-//						timeline2.play();
-//					}
-//					else if(key == getUp_2() || key == getLeft_2()) {NewChoice_2 = (OldChoice_2-1+8)%8;click.play();}
-//					else if(key == getDown_2() || key == getRight_2()) {NewChoice_2 = (OldChoice_2+1+8)%8;click.play();}
-//					
-//					((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
-//					((ListOption) optionmenu_1.getChildren().get(NewChoice_1)).setActive(true);
-//					OldChoice_1 = NewChoice_1;
-//					
-//					((ListOption) optionmenu_2.getChildren().get(OldChoice_2)).setActive(false);
-//					((ListOption) optionmenu_2.getChildren().get(NewChoice_2)).setActive(true);
-//					OldChoice_2 = NewChoice_2;
-//				}
-//
-//			}
-//		});
 	}
 	public void keyHandling() {
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 		@Override
 		public void handle(KeyEvent event) {
-			MediaPlayer click = new MediaPlayer(new Media(ClassLoader.getSystemResource("lighter.wav").toString()));
-			MediaPlayer choose = new MediaPlayer(new Media(ClassLoader.getSystemResource("accept5.wav").toString()));
 			KeyCode key = event.getCode();
 			ArrayList<KeyCode> keyP1 = Controller.getKeyP1();
 			ArrayList<KeyCode> keyP2 = Controller.getKeyP2();
@@ -209,29 +126,29 @@ public class OptionScreen extends myScene{
 			}
 			else {
 				if(key == KeyCode.BACK_SPACE || key == keyP1.get(5) || key == keyP2.get(5)) {
-					choose.play();
+					playChoose();
 					Main.ChangeScene(Main.getMainmenu());
 					Main.getPlayer().setScene(Main.getMainmenu());
 					Main.getPlayer().run();
 				}
 				else if(key == keyP1.get(4)) {
 					setState1 = true;
-					choose.play();
+					playChoose();
 					timeline1.stop();
 					pressKey1.setVisible(false);
 					timeline2.play();
 				}
-				else if(key == keyP1.get(0) || key == keyP1.get(2)) {NewChoice_1 = (OldChoice_1-1+8)%8;click.play();}
-				else if(key == keyP1.get(1) || key == keyP1.get(3)) {NewChoice_1 = (OldChoice_1+1+8)%8;click.play();}
+				else if(key == keyP1.get(0) || key == keyP1.get(2)) {NewChoice_1 = (OldChoice_1-1+8)%8;playClick();}
+				else if(key == keyP1.get(1) || key == keyP1.get(3)) {NewChoice_1 = (OldChoice_1+1+8)%8;playClick();}
 				else if(key == keyP2.get(4)) {
 					setState2 = true;
-					choose.play();
+					playChoose();
 					timeline1.stop();
 					pressKey1.setVisible(false);
 					timeline2.play();
 				}
-				else if(key == keyP2.get(0) || key == keyP2.get(2)) {NewChoice_2 = (OldChoice_2-1+8)%8;click.play();}
-				else if(key == keyP2.get(1)|| key == keyP2.get(3)) {NewChoice_2 = (OldChoice_2+1+8)%8;click.play();}
+				else if(key == keyP2.get(0) || key == keyP2.get(2)) {NewChoice_2 = (OldChoice_2-1+8)%8;playClick();}
+				else if(key == keyP2.get(1)|| key == keyP2.get(3)) {NewChoice_2 = (OldChoice_2+1+8)%8;playClick();}
 				
 				((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
 				((ListOption) optionmenu_1.getChildren().get(NewChoice_1)).setActive(true);
@@ -251,13 +168,19 @@ public class OptionScreen extends myScene{
 		private ImageView shuriken1 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(),130,40,true,true));
 		private ImageView shuriken2 = new ImageView(new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(),130,40,true,true));
 		ListOption(String text,int player) {
-			this.setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("icon/frame.png").toString(),230,60,false,true), null, null, null, null)));
+			//this.setBackground(new Background(new BackgroundImage(new Image(ClassLoader.getSystemResource("icon/frame.png").toString(),230,60,false,true), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, null, null)));
 			this.player = player;
 			this.setSpacing(10);
 			this.setAlignment(Pos.CENTER);
 			this.setPrefSize(180, 60);
+			this.setStyle(
+		            "-fx-background-image: url(" +
+		            		"icon/frame.png" +
+		            "); " +
+		            "-fx-background-size: cover;"
+		        );
 			this.text = new Text(text);
-			this.text.setFont(getNarutoFont());
+			this.text.setFont(getNarutoFont_small());
 			this.text.setStrokeWidth(2);
 			getChildren().addAll(shuriken1, this.text,shuriken2);
 			setActive(false);
@@ -289,29 +212,9 @@ public class OptionScreen extends myScene{
 	@Override
 	public void update() {
 		keyHandling();
-//		update_P1();
-//		update_P2();
 
 	}
-//	private void update_P1() {
-//		moveUp_1();
-//		moveDown_1();
-//		choose_1();
-//		back_1();
-//		((ListOption) optionmenu_1.getChildren().get(OldChoice_1)).setActive(false);
-//		((ListOption) optionmenu_1.getChildren().get(NewChoice_1)).setActive(true);
-//		OldChoice_1 = NewChoice_1;
-//	}
-//
-//	private void update_P2() {
-//		moveUp_2();
-//		moveDown_2();
-//		choose_2();
-//		back_2();
-//		((ListOption) optionmenu_2.getChildren().get(OldChoice_2)).setActive(false);
-//		((ListOption) optionmenu_2.getChildren().get(NewChoice_2)).setActive(true);
-//		OldChoice_2 = NewChoice_2;
-//	}
+
 	public void changeKeyCode(int player,int choice,KeyCode key) {
 		if(player==1) {
 			Controller.getIsPressedMap1().remove(Controller.getKeyP1().get(choice));
@@ -326,53 +229,7 @@ public class OptionScreen extends myScene{
 			listoption2.get(choice).text.setText(textList.get(choice)+ ": " + Controller.getKeyP2().get(choice));
 		}
 	}
-//	private void moveUp_1() {
-//		if(Controller.getKeyMove_P1(0) || Controller.getKeyMove_P1(2)) {
-//			NewChoice_1 = (OldChoice_1-1+8)%8;
-//			playClick();
-//		}
-//	}
-//	private void moveDown_1() {
-//		if(Controller.getKeyMove_P1(1) || Controller.getKeyMove_P1(3)) {
-//			NewChoice_1 = (OldChoice_1+1+8)%8;
-//			playClick();
-//		}
-//	}
-//	private void choose_1() {
-//		if(Controller.getKeySkill_P1(0)) {
-//			setState1 = true;
-//			playChoose();
-//			changeKeyCode(1, OldChoice_1);
-//		}
-//	}
-//	private void back_1() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	private void moveUp_2() {
-//		if(Controller.getKeyMove_P2(0) || Controller.getKeyMove_P2(2)) {
-//			NewChoice_2 = (OldChoice_2-1+8)%8;
-//			playClick();
-//		}
-//	}
-//	private void moveDown_2() {
-//		if(Controller.getKeyMove_P2(1) || Controller.getKeyMove_P2(3)) {
-//			NewChoice_2 = (OldChoice_2+1+8)%8;
-//			playClick();
-//		}
-//	}
-//	private void choose_2() {
-//		if(Controller.getKeySkill_P2(0)) {
-//			setState2 = true;
-//			playChoose();
-//			changeKeyCode(2, OldChoice_2);
-//
-//		}
-//	}
-//	private void back_2() {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	
 	@Override
 	public void setDefault() {
 		OldChoice_1 = 0;

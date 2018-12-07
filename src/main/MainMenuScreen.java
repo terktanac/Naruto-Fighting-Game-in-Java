@@ -69,14 +69,6 @@ public class MainMenuScreen extends myScene {
 			kunai.setVisible(check);
 			name.setStroke(check ? Color.WHITE : Color.GRAY);
 		}
-		//dont know why use Thread here
-//		public void setOnActivate(Runnable r) {
-//            script = r;
-//        }
-//		public void activate() {
-//	            if (script != null)
-//	                script.run();
-//	     }
 		
 	}
 
@@ -155,18 +147,8 @@ public class MainMenuScreen extends myScene {
 			load.play();
 		}
 		else if(Oldchoice==MenuBox.getChildren().size()-1) {
-//			Alert alert = new Alert(AlertType.CONFIRMATION);
-//			alert.setTitle("Confirmation Dialog");
-//			alert.setHeaderText(null);
-//			alert.setContentText("Do you want to exit?");
-//			Optional<ButtonType> result = alert.showAndWait();
-//			if (result.get() == ButtonType.OK){
-//			    System.exit(1);
-//			}
-			// didn't work but if you want we will make it from scratch
 			System.exit(1);
 		}
-		playChoose();
 	}
 
 	@Override
