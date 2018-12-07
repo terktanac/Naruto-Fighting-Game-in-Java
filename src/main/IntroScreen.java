@@ -20,7 +20,7 @@ import javafx.util.Duration;
 
 public class IntroScreen extends myScene{
 	private static Pane root = new Pane();
-	private AudioClip player;
+	private AudioClip player = new AudioClip("file:music/menu/Blood_Circulator.mp3");;
 	public IntroScreen(){
 		super(root);
 //		this.main = main ;
@@ -57,8 +57,6 @@ public class IntroScreen extends myScene{
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 		
-		// Music
-		player = new AudioClip("file:music/menu/Blood Circulator.mp3");
 		//player.setAutoPlay(true);
 		Timeline timeline2 = new Timeline(new KeyFrame(
 		        Duration.millis(3100),

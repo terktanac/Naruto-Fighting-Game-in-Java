@@ -331,6 +331,7 @@ public class FireCharacter_1 extends Character{
 			else if(getSkillDelay() >= 70) {
 				getImageview().setViewport(new Rectangle2D(444, 1221, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
+				target.setStackFly(1);
 				GameScreen.getgameObjects2().add(new Fireball(getTranslateX(), getTranslateY(),isRight()));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
 				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1).getAnimation().play();
@@ -587,7 +588,6 @@ public class FireCharacter_1 extends Character{
 			setLongDelay(getLongDelay()-1);
 		}
 		else {
-			injured2.play();
 			getAnimation().stop();
 		}
 		return 1;

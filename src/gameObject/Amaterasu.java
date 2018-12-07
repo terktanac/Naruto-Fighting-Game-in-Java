@@ -22,6 +22,7 @@ public class Amaterasu extends GameObject{
 		setHeight(171);
 		setCount(5);
 		setSpeed(0);
+		target.setStackFly(1);
 		setDamage(100);
 		setImageview(new ImageView("sys/amaterasu.png"));
 		getImageview().setFitHeight(171.0*350.0/171.0);

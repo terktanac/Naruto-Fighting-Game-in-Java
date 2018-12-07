@@ -41,7 +41,7 @@ public class GameScreen extends myScene{
 //	private static Character[] play2 = {new WindCharacter_1(Character.getMaxHealth()),new FireCharacter_1(Character.getMaxHealth())};
 //	private static Character player1 = play1[0];
 //	private static Character player2 = play2[0];
-	protected static AudioClip player = new AudioClip("file:music/game/Nankou Furaku.mp3");
+	protected static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
 	private static Character player1 ;
 	private static Character player2 ;
 	private HealthBar healthbarP1;

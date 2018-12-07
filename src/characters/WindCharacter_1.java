@@ -328,8 +328,8 @@ public class WindCharacter_1 extends Character{
 				setSkillDelay(getSkillDelay()-1);
 			}
 			else {
-				target.takeDamage(25);
 				target.setStackFly(1);
+				target.takeDamage(25);	
 				setSkillDelay(250);
 				setSkill1(false);
 				stand();
@@ -425,8 +425,8 @@ public class WindCharacter_1 extends Character{
 				setSkillDelay(getSkillDelay()-1);
 			}
 			else {
-				target.takeDamage(50);
 				target.setStackFly(1);
+				target.takeDamage(50);			
 				setSkillDelay(250);
 				setSkill2(false);
 				stand();
@@ -534,6 +534,7 @@ public class WindCharacter_1 extends Character{
 				getImageview().setViewport(new Rectangle2D(222, 1998, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
 				rasenshuriken.play();
+				target.setStackFly(1);
 				GameScreen.getgameObjects1().add(new Rasenshuriken(getTranslateX(), getTranslateY()-100,isRight()));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size()-1));
 				GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size()-1).getAnimation().play();
@@ -691,7 +692,6 @@ public class WindCharacter_1 extends Character{
 			setLongDelay(getLongDelay()-1);
 		}
 		else {
-			injured2.play();
 			getAnimation().stop();
 		}
 		return 1;
