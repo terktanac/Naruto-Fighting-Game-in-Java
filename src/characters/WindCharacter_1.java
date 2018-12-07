@@ -507,7 +507,7 @@ public class WindCharacter_1 extends Character{
 			else if(getSkillDelay() == -190) {
 				getImageview().setViewport(new Rectangle2D(222, 1998, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
-				GameScreen.getgameObjects1().add(new Rasenshuriken(GameScreen.getPlayer1().getTranslateX(), GameScreen.getPlayer1().getTranslateY()-100,GameScreen.getPlayer1().isRight()));
+				GameScreen.getgameObjects1().add(new Rasenshuriken(getTranslateX(), getTranslateY()-100,isRight()));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size()-1));
 				GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size()-1).getAnimation().play();
 			}

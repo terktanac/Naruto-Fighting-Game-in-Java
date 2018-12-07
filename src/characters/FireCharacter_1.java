@@ -298,7 +298,7 @@ public class FireCharacter_1 extends Character{
 				getImageview().setViewport(new Rectangle2D(111, 1776, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
 				target.setStackFly(1);
-				GameScreen.getgameObjects2().add(new Chidori(GameScreen.getPlayer1().getTranslateX(), GameScreen.getPlayer1().getTranslateY(),GameScreen.getPlayer2().isRight()));
+				GameScreen.getgameObjects2().add(new Chidori(target.getTranslateX(), target.getTranslateY(),isRight()));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
 				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1).getAnimation().play();
 			}
@@ -344,7 +344,7 @@ public class FireCharacter_1 extends Character{
 			else if(getSkillDelay() >= 70) {
 				getImageview().setViewport(new Rectangle2D(444, 1221, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
-				GameScreen.getgameObjects2().add(new Fireball(GameScreen.getPlayer2().getTranslateX(), GameScreen.getPlayer2().getTranslateY(),GameScreen.getPlayer2().isRight()));
+				GameScreen.getgameObjects2().add(new Fireball(getTranslateX(), getTranslateY(),isRight()));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
 				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1).getAnimation().play();
 			}
@@ -388,7 +388,7 @@ public class FireCharacter_1 extends Character{
 			else if(getSkillDelay() == 160) {
 				getImageview().setViewport(new Rectangle2D(111, 1887, get_Width(), get_Height()));
 				setSkillDelay(getSkillDelay()-1);
-				GameScreen.getgameObjects2().add(new Amaterasu(GameScreen.getPlayer1().getTranslateX(), GameScreen.getPlayer1().getTranslateY(),GameScreen.getPlayer2().isRight(),target));
+				GameScreen.getgameObjects2().add(new Amaterasu(target.getTranslateX(), target.getTranslateY(),isRight(),target));
 				GameScreen.get_Root().getChildren().add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size()-1));
 			}
 			else if(getSkillDelay() > 160) {
