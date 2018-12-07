@@ -42,8 +42,8 @@ public class MultiPlayerScreen extends MyScene {
 
 	public MultiPlayerScreen() {
 		super(root);
-		player1 = 0;
-		player2 = 1;
+		player1 = 1;
+		player2 = 0;
 		player.setVolume(0.3);
 
 		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),

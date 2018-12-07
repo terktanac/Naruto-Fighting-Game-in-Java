@@ -23,7 +23,7 @@ public class Rasenshuriken extends GameObject {
 		setDamage(100);
 		setCount(3);
 		setSpeed(2);
-		setImageview(new ImageView("characters/narutoObjectsage/narutoObjectsage.png"));
+		setImageview(new ImageView("characters/naruto_sage/naruto_sage.png"));
 		getImageview().setFitHeight(350);
 		getImageview().setFitWidth(350);
 		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),
