@@ -67,7 +67,7 @@ public class PauseMenuScreen extends Pane {
 	public class ListMenu extends HBox {
 		private Text text;
 
-		ListMenu(String text) {
+		public ListMenu(String text) {
 			this.setSpacing(10);
 			this.setAlignment(Pos.CENTER);
 			this.setPrefSize(180, 60);

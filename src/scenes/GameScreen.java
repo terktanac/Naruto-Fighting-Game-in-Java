@@ -502,7 +502,7 @@ public class GameScreen extends MyScene {
 				} else {
 					isPause = false;
 					pause.setVisible(false);
-					MultiPlayerScreen.player.stop();
+					MultiPlayerScreen.getPlayer().stop();
 					Main.ChangeScene(Main.getMainmenu());
 				}
 			} else if (isPause && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
@@ -581,7 +581,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	private final void EndGame() {
+	public final void EndGame() {
 		if (isEnd) {
 			final Text endtext = new Text("KO!");
 			endtext.setFont(getNarutoFont());

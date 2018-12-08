@@ -128,8 +128,8 @@ public class MainMenuScreen extends MyScene {
 				playChoose();
 			}));
 			load.play();
-			MultiPlayerScreen.player.setCycleCount(AudioClip.INDEFINITE);
-			MultiPlayerScreen.player.play();
+			MultiPlayerScreen.getPlayer().setCycleCount(AudioClip.INDEFINITE);
+			MultiPlayerScreen.getPlayer().play();
 		} else if (oldchoice == 2) {
 			Main.ChangeScene(Main.getLoadscreen());
 			final Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
@@ -168,7 +168,7 @@ public class MainMenuScreen extends MyScene {
 			setActive(false);
 		}
 
-		final void setActive(boolean check) {
+		public final void setActive(boolean check) {
 			kunai.setVisible(check);
 			name.setStroke(check ? Color.WHITE : Color.GRAY);
 		}

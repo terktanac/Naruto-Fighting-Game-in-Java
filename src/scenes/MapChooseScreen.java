@@ -21,7 +21,9 @@ public class MapChooseScreen extends MyScene {
 
 	private static TilePane root = new TilePane(20, 20);
 	private ArrayList<ListMap> listOfBackground = new ArrayList<ListMap>();
-	private int row, column, choice;
+	private int row; 
+	private int column;
+	private int choice;
 	private Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(), 1300, 740,
 			false, false);
 	private static Image chooseBackground = new Image(
@@ -64,7 +66,7 @@ public class MapChooseScreen extends MyScene {
 		back();
 	}
 
-	public final void upPressed() {
+	private final void upPressed() {
 		if (Controller.getKeyMoveP1(0) || Controller.getKeyMoveP2(0)) {
 			listOfBackground.get(choice).setActive(false);
 			column = (column - 1 + 2) % 2;
@@ -74,7 +76,7 @@ public class MapChooseScreen extends MyScene {
 		}
 	}
 
-	public final void downPressed() {
+	private final void downPressed() {
 		if (Controller.getKeyMoveP1(1) || Controller.getKeyMoveP2(1)) {
 			listOfBackground.get(choice).setActive(false);
 			column = (column + 1) % 2;
@@ -84,7 +86,7 @@ public class MapChooseScreen extends MyScene {
 		}
 	}
 
-	public final void leftPressed() {
+	private final void leftPressed() {
 		if (Controller.getKeyMoveP1(2) || Controller.getKeyMoveP2(2)) {
 			listOfBackground.get(choice).setActive(false);
 			row = (row - 1 + 3) % 3;
@@ -94,7 +96,7 @@ public class MapChooseScreen extends MyScene {
 		}
 	}
 
-	public final void rightPressed() {
+	private final void rightPressed() {
 		if (Controller.getKeyMoveP1(3) || Controller.getKeyMoveP2(3)) {
 			listOfBackground.get(choice).setActive(false);
 			row = (row + 1) % 3;
@@ -104,7 +106,7 @@ public class MapChooseScreen extends MyScene {
 		}
 	}
 
-	public final void choose() {
+	private final void choose() {
 		if (Controller.getKeySkillP1(0) || Controller.getKeySkillP2(0)
 				|| Controller.getOtherKeys().contains(KeyCode.ENTER)
 				|| Controller.getOtherKeys().contains(KeyCode.SPACE)) {
@@ -120,13 +122,13 @@ public class MapChooseScreen extends MyScene {
 					new Image(ClassLoader.getSystemResource(listOfBackground.get(choice).getNormal()).toString(), 1300,
 							740, false, false));
 			GameScreen.setBackground(chooseBackground);
-			MultiPlayerScreen.player.stop();
+			MultiPlayerScreen.getPlayer().stop();
 			GameScreen.getPlayer().setCycleCount(AudioClip.INDEFINITE);
 			GameScreen.getPlayer().play();
 		}
 	}
 
-	public final void back() {
+	private final void back() {
 		if (Controller.getKeySkillP1(1) || Controller.getKeySkillP2(1)
 				|| Controller.getOtherKeys().contains(KeyCode.BACK_SPACE)
 				|| Controller.getOtherKeys().contains(KeyCode.ESCAPE)) {

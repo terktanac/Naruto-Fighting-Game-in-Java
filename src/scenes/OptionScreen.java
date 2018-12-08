@@ -218,7 +218,7 @@ public class OptionScreen extends MyScene {
 		private ImageView shuriken2 = new ImageView(
 				new Image(ClassLoader.getSystemResource("icon/shuriken.png").toString(), 130, 40, true, true));
 
-		ListOption(String text, int player) {
+		public ListOption(String text, int player) {
 			// this.setBackground(new Background(new BackgroundImage(new
 			// Image(ClassLoader.getSystemResource("icon/frame.png").toString(),230,60,false,true),
 			// BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, null, null)));
@@ -234,7 +234,7 @@ public class OptionScreen extends MyScene {
 			setActive(false);
 		}
 
-		final void setActive(boolean check) {
+		public final void setActive(boolean check) {
 			shuriken1.setVisible(check);
 			shuriken2.setVisible(check);
 			if (player == 1) {
