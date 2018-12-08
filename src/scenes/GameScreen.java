@@ -605,12 +605,20 @@ public class GameScreen extends MyScene {
 			if (player1.getCurrenthealth() == Character.getMaxHealth()
 					|| player2.getCurrenthealth() == Character.getMaxHealth()) {
 				endtext.setText("Perfect!");
+				endtext.setTranslateX(600);
+				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() == player2.getCurrenthealth()) {
 				endtext.setText("Tie!");
+				endtext.setTranslateX(650);
+				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() < player2.getCurrenthealth()) {
 				endtext.setText("Player 2 Win!");
+				endtext.setTranslateX(500);
+				endtext.setTranslateY(500);
 			} else if (player1.getCurrenthealth() > player2.getCurrenthealth()) {
 				endtext.setText("Player 1 Win!");
+				endtext.setTranslateX(500);
+				endtext.setTranslateY(300);
 			}
 			final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> next.setVisible(true)),
 					new KeyFrame(Duration.seconds(0.7), evt -> next.setVisible(false)));

@@ -18,7 +18,7 @@ import scenes.GameScreen;
 public class Sasuke extends Character {
 
 	private static Image image = new Image(
-			ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka.png").toString(), 1110, 2220, false, false);
+			ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_Clear.png").toString(), 1110, 2220, false, false);
 	private static AudioClip hit1 = new AudioClip("file:image/characters/sasuke_aka/sfx_hit.wav");
 	private static AudioClip chidori = new AudioClip("file:image/characters/sasuke_aka/sfx_chidori.wav");
 	private static AudioClip chidoriReady = new AudioClip("file:soundfx/chidori_loop.wav");
