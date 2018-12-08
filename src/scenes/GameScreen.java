@@ -327,9 +327,9 @@ public class GameScreen extends MyScene {
 		player1.doRange();
 		player1.doMelee();
 		player1.doDodge();
-		player1.basic_skill(player2);
-		player1.mid_skill(player2);
-		player1.High_skill(player2);
+		player1.basic_skill(player2,gameObjects1);
+		player1.mid_skill(player2,gameObjects1);
+		player1.High_skill(player2,gameObjects1);
 		player1.dotakeDamage();
 		if (player1.getTranslateX() > 950) {
 			player1.setTranslateX(950);
@@ -453,9 +453,9 @@ public class GameScreen extends MyScene {
 		player2.doRange();
 		player2.doMelee();
 		player2.doDodge();
-		player2.basic_skill(player1);
-		player2.mid_skill(player1);
-		player2.High_skill(player1);
+		player2.basic_skill(player1,gameObjects2);
+		player2.mid_skill(player1,gameObjects2);
+		player2.High_skill(player1,gameObjects2);
 		player2.dotakeDamage();
 		if (player2.getTranslateX() > 950) {
 			player2.setTranslateX(950);
