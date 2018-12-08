@@ -28,7 +28,7 @@ public class Fireball extends GameObject {
 		}
 		getImageview().setFitHeight(350);
 		getImageview().setFitWidth(350);
-		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(100), getCount(), 0, getOffSetX(),
+		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),
 				getOffSetY(), getObjectWidth(), getObjectHeight())));
 		getChildren().addAll(getImageview());
 	}
@@ -40,20 +40,20 @@ public class Fireball extends GameObject {
 		getAnimation().stop();
 		if (getDelay() == 300) {
 			getImageview().setViewport(new Rectangle2D(0, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 			boom.play();
 		} else if (getDelay() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 260) {
 			getImageview().setViewport(new Rectangle2D(82, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 230) {
 			getImageview().setViewport(new Rectangle2D(164, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 200) {
 			getImageview().setViewport(new Rectangle2D(246, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);

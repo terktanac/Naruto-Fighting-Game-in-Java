@@ -1,5 +1,6 @@
 package gameobject;
 
+import characters.Character;
 import characters.CharacterAnimation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -12,9 +13,12 @@ public class Rasenshuriken extends GameObject {
 	private Image shock = new Image("sys/rasenshock.png");
 	private static AudioClip rasenshurikenObjecthit1 = new AudioClip("file:soundfx/rasenshuriken.wav");
 	private static AudioClip rasenshurikenObjecthit2 = new AudioClip("file:soundfx/rasenshuriken4.wav");
+	private Character target;
+	private boolean check;
 
-	public Rasenshuriken(double posx, double posy, boolean direction) {
+	public Rasenshuriken(double posx, double posy, boolean direction, Character target) {
 		super(posx, posy, direction);
+		this.target = target;
 		setHasEffect(true);
 		setOffSetX(333);
 		setOffSetY(1998);
@@ -26,7 +30,7 @@ public class Rasenshuriken extends GameObject {
 		setImageview(new ImageView("characters/naruto_sage/naruto_sage.png"));
 		getImageview().setFitHeight(350);
 		getImageview().setFitWidth(350);
-		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),
+		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(600), getCount(), 0, getOffSetX(),
 				getOffSetY(), getObjectWidth(), getObjectHeight())));
 		getChildren().addAll(getImageview());
 	}
@@ -40,48 +44,53 @@ public class Rasenshuriken extends GameObject {
 		setHeight(387);
 		getImageview().setFitWidth(630);
 		getImageview().setFitHeight(387);
+		if (target.isRight() && !check) {
+			check = true;
+			setTranslateX(target.getTranslateX() - 300);
+		}
+		setTranslateY(target.getTranslateY());
 		getAnimation().stop();
 		if (getDelay() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() > 260) {
 			getImageview().setViewport(new Rectangle2D(630, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() == 260) {
 			getImageview().setViewport(new Rectangle2D(630, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 			rasenshurikenObjecthit1.play();
 			rasenshurikenObjecthit2.play();
 		} else if (getDelay() >= 230) {
 			getImageview().setViewport(new Rectangle2D(1260, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 200) {
 			getImageview().setViewport(new Rectangle2D(0, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 170) {
 			getImageview().setViewport(new Rectangle2D(630, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 140) {
 			getImageview().setViewport(new Rectangle2D(0, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 110) {
 			getImageview().setViewport(new Rectangle2D(1260, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 90) {
 			getImageview().setViewport(new Rectangle2D(0, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 70) {
 			getImageview().setViewport(new Rectangle2D(1260, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 50) {
 			getImageview().setViewport(new Rectangle2D(0, 774, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 25) {
 			getImageview().setViewport(new Rectangle2D(630, 774, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 0) {
 			getImageview().setViewport(new Rectangle2D(1260, 774, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);

@@ -15,7 +15,7 @@ public abstract class GameObject extends Pane implements Collidable {
 	private int count;
 	private int speed;
 	private int damage;
-	private int delay = 300;
+	private double delay = 300;
 	private boolean direction;
 	private boolean isDone;
 	private boolean isDoing;
@@ -142,12 +142,12 @@ public abstract class GameObject extends Pane implements Collidable {
 		this.isDoing = isDoing;
 	}
 
-	public final int getDelay() {
+	public final double getDelay() {
 		return delay;
 	}
 
-	public final void setDelay(int delay) {
-		this.delay = delay;
+	public final void setDelay(double d) {
+		this.delay = d;
 	}
 
 	public final boolean isHasEffect() {
