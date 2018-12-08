@@ -26,7 +26,6 @@ public class IntroScreen extends MyScene {
 
 	public IntroScreen() {
 		super(root);
-//		this.main = main ;
 		final Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(), 1300,
 				740, false, false);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));
@@ -90,8 +89,6 @@ public class IntroScreen extends MyScene {
 			System.out.println("Skipped Intro");
 			player.stop();
 			load.play();
-			Main.getPlayer().setScene(Main.getMainmenu());
-			Main.getPlayer().run();
 
 		}
 	}

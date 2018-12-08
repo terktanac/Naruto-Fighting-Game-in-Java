@@ -56,11 +56,13 @@ public class GameScreen extends MyScene {
 	private AnimationTimer timer;
 	private long lastTime = -1;
 	private Text time;
+	private boolean isChangemenu;
 
 	public GameScreen() {
 		super(root);
 		isEnd = false;
 		isPause = false;
+		isChangemenu = false;
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		pause = new PauseMenuScreen();
@@ -112,6 +114,7 @@ public class GameScreen extends MyScene {
 		updateskill(2);
 		updatemove(1);
 		updatemove(2);
+		isChangemenu = false;
 	}
 
 	private void updatemove(int player) {
@@ -445,38 +448,6 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void otherKeyPressed() {
-		final ArrayList<KeyCode> others = Controller.getOtherKeys();
-		if (others.size() > 0) {
-			final KeyCode key = others.get(0);
-			if ((key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) && !isEnd) {
-				if (!isPause) {
-					isPause = true;
-					pause.setVisible(true);
-				} else {
-					isPause = false;
-					pause.setVisible(false);
-					MultiPlayerScreen.player.stop();
-					Main.ChangeScene(Main.getMainmenu());
-					Main.getPlayer().setScene(Main.getMainmenu());
-					Main.getPlayer().run();
-				}
-			} else if (isPause && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
-				choosen();
-			} else if (isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
-				System.exit(1);
-
-				if (!Controller.getOtherKeys().isEmpty()) {
-					Controller.removePressed(0, "OTHER", 1);
-				}
-			}
-		}
-	}
-
-	public static final boolean checkCollide(Collidable obj1, Collidable obj2) {
-		return obj1.getBoundary().intersects(obj2.getBoundary());
-	}
-
 	public final void doAnimation2() {
 		player2.dead();
 		player2.doRange();
@@ -526,26 +497,63 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void moveDown() {
-		if (pause.getCurChoice() == pause.getMenu().getChildren().size() - 1) {
-			pause.setNewChoice(0);
-		} else {
-			pause.setNewChoice(pause.getCurChoice() + 1);
+	public final void otherKeyPressed() {
+		final ArrayList<KeyCode> others = Controller.getOtherKeys();
+		if (others.size() > 0) {
+			final KeyCode key = others.get(0);
+			if ((key == KeyCode.ESCAPE || key == KeyCode.BACK_SPACE) && !isEnd) {
+				if (!isPause) {
+					isPause = true;
+					pause.setVisible(true);
+				} else {
+					isPause = false;
+					pause.setVisible(false);
+					MultiPlayerScreen.player.stop();
+					Main.ChangeScene(Main.getMainmenu());
+				}
+			} else if (isPause && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
+				choosen();
+			} else if (isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
+				System.exit(1);
+//				Main.ChangeScene(Main.getIntro());
+//				Main.setDefault();
+			}
+			if (!Controller.getOtherKeys().isEmpty()) {
+				Controller.removePressed(0, "OTHER", 1);
+			}
 		}
-		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
-		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
-		pause.setCurChoice(pause.getNewChoice());
+	}
+
+	public static final boolean checkCollide(Collidable obj1, Collidable obj2) {
+		return obj1.getBoundary().intersects(obj2.getBoundary());
+	}
+
+	public final void moveDown() {
+		if (!isChangemenu) {
+			if (pause.getCurChoice() == pause.getMenu().getChildren().size() - 1) {
+				pause.setNewChoice(0);
+			} else {
+				pause.setNewChoice(pause.getCurChoice() + 1);
+			}
+			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
+			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
+			pause.setCurChoice(pause.getNewChoice());
+			isChangemenu = true;
+		}
 	}
 
 	public final void moveUp() {
-		if (pause.getCurChoice() == 0) {
-			pause.setNewChoice(pause.getMenu().getChildren().size() - 1);
-		} else {
-			pause.setNewChoice(pause.getCurChoice() - 1);
+		if (!isChangemenu) {
+			if (pause.getCurChoice() == 0) {
+				pause.setNewChoice(pause.getMenu().getChildren().size() - 1);
+			} else {
+				pause.setNewChoice(pause.getCurChoice() - 1);
+			}
+			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
+			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
+			pause.setCurChoice(pause.getNewChoice());
+			isChangemenu = true;
 		}
-		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
-		((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
-		pause.setCurChoice(pause.getNewChoice());
 	}
 
 	public final void choosen() {
@@ -556,9 +564,8 @@ public class GameScreen extends MyScene {
 			// to option
 			isPause = false;
 			pause.setVisible(false);
+			player.stop();
 			Main.ChangeScene(Main.getOptionscreen());
-			Main.getPlayer().setScene(Main.getOptionscreen());
-			Main.getPlayer().run();
 		} else if (pause.getCurChoice() == 2) {
 			// to howto
 			isPause = false;
@@ -574,8 +581,7 @@ public class GameScreen extends MyScene {
 			isPause = false;
 			pause.setVisible(false);
 			Main.ChangeScene(Main.getMainmenu());
-			Main.getPlayer().setScene(Main.getMainmenu());
-			Main.getPlayer().run();
+			player.stop();
 		} else if (pause.getCurChoice() == 4) {
 			System.exit(1);
 		}
@@ -614,16 +620,12 @@ public class GameScreen extends MyScene {
 	}
 
 	public final void setCharacter(int choose1, int choose2) {
-//		if(player == 1) {
-//			player1 = play1[choose];
-//		}
-//		else {
-//			player2 = play2[choose];
-//		}
-//		if(player == 1) {player1 = new FireCharacter1(Character.getMaxHealth());}
-//		else {player2 = new WindCharacter1(Character.getMaxHealth());}
-//		root.getChildren().removeAll(player1,player2);
-//		System.out.println(root.getChildren());
+		if (root.getChildren().contains(player1)) {
+			root.getChildren().remove(player1);
+		}
+		if (root.getChildren().contains(player2)) {
+			root.getChildren().remove(player2);
+		}
 		if (choose1 == 0) {
 			player1 = new Naruto(Character.getMaxHealth());
 		} else {
@@ -652,6 +654,21 @@ public class GameScreen extends MyScene {
 		player2.stand();
 	}
 
+	@Override
+	public final void setDefault() {
+		player1.setCurrenthealth(Character.getMaxHealth());
+		player2.setCurrenthealth(Character.getMaxHealth());
+		healthbarP1.setHealthBar(1);
+		healthbarP2.setHealthBar(1);
+		gameObjects1.clear();
+		gameObjects2.clear();
+		isEnd = false;
+		isPause = false;
+		pause.setCurChoice(0);
+		pause.setNewChoice(0);
+		currentTime = 300;
+	}
+
 	public final void setEnd(boolean isEnd) {
 		this.isEnd = isEnd;
 	}
@@ -678,21 +695,6 @@ public class GameScreen extends MyScene {
 
 	public final void setPause(boolean isPause) {
 		this.isPause = isPause;
-	}
-
-	@Override
-	public final void setDefault() {
-		player1.setCurrenthealth(Character.getMaxHealth());
-		player2.setCurrenthealth(Character.getMaxHealth());
-		healthbarP1.setHealthBar(1);
-		healthbarP2.setHealthBar(1);
-		gameObjects1.clear();
-		gameObjects2.clear();
-		isEnd = false;
-		isPause = false;
-		pause.setCurChoice(0);
-		pause.setNewChoice(0);
-		currentTime = 300;
 	}
 
 	public class HealthBar extends StackPane {

@@ -120,7 +120,6 @@ public class MainMenuScreen extends MyScene {
 			alert.setHeaderText(null);
 			alert.setContentText("Coming Soon.");
 			alert.show();
-			Main.getPlayer().setScene(Main.getMainmenu());
 		} else if (oldchoice == 1) {
 			Main.ChangeScene(Main.getLoadscreen());
 			final Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae -> {
@@ -129,8 +128,6 @@ public class MainMenuScreen extends MyScene {
 				playChoose();
 			}));
 			load.play();
-			Main.getPlayer().setScene(Main.getMultiplayer());
-			Main.getPlayer().run();
 			MultiPlayerScreen.player.setCycleCount(AudioClip.INDEFINITE);
 			MultiPlayerScreen.player.play();
 		} else if (oldchoice == 2) {
@@ -140,8 +137,6 @@ public class MainMenuScreen extends MyScene {
 			}), new KeyFrame(Duration.millis(100), ae -> {
 				playChoose();
 			}));
-			Main.getPlayer().setScene(Main.getOptionscreen());
-			Main.getPlayer().run();
 			load.play();
 		} else if (oldchoice == menuBox.getChildren().size() - 1) {
 			System.exit(1);
@@ -150,8 +145,10 @@ public class MainMenuScreen extends MyScene {
 
 	@Override
 	public final void setDefault() {
+		((ListMenu) menuBox.getChildren().get(oldchoice)).setActive(false);
 		oldchoice = 0;
 		newChoice = 0;
+		((ListMenu) menuBox.getChildren().get(oldchoice)).setActive(true);
 	}
 
 	public class ListMenu extends HBox {

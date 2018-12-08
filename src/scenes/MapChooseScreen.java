@@ -114,8 +114,6 @@ public class MapChooseScreen extends MyScene {
 				playChoose();
 			}));
 			Main.ChangeScene(Main.getLoadscreen());
-			Main.getPlayer().setScene(Main.getGamescreen());
-			Main.getPlayer().run();
 			playChoose();
 			load.play();
 			setChooseBackground(
@@ -134,8 +132,6 @@ public class MapChooseScreen extends MyScene {
 				|| Controller.getOtherKeys().contains(KeyCode.ESCAPE)) {
 			playChoose();
 			Main.ChangeScene(Main.getMultiplayer());
-			Main.getPlayer().setScene(Main.getMultiplayer());
-			Main.getPlayer().run();
 		}
 	}
 
