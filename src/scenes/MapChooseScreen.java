@@ -121,8 +121,8 @@ public class MapChooseScreen extends MyScene {
 							740, false, false));
 			GameScreen.setBackground(chooseBackground);
 			MultiPlayerScreen.player.stop();
-			GameScreen.player.setCycleCount(AudioClip.INDEFINITE);
-			GameScreen.player.play();
+			GameScreen.getPlayer().setCycleCount(AudioClip.INDEFINITE);
+			GameScreen.getPlayer().play();
 		}
 	}
 

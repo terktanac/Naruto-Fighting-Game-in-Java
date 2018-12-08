@@ -40,39 +40,36 @@ public class GameScreen extends MyScene {
 	private static Pane root = new Pane();
 //	private static Character[] play1 = {new WindCharacter1(Character.getMaxHealth()),new FireCharacter1(Character.getMaxHealth())};
 //	private static Character[] play2 = {new WindCharacter1(Character.getMaxHealth()),new FireCharacter1(Character.getMaxHealth())};
-//	private static Character player1 = play1[0];
+//	private static Character player1 = play1[0]; ไว้สำหรับระบบเปลี่ยนตัวกลางเกม
 //	private static Character player2 = play2[0];
-	protected static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
+	private static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
 	private static Character player1;
 	private static Character player2;
 	private HealthBar healthbarP1;
 	private HealthBar healthbarP2;
 	private static ArrayList<GameObject> gameObjects1 = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> gameObjects2 = new ArrayList<GameObject>();
-	private boolean isEnd;
+	private static ArrayList<ImageView> healthIcon = new ArrayList<ImageView>();
 	private PauseMenuScreen pause;
+	private boolean isEnd;
 	private boolean isPause;
 	private int currentTime = 300;
 	private AnimationTimer timer;
 	private long lastTime = -1;
 	private Text time;
-	private boolean isChangemenu;
+
 
 	public GameScreen() {
 		super(root);
 		isEnd = false;
 		isPause = false;
-		isChangemenu = false;
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
 		pause = new PauseMenuScreen();
 		pause.setVisible(false);
 
-		healthbarP1 = new HealthBar(800, 312.5, new ImageView(), -25, -50);
-		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
-		healthbarP2.setTranslateX(535);
-		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
-		healthbarP2.setRotate(180);
+		healthIcon.add(new ImageView(new Image("characters/naruto_sage/naruto_sage_s.png", 348, 140, true,false)));
+		healthIcon.add(new ImageView(new Image("characters/sasuke_aka/sasuke_aka_s.png", 348,140,true,false)));
 
 		time = new Text("" + currentTime);
 		time.setTranslateX(640);
@@ -94,13 +91,8 @@ public class GameScreen extends MyScene {
 		};
 		timer.start();
 
-		healthbarP1 = new HealthBar(800, 312.5, new ImageView(), -25, -50);
-		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
-		healthbarP2.setTranslateX(535);
-		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
-		healthbarP2.setRotate(180);
 
-		root.getChildren().addAll(healthbarP1, healthbarP2, time, pause);
+		root.getChildren().addAll(time, pause);
 		root.getChildren().addAll(gameObjects1);
 
 	}
@@ -114,7 +106,7 @@ public class GameScreen extends MyScene {
 		updateskill(2);
 		updatemove(1);
 		updatemove(2);
-		isChangemenu = false;
+		pause.setChangemenu(false);
 	}
 
 	private void updatemove(int player) {
@@ -222,7 +214,7 @@ public class GameScreen extends MyScene {
 		EndGame();
 	}
 
-	public final void update1() {
+	private final void update1() {
 		upPressed1();
 		downPressed1();
 		leftPressed1();
@@ -233,7 +225,7 @@ public class GameScreen extends MyScene {
 		healthbarP1.setHealthBar(player1.getCurrenthealth() / Character.getMaxHealth());
 	}
 
-	public final void update2() {
+	private final void update2() {
 		upPressed2();
 		downPressed2();
 		leftPressed2();
@@ -244,7 +236,7 @@ public class GameScreen extends MyScene {
 		healthbarP2.setHealthBar(player2.getCurrenthealth() / Character.getMaxHealth());
 	}
 
-	public final void upPressed1() {
+	private final void upPressed1() {
 		if (!Controller.getPressedListMoveP1().isEmpty()
 				&& Controller.getIsPressedMap1().get(Controller.getKeyP1().get(0)) && !isPause) {
 			player1.jump();
@@ -256,7 +248,7 @@ public class GameScreen extends MyScene {
 		player1.doJump();
 	}
 
-	public final void downPressed1() {
+	private final void downPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
 			// player1.crouch();
 			player1.setSkill3(true);
@@ -268,7 +260,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void leftPressed1() {
+	private final void leftPressed1() {
 		if (Controller.getIsPressedMap1().get((Controller.getKeyP1().get(2))) && !isPause) {
 			player1.walkLeft();
 			System.out.println("LeftPressed");
@@ -280,7 +272,7 @@ public class GameScreen extends MyScene {
 
 	}
 
-	public final void rightPressed1() {
+	private final void rightPressed1() {
 		if (Controller.getIsPressedMap1().get((Controller.getKeyP1().get(3))) && !isPause) {
 			player1.walkRight();
 			System.out.println("RightPressed");
@@ -291,11 +283,11 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void meleePressed1() {
+	private final void meleePressed1() {
 		player1.melee(player2);
 	}
 
-	public final void rangePressed1() {
+	private final void rangePressed1() {
 		gameObjects1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY() + 60, player1.isRight()));
 		root.getChildren().add(gameObjects1.get(gameObjects1.size() - 1));
 		gameObjects1.get(gameObjects1.size() - 1).getAnimation().play();
@@ -303,7 +295,7 @@ public class GameScreen extends MyScene {
 
 	}
 
-	public final void blockPressed1() {
+	private final void blockPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(6))) {
 			player1.block();
 		} else if (player1.isBlock()) {
@@ -311,19 +303,19 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void dodgePressed1() {
+	private final void dodgePressed1() {
 		player1.dodge();
 
 	}
 
-	public final void nonePressed1() {
+	private final void nonePressed1() {
 		final Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap1();
 		if (!pressed.containsValue(true)) {
 			player1.stand();
 		}
 	}
 
-	public final void doAnimation1() {
+	private final void doAnimation1() {
 		player1.dead();
 		player1.doRange();
 		player1.doMelee();
@@ -371,7 +363,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void upPressed2() {
+	private final void upPressed2() {
 		if (!Controller.getPressedListMoveP2().isEmpty()
 				&& Controller.getIsPressedMap2().get(Controller.getKeyP2().get(0)) && !isPause) {
 			player2.jump();
@@ -383,7 +375,7 @@ public class GameScreen extends MyScene {
 		player2.doJump();
 	}
 
-	public final void downPressed2() {
+	private final void downPressed2() {
 
 		if (Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
 			// player2.crouch();
@@ -396,7 +388,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void leftPressed2() {
+	private final void leftPressed2() {
 		if (Controller.getIsPressedMap2().get((Controller.getKeyP2().get(2))) && !isPause) {
 			player2.walkLeft();
 			System.out.println("LeftPressed");
@@ -407,7 +399,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void rightPressed2() {
+	private final void rightPressed2() {
 		if (Controller.getIsPressedMap2().get((Controller.getKeyP2().get(3))) && !isPause) {
 			player2.walkRight();
 			System.out.println("RightPressed");
@@ -418,11 +410,11 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void meleePressed2() {
+	private final void meleePressed2() {
 		player2.melee(player1);
 	}
 
-	public final void rangePressed2() {
+	private final void rangePressed2() {
 		gameObjects2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY() + 60, player2.isRight()));
 		root.getChildren().add(gameObjects2.get(gameObjects2.size() - 1));
 		gameObjects2.get(gameObjects2.size() - 1).getAnimation().play();
@@ -430,7 +422,7 @@ public class GameScreen extends MyScene {
 
 	}
 
-	public final void blockPressed2() {
+	private final void blockPressed2() {
 		if (Controller.getIsPressedMap2().get(Controller.getKeyP2().get(6))) {
 			player2.block();
 		} else if (player2.isBlock()) {
@@ -438,19 +430,19 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void dodgePressed2() {
+	private final void dodgePressed2() {
 		player2.dodge();
 
 	}
 
-	public final void nonePressed2() {
+	private final void nonePressed2() {
 		final Map<KeyCode, Boolean> pressed = Controller.getIsPressedMap2();
 		if (!pressed.containsValue(true)) {
 			player2.stand();
 		}
 	}
 
-	public final void doAnimation2() {
+	private final void doAnimation2() {
 		player2.dead();
 		player2.doRange();
 		player2.doMelee();
@@ -499,7 +491,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void otherKeyPressed() {
+	private final void otherKeyPressed() {
 		final ArrayList<KeyCode> others = Controller.getOtherKeys();
 		if (others.size() > 0) {
 			final KeyCode key = others.get(0);
@@ -530,8 +522,8 @@ public class GameScreen extends MyScene {
 		return obj1.getBoundary().intersects(obj2.getBoundary());
 	}
 
-	public final void moveDown() {
-		if (!isChangemenu) {
+	private final void moveDown() {
+		if (!pause.isChangemenu()) {
 			if (pause.getCurChoice() == pause.getMenu().getChildren().size() - 1) {
 				pause.setNewChoice(0);
 			} else {
@@ -540,12 +532,12 @@ public class GameScreen extends MyScene {
 			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
 			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
 			pause.setCurChoice(pause.getNewChoice());
-			isChangemenu = true;
+			pause.setChangemenu(true);
 		}
 	}
 
-	public final void moveUp() {
-		if (!isChangemenu) {
+	private final void moveUp() {
+		if (!pause.isChangemenu()) {
 			if (pause.getCurChoice() == 0) {
 				pause.setNewChoice(pause.getMenu().getChildren().size() - 1);
 			} else {
@@ -554,11 +546,11 @@ public class GameScreen extends MyScene {
 			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getCurChoice())).setActive(false);
 			((PauseMenuScreen.ListMenu) pause.getMenu().getChildren().get(pause.getNewChoice())).setActive(true);
 			pause.setCurChoice(pause.getNewChoice());
-			isChangemenu = true;
+			pause.setChangemenu(true);
 		}
 	}
 
-	public final void choosen() {
+	private final void choosen() {
 		if (pause.getCurChoice() == 0) {
 			pause.setVisible(false);
 			isPause = false;
@@ -589,7 +581,7 @@ public class GameScreen extends MyScene {
 		}
 	}
 
-	public final void EndGame() {
+	private final void EndGame() {
 		if (isEnd) {
 			final Text endtext = new Text("KO!");
 			endtext.setFont(getNarutoFont());
@@ -636,6 +628,12 @@ public class GameScreen extends MyScene {
 		if (root.getChildren().contains(player2)) {
 			root.getChildren().remove(player2);
 		}
+		if (root.getChildren().contains(healthbarP1)) {
+			root.getChildren().remove(healthbarP1);
+		}
+		if (root.getChildren().contains(healthbarP2)) {
+			root.getChildren().remove(healthbarP2);
+		}
 		if (choose1 == 0) {
 			player1 = new Naruto(Character.getMaxHealth());
 		} else {
@@ -646,8 +644,16 @@ public class GameScreen extends MyScene {
 		} else {
 			player2 = new Sasuke(Character.getMaxHealth());
 		}
+		healthbarP1 = new HealthBar(800, 312.5,healthIcon.get(choose1), -25, -50);
+		healthbarP2 = new HealthBar(800, 312.5,healthIcon.get(choose2), 5, -50);
+		healthbarP2.setTranslateX(535);
+		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
+		healthbarP2.setRotate(180);
+		
 		root.getChildren().add(0, player1);
 		root.getChildren().add(0, player2);
+		root.getChildren().add(0, healthbarP1);
+		root.getChildren().add(0, healthbarP2);
 		player1.setTranslateX(300);
 		player1.setTranslateY(300);
 		player2.setTranslateX(600);
@@ -707,6 +713,10 @@ public class GameScreen extends MyScene {
 		this.isPause = isPause;
 	}
 
+	protected static AudioClip getPlayer() {
+		return player;
+	}
+
 	public class HealthBar extends StackPane {
 		private double width;
 		private double height;
@@ -743,6 +753,8 @@ public class GameScreen extends MyScene {
 			setPrefSize(width, height);
 			setTranslateX(xpos);
 			setTranslateY(ypos);
+			characters.setTranslateX(xpos-215);
+			characters.setTranslateY(ypos+20);
 			healthbarPlain.setTranslateX(xpos);
 			healthbarPlain.setTranslateY(ypos);
 			healthbarBorder.setTranslateX(xpos);
@@ -750,8 +762,6 @@ public class GameScreen extends MyScene {
 			healthbar = new Canvas(width, height);
 			gc = healthbar.getGraphicsContext2D();
 			setHealthBar(1);
-			characters.setTranslateX(0);
-			characters.setTranslateY(0);
 
 			getChildren().addAll(healthbarPlain, healthbar, healthbarBorder, characters);
 		}

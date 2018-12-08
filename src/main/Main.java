@@ -71,7 +71,7 @@ public class Main extends Application {
 
 	}
 
-	public final Stage getStage() {
+	public static Stage getStage() {
 		return stage;
 	}
 
@@ -79,60 +79,34 @@ public class Main extends Application {
 		return intro;
 	}
 
-	public static void setIntro(IntroScreen intro) {
-		Main.intro = intro;
-	}
-
 	public static MainMenuScreen getMainmenu() {
 		return mainmenu;
-	}
-
-	public static void setMainmenu(MainMenuScreen mainmenu) {
-		Main.mainmenu = mainmenu;
-	}
-
-	public static OptionScreen getOptionscreen() {
-		return optionscreen;
-	}
-
-	public static void setOptionscreen(OptionScreen optionscreen) {
-		Main.optionscreen = optionscreen;
 	}
 
 	public static MultiPlayerScreen getMultiplayer() {
 		return multiplayer;
 	}
 
-	public final void setMultiplayer(MultiPlayerScreen multiplayer) {
-		Main.multiplayer = multiplayer;
+	public static OptionScreen getOptionscreen() {
+		return optionscreen;
 	}
 
 	public static LoadingScreen getLoadscreen() {
 		return loadscreen;
 	}
 
-	public static void setLoadscreen(LoadingScreen loadscreen) {
-		Main.loadscreen = loadscreen;
+	public static GameScreen getGamescreen() {
+		return gamescreen;
 	}
 
 	public static MapChooseScreen getMapscreen() {
 		return mapscreen;
 	}
 
-	public static void setMapscreen(MapChooseScreen mapscreen) {
-		Main.mapscreen = mapscreen;
-	}
-
-	public static GameScreen getGamescreen() {
-		return gamescreen;
-	}
-
-	public static void setGamescreen(GameScreen gamescreen) {
-		Main.gamescreen = gamescreen;
-	}
-
 	public static Controller getPlayer() {
 		return player;
 	}
+
+	
 
 }
