@@ -42,13 +42,14 @@ public class GameScreen extends MyScene {
 //	private static Character[] play2 = {new WindCharacter1(Character.getMaxHealth()),new FireCharacter1(Character.getMaxHealth())};
 //	private static Character player1 = play1[0];
 //	private static Character player2 = play2[0];
-	protected static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
+	private static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
 	private static Character player1;
 	private static Character player2;
 	private HealthBar healthbarP1;
 	private HealthBar healthbarP2;
 	private static ArrayList<GameObject> gameObjects1 = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> gameObjects2 = new ArrayList<GameObject>();
+	private static ArrayList<ImageView> healthIcon = new ArrayList<ImageView>();
 	private boolean isEnd;
 	private PauseMenuScreen pause;
 	private boolean isPause;
@@ -68,11 +69,8 @@ public class GameScreen extends MyScene {
 		pause = new PauseMenuScreen();
 		pause.setVisible(false);
 
-		healthbarP1 = new HealthBar(800, 312.5, new ImageView(), -25, -50);
-		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
-		healthbarP2.setTranslateX(535);
-		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
-		healthbarP2.setRotate(180);
+		healthIcon.add(new ImageView(new Image("characters/naruto_sage/naruto_sage_s.png", 348, 140, true,false)));
+		healthIcon.add(new ImageView(new Image("characters/sasuke_aka/sasuke_aka_s.png", 348,140,true,false)));
 
 		time = new Text("" + currentTime);
 		time.setTranslateX(640);
@@ -94,13 +92,8 @@ public class GameScreen extends MyScene {
 		};
 		timer.start();
 
-		healthbarP1 = new HealthBar(800, 312.5, new ImageView(), -25, -50);
-		healthbarP2 = new HealthBar(800, 312.5, new ImageView(), 5, -50);
-		healthbarP2.setTranslateX(535);
-		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
-		healthbarP2.setRotate(180);
 
-		root.getChildren().addAll(healthbarP1, healthbarP2, time, pause);
+		root.getChildren().addAll(time, pause);
 		root.getChildren().addAll(gameObjects1);
 
 	}
@@ -626,6 +619,12 @@ public class GameScreen extends MyScene {
 		if (root.getChildren().contains(player2)) {
 			root.getChildren().remove(player2);
 		}
+		if (root.getChildren().contains(healthbarP1)) {
+			root.getChildren().remove(healthbarP1);
+		}
+		if (root.getChildren().contains(healthbarP2)) {
+			root.getChildren().remove(healthbarP2);
+		}
 		if (choose1 == 0) {
 			player1 = new Naruto(Character.getMaxHealth());
 		} else {
@@ -636,8 +635,16 @@ public class GameScreen extends MyScene {
 		} else {
 			player2 = new Sasuke(Character.getMaxHealth());
 		}
+		healthbarP1 = new HealthBar(800, 312.5,healthIcon.get(choose1), -25, -50);
+		healthbarP2 = new HealthBar(800, 312.5,healthIcon.get(choose2), 5, -50);
+		healthbarP2.setTranslateX(535);
+		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
+		healthbarP2.setRotate(180);
+		
 		root.getChildren().add(0, player1);
 		root.getChildren().add(0, player2);
+		root.getChildren().add(0, healthbarP1);
+		root.getChildren().add(0, healthbarP2);
 		player1.setTranslateX(300);
 		player1.setTranslateY(300);
 		player2.setTranslateX(500);
@@ -697,6 +704,10 @@ public class GameScreen extends MyScene {
 		this.isPause = isPause;
 	}
 
+	protected static AudioClip getPlayer() {
+		return player;
+	}
+
 	public class HealthBar extends StackPane {
 		private double width;
 		private double height;
@@ -733,6 +744,8 @@ public class GameScreen extends MyScene {
 			setPrefSize(width, height);
 			setTranslateX(xpos);
 			setTranslateY(ypos);
+			characters.setTranslateX(xpos-215);
+			characters.setTranslateY(ypos+20);
 			healthbarPlain.setTranslateX(xpos);
 			healthbarPlain.setTranslateY(ypos);
 			healthbarBorder.setTranslateX(xpos);
@@ -740,8 +753,6 @@ public class GameScreen extends MyScene {
 			healthbar = new Canvas(width, height);
 			gc = healthbar.getGraphicsContext2D();
 			setHealthBar(1);
-			characters.setTranslateX(0);
-			characters.setTranslateY(0);
 
 			getChildren().addAll(healthbarPlain, healthbar, healthbarBorder, characters);
 		}

@@ -156,49 +156,7 @@ public class Controller implements Runnable {
 		}
 	}
 
-	public static Map<KeyCode, Boolean> getIsPressedMap1() {
-		return isPressedMap1;
-	}
-
-	public static Map<KeyCode, Boolean> getIsPressedMap2() {
-		return isPressedMap2;
-	}
-
-	public final MyScene getScene() {
-		return scene;
-	}
-
-	public final AnimationTimer getGameLoop() {
-		return gameLoop;
-	}
-
-	public static ArrayList<KeyCode> getKeyP1() {
-		return KeyP1;
-	}
-
-	public static ArrayList<KeyCode> getKeyP2() {
-		return KeyP2;
-	}
-
-	public static ArrayList<KeyCode> getPressedListMoveP1() {
-		return pressedListMoveP1;
-	}
-
-	public static ArrayList<KeyCode> getPressedListSkillP1() {
-		return pressedListSkillP1;
-	}
-
-	public static ArrayList<KeyCode> getPressedListMoveP2() {
-		return pressedListMoveP2;
-	}
-
-	public static ArrayList<KeyCode> getPressedListSkillP2() {
-		return pressedListSkillP2;
-	}
-
-	public static ArrayList<KeyCode> getOtherKeys() {
-		return otherKeys;
-	}
+	
 
 	public static boolean getKeyMoveP1(int index) {
 		final boolean result = getPressedListMoveP1().contains(Controller.getKeyP1().get(index));
@@ -250,5 +208,48 @@ public class Controller implements Runnable {
 				otherKeys.remove(0);
 			}
 		}
+	}
+	public static Map<KeyCode, Boolean> getIsPressedMap1() {
+		return isPressedMap1;
+	}
+
+	public static Map<KeyCode, Boolean> getIsPressedMap2() {
+		return isPressedMap2;
+	}
+
+	public final MyScene getScene() {
+		return scene;
+	}
+
+	public final AnimationTimer getGameLoop() {
+		return gameLoop;
+	}
+
+	public static ArrayList<KeyCode> getKeyP1() {
+		return KeyP1;
+	}
+
+	public static ArrayList<KeyCode> getKeyP2() {
+		return KeyP2;
+	}
+
+	public static ArrayList<KeyCode> getPressedListMoveP1() {
+		return pressedListMoveP1;
+	}
+
+	public static ArrayList<KeyCode> getPressedListSkillP1() {
+		return pressedListSkillP1;
+	}
+
+	public static ArrayList<KeyCode> getPressedListMoveP2() {
+		return pressedListMoveP2;
+	}
+
+	public static ArrayList<KeyCode> getPressedListSkillP2() {
+		return pressedListSkillP2;
+	}
+
+	public static ArrayList<KeyCode> getOtherKeys() {
+		return otherKeys;
 	}
 }
