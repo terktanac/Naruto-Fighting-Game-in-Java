@@ -1,5 +1,9 @@
 package characters;
 
+import java.util.ArrayList;
+
+import gameobject.GameObject;
+
 public class Gaara extends Character {
 
 	public Gaara(double currentHealth) {
@@ -73,19 +77,19 @@ public class Gaara extends Character {
 	}
 
 	@Override
-	public int basic_skill(Character target) {
+	public int basic_skill(Character target, ArrayList<GameObject> playerObject) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int mid_skill(Character target) {
+	public int mid_skill(Character target, ArrayList<GameObject> playerObject) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int High_skill(Character target) {
+	public int High_skill(Character target, ArrayList<GameObject> playerObject) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

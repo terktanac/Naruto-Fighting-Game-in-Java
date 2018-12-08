@@ -1,5 +1,8 @@
 package characters;
 
+import java.util.ArrayList;
+
+import gameobject.GameObject;
 import gameobject.Rasenshuriken;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -245,7 +248,7 @@ public class Naruto extends Character {
 	}
 
 	@Override
-	public final int basic_skill(Character target) {
+	public final int basic_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill1()) {
 			if (getSkillDelay() >= 200) {
 				getImageview().setViewport(new Rectangle2D(0, 1221, getCharacterWidth(), getCharacterHeight()));
@@ -325,7 +328,7 @@ public class Naruto extends Character {
 	}
 
 	@Override
-	public final int mid_skill(Character target) {
+	public final int mid_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill2()) {
 			if (getSkillDelay() >= 200) {
 				getImageview().setViewport(new Rectangle2D(0, 1665, getCharacterWidth(), getCharacterHeight()));
@@ -404,7 +407,7 @@ public class Naruto extends Character {
 	}
 
 	@Override
-	public int High_skill(Character target) {
+	public int High_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill3()) {
 			if (getSkillDelay() >= 200) {
 				getImageview().setViewport(new Rectangle2D(0, 1887, getCharacterWidth(), getCharacterHeight()));
@@ -480,10 +483,10 @@ public class Naruto extends Character {
 				setSkillDelay(getSkillDelay() - 1);
 				rasenshuriken.play();
 				target.setStackFly(1);
-				GameScreen.getgameObjects1().add(new Rasenshuriken(getTranslateX(), getTranslateY() - 100, isRight()));
+				playerObject.add(new Rasenshuriken(getTranslateX(), getTranslateY() - 100, isRight()));
 				GameScreen.getPaneRoot().getChildren()
-						.add(GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size() - 1));
-				GameScreen.getgameObjects1().get(GameScreen.getgameObjects1().size() - 1).getAnimation().play();
+						.add(playerObject.get(playerObject.size() - 1));
+				playerObject.get(playerObject.size() - 1).getAnimation().play();
 			} else if (getSkillDelay() >= -260) {
 				getImageview().setViewport(new Rectangle2D(0, 1554, getCharacterWidth(), getCharacterHeight()));
 				setSkillDelay(getSkillDelay() - 1);

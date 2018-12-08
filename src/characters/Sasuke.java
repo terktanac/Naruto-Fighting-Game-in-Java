@@ -1,9 +1,12 @@
 
 package characters;
 
+import java.util.ArrayList;
+
 import gameobject.Amaterasu;
 import gameobject.Chidori;
 import gameobject.Fireball;
+import gameobject.GameObject;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -252,7 +255,7 @@ public class Sasuke extends Character {
 	}
 
 	@Override
-	public final int basic_skill(Character target) {
+	public final int basic_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill1()) {
 			if (getSkillDelay() == 250) {
 				getImageview().setViewport(new Rectangle2D(0, 1221, getCharacterWidth(), getCharacterHeight()));
@@ -278,11 +281,11 @@ public class Sasuke extends Character {
 				setSkillDelay(getSkillDelay() - 1);
 				target.setStackFly(1);
 				chidoriReady.stop();
-				GameScreen.getgameObjects2()
+				playerObject
 						.add(new Chidori(target.getTranslateX(), target.getTranslateY(), isRight()));
 				GameScreen.getPaneRoot().getChildren()
-						.add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size() - 1));
-				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size() - 1).getAnimation().play();
+						.add(playerObject.get(playerObject.size() - 1));
+				playerObject.get(playerObject.size() - 1).getAnimation().play();
 			} else if (getSkillDelay() == 40) {
 				getImageview().setViewport(new Rectangle2D(222, 1776, getCharacterWidth(), getCharacterHeight()));
 				getAnimation().play();
@@ -302,7 +305,7 @@ public class Sasuke extends Character {
 	}
 
 	@Override
-	public final int mid_skill(Character target) {
+	public final int mid_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill2()) {
 			if (getSkillDelay() == 250) {
 				getImageview().setViewport(new Rectangle2D(0, 1221, getCharacterWidth(), getCharacterHeight()));
@@ -324,10 +327,10 @@ public class Sasuke extends Character {
 				getImageview().setViewport(new Rectangle2D(444, 1221, getCharacterWidth(), getCharacterHeight()));
 				setSkillDelay(getSkillDelay() - 1);
 				target.setStackFly(1);
-				GameScreen.getgameObjects2().add(new Fireball(getTranslateX(), getTranslateY(), isRight()));
+				playerObject.add(new Fireball(getTranslateX(), getTranslateY(), isRight()));
 				GameScreen.getPaneRoot().getChildren()
-						.add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size() - 1));
-				GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size() - 1).getAnimation().play();
+						.add(playerObject.get(playerObject.size() - 1));
+				playerObject.get(playerObject.size() - 1).getAnimation().play();
 			} else if (getSkillDelay() >= 50) {
 				getImageview().setViewport(new Rectangle2D(555, 1221, getCharacterWidth(), getCharacterHeight()));
 				setSkillDelay(getSkillDelay() - 1);
@@ -348,7 +351,7 @@ public class Sasuke extends Character {
 	}
 
 	@Override
-	public final int High_skill(Character target) {
+	public final int High_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill3()) {
 			if (getSkillDelay() == 250) {
 				if (!isRight()) {
@@ -365,10 +368,10 @@ public class Sasuke extends Character {
 			} else if (getSkillDelay() == 160) {
 				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillDelay(getSkillDelay() - 1);
-				GameScreen.getgameObjects2()
+				playerObject
 						.add(new Amaterasu(target.getTranslateX(), target.getTranslateY(), isRight(), target));
 				GameScreen.getPaneRoot().getChildren()
-						.add(GameScreen.getgameObjects2().get(GameScreen.getgameObjects2().size() - 1));
+						.add(playerObject.get(playerObject.size() - 1));
 			} else if (getSkillDelay() > 160) {
 				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillDelay(getSkillDelay() - 1);
