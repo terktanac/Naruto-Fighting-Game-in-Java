@@ -38,26 +38,26 @@ public class Fireball extends GameObject {
 		setOffSetX(0);
 		setOffSetY(166);
 		getAnimation().stop();
-		if (getDelay() == 300) {
+		if (getAnimationCount() == 300) {
 			getImageview().setViewport(new Rectangle2D(0, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 			boom.play();
-		} else if (getDelay() >= 280) {
+		} else if (getAnimationCount() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 260) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 260) {
 			getImageview().setViewport(new Rectangle2D(82, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 230) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 230) {
 			getImageview().setViewport(new Rectangle2D(164, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 200) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 200) {
 			getImageview().setViewport(new Rectangle2D(246, 166, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);
-			setDelay(300);
+			setAnimationCount(300);
 		}
 
 	}

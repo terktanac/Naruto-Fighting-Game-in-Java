@@ -250,8 +250,7 @@ public class GameScreen extends MyScene {
 
 	private final void downPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
-			// player1.crouch();
-			player1.setSkill3(true);
+			player1.crouch();
 			System.out.println("DOWNPressed");
 		} else if (player1.isCrouch() && !isPause) {
 			player1.setCrouch(false);
@@ -378,8 +377,7 @@ public class GameScreen extends MyScene {
 	private final void downPressed2() {
 
 		if (Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
-			// player2.crouch();
-			player2.setSkill3(true);
+			player2.crouch();
 			System.out.println("DOWNPressed");
 		} else if (player2.isCrouch() && !isPause) {
 			player2.setCrouch(false);
@@ -597,12 +595,20 @@ public class GameScreen extends MyScene {
 			if (player1.getCurrenthealth() == Character.getMaxHealth()
 					|| player2.getCurrenthealth() == Character.getMaxHealth()) {
 				endtext.setText("Perfect!");
+				endtext.setTranslateX(600);
+				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() == player2.getCurrenthealth()) {
 				endtext.setText("Tie!");
+				endtext.setTranslateX(650);
+				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() < player2.getCurrenthealth()) {
 				endtext.setText("Player 2 Win!");
+				endtext.setTranslateX(500);
+				endtext.setTranslateY(500);
 			} else if (player1.getCurrenthealth() > player2.getCurrenthealth()) {
 				endtext.setText("Player 1 Win!");
+				endtext.setTranslateX(500);
+				endtext.setTranslateY(300);
 			}
 			final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> next.setVisible(true)),
 					new KeyFrame(Duration.seconds(0.7), evt -> next.setVisible(false)));
