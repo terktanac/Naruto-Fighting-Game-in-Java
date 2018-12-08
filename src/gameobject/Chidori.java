@@ -22,7 +22,7 @@ public class Chidori extends GameObject {
 		setImageview(new ImageView("sys/chidori.png"));
 		getImageview().setFitHeight(241.0 * 350.0 / 321.0);
 		getImageview().setFitWidth(321.0 * 350.0 / 321.0);
-		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(100), getCount(), 0, getOffSetX(),
+		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),
 				getOffSetY(), getObjectWidth(), getObjectHeight())));
 		getChildren().addAll(getImageview());
 	}
@@ -31,11 +31,11 @@ public class Chidori extends GameObject {
 	public void doEffect() {
 		if (getDelay() == 200) {
 			getAnimation().play();
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 			chidoriObjecthit.play();
 		} else if (getDelay() >= 200) {
 			getAnimation().play();
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);

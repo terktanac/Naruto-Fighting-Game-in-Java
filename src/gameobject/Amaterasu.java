@@ -27,7 +27,7 @@ public class Amaterasu extends GameObject {
 		setImageview(new ImageView("sys/amaterasu.png"));
 		getImageview().setFitHeight(171.0 * 350.0 / 171.0);
 		getImageview().setFitWidth(111.0 * 350.0 / 171.0);
-		setAnimation(new CharacterAnimation(getImageview(), Duration.millis(100), getCount(), 0, getOffSetX(),
+		setAnimation(new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),
 				getOffSetY(), getObjectWidth(), getObjectHeight()));
 		getChildren().addAll(getImageview());
 	}
@@ -38,42 +38,42 @@ public class Amaterasu extends GameObject {
 		setTranslateY(target.getTranslateY());
 		if (getDelay() == 300) {
 			getImageview().setViewport(new Rectangle2D(0, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 			sharingan.play();
 		} else if (getDelay() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 260) {
 			getImageview().setViewport(new Rectangle2D(111, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 230) {
 			getImageview().setViewport(new Rectangle2D(222, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 200) {
 			getImageview().setViewport(new Rectangle2D(333, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 170) {
 			getImageview().setViewport(new Rectangle2D(444, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 100) {
 			getAnimation().play();
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 80) {
 			getAnimation().stop();
 			getImageview().setViewport(new Rectangle2D(0, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 60) {
 			getImageview().setViewport(new Rectangle2D(111, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 40) {
 			getImageview().setViewport(new Rectangle2D(222, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 20) {
 			getImageview().setViewport(new Rectangle2D(333, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else if (getDelay() >= 0) {
 			getImageview().setViewport(new Rectangle2D(444, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 1);
+			setDelay(getDelay() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);

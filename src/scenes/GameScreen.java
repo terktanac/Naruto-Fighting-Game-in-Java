@@ -258,7 +258,8 @@ public class GameScreen extends MyScene {
 
 	public final void downPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
-			player1.crouch();
+			//player1.crouch();
+			player1.setSkill3(true);
 			System.out.println("DOWNPressed");
 		} else if (player1.isCrouch() && !isPause) {
 			player1.setCrouch(false);
@@ -385,7 +386,8 @@ public class GameScreen extends MyScene {
 	public final void downPressed2() {
 
 		if (Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
-			player2.crouch();
+			//player2.crouch();
+			player2.setSkill3(true);
 			System.out.println("DOWNPressed");
 		} else if (player2.isCrouch() && !isPause) {
 			player2.setCrouch(false);
@@ -640,7 +642,7 @@ public class GameScreen extends MyScene {
 		root.getChildren().add(0, player2);
 		player1.setTranslateX(300);
 		player1.setTranslateY(300);
-		player2.setTranslateX(500);
+		player2.setTranslateX(600);
 		player2.setTranslateY(300);
 
 		player2.getImageview().setRotationAxis(Rotate.Y_AXIS);

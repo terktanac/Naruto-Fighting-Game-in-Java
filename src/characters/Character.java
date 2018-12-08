@@ -13,13 +13,13 @@ import scenes.GameScreen;
 public abstract class Character extends Pane implements Fightable, Moveable, Skillable, Collidable {
 	private String name;
 	private int element; // Plain:0 Fire:1 Earth:2 Water:3 Wind:4
-	private static final double MAXHEALTH = 100;
+	private static final double MAXHEALTH = 500;
 	private double currenthealth; // standard:1000
 	private int atk; // standard:10
 	private int def; // standard:5
-	private int delay = 100;
-	private int longDelay = 170;
-	private int skillDelay = 250;
+	private double delay = 100;
+	private double longDelay = 170;
+	private double skillDelay = 250;
 	private int meleeRound = 0;
 	private int limitDodge = 5;
 	private int stackFly = 3;
@@ -182,19 +182,23 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 
 	@Override
 	public final double takeDamage(double dmg) {
-		if (!isDodge() && !isAttacked) {
+		if (!isDodge()) {
+			setMelee(false);
+			setRange(false);
+			setSkill1(false);
+			setSkill2(false);
+			setSkill3(false);
 			if (isBlock()) {
 				setCurrenthealth(getCurrenthealth() - (dmg - getDef()));
 				block.play();
 			} else {
 				setCurrenthealth(getCurrenthealth() - dmg);
-				if (getCurrenthealth() <= 0) {
-					setDead(true);
-					setLongDelay(170);
-				} else {
-					setAttacked(true);
-					this.animation.stop();
-				}
+				setAttacked(true);
+				this.animation.stop();
+			}
+			if (getCurrenthealth() <= 0) {
+				setDead(true);
+				setLongDelay(170);
 			}
 		}
 		System.out.println("Current Health: " + getCurrenthealth());
@@ -245,19 +249,19 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.def = def;
 	}
 
-	public final int getDelay() {
+	public final double getDelay() {
 		return delay;
 	}
 
-	public final void setDelay(int delay) {
+	public final void setDelay(double delay) {
 		this.delay = delay;
 	}
 
-	public final int getLongDelay() {
+	public final double getLongDelay() {
 		return longDelay;
 	}
 
-	public final void setLongDelay(int longDelay) {
+	public final void setLongDelay(double longDelay) {
 		this.longDelay = longDelay;
 	}
 
@@ -509,11 +513,11 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.stackFly = stackFly;
 	}
 
-	public final int getSkillDelay() {
+	public final double getSkillDelay() {
 		return skillDelay;
 	}
 
-	public final void setSkillDelay(int skillDelay) {
+	public final void setSkillDelay(double skillDelay) {
 		this.skillDelay = skillDelay;
 	}
 
