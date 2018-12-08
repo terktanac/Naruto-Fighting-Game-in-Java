@@ -109,7 +109,7 @@ public class MultiPlayerScreen extends MyScene {
 		scrollpy2.setTranslateX(900);
 		scrollpy2.setTranslateY(50);
 
-		root.getChildren().addAll(lhschar, rhschar, scrollpy1, scrollpy2, vs);
+		root.getChildren().addAll(lhschar, rhschar, scrollpy1, scrollpy2, vs,pressKey);
 
 		for (int i = 0; i < listCharacterpy1.size(); i++) {
 			root.getChildren().add(listCharacterpy1.get(i));
@@ -279,13 +279,10 @@ public class MultiPlayerScreen extends MyScene {
 
 	private void haveChose() {
 		if (chosen1.check && chosen2.check) {
-			root.getChildren().add(pressKey);
 			timeline.play();
 			playChoose();
 			Main.ChangeScene(Main.getMapscreen());
 			Main.getGamescreen().setCharacter(player1, player2);
-			Main.getPlayer().setScene(Main.getMapscreen());
-			Main.getPlayer().run();
 		}
 	}
 
@@ -330,8 +327,14 @@ public class MultiPlayerScreen extends MyScene {
 
 	@Override
 	public final void setDefault() {
+		lhschar.setImage(Characters.get(player1));
+		rhschar.setImage(Characters.get(player2));
+		listCharacterpy1.get(player1).setActive(false);
+		listCharacterpy2.get(player2).setActive(false);
 		player1 = 0;
 		player2 = 1;
+		listCharacterpy1.get(player1).setActive(true);
+		listCharacterpy2.get(player2).setActive(true);
 		chosen1.setCheck(false);
 		chosen2.setCheck(false);
 		player.stop();
