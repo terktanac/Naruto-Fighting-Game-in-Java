@@ -255,7 +255,7 @@ public class Sasuke extends Character {
 	}
 
 	@Override
-	public final int basic_skill(Character target, ArrayList<GameObject> playerObject) {
+	public final int basicSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill1()) {
 			if (getSkillAnimationCount() == 250) {
 				getImageview()
@@ -310,7 +310,7 @@ public class Sasuke extends Character {
 	}
 
 	@Override
-	public final int mid_skill(Character target, ArrayList<GameObject> playerObject) {
+	public final int midSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill2()) {
 			if (getSkillAnimationCount() == 250) {
 				getImageview()
@@ -364,7 +364,7 @@ public class Sasuke extends Character {
 	}
 
 	@Override
-	public final int High_skill(Character target, ArrayList<GameObject> playerObject) {
+	public final int highSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill3()) {
 			if (getSkillAnimationCount() == 250) {
 				if (!isRight()) {

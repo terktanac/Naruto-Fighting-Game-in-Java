@@ -248,7 +248,7 @@ public class Naruto extends Character {
 	}
 
 	@Override
-	public final int basic_skill(Character target, ArrayList<GameObject> playerObject) {
+	public final int basicSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill1()) {
 			if (getSkillAnimationCount() >= 200) {
 				getImageview()
@@ -347,7 +347,7 @@ public class Naruto extends Character {
 	}
 
 	@Override
-	public final int mid_skill(Character target, ArrayList<GameObject> playerObject) {
+	public final int midSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill2()) {
 			if (getSkillAnimationCount() >= 200) {
 				getImageview()
@@ -446,7 +446,7 @@ public class Naruto extends Character {
 	}
 
 	@Override
-	public int High_skill(Character target, ArrayList<GameObject> playerObject) {
+	public int highSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill3()) {
 			if (getSkillAnimationCount() == 250) {
 				getImageview()

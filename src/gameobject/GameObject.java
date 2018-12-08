@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public abstract class GameObject extends Pane implements Collidable {
-	private boolean hasEffect = false;
+	private boolean hasEffect;
 	private int offSetX;
 	private int offSetY;
 	private int width;
