@@ -514,9 +514,9 @@ public class GameScreen extends MyScene {
 			} else if (isPause && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
 				choosen();
 			} else if (isEnd && (key == KeyCode.ENTER || key == KeyCode.SPACE)) {
-//				System.exit(1);
-				Main.ChangeScene(Main.getIntro());
-				Main.setDefault();
+				System.exit(1);
+//				Main.ChangeScene(Main.getIntro());
+//				Main.setDefault();
 			}
 			if (!Controller.getOtherKeys().isEmpty()) {
 				Controller.removePressed(0, "OTHER", 1);
