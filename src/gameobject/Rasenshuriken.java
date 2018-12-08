@@ -50,51 +50,51 @@ public class Rasenshuriken extends GameObject {
 		}
 		setTranslateY(target.getTranslateY());
 		getAnimation().stop();
-		if (getDelay() >= 280) {
+		if (getAnimationCount() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() > 260) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() > 260) {
 			getImageview().setViewport(new Rectangle2D(630, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() == 260) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() == 260) {
 			getImageview().setViewport(new Rectangle2D(630, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 			rasenshurikenObjecthit1.play();
 			rasenshurikenObjecthit2.play();
-		} else if (getDelay() >= 230) {
+		} else if (getAnimationCount() >= 230) {
 			getImageview().setViewport(new Rectangle2D(1260, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 200) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 200) {
 			getImageview().setViewport(new Rectangle2D(0, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 170) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 170) {
 			getImageview().setViewport(new Rectangle2D(630, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 140) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 140) {
 			getImageview().setViewport(new Rectangle2D(0, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 110) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 110) {
 			getImageview().setViewport(new Rectangle2D(1260, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 90) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 90) {
 			getImageview().setViewport(new Rectangle2D(0, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 70) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 70) {
 			getImageview().setViewport(new Rectangle2D(1260, 387, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 50) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 50) {
 			getImageview().setViewport(new Rectangle2D(0, 774, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 25) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 25) {
 			getImageview().setViewport(new Rectangle2D(630, 774, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 0) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 0) {
 			getImageview().setViewport(new Rectangle2D(1260, 774, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);
-			setDelay(300);
+			setAnimationCount(300);
 		}
 	}
 

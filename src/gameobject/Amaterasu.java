@@ -36,48 +36,48 @@ public class Amaterasu extends GameObject {
 	public final void doEffect() {
 		setTranslateX(target.getTranslateX());
 		setTranslateY(target.getTranslateY());
-		if (getDelay() == 300) {
+		if (getAnimationCount() == 300) {
 			getImageview().setViewport(new Rectangle2D(0, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 			sharingan.play();
-		} else if (getDelay() >= 280) {
+		} else if (getAnimationCount() >= 280) {
 			getImageview().setViewport(new Rectangle2D(0, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 260) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 260) {
 			getImageview().setViewport(new Rectangle2D(111, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 230) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 230) {
 			getImageview().setViewport(new Rectangle2D(222, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 200) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 200) {
 			getImageview().setViewport(new Rectangle2D(333, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 170) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 170) {
 			getImageview().setViewport(new Rectangle2D(444, 0, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 100) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 100) {
 			getAnimation().play();
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 80) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 80) {
 			getAnimation().stop();
 			getImageview().setViewport(new Rectangle2D(0, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 60) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 60) {
 			getImageview().setViewport(new Rectangle2D(111, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 40) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 40) {
 			getImageview().setViewport(new Rectangle2D(222, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 20) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 20) {
 			getImageview().setViewport(new Rectangle2D(333, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
-		} else if (getDelay() >= 0) {
+			setAnimationCount(getAnimationCount() - 0.5);
+		} else if (getAnimationCount() >= 0) {
 			getImageview().setViewport(new Rectangle2D(444, 342, getObjectWidth(), getObjectHeight()));
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);
-			setDelay(300);
+			setAnimationCount(300);
 		}
 	}
 

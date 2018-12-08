@@ -29,17 +29,17 @@ public class Chidori extends GameObject {
 
 	@Override
 	public void doEffect() {
-		if (getDelay() == 200) {
+		if (getAnimationCount() == 200) {
 			getAnimation().play();
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 			chidoriObjecthit.play();
-		} else if (getDelay() >= 200) {
+		} else if (getAnimationCount() >= 200) {
 			getAnimation().play();
-			setDelay(getDelay() - 0.5);
+			setAnimationCount(getAnimationCount() - 0.5);
 		} else {
 			setDoing(false);
 			setDone(true);
-			setDelay(300);
+			setAnimationCount(300);
 		}
 
 	}
