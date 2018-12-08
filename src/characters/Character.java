@@ -114,7 +114,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 
 	@Override
 	public final Rectangle2D getBoundary() {
-		return new Rectangle2D(getTranslateX()+80, getTranslateY()+60, width-50, height);
+		return new Rectangle2D(getTranslateX()+40, getTranslateY()+10, width-50, height);
 	}
 
 	@Override

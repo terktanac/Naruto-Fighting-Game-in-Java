@@ -98,7 +98,7 @@ public class Naruto extends Character {
 	public final int doJump() {
 		if (isJump()) {
 			if (getTranslateY() > 100) {
-				setTranslateY(getTranslateY() - 3);
+				setTranslateY(getTranslateY() - 2);
 				getImageview()
 						.setViewport(new Rectangle2D(444, 333, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 			} else {
@@ -106,7 +106,7 @@ public class Naruto extends Character {
 			}
 		} else if (isAir()) {
 			if (getTranslateY() < 300) {
-				setTranslateY(getTranslateY() + 3);
+				setTranslateY(getTranslateY() + 2);
 				getImageview()
 						.setViewport(new Rectangle2D(555, 333, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 			} else {
@@ -251,41 +251,53 @@ public class Naruto extends Character {
 	public final int basic_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill1()) {
 			if (getSkillDelay() >= 200) {
-				getImageview().setViewport(new Rectangle2D(0, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(0, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 180) {
-				getImageview().setViewport(new Rectangle2D(111, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 160) {
-				getImageview().setViewport(new Rectangle2D(222, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > 140) {
-				getImageview().setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == 140) {
-				getImageview().setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasenganReady.play();
 			} else if (getSkillDelay() >= 120) {
-				getImageview().setViewport(new Rectangle2D(111, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 100) {
-				getImageview().setViewport(new Rectangle2D(222, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 80) {
-				getImageview().setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 60) {
-				getImageview().setViewport(new Rectangle2D(111, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 40) {
-				getImageview().setViewport(new Rectangle2D(222, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > 20) {
-				getImageview().setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == 20) {
-				getImageview().setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1221, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasengan.play();
 			} else if (getSkillDelay() >= 0) {
@@ -294,26 +306,33 @@ public class Naruto extends Character {
 				} else {
 					setTranslateX(target.getTranslateX());
 				}
-				getImageview().setViewport(new Rectangle2D(444, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(444, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -20) {
-				getImageview().setViewport(new Rectangle2D(555, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(555, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.25);
 			} else if (getSkillDelay() >= -40) {
-				getImageview().setViewport(new Rectangle2D(666, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(666, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -60) {
-				getImageview().setViewport(new Rectangle2D(777, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(777, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > -80) {
-				getImageview().setViewport(new Rectangle2D(888, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(888, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == -80) {
-				getImageview().setViewport(new Rectangle2D(888, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(888, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasenganHit.play();
 			} else if (getSkillDelay() >= -100) {
-				getImageview().setViewport(new Rectangle2D(999, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(999, 1441, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else {
 				target.setStackFly(1);
@@ -331,41 +350,53 @@ public class Naruto extends Character {
 	public final int mid_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill2()) {
 			if (getSkillDelay() >= 200) {
-				getImageview().setViewport(new Rectangle2D(0, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(0, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 180) {
-				getImageview().setViewport(new Rectangle2D(111, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 160) {
-				getImageview().setViewport(new Rectangle2D(222, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 140) {
-				getImageview().setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 120) {
-				getImageview().setViewport(new Rectangle2D(111, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 100) {
-				getImageview().setViewport(new Rectangle2D(222, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > 80) {
-				getImageview().setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == 80) {
-				getImageview().setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasenganReady.play();
 			} else if (getSkillDelay() >= 60) {
-				getImageview().setViewport(new Rectangle2D(111, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 40) {
-				getImageview().setViewport(new Rectangle2D(222, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > 20) {
-				getImageview().setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == 20) {
-				getImageview().setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasenrengan.play();
 			} else if (getSkillDelay() >= 0) {
@@ -374,26 +405,33 @@ public class Naruto extends Character {
 				} else {
 					setTranslateX(target.getTranslateX());
 				}
-				getImageview().setViewport(new Rectangle2D(444, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(444, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -20) {
-				getImageview().setViewport(new Rectangle2D(555, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(555, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -40) {
-				getImageview().setViewport(new Rectangle2D(666, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(666, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -60) {
-				getImageview().setViewport(new Rectangle2D(777, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(777, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > -80) {
-				getImageview().setViewport(new Rectangle2D(888, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(888, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == -80) {
-				getImageview().setViewport(new Rectangle2D(888, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(888, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasenganHit.play();
 			} else if (getSkillDelay() >= -100) {
-				getImageview().setViewport(new Rectangle2D(999, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(999, 1665, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else {
 				target.setStackFly(1);
@@ -411,92 +449,117 @@ public class Naruto extends Character {
 	public int High_skill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill3()) {
 			if (getSkillDelay() == 250) {
-				getImageview().setViewport(new Rectangle2D(0, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(0, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				rasenshuriken.play();
-			}
-			else if (getSkillDelay() >= 200) {
-				getImageview().setViewport(new Rectangle2D(0, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+			} else if (getSkillDelay() >= 200) {
+				getImageview()
+						.setViewport(new Rectangle2D(0, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 180) {
-				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 160) {
-				getImageview().setViewport(new Rectangle2D(222, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 140) {
-				getImageview().setViewport(new Rectangle2D(333, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 120) {
-				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 100) {
-				getImageview().setViewport(new Rectangle2D(222, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 80) {
-				getImageview().setViewport(new Rectangle2D(333, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 60) {
-				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 40) {
-				getImageview().setViewport(new Rectangle2D(222, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 20) {
-				getImageview().setViewport(new Rectangle2D(333, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(333, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= 0) {
-				getImageview().setViewport(new Rectangle2D(444, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(444, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -20) {
-				getImageview().setViewport(new Rectangle2D(555, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(555, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -40) {
-				getImageview().setViewport(new Rectangle2D(666, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(666, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -60) {
-				getImageview().setViewport(new Rectangle2D(777, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(777, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -80) {
-				getImageview().setViewport(new Rectangle2D(888, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(888, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -100) {
-				getImageview().setViewport(new Rectangle2D(555, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(555, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -120) {
-				getImageview().setViewport(new Rectangle2D(666, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(666, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -140) {
-				getImageview().setViewport(new Rectangle2D(777, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(777, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -160) {
-				getImageview().setViewport(new Rectangle2D(888, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(888, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -180) {
-				getImageview().setViewport(new Rectangle2D(999, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(999, 1887, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -200) {
-				getImageview().setViewport(new Rectangle2D(0, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(0, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -220) {
-				getImageview().setViewport(new Rectangle2D(111, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() > -240) {
-				getImageview().setViewport(new Rectangle2D(222, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() == -240) {
-				getImageview().setViewport(new Rectangle2D(222, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(222, 1998, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 				target.setStackFly(1);
-				playerObject.add(new Rasenshuriken(getTranslateX(), getTranslateY() - 100, isRight()));
-				GameScreen.getPaneRoot().getChildren()
-						.add(playerObject.get(playerObject.size() - 1));
+				playerObject.add(new Rasenshuriken(getTranslateX(), getTranslateY() - 100, isRight(), target));
+				GameScreen.getPaneRoot().getChildren().add(playerObject.get(playerObject.size() - 1));
 				playerObject.get(playerObject.size() - 1).getAnimation().play();
 			} else if (getSkillDelay() >= -260) {
-				getImageview().setViewport(new Rectangle2D(0, 1554, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(0, 1554, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else if (getSkillDelay() >= -280) {
-				getImageview().setViewport(new Rectangle2D(111, 1554, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
+				getImageview()
+						.setViewport(new Rectangle2D(111, 1554, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 				setSkillDelay(getSkillDelay() - 0.5);
 			} else {
 				target.getAnimation().stop();

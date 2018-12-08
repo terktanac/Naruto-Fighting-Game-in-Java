@@ -258,7 +258,7 @@ public class GameScreen extends MyScene {
 
 	public final void downPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
-			//player1.crouch();
+			// player1.crouch();
 			player1.setSkill3(true);
 			System.out.println("DOWNPressed");
 		} else if (player1.isCrouch() && !isPause) {
@@ -296,7 +296,7 @@ public class GameScreen extends MyScene {
 	}
 
 	public final void rangePressed1() {
-		gameObjects1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY() + 150, player1.isRight()));
+		gameObjects1.add(new Shuriken(player1.getTranslateX(), player1.getTranslateY() + 60, player1.isRight()));
 		root.getChildren().add(gameObjects1.get(gameObjects1.size() - 1));
 		gameObjects1.get(gameObjects1.size() - 1).getAnimation().play();
 		player1.range();
@@ -340,7 +340,7 @@ public class GameScreen extends MyScene {
 		if (!gameObjects1.isEmpty()) {
 			for (int i = 0; i < gameObjects1.size(); i++) {
 				final GameObject shu = gameObjects1.get(i);
-				if (shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
+				if (shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -400) {
 					shu.moveX();
 					if (shu.isHasEffect()) {
 						if (shu.isDone()) {
@@ -386,7 +386,7 @@ public class GameScreen extends MyScene {
 	public final void downPressed2() {
 
 		if (Controller.getIsPressedMap2().get(Controller.getKeyP2().get(1)) && !isPause) {
-			//player2.crouch();
+			// player2.crouch();
 			player2.setSkill3(true);
 			System.out.println("DOWNPressed");
 		} else if (player2.isCrouch() && !isPause) {
@@ -423,7 +423,7 @@ public class GameScreen extends MyScene {
 	}
 
 	public final void rangePressed2() {
-		gameObjects2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY() + 150, player2.isRight()));
+		gameObjects2.add(new Shuriken(player2.getTranslateX(), player2.getTranslateY() + 60, player2.isRight()));
 		root.getChildren().add(gameObjects2.get(gameObjects2.size() - 1));
 		gameObjects2.get(gameObjects2.size() - 1).getAnimation().play();
 		player2.range();
@@ -467,7 +467,7 @@ public class GameScreen extends MyScene {
 		if (!gameObjects2.isEmpty()) {
 			for (int i = 0; i < gameObjects2.size(); i++) {
 				final GameObject shu = gameObjects2.get(i);
-				if (shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -50) {
+				if (shu.getTranslateX() <= 1280 && shu.getTranslateX() >= -400) {
 					shu.moveX();
 					if (shu.isHasEffect()) {
 						if (shu.isDone()) {

@@ -79,7 +79,6 @@ public class Amaterasu extends GameObject {
 			setDone(true);
 			setDelay(300);
 		}
-
 	}
 
 }

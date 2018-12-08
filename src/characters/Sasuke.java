@@ -102,7 +102,7 @@ public class Sasuke extends Character {
 	public final int doJump() {
 		if (isJump()) {
 			if (getTranslateY() > 100) {
-				setTranslateY(getTranslateY() - 3);
+				setTranslateY(getTranslateY() - 2);
 				getImageview()
 						.setViewport(new Rectangle2D(444, 333, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 			} else {
@@ -110,7 +110,7 @@ public class Sasuke extends Character {
 			}
 		} else if (isAir()) {
 			if (getTranslateY() < 300) {
-				setTranslateY(getTranslateY() + 3);
+				setTranslateY(getTranslateY() + 2);
 				getImageview()
 						.setViewport(new Rectangle2D(555, 333, getCharacterWidth() - 15, getCharacterHeight() - 1.3));
 			} else {
