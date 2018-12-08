@@ -17,9 +17,9 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private double currenthealth; // standard:1000
 	private int atk; // standard:10
 	private int def; // standard:5
-	private double delay = 100;
-	private double longDelay = 170;
-	private double skillDelay = 250;
+	private double animationCount = 100;
+	private double longAnimationCount = 170;
+	private double skillAnimationCount = 250;
 	private int meleeRound = 0;
 	private int limitDodge = 5;
 	private int stackFly = 3;
@@ -198,7 +198,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 			}
 			if (getCurrenthealth() <= 0) {
 				setDead(true);
-				setLongDelay(170);
+				setLongAnimationCount(170);
 			}
 		}
 		System.out.println("Current Health: " + getCurrenthealth());
@@ -249,20 +249,20 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.def = def;
 	}
 
-	public final double getDelay() {
-		return delay;
+	public final double getAnimationCount() {
+		return animationCount;
 	}
 
-	public final void setDelay(double delay) {
-		this.delay = delay;
+	public final void setAnimationCount(double animationCount) {
+		this.animationCount = animationCount;
 	}
 
-	public final double getLongDelay() {
-		return longDelay;
+	public final double getLongAnimationCount() {
+		return longAnimationCount;
 	}
 
-	public final void setLongDelay(double longDelay) {
-		this.longDelay = longDelay;
+	public final void setLongAnimationCount(double longAnimationCount) {
+		this.longAnimationCount = longAnimationCount;
 	}
 
 	public final int getMeleeRound() {
@@ -513,12 +513,12 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.stackFly = stackFly;
 	}
 
-	public final double getSkillDelay() {
-		return skillDelay;
+	public final double getSkillAnimationCount() {
+		return skillAnimationCount;
 	}
 
-	public final void setSkillDelay(double skillDelay) {
-		this.skillDelay = skillDelay;
+	public final void setSkillAnimationCount(double skillAnimationCount) {
+		this.skillAnimationCount = skillAnimationCount;
 	}
 
 	public final boolean getSkill() {
