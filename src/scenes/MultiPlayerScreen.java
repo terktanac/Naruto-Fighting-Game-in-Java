@@ -24,17 +24,17 @@ public class MultiPlayerScreen extends MyScene {
 	private static int player1; // default character =0 : naruto
 	private static int player2;
 	private static Pane root = new Pane();
-	protected static AudioClip player = new AudioClip("file:music/menu/Gekiha.mp3");
+	private static AudioClip player = new AudioClip("file:music/menu/Gekiha.mp3");
 	private ImageView lhschar;
 	private ImageView rhschar;
 	private ImageView vs;
 	private ImageView scrollpy1;
 	private ImageView scrollpy2;
-	ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
-	ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();
-	ArrayList<Image> Characters = new ArrayList<Image>();
-	ArrayList<Image> CharactersReady = new ArrayList<Image>();
-	ArrayList<String> CharactersName = new ArrayList<String>();
+	private ArrayList<ListCharacter> listCharacterpy1 = new ArrayList<ListCharacter>();
+	private ArrayList<ListCharacter> listCharacterpy2 = new ArrayList<ListCharacter>();
+	private ArrayList<Image> Characters = new ArrayList<Image>();
+	private ArrayList<Image> CharactersReady = new ArrayList<Image>();
+	private ArrayList<String> CharactersName = new ArrayList<String>();
 	private Check chosen1 = new Check(false);
 	private Check chosen2 = new Check(false);
 	private Timeline timeline;
@@ -346,6 +346,10 @@ public class MultiPlayerScreen extends MyScene {
 
 	public static int getPlayer2() {
 		return player2;
+	}
+
+	static AudioClip getPlayer() {
+		return player;
 	}
 
 	public class ListCharacter extends HBox {
