@@ -38,10 +38,6 @@ import main.Main;
 
 public class GameScreen extends MyScene {
 	private static Pane root = new Pane();
-//	private static Character[] play1 = {new WindCharacter1(Character.getMaxHealth()),new FireCharacter1(Character.getMaxHealth())};
-//	private static Character[] play2 = {new WindCharacter1(Character.getMaxHealth()),new FireCharacter1(Character.getMaxHealth())};
-//	private static Character player1 = play1[0]; ไว้สำหรับระบบเปลี่ยนตัวกลางเกม
-//	private static Character player2 = play2[0];
 	private static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
 	private static Character player1;
 	private static Character player2;

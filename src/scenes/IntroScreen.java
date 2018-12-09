@@ -22,7 +22,7 @@ import main.Main;
 
 public class IntroScreen extends MyScene {
 	private static Pane root = new Pane();
-	private AudioClip player = new AudioClip("file:music/menu/Blood_Circulator.mp3");;
+	private AudioClip player = new AudioClip("file:music/menu/Blood_Circulator.mp3");
 
 	public IntroScreen() {
 		super(root);
