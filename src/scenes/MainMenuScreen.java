@@ -115,11 +115,7 @@ public class MainMenuScreen extends MyScene {
 
 	private void chooseMenu() {
 		if (oldchoice == 0) {
-			final Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information Dialog");
-			alert.setHeaderText(null);
-			alert.setContentText("Coming Soon.");
-			alert.show();
+			System.out.println("Coming soon.");
 		} else if (oldchoice == 1) {
 			Main.ChangeScene(Main.getLoadscreen());
 			final Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae -> {

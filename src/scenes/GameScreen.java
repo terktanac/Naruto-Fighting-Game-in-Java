@@ -251,6 +251,7 @@ public class GameScreen extends MyScene {
 	private final void downPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
 			player1.crouch();
+			setEnd(true);
 			System.out.println("DOWNPressed");
 		} else if (player1.isCrouch() && !isPause) {
 			player1.setCrouch(false);
@@ -589,25 +590,25 @@ public class GameScreen extends MyScene {
 
 			final Text next = new Text("Press Enter to quit");
 			next.setFont(getNarutoFontsmall());
-			next.setTranslateX(600);
-			next.setTranslateY(400);
+			next.setTranslateX(540);
+			next.setTranslateY(500);
 			next.setStroke(Color.WHITE);
-			if (player1.getCurrenthealth() == Character.getMaxHealth()
-					|| player2.getCurrenthealth() == Character.getMaxHealth()) {
+			if ((player1.getCurrenthealth() == Character.getMaxHealth() && player2.isDead())
+					|| (player2.getCurrenthealth() == Character.getMaxHealth() && player1.isDead())) {
 				endtext.setText("Perfect!");
-				endtext.setTranslateX(600);
+				endtext.setTranslateX(575);
 				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() == player2.getCurrenthealth()) {
 				endtext.setText("Tie!");
-				endtext.setTranslateX(650);
+				endtext.setTranslateX(625);
 				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() < player2.getCurrenthealth()) {
 				endtext.setText("Player 2 Win!");
-				endtext.setTranslateX(500);
-				endtext.setTranslateY(500);
+				endtext.setTranslateX(490);
+				endtext.setTranslateY(300);
 			} else if (player1.getCurrenthealth() > player2.getCurrenthealth()) {
 				endtext.setText("Player 1 Win!");
-				endtext.setTranslateX(500);
+				endtext.setTranslateX(490);
 				endtext.setTranslateY(300);
 			}
 			final Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), evt -> next.setVisible(true)),
