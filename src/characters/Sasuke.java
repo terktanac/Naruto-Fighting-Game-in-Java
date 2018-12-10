@@ -60,7 +60,7 @@ public class Sasuke extends Character {
 			if (getCountFoot() == 0 && !isAir()) {
 				foot1.play();
 			}
-			setCountFoot((getCountFoot() + 1) % 40);
+			setCountFoot((getCountFoot() + 1) % 90);
 			return 1;
 		} else {
 			this.setMove(false);
@@ -85,7 +85,7 @@ public class Sasuke extends Character {
 			if (getCountFoot() == 0 && !isAir()) {
 				foot1.play();
 			}
-			setCountFoot((getCountFoot() + 1) % 40);
+			setCountFoot((getCountFoot() + 1) % 90);
 			return 1;
 		} else {
 			this.setMove(false);
