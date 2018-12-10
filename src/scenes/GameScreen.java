@@ -642,6 +642,7 @@ public class GameScreen extends MyScene {
 		}
 		healthbarP1 = new HealthBar(800, 312.5, healthIcon.get(choose1), -25, -50);
 		healthbarP2 = new HealthBar(800, 312.5, healthIcon.get(choose2), 5, -50);
+		System.out.println(choose1+" "+choose2);
 		healthbarP2.setTranslateX(535);
 		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
 		healthbarP2.setRotate(180);
