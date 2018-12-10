@@ -3,6 +3,8 @@ package scenes;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -113,7 +115,12 @@ public class MainMenuScreen extends MyScene {
 
 	private void chooseMenu() {
 		if (oldchoice == 0) {
-			System.out.println("Coming soon.");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText(null);
+			alert.setContentText("Coming Soon.");
+			alert.show();
+			Main.getPlayer().setScene(Main.getMainmenu());
 		} else if (oldchoice == 1) {
 			Main.ChangeScene(Main.getLoadscreen());
 			final Timeline load = new Timeline(new KeyFrame(Duration.millis(3000), ae -> {

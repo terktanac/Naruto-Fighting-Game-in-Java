@@ -45,7 +45,6 @@ public class GameScreen extends MyScene {
 	private HealthBar healthbarP2;
 	private static ArrayList<GameObject> gameObjects1 = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> gameObjects2 = new ArrayList<GameObject>();
-	private static ArrayList<ImageView> healthIcon = new ArrayList<ImageView>();
 	private PauseMenuScreen pause;
 	private boolean isEnd;
 	private boolean isPause;
@@ -63,12 +62,6 @@ public class GameScreen extends MyScene {
 		pause = new PauseMenuScreen();
 		pause.setVisible(false);
 
-		healthIcon.add(new ImageView(
-				new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_s.png").toString(), 348,
-						140, true, false)));
-		healthIcon.add(new ImageView(
-				new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_s.png").toString(), 348, 140,
-						true, false)));
 
 		time = new Text("" + currentTime);
 		time.setTranslateX(640);
@@ -80,6 +73,9 @@ public class GameScreen extends MyScene {
 			public void handle(long now) {
 				if (now - lastTime > 1000000000) {
 					currentTime--;
+					if (currentTime <= 0) {
+						timer.stop();
+					}
 					lastTime = now;
 					time.setText("" + currentTime);
 					if (currentTime == 0) {
@@ -612,6 +608,7 @@ public class GameScreen extends MyScene {
 					new KeyFrame(Duration.seconds(0.7), evt -> next.setVisible(false)));
 			timeline.setCycleCount(Animation.INDEFINITE);
 			timeline.play();
+			timer.stop();
 
 			root.getChildren().addAll(endtext, next);
 		}
@@ -632,16 +629,26 @@ public class GameScreen extends MyScene {
 		}
 		if (choose1 == 0) {
 			player1 = new Naruto(Character.getMaxHealth());
+			healthbarP1 = new HealthBar(800, 312.5,new ImageView(
+					new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_s.png").toString(), 348,
+					140, true, false)), -25, -50);
 		} else {
 			player1 = new Sasuke(Character.getMaxHealth());
+			healthbarP1 = new HealthBar(800, 312.5,new ImageView(
+					new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_s.png").toString(), 348, 140,
+					true, false)), -25, -50);
 		}
 		if (choose2 == 0) {
 			player2 = new Naruto(Character.getMaxHealth());
+			healthbarP2 = new HealthBar(800, 312.5, new ImageView(
+					new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_s.png").toString(), 348,
+					140, true, false)), 5, -50);
 		} else {
 			player2 = new Sasuke(Character.getMaxHealth());
+			healthbarP2 = new HealthBar(800, 312.5, new ImageView(
+					new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_s.png").toString(), 348, 140,
+					true, false)), 5, -50);
 		}
-		healthbarP1 = new HealthBar(800, 312.5, healthIcon.get(choose1), -25, -50);
-		healthbarP2 = new HealthBar(800, 312.5, healthIcon.get(choose2), 5, -50);
 		healthbarP2.setTranslateX(535);
 		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
 		healthbarP2.setRotate(180);
