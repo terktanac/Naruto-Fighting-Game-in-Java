@@ -38,7 +38,7 @@ import main.Main;
 
 public class GameScreen extends MyScene {
 	private static Pane root = new Pane();
-	private static AudioClip player = new AudioClip("file:music/game/Nankou_Furaku.mp3");
+	private static AudioClip player = new AudioClip(ClassLoader.getSystemResource("game/Nankou_Furaku.mp3").toString());
 	private static Character player1;
 	private static Character player2;
 	private HealthBar healthbarP1;
@@ -54,8 +54,7 @@ public class GameScreen extends MyScene {
 	private long lastTime = -1;
 	private Text time;
 
-
-	public GameScreen() {
+	public GameScreen() throws Exception {
 		super(root);
 		isEnd = false;
 		isPause = false;
@@ -64,8 +63,12 @@ public class GameScreen extends MyScene {
 		pause = new PauseMenuScreen();
 		pause.setVisible(false);
 
-		healthIcon.add(new ImageView(new Image("characters/naruto_sage/naruto_sage_s.png", 348, 140, true,false)));
-		healthIcon.add(new ImageView(new Image("characters/sasuke_aka/sasuke_aka_s.png", 348,140,true,false)));
+		healthIcon.add(new ImageView(
+				new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_s.png").toString(), 348,
+						140, true, false)));
+		healthIcon.add(new ImageView(
+				new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_s.png").toString(), 348, 140,
+						true, false)));
 
 		time = new Text("" + currentTime);
 		time.setTranslateX(640);
@@ -86,7 +89,6 @@ public class GameScreen extends MyScene {
 			}
 		};
 		timer.start();
-
 
 		root.getChildren().addAll(time, pause);
 		root.getChildren().addAll(gameObjects1);
@@ -247,7 +249,6 @@ public class GameScreen extends MyScene {
 	private final void downPressed1() {
 		if (Controller.getIsPressedMap1().get(Controller.getKeyP1().get(1)) && !isPause) {
 			player1.crouch();
-			setEnd(true);
 			System.out.println("DOWNPressed");
 		} else if (player1.isCrouch() && !isPause) {
 			player1.setCrouch(false);
@@ -639,12 +640,12 @@ public class GameScreen extends MyScene {
 		} else {
 			player2 = new Sasuke(Character.getMaxHealth());
 		}
-		healthbarP1 = new HealthBar(800, 312.5,healthIcon.get(choose1), -25, -50);
-		healthbarP2 = new HealthBar(800, 312.5,healthIcon.get(choose2), 5, -50);
+		healthbarP1 = new HealthBar(800, 312.5, healthIcon.get(choose1), -25, -50);
+		healthbarP2 = new HealthBar(800, 312.5, healthIcon.get(choose2), 5, -50);
 		healthbarP2.setTranslateX(535);
 		healthbarP2.setRotationAxis(Rotate.Y_AXIS);
 		healthbarP2.setRotate(180);
-		
+
 		root.getChildren().add(0, player1);
 		root.getChildren().add(0, player2);
 		root.getChildren().add(0, healthbarP1);
@@ -738,8 +739,10 @@ public class GameScreen extends MyScene {
 			xD = xpos + 58;
 			heightD = height - 265;
 			yD = ypos + 140;
-			healthbarPlain = new ImageView(new Image("icon/healthbar.png", width, height, true, true));
-			healthbarBorder = new ImageView(new Image("icon/healthbarborder.png", width, height, true, true));
+			healthbarPlain = new ImageView(new Image(ClassLoader.getSystemResource("icon/healthbar.png").toString(),
+					width, height, true, true));
+			healthbarBorder = new ImageView(new Image(
+					ClassLoader.getSystemResource("icon/healthbarborder.png").toString(), width, height, true, true));
 			xPoints = new double[] { xD, xD + widthD, xD + (widthD * 0.99), xD + (widthD * 0.579),
 					xD + (widthD * 0.562), xD };
 			yPoints = new double[] { yD, yD, yD + (heightD * 0.42), yD + (heightD * 0.42), yD + heightD, yD + heightD };
@@ -748,8 +751,8 @@ public class GameScreen extends MyScene {
 			setPrefSize(width, height);
 			setTranslateX(xpos);
 			setTranslateY(ypos);
-			characters.setTranslateX(xpos-215);
-			characters.setTranslateY(ypos+20);
+			characters.setTranslateX(xpos - 215);
+			characters.setTranslateY(ypos + 20);
 			healthbarPlain.setTranslateX(xpos);
 			healthbarPlain.setTranslateY(ypos);
 			healthbarBorder.setTranslateX(xpos);

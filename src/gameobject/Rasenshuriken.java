@@ -11,8 +11,10 @@ import javafx.util.Duration;
 public class Rasenshuriken extends GameObject {
 
 	private Image shock = new Image("sys/rasenshock.png");
-	private static AudioClip rasenshurikenObjecthit1 = new AudioClip("file:soundfx/rasenshuriken.wav");
-	private static AudioClip rasenshurikenObjecthit2 = new AudioClip("file:soundfx/rasenshuriken4.wav");
+	private static AudioClip rasenshurikenObjecthit1 = new AudioClip(
+			ClassLoader.getSystemResource("rasenshuriken.wav").toString());
+	private static AudioClip rasenshurikenObjecthit2 = new AudioClip(
+			ClassLoader.getSystemResource("rasenshuriken4.wav").toString());
 	private Character target;
 	private boolean check;
 
@@ -27,7 +29,8 @@ public class Rasenshuriken extends GameObject {
 		setDamage(100);
 		setCount(3);
 		setSpeed(2);
-		setImageview(new ImageView("characters/naruto_sage/naruto_sage_Clear.png"));
+		setImageview(new ImageView(
+				ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_Clear.png").toString()));
 		getImageview().setFitHeight(350);
 		getImageview().setFitWidth(350);
 		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(600), getCount(), 0, getOffSetX(),

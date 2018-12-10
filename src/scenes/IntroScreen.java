@@ -22,9 +22,9 @@ import main.Main;
 
 public class IntroScreen extends MyScene {
 	private static Pane root = new Pane();
-	private AudioClip player = new AudioClip("file:music/menu/Blood_Circulator.mp3");
+	private AudioClip player = new AudioClip(ClassLoader.getSystemResource("menu/Blood_Circulator.mp3").toString());
 
-	public IntroScreen() {
+	public IntroScreen() throws Exception {
 		super(root);
 		final Image background = new Image(ClassLoader.getSystemResource("background/konoha_sky.jpg").toString(), 1300,
 				740, false, false);

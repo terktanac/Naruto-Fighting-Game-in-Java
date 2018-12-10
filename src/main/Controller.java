@@ -29,7 +29,7 @@ public class Controller implements Runnable {
 	public Controller(KeyCode upKey_1, KeyCode downKey_1, KeyCode leftKey_1, KeyCode rightKey_1, KeyCode meleeKey_1,
 			KeyCode rangeKey_1, KeyCode blockKey_1, KeyCode dodgeKey_1, KeyCode upKey_2, KeyCode downKey_2,
 			KeyCode leftKey_2, KeyCode rightKey_2, KeyCode meleeKey_2, KeyCode rangeKey_2, KeyCode blockKey_2,
-			KeyCode dodgeKey_2) {
+			KeyCode dodgeKey_2) throws Exception{
 		super();
 		Controller.KeyP1.add(upKey_1);
 		isPressedMap1.put(upKey_1, false);

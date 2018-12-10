@@ -45,7 +45,7 @@ public class OptionScreen extends MyScene {
 	private ArrayList<String> textList = new ArrayList<String>(
 			Arrays.asList("Jump", "Crouch", "Left", "Right", "Melee", "Range", "Defense", "Dodge"));
 
-	public OptionScreen() {
+	public OptionScreen() throws Exception {
 		super(root);
 		root.setPrefSize(1280, 720);
 		Image image = new Image(ClassLoader.getSystemResource("background/paper.jpg").toString(), 1300, 720, false,
@@ -226,7 +226,8 @@ public class OptionScreen extends MyScene {
 			this.setSpacing(10);
 			this.setAlignment(Pos.CENTER);
 			this.setPrefSize(180, 60);
-			this.setStyle("-fx-background-image: url(" + "icon/frame.png" + "); " + "-fx-background-size: cover;");
+			this.setStyle("-fx-background-image: url(" + ClassLoader.getSystemResource("icon/frame.png").toString()
+					+ "); " + "-fx-background-size: cover;");
 			this.text = new Text(text);
 			this.text.setFont(getNarutoFontsmall());
 			this.text.setStrokeWidth(2);

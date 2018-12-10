@@ -30,31 +30,27 @@ public class Main extends Application {
 	public final void start(Stage primaryStage) throws Exception {
 		Main.stage = primaryStage;
 
-		player = new Controller(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.I,
-				KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.NUMPAD1, KeyCode.NUMPAD2,
-				KeyCode.NUMPAD3, KeyCode.NUMPAD5);
 		try {
 			checkImage();
-		} catch (ImageNotFoundException e) {
-			System.out.println("Please contact developers.");
-		}
-		try {
 			checkSound();
-		} catch (SoundNotFoundException e) {
-			System.out.println("Please contact developers.");
+		} catch (ImageNotFoundException e) {
+			System.out.println("Please fix the file before start game.");
+			System.exit(0);
 		}
-		try {
-			intro = new IntroScreen();
-			mainmenu = new MainMenuScreen();
-			multiplayer = new MultiPlayerScreen();
-			optionscreen = new OptionScreen();
-			loadscreen = new LoadingScreen();
-			mapscreen = new MapChooseScreen();
-			gamescreen = new GameScreen();
-		} catch (Exception e) {
-			System.out.println(e);
-			System.out.println("Please contact developers.");
+		catch (SoundNotFoundException e) {
+			System.out.println("Please fix the file before start game.");
+			System.exit(0);
 		}
+		player = new Controller(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.J, KeyCode.K, KeyCode.L,
+				KeyCode.I, KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT, KeyCode.NUMPAD1, KeyCode.NUMPAD2,
+				KeyCode.NUMPAD3, KeyCode.NUMPAD5);
+		intro = new IntroScreen();
+		mainmenu = new MainMenuScreen();
+		multiplayer = new MultiPlayerScreen();
+		optionscreen = new OptionScreen();
+		loadscreen = new LoadingScreen();
+		mapscreen = new MapChooseScreen();
+		gamescreen = new GameScreen();
 
 		ChangeScene(intro);
 
@@ -187,6 +183,23 @@ public class Main extends Application {
 	}
 
 	public static void checkSound() throws SoundNotFoundException {
+		if (ClassLoader.getSystemResource("footstep1.wav") == null)
+			throw new SoundNotFoundException("footstep1.wav");
+		if (ClassLoader.getSystemResource("jump.wav") == null)
+			throw new SoundNotFoundException("jump.wav");
+		if (ClassLoader.getSystemResource("jump_land.wav") == null)
+			throw new SoundNotFoundException("jump_land.wav");
+		if (ClassLoader.getSystemResource("hit1.wav") == null)
+			throw new SoundNotFoundException("hit1.wav");
+		if (ClassLoader.getSystemResource("hit1_sucess.wav") == null)
+			throw new SoundNotFoundException("hit1_sucess.wav");
+		if (ClassLoader.getSystemResource("sword_miss1.wav") == null)
+			throw new SoundNotFoundException("sword_miss1.wav");
+		if (ClassLoader.getSystemResource("smokebomb_setoff.wav") == null)
+			throw new SoundNotFoundException("smokebomb_setoff.wav");
+		if (ClassLoader.getSystemResource("Block.wav") == null)
+			throw new SoundNotFoundException("Block.wav");
+		
 		if (ClassLoader.getSystemResource("characters/naruto_sage/sfx_hit.wav") == null)
 			throw new SoundNotFoundException("characters/naruto_sage/sfx_hit.wav");
 		if (ClassLoader.getSystemResource("characters/naruto_sage/sfx_rasengan.wav") == null)
@@ -204,6 +217,8 @@ public class Main extends Application {
 		if (ClassLoader.getSystemResource("characters/naruto_sage/sfx_injured2.wav") == null)
 			throw new SoundNotFoundException("characters/naruto_sage/sfx_injured2.wav");
 
+		if (ClassLoader.getSystemResource("characters/sasuke_aka/sfx_hit.wav") == null)
+			throw new SoundNotFoundException("characters/sasuke_aka/sfx_hit.wav");
 		if (ClassLoader.getSystemResource("characters/sasuke_aka/sfx_chidori.wav") == null)
 			throw new SoundNotFoundException("characters/sasuke_aka/sfx_chidori.wav");
 		if (ClassLoader.getSystemResource("chidori_loop.wav") == null)
@@ -219,6 +234,7 @@ public class Main extends Application {
 
 		if (ClassLoader.getSystemResource("sharingan.wav") == null)
 			throw new SoundNotFoundException("sharingan.wav");
+		
 		if (ClassLoader.getSystemResource("chidori_hit.wav") == null)
 			throw new SoundNotFoundException("chidori_hit.wav");
 

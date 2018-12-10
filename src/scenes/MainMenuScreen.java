@@ -3,8 +3,6 @@ package scenes;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -30,7 +28,7 @@ public class MainMenuScreen extends MyScene {
 	private int oldchoice;
 	private int newChoice;
 
-	public MainMenuScreen() {
+	public MainMenuScreen() throws Exception{
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));

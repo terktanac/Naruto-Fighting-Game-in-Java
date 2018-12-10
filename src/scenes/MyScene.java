@@ -8,11 +8,11 @@ import javafx.scene.text.Font;
 public abstract class MyScene extends Scene{
 	private static Font narutoFont = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 50);
 	private static Font narutoFontsmall = Font.loadFont(ClassLoader.getSystemResource("fonts/njnaruto.ttf").toExternalForm(), 25);
-	private static AudioClip choose = new AudioClip("file:soundfx/accept.wav");
-	private static AudioClip click = new AudioClip("file:soundfx/lighter.wav");
-	private static AudioClip ready = new AudioClip("file:soundfx/SUDA.wav");
+	private static AudioClip choose = new AudioClip(ClassLoader.getSystemResource("accept.wav").toString());
+	private static AudioClip click = new AudioClip(ClassLoader.getSystemResource("lighter.wav").toString());
+	private static AudioClip ready = new AudioClip(ClassLoader.getSystemResource("SUDA.wav").toString());
 
-	public MyScene(Pane root) {
+	public MyScene(Pane root) throws Exception{
 		super(root);
 	}
 

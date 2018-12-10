@@ -52,14 +52,14 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 	private int state;
 	private boolean isRight = true;
 	private CharacterAnimation animation;
-	protected static AudioClip foot1 = new AudioClip("file:soundfx/footstep1.wav");
-	protected static AudioClip jump = new AudioClip("file:soundfx/jump.wav");
-	protected static AudioClip land = new AudioClip("file:soundfx/jump_land.wav");
-	protected static AudioClip hit = new AudioClip("file:soundfx/hit1.wav");
-	protected static AudioClip hitSuccess = new AudioClip("file:soundfx/hit1_sucess.wav");
-	protected static AudioClip shuriken = new AudioClip("file:soundfx/sword_miss1.wav");
-	protected static AudioClip dodge = new AudioClip("file:soundfx/smokebomb_setoff.wav");
-	protected static AudioClip block = new AudioClip("file:soundfx/Block.wav");
+	protected static AudioClip foot1 = new AudioClip(ClassLoader.getSystemResource("footstep1.wav").toString());
+	protected static AudioClip jump = new AudioClip(ClassLoader.getSystemResource("jump.wav").toString());
+	protected static AudioClip land = new AudioClip(ClassLoader.getSystemResource("jump_land.wav").toString());
+	protected static AudioClip hit = new AudioClip(ClassLoader.getSystemResource("hit1.wav").toString());
+	protected static AudioClip hitSuccess = new AudioClip(ClassLoader.getSystemResource("hit1_sucess.wav").toString());
+	protected static AudioClip shuriken = new AudioClip(ClassLoader.getSystemResource("sword_miss1.wav").toString());
+	protected static AudioClip dodge = new AudioClip(ClassLoader.getSystemResource("smokebomb_setoff.wav").toString());
+	protected static AudioClip block = new AudioClip(ClassLoader.getSystemResource("Block.wav").toString());
 
 	public Character(String name, int element, double currentHealth, int atk, int def, double standTme,
 			ImageView imageview) {
@@ -77,7 +77,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 		this.offSetY = 0;
 		this.width = 111;
 		this.height = 111;
-		this.smoke = new ImageView("sys/big_smoke_log.png");
+		this.smoke = new ImageView(ClassLoader.getSystemResource("sys/big_smoke_log.png").toString());
 		this.setImageview(imageview);
 		this.getImageview().setViewport(new Rectangle2D(offSetX, offSetY, width - 15, height - 1.3));
 		this.getImageview().setFitHeight(350);
@@ -114,7 +114,7 @@ public abstract class Character extends Pane implements Fightable, Moveable, Ski
 
 	@Override
 	public final Rectangle2D getBoundary() {
-		return new Rectangle2D(getTranslateX()+40, getTranslateY()+10, width-50, height);
+		return new Rectangle2D(getTranslateX() + 40, getTranslateY() + 10, width - 50, height);
 	}
 
 	@Override

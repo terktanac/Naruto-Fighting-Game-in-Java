@@ -24,7 +24,7 @@ public class MultiPlayerScreen extends MyScene {
 	private static int player1; // default character =0 : naruto
 	private static int player2;
 	private static Pane root = new Pane();
-	private static AudioClip player = new AudioClip("file:music/menu/Gekiha.mp3");
+	private static AudioClip player = new AudioClip(ClassLoader.getSystemResource("menu/Gekiha.mp3").toString());
 	private ImageView lhschar;
 	private ImageView rhschar;
 	private ImageView vs;
@@ -40,36 +40,38 @@ public class MultiPlayerScreen extends MyScene {
 	private Timeline timeline;
 	private Text pressKey;
 
-	public MultiPlayerScreen() {
+	public MultiPlayerScreen() throws Exception {
 		super(root);
 		player1 = 1;
 		player2 = 0;
 		player.setVolume(0.3);
 
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),
-				230, 500, false, true));
-		Characters.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),
-				230, 500, false, true));
+		Characters.add(
+				new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_2.png").toString(),
+						230, 500, false, true));
+		Characters
+				.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_2.png").toString(),
+						230, 500, false, true));
 
-		CharactersReady
-				.add(new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),
+		CharactersReady.add(
+				new Image(ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_mugs_3.png").toString(),
 						310, 480, false, true));
 		CharactersReady
-				.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(), 230,
-						500, false, true));
+				.add(new Image(ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_mugs_3.png").toString(),
+						230, 500, false, true));
 
 		CharactersName.add("Naruto");
 		CharactersName.add("Sasuke");
 
-		listCharacterpy1.add(
-				new ListCharacter("characters/naruto_sage/face.jpg", "characters/naruto_sage/face_active.jpg", 100, 130));
+		listCharacterpy1.add(new ListCharacter("characters/naruto_sage/face.jpg",
+				"characters/naruto_sage/face_active.jpg", 100, 130));
 		listCharacterpy1.add(
 				new ListCharacter("characters/sasuke_aka/face.jpg", "characters/sasuke_aka/face_active.jpg", 205, 130));
 
-		listCharacterpy2.add(
-				new ListCharacter("characters/naruto_sage/face.jpg", "characters/naruto_sage/face_active.jpg", 980, 130));
-		listCharacterpy2.add(
-				new ListCharacter("characters/sasuke_aka/face.jpg", "characters/sasuke_aka/face_active.jpg", 1085, 130));
+		listCharacterpy2.add(new ListCharacter("characters/naruto_sage/face.jpg",
+				"characters/naruto_sage/face_active.jpg", 980, 130));
+		listCharacterpy2.add(new ListCharacter("characters/sasuke_aka/face.jpg",
+				"characters/sasuke_aka/face_active.jpg", 1085, 130));
 
 		pressKey = new Text("Press any key to Continue");
 		pressKey.setFont(getNarutoFont());
@@ -109,7 +111,7 @@ public class MultiPlayerScreen extends MyScene {
 		scrollpy2.setTranslateX(900);
 		scrollpy2.setTranslateY(50);
 
-		root.getChildren().addAll(lhschar, rhschar, scrollpy1, scrollpy2, vs,pressKey);
+		root.getChildren().addAll(lhschar, rhschar, scrollpy1, scrollpy2, vs, pressKey);
 
 		for (int i = 0; i < listCharacterpy1.size(); i++) {
 			root.getChildren().add(listCharacterpy1.get(i));

@@ -10,7 +10,7 @@ public class LoadingScreen extends MyScene {
 	private Image background = new Image(ClassLoader.getSystemResource("background/four_seal.gif").toString(), 1280,
 			740, false, false);
 
-	public LoadingScreen() {
+	public LoadingScreen() throws Exception{
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setBackground(new Background(new BackgroundImage(background, null, null, null, null)));

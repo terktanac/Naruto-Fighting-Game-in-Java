@@ -17,14 +17,21 @@ public class Naruto extends Character {
 	private static Image image = new Image(
 			ClassLoader.getSystemResource("characters/naruto_sage/naruto_sage_Clear.png").toString(), 1110, 2220, false,
 			false);
-	private static AudioClip hit1 = new AudioClip("file:image/characters/naruto_sage/sfx_hit.wav");
-	private static AudioClip rasengan = new AudioClip("file:image/characters/naruto_sage/sfx_rasengan.wav");
-	private static AudioClip rasenganReady = new AudioClip("file:soundfx/rasengan_ready.wav");
-	private static AudioClip rasenganHit = new AudioClip("file:soundfx/rasengan_hit.wav");
-	private static AudioClip rasenrengan = new AudioClip("file:image/characters/naruto_sage/sfx_rasenrengan.wav");
-	private static AudioClip rasenshuriken = new AudioClip("file:image/characters/naruto_sage/sfx_rasenshuri.wav");
-	private static AudioClip injured1 = new AudioClip("file:image/characters/naruto_sage/sfx_injured.wav");
-	private static AudioClip injured2 = new AudioClip("file:image/characters/naruto_sage/sfx_injured2.wav");
+	private static AudioClip hit1 = new AudioClip(
+			ClassLoader.getSystemResource("characters/naruto_sage/sfx_hit.wav").toString());
+	private static AudioClip rasengan = new AudioClip(
+			ClassLoader.getSystemResource("characters/naruto_sage/sfx_rasengan.wav").toString());
+	private static AudioClip rasenganReady = new AudioClip(
+			ClassLoader.getSystemResource("rasengan_ready.wav").toString());
+	private static AudioClip rasenganHit = new AudioClip(ClassLoader.getSystemResource("rasengan_hit.wav").toString());
+	private static AudioClip rasenrengan = new AudioClip(
+			ClassLoader.getSystemResource("characters/naruto_sage/sfx_rasenrengan.wav").toString());
+	private static AudioClip rasenshuriken = new AudioClip(
+			ClassLoader.getSystemResource("characters/naruto_sage/sfx_rasenshuri.wav").toString());
+	private static AudioClip injured1 = new AudioClip(
+			ClassLoader.getSystemResource("characters/naruto_sage/sfx_injured.wav").toString());
+	private static AudioClip injured2 = new AudioClip(
+			ClassLoader.getSystemResource("characters/naruto_sage/sfx_injured2.wav").toString());
 
 	public Naruto(double currentHealth) {
 		super("Naruto", 4, currentHealth, 8, 2, 0.6, new ImageView(image));
@@ -449,117 +456,90 @@ public class Naruto extends Character {
 	public int highSkill(Character target, ArrayList<GameObject> playerObject) {
 		if (isSkill3()) {
 			if (getSkillAnimationCount() == 250) {
-				getImageview()
-						.setViewport(new Rectangle2D(0, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(0, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 				rasenshuriken.play();
 			} else if (getSkillAnimationCount() >= 200) {
-				getImageview()
-						.setViewport(new Rectangle2D(0, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(0, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 180) {
-				getImageview()
-						.setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 160) {
-				getImageview()
-						.setViewport(new Rectangle2D(222, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(222, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 140) {
-				getImageview()
-						.setViewport(new Rectangle2D(333, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(333, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 120) {
-				getImageview()
-						.setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 100) {
-				getImageview()
-						.setViewport(new Rectangle2D(222, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(222, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 80) {
-				getImageview()
-						.setViewport(new Rectangle2D(333, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(333, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 60) {
-				getImageview()
-						.setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(111, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 40) {
-				getImageview()
-						.setViewport(new Rectangle2D(222, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(222, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 20) {
-				getImageview()
-						.setViewport(new Rectangle2D(333, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(333, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= 0) {
-				getImageview()
-						.setViewport(new Rectangle2D(444, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(444, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -20) {
-				getImageview()
-						.setViewport(new Rectangle2D(555, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(555, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -40) {
-				getImageview()
-						.setViewport(new Rectangle2D(666, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(666, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -60) {
-				getImageview()
-						.setViewport(new Rectangle2D(777, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(777, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -80) {
-				getImageview()
-						.setViewport(new Rectangle2D(888, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(888, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -100) {
-				getImageview()
-						.setViewport(new Rectangle2D(555, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(555, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -120) {
-				getImageview()
-						.setViewport(new Rectangle2D(666, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(666, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -140) {
-				getImageview()
-						.setViewport(new Rectangle2D(777, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(777, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -160) {
-				getImageview()
-						.setViewport(new Rectangle2D(888, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(888, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -180) {
-				getImageview()
-						.setViewport(new Rectangle2D(999, 1887, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(999, 1887, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -200) {
-				getImageview()
-						.setViewport(new Rectangle2D(0, 1998, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(0, 1998, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -220) {
-				getImageview()
-						.setViewport(new Rectangle2D(111, 1998, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(111, 1998, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() > -240) {
-				getImageview()
-						.setViewport(new Rectangle2D(222, 1998, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(222, 1998, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() == -240) {
-				getImageview()
-						.setViewport(new Rectangle2D(222, 1998, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(222, 1998, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 				target.setStackFly(1);
 				playerObject.add(new Rasenshuriken(getTranslateX(), getTranslateY() - 100, isRight(), target));
 				GameScreen.getPaneRoot().getChildren().add(playerObject.get(playerObject.size() - 1));
 				playerObject.get(playerObject.size() - 1).getAnimation().play();
 			} else if (getSkillAnimationCount() >= -260) {
-				getImageview()
-						.setViewport(new Rectangle2D(0, 1554, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(0, 1554, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else if (getSkillAnimationCount() >= -280) {
-				getImageview()
-						.setViewport(new Rectangle2D(111, 1554, getCharacterWidth(), getCharacterHeight()));
+				getImageview().setViewport(new Rectangle2D(111, 1554, getCharacterWidth(), getCharacterHeight()));
 				setSkillAnimationCount(getSkillAnimationCount() - 0.5);
 			} else {
 				target.getAnimation().stop();

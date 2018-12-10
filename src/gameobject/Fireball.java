@@ -9,7 +9,7 @@ import javafx.util.Duration;
 
 public class Fireball extends GameObject {
 
-	private static AudioClip boom = new AudioClip("file:soundfx/explosion.wav");
+	private static AudioClip boom = new AudioClip(ClassLoader.getSystemResource("explosion.wav").toString());
 
 	public Fireball(double posx, double posy, boolean direction) {
 		super(posx, posy, direction);
@@ -21,7 +21,7 @@ public class Fireball extends GameObject {
 		setCount(4);
 		setSpeed(4);
 		setDamage(25);
-		setImageview(new ImageView("sys/katon2.png"));
+		setImageview(new ImageView(ClassLoader.getSystemResource("sys/katon2.png").toString()));
 		if (!direction) {
 			getImageview().setRotationAxis(Rotate.Y_AXIS);
 			getImageview().setRotate(180);

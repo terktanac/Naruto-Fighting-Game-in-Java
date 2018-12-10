@@ -10,7 +10,7 @@ import javafx.util.Duration;
 public class Amaterasu extends GameObject {
 
 	private Character target;
-	private static AudioClip sharingan = new AudioClip("file:soundfx/sharingan.wav");
+	private static AudioClip sharingan = new AudioClip(ClassLoader.getSystemResource("sharingan.wav").toString());
 
 	public Amaterasu(double posx, double posy, boolean direction, Character target) {
 		super(posx, posy, direction);
@@ -24,7 +24,7 @@ public class Amaterasu extends GameObject {
 		setSpeed(0);
 		target.setStackFly(1);
 		setDamage(100);
-		setImageview(new ImageView("sys/amaterasu.png"));
+		setImageview(new ImageView(ClassLoader.getSystemResource("sys/amaterasu.png").toString()));
 		getImageview().setFitHeight(171.0 * 350.0 / 171.0);
 		getImageview().setFitWidth(111.0 * 350.0 / 171.0);
 		setAnimation(new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),

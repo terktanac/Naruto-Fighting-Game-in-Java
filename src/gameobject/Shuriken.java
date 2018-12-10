@@ -15,7 +15,7 @@ public class Shuriken extends GameObject {
 		setCount(2);
 		setSpeed(4);
 		setDamage(5);
-		setImageview(new ImageView("sys/weapons.png"));
+		setImageview(new ImageView(ClassLoader.getSystemResource("sys/weapons.png").toString()));
 		getImageview().setFitHeight(70);
 		getImageview().setFitWidth(50);
 		setAnimation((new CharacterAnimation(getImageview(), Duration.millis(300), getCount(), 0, getOffSetX(),

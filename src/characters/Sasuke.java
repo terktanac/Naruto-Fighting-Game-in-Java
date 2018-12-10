@@ -18,14 +18,21 @@ import scenes.GameScreen;
 public class Sasuke extends Character {
 
 	private static Image image = new Image(
-			ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_Clear.png").toString(), 1110, 2220, false, false);
-	private static AudioClip hit1 = new AudioClip("file:image/characters/sasuke_aka/sfx_hit.wav");
-	private static AudioClip chidori = new AudioClip("file:image/characters/sasuke_aka/sfx_chidori.wav");
-	private static AudioClip chidoriReady = new AudioClip("file:soundfx/chidori_loop.wav");
-	private static AudioClip katon = new AudioClip("file:image/characters/sasuke_aka/sfx_katon.wav");
-	private static AudioClip amaterasu = new AudioClip("file:image/characters/sasuke_aka/sfx_ult.wav");
-	private static AudioClip injured1 = new AudioClip("file:image/characters/sasuke_aka/sfx_injured.wav");
-	private static AudioClip injured2 = new AudioClip("file:image/characters/sasuke_aka/sfx_injured2.wav");
+			ClassLoader.getSystemResource("characters/sasuke_aka/sasuke_aka_Clear.png").toString(), 1110, 2220, false,
+			false);
+	private static AudioClip hit1 = new AudioClip(
+			ClassLoader.getSystemResource("characters/sasuke_aka/sfx_hit.wav").toString());
+	private static AudioClip chidori = new AudioClip(
+			ClassLoader.getSystemResource("characters/sasuke_aka/sfx_chidori.wav").toString());
+	private static AudioClip chidoriReady = new AudioClip(ClassLoader.getSystemResource("chidori_loop.wav").toString());
+	private static AudioClip katon = new AudioClip(
+			ClassLoader.getSystemResource("characters/sasuke_aka/sfx_katon.wav").toString());
+	private static AudioClip amaterasu = new AudioClip(
+			ClassLoader.getSystemResource("characters/sasuke_aka/sfx_ult.wav").toString());
+	private static AudioClip injured1 = new AudioClip(
+			ClassLoader.getSystemResource("characters/sasuke_aka/sfx_injured.wav").toString());
+	private static AudioClip injured2 = new AudioClip(
+			ClassLoader.getSystemResource("characters/sasuke_aka/sfx_injured2.wav").toString());
 
 	public Sasuke(double currentHealth) {
 		super("Sasuke", 1, currentHealth, 10, 4, 1.2, new ImageView(image));
@@ -387,7 +394,8 @@ public class Sasuke extends Character {
 				if (!isRight()) {
 					playerObject.add(new Amaterasu(target.getTranslateX(), target.getTranslateY(), isRight(), target));
 				} else {
-					playerObject.add(new Amaterasu(target.getTranslateX() + 100, target.getTranslateY(), isRight(), target));
+					playerObject.add(
+							new Amaterasu(target.getTranslateX() + 100, target.getTranslateY(), isRight(), target));
 				}
 				GameScreen.getPaneRoot().getChildren().add(playerObject.get(playerObject.size() - 1));
 			} else if (getSkillAnimationCount() > 160) {

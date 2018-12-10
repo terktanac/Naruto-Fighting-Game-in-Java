@@ -21,7 +21,7 @@ public class MapChooseScreen extends MyScene {
 
 	private static TilePane root = new TilePane(20, 20);
 	private ArrayList<ListMap> listOfBackground = new ArrayList<ListMap>();
-	private int row; 
+	private int row;
 	private int column;
 	private int choice;
 	private Image background = new Image(ClassLoader.getSystemResource("background/shinobi2.jpg").toString(), 1300, 740,
@@ -29,7 +29,7 @@ public class MapChooseScreen extends MyScene {
 	private static Image chooseBackground = new Image(
 			ClassLoader.getSystemResource("background/shinobi2.jpg").toString(), 1300, 740, false, false);
 
-	public MapChooseScreen() {
+	public MapChooseScreen() throws Exception {
 		super(root);
 		root.setPrefSize(1280, 720);
 		root.setAlignment(Pos.CENTER);
@@ -56,6 +56,7 @@ public class MapChooseScreen extends MyScene {
 	public static void setChooseBackground(Image chooseBackground) {
 		MapChooseScreen.chooseBackground = chooseBackground;
 	}
+
 	@Override
 	public final void update() {
 		upPressed();
@@ -143,6 +144,7 @@ public class MapChooseScreen extends MyScene {
 		column = 0;
 		choice = 0;
 	}
+
 	public class ListMap extends ImageView {
 		private String normal;
 		private String active;
@@ -170,5 +172,4 @@ public class MapChooseScreen extends MyScene {
 		}
 	}
 
-	
 }
